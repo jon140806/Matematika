@@ -1,8 +1,8 @@
 const graphKeys123 = {
   area: k => ({
     x: 'x · razdalja (m)', y: k === 2 ? 'Δf/h · sprememba višine na enoto a' : 'f · višina plošče (m)',
-    curves: [['f(x,a) · izbrani rob', 'a = 0,2 · nižji rob', 'a = 1,4 · višji rob'], ['f(x,a) · stari rob', 'f(x,a+h) · novi rob'], ['Δf/h = x²']][k],
-    marks: k === 2 ? [] : ['x = 2'], areas: [['F(a) · površina plošče'], ['F(a) · stara površina', 'ΔF · dodani pas'], ['F′(a) · občutljivost površine']][k]
+    curves: [['f(x,a) · izbrani rob', 'f(x,0) = 1'], ['f(x,a) · stari rob', 'f(x,a+h) · novi rob'], ['Δf/h = x²']][k],
+    marks: k === 2 ? [] : ['x = 2'], areas: [['C = F(0) · začetna ploščina', '8a/3 · dodana ploščina'], ['F(a) · stara površina', 'ΔF · dodani pas'], ['F′(a) · občutljivost površine']][k]
   }),
   leib: k => ({
     x: k === 2 ? 'i · številka prispevka' : 'x · položaj reza', y: k === 2 ? 'prispevek k F′(a)' : 'f · višina pri x',

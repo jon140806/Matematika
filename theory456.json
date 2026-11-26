@@ -192,7 +192,7 @@
     "title": "Frobeniusova metoda in Besselova enačba",
     "definition": "Frobeniusov nastavek opisuje rešitev v bližini regularno singularne oziroma šibko singularne točke kot potenco $x^r$, pomnoženo z analitično funkcijo.",
     "conditions": "Pri enačbi $y''+Py'+Qy=0$ sta v regularno singularni točki nič funkciji $xP(x)$ in $x^2Q(x)$ analitično razširljivi v nič. Obravnavamo $x>0$ in realen red $\\nu\\geq0$.",
-    "symbols": "$r$ je začetni eksponent rešitve, $\\nu$ red Besselove enačbe, $a_0$ prvi neničelni koeficient v izbrani Frobeniusovi veji. $J_\\nu,Y_\\nu$ sta Besselovi funkciji prve in druge vrste.",
+    "symbols": "$r$ je začetni eksponent rešitve, $\\nu$ red Besselove enačbe, $a_0$ prvi neničelni koeficient v izbrani Frobeniusovi veji. $J_\\nu,Y_\\nu$ sta Besselovi funkciji prve in druge vrste. $C_1,C_2$ sta uteži obeh rešitev. Določita ju dva neodvisna pogoja.",
     "use": "Začetna potenca pojasni obnašanje rešitve v bližini središča radialnega koordinatnega sistema.",
     "steps": [
       [
@@ -263,7 +263,7 @@
       ],
       [
         "Od začetnih podatkov do polja",
-        "Vsota in razlika eksponentov določata hiperbolični kosinus in sinus. Z $g(y)=u(0,y)$ in $h(y)=u_x(0,y)$ dobimo predpis za vso družino prerezov.",
+        "Naj bosta $g(y)=u(0,y)$ in $h(y)=u_x(0,y)$. Iz $A+B=g$ in $A-B=h/\\lambda$ s seštevanjem dobimo $A=(g+h/\\lambda)/2$, z odštevanjem pa $B=(g-h/\\lambda)/2$. Po vstavitvi združimo eksponente v hiperbolični funkciji.",
         "u(x,y)=g(y)\\cosh(\\lambda x)+\\frac{h(y)}{\\lambda}\\sinh(\\lambda x)",
         "Graf drugega odvoda pokaže povezanost višine in ukrivljenosti istega prereza."
       ]

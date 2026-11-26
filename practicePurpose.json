@@ -1,6 +1,6 @@
 {
   "exercises": {
-    "area": "Predstavljaj si ploščo dolžine 2, katere zgornji rob je parabola. Ko spremeniš njeno ukrivljenost, želiš oceniti, koliko več materiala porabiš. To ti pove hitrost spreminjanja ploščine.",
+    "area": "Koliko pločevine potrebuješ pri izbrani ukrivljenosti? Iz odvoda izveš, za koliko ploščina naraste. Začetno količino materiala dobiš pri ravnem robu, ko je $a=0$.",
     "gauss": "Pod padajočo ovojnico kosinus riše izmenične hribe in doline. Iščeš, koliko predznačene ploščine ostane, ko spremeniš hitrost nihanja. Ena formula ti da odgovor za vsako hitrost.",
     "atan": "S premikom drsnika tu spremeniš višino krivulje in dolžino intervala, na katerem meriš ploščino. Ugotoviti želiš, koliko spremembe izvira iz vsakega od teh dveh učinkov.",
     "root": "Parameter lahko nastavljaš od 2 navzgor. Zanima te občutljivost integrala že pri tej najnižji nastavitvi, čeprav postane krivulja odvoda blizu desnega roba zelo strma.",

@@ -1,5 +1,5 @@
 {
-  "area": "$x$ teče od 0 do 2. Parameter $a$ izbira parabolo, $F(a)$ je ploščina pod njo. $F'(a)$ meri spremembo ploščine na enoto spremembe $a$.",
+  "area": "$x$ teče od 0 do 2, parameter $a$ določa višino krivulje. $F(a)$ je ploščina, $F'(a)$ njena hitrost spreminjanja. $C$ je začetna ploščina pri $a=0$.",
   "gauss": "$x$ je spremenljivka integriranja, $a$ določa hitrost nihanja kosinusa. $I(a)$ je predznačena ploščina. $I'(a)$ pove, kako se spremeni, ko spremeniš $a$.",
   "atan": "$t$ določa obliko integranda in konec intervala. $x$ teče od 0 do $t^2$, $I(t)$ pa je rezultat integriranja za izbrani $t$.",
   "root": "$y$ teče od 0 do 2. Parameter $t$ določa krivuljo pod integralom. Pri $t=2$ smeš parameter povečevati samo v desno.",

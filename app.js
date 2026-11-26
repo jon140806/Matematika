@@ -67,7 +67,7 @@ function drawPlot(panel){
   panel.querySelector('.caption').innerHTML=current().steps[phase][3];
   if(current().plot==='area'){
    m.keys.x='x · spremenljivka integriranja';m.keys.y=phase===2?'Δf/h · sprememba višine na enoto parametra':'f · vrednost funkcije';
-   m.keys.areas=[['F(a) · integral'],['F(a) · prvotna ploščina','ΔF · prirastek'],['F′(a) · odvod']][phase];
+   m.keys.areas=[['F(0) · začetna ploščina','F(a) − F(0) · sprememba'],['F(a) · prvotna ploščina','ΔF · prirastek'],['F′(a) · odvod']][phase];
   }
  }else panel.querySelector('.caption').textContent=m.caption;
  if(tab()==='lessons')m.caption=panel.querySelector('.caption').textContent;

@@ -7,12 +7,12 @@
           "F(a)=\\int_0^2(1+ax^2)\\,dx"
         ],
         [
-          "Med integriranjem po x je a stalno število.",
-          "\\int(1+ax^2)\\,dx=x+a\\frac{x^3}{3}+C"
+          "Pri integriranju po x je a stalen. Integracijska konstanta je lahko odvisna od a.",
+          "P(x,a)=x+\\frac{ax^3}{3}+K(a),\\qquad \\partial_xP=1+ax^2"
         ],
         [
-          "Vstavi zgornjo mejo in odštej vrednost pri spodnji.",
-          "F(a)=\\left[x+a\\frac{x^3}{3}\\right]_0^2=2+\\frac{8a}{3}"
+          "V obeh mejah uporabi isto primitivno funkcijo. Oba člena K(a) se odštejeta.",
+          "F(a)=P(2,a)-P(0,a)=2+\\frac{8a}{3}+K(a)-K(a)=2+\\frac{8a}{3}"
         ]
       ],
       [
@@ -55,8 +55,12 @@
           "F(a)=\\int_{a/2}^{1+a}(x+a)\\,dx"
         ],
         [
-          "Za kontrolo izračunaj ploščino z vstavljenima mejama.",
-          "F(a)=\\frac{(1+a)^2}2+a(1+a)-\\frac{a^2}8-\\frac{a^2}2=\\frac12+2a+\\frac{7a^2}8"
+          "Integriraj po x pri izbranem a in vstavi obe meji.",
+          "P(x)=\\frac{x^2}{2}+ax,\\qquad F(a)=P(1+a)-P(a/2)"
+        ],
+        [
+          "Razširi kvadrat in združi konstantne, linearne in kvadratne člene.",
+          "F(a)=\\tfrac12+a+\\tfrac12a^2+a+a^2-\\tfrac18a^2-\\tfrac12a^2=\\tfrac12+2a+\\tfrac78a^2"
         ]
       ],
       [
@@ -79,8 +83,12 @@
           "\\int_u^v\\partial_a(x+a)\\,dx=v-u=1+\\frac a2"
         ],
         [
-          "Vsak rob prispeva višino krat hitrost roba.",
-          "f(v,a)v'=(1+2a)\\cdot1,\\qquad f(u,a)u'=\\frac{3a}{2}\\cdot\\frac12"
+          "Odvajaj enačbi obeh robov po a.",
+          "v'(a)=(1+a)'=1,\\qquad u'(a)=(a/2)'=\\tfrac12"
+        ],
+        [
+          "V višino x+a vstavi desni in levi rob ter vsako višino pomnoži s hitrostjo njenega roba.",
+          "f(v,a)v'=(1+a+a)\\cdot1=1+2a,\\quad f(u,a)u'=(a/2+a)\\cdot\\tfrac12=\\tfrac{3a}{4}"
         ],
         [
           "Seštej notranji in desni prispevek ter odštej levega.",
@@ -149,8 +157,12 @@
           "\\int_0^\\infty u\\,dv=[uv]_0^\\infty-\\int_0^\\infty v\\,du"
         ],
         [
-          "Vstavi izbrana dela. Rob izgine pri p>0.",
-          "\\Gamma(p+1)=0-0+p\\int_0^\\infty x^{p-1}e^{-x}dx=p\\Gamma(p)"
+          "Ovrednoti robni člen. Pri neskončnosti eksponent pada hitreje, kot raste potenca.",
+          "p>0:\\quad \\lim_{x\\to\\infty}x^pe^{-x}=0,\\qquad 0^pe^0=0"
+        ],
+        [
+          "Po vstavitvi ostane integral z za ena nižjo potenco.",
+          "\\Gamma(p+1)=[-x^pe^{-x}]_0^\\infty+p\\int_0^\\infty x^{p-1}e^{-x}dx=p\\Gamma(p)"
         ]
       ],
       [
@@ -163,8 +175,12 @@
           "\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
         ],
         [
-          "Za polovični argument začni pri znani vrednosti.",
-          "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac12\\sqrt{\\pi}"
+          "Pri polovičnem argumentu vstavi x=t². Preostane dvakrat polovica Gaussovega integrala.",
+          "\\Gamma(1/2)=\\int_0^\\infty x^{-1/2}e^{-x}dx=2\\int_0^\\infty e^{-t^2}dt=2\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+        ],
+        [
+          "V rekurzijo vstavi p=½.",
+          "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac{\\sqrt\\pi}{2}"
         ]
       ]
     ],
@@ -189,8 +205,12 @@
           "r=x+y,\\quad u=x/r,\\quad x=ru,\\quad y=r(1-u)"
         ],
         [
+          "V matriko postavi odvoda x in y najprej po r in nato po u.",
+          "D=\\begin{pmatrix}u&r\\\\1-u&-r\\end{pmatrix}"
+        ],
+        [
           "Izračunaj faktor pretvorbe površine iz parcialnih odvodov.",
-          "\\left|\\frac{\\partial(x,y)}{\\partial(r,u)}\\right|=|u(-r)-r(1-u)|=r"
+          "|\\det D|=|u(-r)-r(1-u)|=|-r|=r"
         ]
       ],
       [
@@ -337,13 +357,21 @@
           "Z=\\frac1{(s-1)(s+1)},\\quad Y=\\frac{s}{(s-1)(s+1)}"
         ],
         [
-          "Za razcep Z odpravi imenovalec in vstavi obe ničli.",
-          "1=A(s+1)+B(s-1),\\quad 1=2A,\\quad 1=-2B"
+          "Postavi neznana koeficienta A in B pri obeh enostavnih polih. Pomnoži s skupnim imenovalcem.",
+          "Z=\\frac A{s-1}+\\frac B{s+1}\\quad\\Longrightarrow\\quad 1=A(s+1)+B(s-1)"
+        ],
+        [
+          "V polinomsko identiteto vstavi ničli imenovalca. Vsakič ostane en sam koeficient.",
+          "s=1:\\ 1=2A\\Rightarrow A=\\tfrac12,\\quad s=-1:\\ 1=-2B\\Rightarrow B=-\\tfrac12"
         ]
       ],
       [
         [
-          "Zapiši oba razcepa. Pri Y dobiš ob vstavitvi s=1 in s=−1 oba koeficienta ½.",
+          "Pri Y je števec s. Po istem postopku odpravi imenovalec in vstavi obe ničli.",
+          "s=P(s+1)+Q(s-1),\\quad 1=2P,\\quad -1=-2Q,\\quad P=Q=\\tfrac12"
+        ],
+        [
+          "Vstavi koeficiente v oba razcepa.",
           "Y=\\frac{1/2}{s-1}+\\frac{1/2}{s+1},\\quad Z=\\frac{1/2}{s-1}-\\frac{1/2}{s+1}"
         ],
         [
@@ -372,20 +400,28 @@
         "F'(a)=\\int_0^2\\partial_a f(x,a)\\,dx=\\int_0^2x^2\\,dx"
       ],
       [
-        "Zdaj integriraj po x. Pri potenčnem pravilu povečaš eksponent za ena in deliš z novim eksponentom.",
-        "\\int x^n dx=\\frac{x^{n+1}}{n+1}+C\\ (n\\ne-1),\\qquad \\int x^2dx=\\frac{x^3}{3}+C"
+        "Poišči primitivno funkcijo po x. Vse njene različice se razlikujejo za konstanto K.",
+        "\\int x^2\\,dx=\\frac{x^{2+1}}{2+1}+K=\\frac{x^3}{3}+K"
       ],
       [
-        "V primitivno funkcijo vstavi najprej zgornjo mejo in nato odštej spodnjo.",
-        "F'(a)=\\left[\\frac{x^3}3\\right]_0^2=\\frac{2^3}{3}-\\frac{0^3}{3}=\\frac{8-0}{3}=\\frac83"
+        "V isto primitivno funkcijo vstavi obe meji. Konstanta K se odšteje sama od sebe.",
+        "F'(a)=\\left(\\frac{2^3}3+K\\right)-\\left(\\frac{0^3}3+K\\right)=\\frac83"
       ],
       [
-        "Za neodvisen preizkus najprej integriraj prvotni integrand po x. Parameter a je pri tem konstanta.",
-        "F(a)=\\left[x+\\frac{ax^3}{3}\\right]_0^2=\\left(2+\\frac{a\\cdot 2^3}{3}\\right)-\\left(0+\\frac{a\\cdot0^3}{3}\\right)=2+\\frac{8a}{3}"
+        "Zdaj iz odvoda obnovi F. Integriraš po a, zato dobiš novo konstanto C.",
+        "F(a)=\\int \\frac83\\,da=\\frac83a+C"
       ],
       [
-        "Preveri rezultat še z neposrednim odvajanjem ploščine.",
-        "F(a)=2+\\tfrac83a\\quad\\Longrightarrow\\quad F'(a)=0+\\tfrac83\\cdot1=\\tfrac83"
+        "Za določitev C izberi a=0. V prvotnem integralu je takrat višina povsod 1.",
+        "F(0)=\\int_0^2(1+0\\cdot x^2)\\,dx=[x]_0^2=2"
+      ],
+      [
+        "V splošno rešitev vstavi a=0 in dobljeno ploščino. Enačba določi C.",
+        "2=F(0)=\\frac83\\cdot0+C\\quad\\Longrightarrow\\quad C=2"
+      ],
+      [
+        "Vstavi določeno konstanto in zapiši funkcijo skupaj z njenim odvodom.",
+        "F(a)=2+\\frac83a,\\qquad F'(a)=\\frac83"
       ]
     ],
     "gauss": [
@@ -410,16 +446,28 @@
         "I'(a)=\\tfrac12[e^{-x^2}\\sin(ax)]_0^\\infty-\\tfrac12\\int_0^\\infty e^{-x^2}a\\cos(ax)dx=-\\tfrac a2I(a)"
       ],
       [
-        "Premakni člen na levo in izberi faktor, ki pretvori levo stran v odvod produkta.",
-        "I'+\\tfrac a2 I=0,\\qquad \\mu(a)=e^{\\int a/2\\,da}=e^{a^2/4}"
+        "Levo stran želimo zapisati kot odvod produkta. Primerjaj koeficient pri I.",
+        "I'+\\frac a2I=0,\\quad (\\mu I)'=\\mu I'+\\mu'I,\\quad \\mu'=\\tfrac a2\\mu"
       ],
       [
-        "Pomnoži z μ in integriraj po a.",
-        "(\\mu I)'=\\mu(I'+\\tfrac a2 I)=0\\quad\\Longrightarrow\\quad \\mu I=C"
+        "Poišči en pozitiven integrirni faktor. Začetno vrednost faktorja lahko izbereš kot 1.",
+        "\\ln\\mu(a)-\\ln1=\\int_0^a\\frac r2\\,dr=\\frac{a^2}4,\\qquad \\mu(a)=e^{a^2/4}"
       ],
       [
-        "Vstavi a=0 za konstanto in deli z μ.",
-        "C=e^0 I(0)=\\tfrac{\\sqrt{\\pi}}2,\\qquad I(a)=\\tfrac{\\sqrt{\\pi}}2e^{-a^2/4}"
+        "Pomnoži enačbo s faktorjem. Ker je odvod produkta nič, je produkt konstanten.",
+        "(\\mu I)'=0\\quad\\Longrightarrow\\quad e^{a^2/4}I(a)=C"
+      ],
+      [
+        "Vstavi a=0. Kosinus je takrat povsod 1; naloga poda vrednost tega Gaussovega integrala.",
+        "I(0)=\\int_0^\\infty e^{-x^2}\\cos(0)\\,dx=\\frac{\\sqrt\\pi}{2}"
+      ],
+      [
+        "V enačbo za produkt vstavi začetno vrednost in izračunaj C.",
+        "C=e^{0^2/4}I(0)=1\\cdot\\frac{\\sqrt\\pi}{2}=\\frac{\\sqrt\\pi}{2}"
+      ],
+      [
+        "Deli s faktorjem, da iz znanega produkta dobiš iskano funkcijo.",
+        "I(a)=\\frac{C}{e^{a^2/4}}=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
       ]
     ],
     "atan": [
@@ -508,8 +556,12 @@
         "B(3/2,3/2)=\\frac{\\Gamma(3/2)^2}{\\Gamma(3)}"
       ],
       [
-        "Spusti argumente in vstavi znani vrednosti.",
-        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac12\\sqrt{\\pi},\\quad\\Gamma(3)=2\\cdot1!=2"
+        "Uporabi rekurzijo z argumentoma ½ in 2. Pri celih argumentih se ustaviš pri Γ(1)=1.",
+        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2),\\quad\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
+      ],
+      [
+        "Polovična začetna vrednost sledi iz zamenjave x=t² v definiciji gama in znanega Gaussovega integrala.",
+        "\\Gamma(1/2)=2\\int_0^\\infty e^{-t^2}dt=\\sqrt\\pi,\\quad \\Gamma(3/2)=\\sqrt\\pi/2"
       ],
       [
         "Vstavi še faktor 8 iz menjave spremenljivke.",
@@ -556,8 +608,12 @@
         "p-1=\\tfrac12\\ \\Longrightarrow\\ p=\\tfrac32,\\qquad I=\\Gamma(3/2)"
       ],
       [
-        "Uporabi rekurzijo z argumentom ½ in vstavi znano začetno vrednost.",
-        "\\Gamma(1+\\tfrac12)=\\tfrac12\\Gamma(\\tfrac12)=\\frac{\\sqrt{\\pi}}2"
+        "V rekurzijo vstavi p=½. Potrebuješ še začetno vrednost pri polovičnem argumentu.",
+        "\\Gamma(p+1)=p\\Gamma(p)\\quad\\Longrightarrow\\quad I=\\tfrac12\\Gamma(1/2)"
+      ],
+      [
+        "V definiciji gama z zamenjavo u=t² dobiš Gaussov integral.",
+        "\\Gamma(1/2)=\\int_0^\\infty u^{-1/2}e^{-u}du=2\\int_0^\\infty e^{-t^2}dt=\\sqrt\\pi,\\qquad I=\\frac{\\sqrt\\pi}{2}"
       ]
     ],
     "betarec": [
@@ -634,8 +690,12 @@
         "Y=\\frac2{s+1}+\\frac1{(s+1)^2}"
       ],
       [
-        "Razcepi D, da dobiš tudi Z v obliki za inverzijo.",
-        "D=\\frac12\\left(\\frac1{s-1}-\\frac1{s+1}\\right)"
+        "Za D nastavi delna ulomka. Ko pomnožiš z imenovalcem, dobiš polinomsko identiteto.",
+        "D=\\frac A{s-1}+\\frac B{s+1},\\qquad 1=A(s+1)+B(s-1)"
+      ],
+      [
+        "Vstavi s=1 in s=−1 ter uporabi dobljena koeficienta.",
+        "1=2A,\\quad 1=-2B,\\quad D=\\frac{1/2}{s-1}-\\frac{1/2}{s+1}"
       ],
       [
         "Vstavi Y in D v Z=(Y−D)/2 ter združi enake imenovalce.",

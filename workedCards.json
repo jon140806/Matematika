@@ -47,6 +47,14 @@
     [
       "Odvajaj sinus po x. Robni člen izgine pri ničli zaradi sinusa in v neskončnosti zaradi dušenja.",
       "I'(a)=\\left[\\tfrac12e^{-x^2}\\sin(ax)\\right]_0^\\infty-\\tfrac a2\\int_0^\\infty e^{-x^2}\\cos(ax)dx=-\\tfrac a2 I(a)"
+    ],
+    [
+      "Za vrnitev od $I'$ k $I$ pomnoži enačbo z $e^{a^2/4}$. Leva stran je odvod produkta. Ker je ta odvod nič, je produkt konstanta.",
+      "I'+\\tfrac a2 I=0\\ \\Longrightarrow\\ (e^{a^2/4}I)'=0\\ \\Longrightarrow\\ e^{a^2/4}I(a)=C"
+    ],
+    [
+      "V prvotni integral vstavi nič. Kosinus je ena, ostane znani Gaussov integral. S tem določiš konstanto.",
+      "C=e^0 I(0)=\\int_0^\\infty e^{-x^2}dx=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
     ]
   ],
   [
@@ -279,7 +287,11 @@
       "0\\le x\\le0{,}8\\quad\\Longrightarrow\\quad \\sum_{j=N+1}^\\infty x^j\\le\\frac{0{,}8^{N+1}}{1-0{,}8}"
     ],
     [
-      "Za zahtevano napako 0,05 preizkusi N = 20. Ena izbira zadošča za ves interval.",
+      "Iz meje za rep izračunaj, kako velik mora biti $N$. Obe strani logaritmiraj. Ker je logaritem števila 0,8 negativen, se pri deljenju neenačaj obrne.",
+      "0{,}8^{N+1}<0{,}2\\cdot0{,}05=0{,}01\\ \\Longrightarrow\\ N+1>\\frac{\\ln(0{,}01)}{\\ln(0{,}8)}\\approx20{,}64"
+    ],
+    [
+      "Najmanjši celi $N$, ki zadošča tej oceni na vsem intervalu, je 20.",
       "\\frac{0{,}8^{21}}{0{,}2}\\approx0{,}0461<0{,}05"
     ]
   ],
@@ -287,6 +299,10 @@
     [
       "Pri regularni točki vstavi navadno vrsto v primer y′ = y in izenači koeficiente enakih potenc.",
       "(n+1)a_{n+1}=a_n\\quad\\Longrightarrow\\quad a_{n+1}=\\frac{a_n}{n+1}"
+    ],
+    [
+      "Začetna vrednost izbere prvo število v rekurziji. Pri $x=0$ ostane samo konstantni člen.",
+      "y(0)=a_0,\\qquad a_1=a_0,\\quad a_2=\\tfrac12a_0"
     ],
     [
       "Pri enačbi s singularno točko poskusi vodilno potenco. Za prikazano Eulerjevo enačbo tako najdeš začetna eksponenta.",
@@ -311,6 +327,10 @@
     [
       "Vstavi ta red v obe neodvisni rešitvi na pozitivni polosi.",
       "y=C_1J_\\nu(x)+C_2Y_\\nu(x)=C_1J_5(x)+C_2Y_5(x),\\quad x>0"
+    ],
+    [
+      "$C_1$ in $C_2$ sta prosti konstanti splošne rešitve. Če poznaš višino in naklon pri $x_0>0$, ju določiš iz teh dveh enačb.",
+      "y(x_0)=C_1J_5(x_0)+C_2Y_5(x_0),\\qquad y'(x_0)=C_1J'_5(x_0)+C_2Y'_5(x_0)"
     ]
   ],
   [
@@ -329,8 +349,12 @@
       "P_1(1)=a\\cdot1=1\\quad\\Longrightarrow\\quad P_1(x)=x"
     ],
     [
-      "Za sodo rešitev druge stopnje rekurzija da b = −3a. Ta pogoj vstavi v normalizacijo.",
-      "P_2(x)=a+bx^2,\\quad a+b=1,\\quad a-3a=1\\quad\\Longrightarrow\\quad a=-\\tfrac12,\\quad b=\\tfrac32"
+      "Za drugo stopnjo vstavi sodi polinom in njegova odvoda v Legendrovo enačbo. Členi pri kvadratu se odpravijo.",
+      "P_2=a+bx^2,\\quad P'_2=2bx,\\quad P''_2=2b,\\qquad (1-x^2)2b-2x(2bx)+6(a+bx^2)=2b+6a=0"
+    ],
+    [
+      "Iz enačbe izrazi $b$. Nato uporabi predpisano normalizacijo pri 1.",
+      "b=-3a,\\quad P_2(1)=a+b=1\\ \\Longrightarrow\\ a-3a=1\\ \\Longrightarrow\\ a=-\\tfrac12,\\quad b=\\tfrac32"
     ],
     [
       "Vstavi koeficienta in izpostavi skupni faktor.",

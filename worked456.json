@@ -65,8 +65,8 @@
           "\\int u^1\\,du=\\frac{u^{1+1}}{1+1}+C=\\frac{u^2}{2}+C"
         ],
         [
-          "Vstavimo zgornjo in odštejemo spodnjo mejo.",
-          "\\left[\\frac{u^2}{2}\\right]_0^t=\\frac{t^2}{2}-\\frac{0^2}{2}=\\frac{t^2}{2}"
+          "Pri spodnji in zgornji meji uporabimo isto primitivno funkcijo. Konstanta se ob odštevanju izniči.",
+          "\\left(\\frac{t^2}{2}+C\\right)-\\left(\\frac{0^2}{2}+C\\right)=\\frac{t^2}{2}"
         ]
       ],
       [
@@ -203,8 +203,8 @@
           "\\int_0^x u^k\\,du=\\left[\\frac{u^{k+1}}{k+1}\\right]_0^x=\\frac{x^{k+1}}{k+1}"
         ],
         [
-          "Na desni integriramo geometrijsko vsoto. Minus izvira iz odvoda izraza 1−u.",
-          "\\int_0^x\\frac{du}{1-u}=[-\\ln(1-u)]_0^x=-\\ln(1-x)"
+          "Integriramo desno stran. Pri spodnji meji je logaritem ena enak nič.",
+          "\\int_0^x\\frac{du}{1-u}=[-\\ln(1-u)]_0^x=-\\ln(1-x)+\\ln 1=-\\ln(1-x)"
         ],
         [
           "Preimenujemo indeks in vstavimo primer x = 1/2.",
@@ -227,6 +227,10 @@
         [
           "Izpostavimo prvi člen repa in uporabimo geometrijsko vsoto.",
           "\\sum_{n=N+1}^\\infty r^n=r^{N+1}(1+r+r^2+\\cdots)=\\frac{r^{N+1}}{1-r}"
+        ],
+        [
+          "Za napako pod 0,05 vstavimo r = 0,8. Po logaritmiranju delimo z negativnim številom, zato se smer neenačbe obrne.",
+          "\\frac{0{,}8^{N+1}}{0{,}2}<0{,}05\\ \\Longleftrightarrow\\ 0{,}8^{N+1}<0{,}01\\ \\Longleftrightarrow\\ N+1>\\frac{\\ln(0{,}01)}{\\ln(0{,}8)}\\approx20{,}64"
         ],
         [
           "Za krajišče 0,8 in zadnji indeks 20 izračunamo mejo napake za vse x hkrati.",
@@ -283,6 +287,10 @@
       ],
       [
         [
+          "Sodi polinom ima samo sode potence. Zato prvi lihi koeficient postavimo na nič, rekurzija pa ohrani ničle v lihi veji.",
+          "P_2(-x)=P_2(x)\\quad\\Rightarrow\\quad a_1=a_3=a_5=\\cdots=0"
+        ],
+        [
           "Izberemo sodo vejo pri n = 2. V rekurzijo vstavimo najprej k = 0 in nato k = 2.",
           "a_2=\\frac{(-2)\\cdot3}{2\\cdot1}a_0=-3a_0,\\qquad a_4=\\frac{0\\cdot5}{4\\cdot3}a_2=0"
         ],
@@ -291,8 +299,8 @@
           "1=P_2(1)=a_0+a_2=a_0-3a_0=-2a_0"
         ],
         [
-          "Vstavimo oba koeficienta v polinom.",
-          "a_0=-\\tfrac12,\\quad a_2=\\tfrac32,\\quad P_2(x)=-\\tfrac12+\\tfrac32x^2"
+          "Iz enačbe za normalizacijo delimo z −2. Z dobljenim začetnim koeficientom izračunamo še kvadratnega.",
+          "a_0=\\frac1{-2}=-\\tfrac12,\\qquad a_2=-3(-\\tfrac12)=\\tfrac32,\\qquad P_2(x)=-\\tfrac12+\\tfrac32x^2"
         ]
       ]
     ],
@@ -337,6 +345,10 @@
         [
           "Če dodamo pogoj omejenosti v središču, odstranimo singularno vejo.",
           "|Y_5(x)|\\to\\infty,\\quad J_5(x)\\to0\\ (x\\to0^+)\\quad\\Rightarrow\\quad C_2=0"
+        ],
+        [
+          "Omejenost določi samo singularno vejo. Velikost regularne veje ostane prosta, dokler nimamo še podatka o njeni vrednosti ali naklonu.",
+          "y(x)=C_1J_5(x),\\qquad C_1\\in\\mathbb R"
         ]
       ]
     ],
@@ -357,8 +369,8 @@
           "\\int\\frac{3x^2-1}{2}\\,dx=\\frac12\\left(3\\frac{x^3}{3}-x\\right)+C=\\frac{x^3-x}{2}+C"
         ],
         [
-          "Primitivno funkcijo ovrednotimo pri b in pri −1 ter odštejemo.",
-          "\\left[\\frac{x^3-x}{2}\\right]_{-1}^b=\\frac{b^3-b}{2}-\\frac{-1+1}{2}=\\frac{b^3-b}{2}"
+          "Od vrednosti pri b odštejemo vrednost pri −1. Obe vsebujeta isti C.",
+          "\\left(\\frac{b^3-b}{2}+C\\right)-\\left(\\frac{(-1)^3-(-1)}2+C\\right)=\\frac{b^3-b}{2}"
         ]
       ],
       [
@@ -397,8 +409,8 @@
           "u_x=Ae^x-Be^{-x}\\quad\\Rightarrow\\quad u_x(0,y)=A-B=0"
         ],
         [
-          "Seštejemo obe enačbi, da odpravimo B. Nato iz druge enačbe preberemo B.",
-          "2A=y,\\qquad A=B=y/2"
+          "Enačbi seštejemo in delimo z dve. Nato v drugo vstavimo dobljeni A.",
+          "(A+B)+(A-B)=y+0\\ \\Rightarrow\\ 2A=y\\ \\Rightarrow\\ A(y)=\\tfrac y2,\\qquad \\tfrac y2-B=0\\ \\Rightarrow\\ B(y)=\\tfrac y2"
         ]
       ],
       [
@@ -440,12 +452,16 @@
         "K(s)=\\frac{A}{s}+\\frac{Bs}{s^2+4}+\\frac{Cs}{(s^2+4)^2}"
       ],
       [
-        "Pomnožimo s skupnim imenovalcem in pri s = 0 preberemo A.",
-        "4=A(s^2+4)^2+Bs^2(s^2+4)+Cs^2\\quad\\Rightarrow\\quad 4=16A"
+        "Odpravimo imenovalec in razmnožimo oklepaje. Tako vidimo koeficient pri vsaki potenci.",
+        "4=A(s^2+4)^2+Bs^2(s^2+4)+Cs^2=(A+B)s^4+(8A+4B+C)s^2+16A"
       ],
       [
-        "Primerjamo koeficienta pri četrti in drugi potenci.",
-        "A+B=0,\\quad 8A+4B+C=0\\quad\\Rightarrow\\quad A=\\tfrac14,\\ B=-\\tfrac14,\\ C=-1"
+        "Na levi je konstantni člen 4, koeficient pri četrti potenci pa 0. Zaporedoma določimo A in B.",
+        "16A=4\\ \\Rightarrow\\ A=\\tfrac14,\\qquad A+B=0\\ \\Rightarrow\\ B=-\\tfrac14"
+      ],
+      [
+        "Tudi koeficient pri drugi potenci je na levi nič. Vstavimo pravkar dobljena A in B ter osamimo C.",
+        "8A+4B+C=0\\ \\Rightarrow\\ 8\\cdot\\tfrac14+4\\cdot(-\\tfrac14)+C=0\\ \\Rightarrow\\ 2-1+C=0\\ \\Rightarrow\\ C=-1"
       ],
       [
         "Zadnji člen zapišemo kot četrtino transformiranke iz prvega dela.",
@@ -486,8 +502,12 @@
         "\\frac1{s^2(s+1)}=\\frac{A}{s^2}+\\frac{B}{s}+\\frac{C}{s+1}"
       ],
       [
-        "Pomnožimo z imenovalcem. Pri s = 0 dobimo A, pri s = −1 dobimo C, vodilni koeficient določi B.",
-        "1=A(s+1)+Bs(s+1)+Cs^2\\quad\\Rightarrow\\quad A=C=1,\\ B+C=0"
+        "Pomnožimo s skupnim imenovalcem. Nato vstavimo ničlo prvega faktorja.",
+        "1=A(s+1)+Bs(s+1)+Cs^2,\\qquad s=0:\\ 1=A(0+1)=A"
+      ],
+      [
+        "Pri ničli drugega faktorja ostane samo C. Nato primerjamo koeficient pri drugi potenci in določimo še B.",
+        "s=-1:\\ 1=C(-1)^2=C,\\qquad [s^2]:\\ 0=B+C=B+1\\ \\Rightarrow\\ B=-1"
       ],
       [
         "Obrnemo popravek v lokalnem času.",
@@ -512,8 +532,8 @@
         "f=3\\sin t+3\\cos t+H(t-a)3\\sin(t-a),\\qquad F=\\frac{3+3s}{s^2+1}+e^{-as}\\frac3{s^2+1}"
       ],
       [
-        "Vstavimo začetna pogoja v transformiranko drugega odvoda in rešimo enačbo za Y.",
-        "s^2Y-s-2+4Y=F\\quad\\Rightarrow\\quad Y=\\frac{s+2+F}{s^2+4}"
+        "V obrazec za drugi odvod vstavimo začetni položaj 1 in hitrost 2. Nato v transformirani enačbi osamimo Y.",
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y-s-2,\\qquad s^2Y-s-2+4Y=F\\ \\Rightarrow\\ Y=\\frac{s+2+F}{s^2+4}"
       ],
       [
         "Ločimo osnovni in zamaknjeni del, da bo zamik vplival le na popravek.",
@@ -558,8 +578,8 @@
         "Y=\\frac A s+\\frac{Bs+C}{s^2+4}\\quad\\Rightarrow\\quad 2s^2+2=(A+B)s^2+Cs+4A"
       ],
       [
-        "Primerjamo konstantni, linearni in kvadratni člen.",
-        "4A=2,\\quad C=0,\\quad A+B=2\\quad\\Rightarrow\\quad A=\\tfrac12,\\ B=\\tfrac32"
+        "Na levi je konstantni člen 2, linearni člen manjka, koeficient pri kvadratu pa je 2. Primerjava določi vse tri neznanke.",
+        "4A=2\\ \\Rightarrow\\ A=\\tfrac12,\\qquad C=0,\\qquad A+B=2\\ \\Rightarrow\\ B=2-\\tfrac12=\\tfrac32"
       ],
       [
         "Uporabimo osnovna para za konstanto in kosinus ter preverimo vrednost na začetku.",
@@ -580,8 +600,12 @@
         "R=1,\\qquad x\\in[-1,1]"
       ],
       [
-        "Za račun vsote razstavimo imenovalec in poiščemo koeficienta.",
-        "1=A(n+1)+B(n-1)\\quad\\Rightarrow\\quad A+B=0,\\ A-B=1"
+        "Razstavimo imenovalec. Na vsakega od faktorjev pripnemo neznan števec in pomnožimo s skupnim imenovalcem.",
+        "\\frac1{(n-1)(n+1)}=\\frac A{n-1}+\\frac B{n+1}\\ \\Rightarrow\\ 1=A(n+1)+B(n-1)=(A+B)n+A-B"
+      ],
+      [
+        "Na levi je koeficient pri n nič, konstanta pa ena. Seštejemo enačbi in nato vstavimo A v prvo.",
+        "A+B=0,\\qquad A-B=1\\ \\Rightarrow\\ 2A=1\\ \\Rightarrow\\ A=\\tfrac12,\\qquad B=-A=-\\tfrac12"
       ],
       [
         "V prvotni vsoti tako nastaneta dve enostavnejši vsoti.",
@@ -638,28 +662,36 @@
         "x\\in(-1,0)\\cup(0,1),\\quad T(x)=x^2S(x)=\\sum_{n=0}^\\infty\\frac{x^{4n+1}}{4n+1}"
       ],
       [
-        "Pomožna vrsta je definirana tudi pri ničli. Znotraj polmera jo odvajamo členoma.",
-        "T(0)=0,\\qquad T'(x)=\\sum_{n=0}^\\infty\\frac{(4n+1)x^{4n}}{4n+1}=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4}"
+        "V pomožni vrsti so vse potence pozitivne. Če vstavimo nič, dobimo začetno vrednost T.",
+        "T(x)=x+\\frac{x^5}{5}+\\frac{x^9}{9}+\\cdots\\quad\\Rightarrow\\quad T(0)=0"
       ],
       [
-        "Imenovalec razstavimo in seštevek dveh enostavnejših ulomkov preverimo s skupnim imenovalcem.",
-        "\\frac12\\left(\\frac1{1-x^2}+\\frac1{1+x^2}\\right)=\\frac{(1+x^2)+(1-x^2)}{2(1-x^4)}=\\frac1{1-x^4}"
+        "Znotraj polmera odvajamo členoma. Potence tvorijo geometrijsko vrsto.",
+        "T'(x)=\\sum_{n=0}^\\infty\\frac{(4n+1)x^{4n}}{4n+1}=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4}"
       ],
       [
-        "Prvi ulomek razstavimo še enkrat, da pri integriranju dobimo logaritma.",
-        "\\frac1{1-u^2}=\\tfrac12\\left(\\frac1{1-u}+\\frac1{1+u}\\right)"
+        "Razstavimo četrto potenco. Števca dobimo s primerjavo konstant in kvadratnih členov.",
+        "\\frac1{1-x^4}=\\frac A{1-x^2}+\\frac B{1+x^2}\\ \\Rightarrow\\ 1=(A+B)+(A-B)x^2\\ \\Rightarrow\\ A=B,\\quad 2A=1"
       ],
       [
-        "Integriramo od nič do x. Pri prvem imenovalcu je zaradi odvoda −1 v primitivni funkciji minus.",
-        "\\int_0^x\\frac{du}{1-u^2}=\\tfrac12[-\\ln(1-u)+\\ln(1+u)]_0^x=\\tfrac12\\ln\\frac{1+x}{1-x}"
+        "V prvem ulomku razstavimo še razliko kvadratov. Primerjamo konstantni in linearni člen.",
+        "\\frac1{1-x^2}=\\frac D{1-x}+\\frac E{1+x}\\ \\Rightarrow\\ 1=(D+E)+(D-E)x\\ \\Rightarrow\\ D=E=\\tfrac12"
       ],
       [
-        "Drugi integral je znana primitivna funkcija za arkus tangens.",
-        "\\int_0^x\\frac{du}{1+u^2}=[\\arctan u]_0^x=\\arctan x"
+        "Vstavimo A = B = 1/2. Po razcepu prvi ulomek prispeva dve četrtini.",
+        "T'(x)=\\frac1{4(1-x)}+\\frac1{4(1+x)}+\\frac1{2(1+x^2)}"
       ],
       [
-        "Vrnemo polovična faktorja, upoštevamo T(0) = 0 in delimo z x².",
-        "S(x)=\\frac{T(x)}{x^2}=\\frac{\\tfrac14\\ln\\!\\frac{1+x}{1-x}+\\tfrac12\\arctan x}{x^2}"
+        "Integriramo členoma. Minus pri prvem logaritmu izvira iz odvoda njegovega argumenta. Pri integriranju se pojavi ena skupna konstanta.",
+        "T(x)=-\\tfrac14\\ln(1-x)+\\tfrac14\\ln(1+x)+\\tfrac12\\arctan x+C"
+      ],
+      [
+        "Vstavimo začetno vrednost pomožne vrste. Ker sta oba logaritma in arkus tangens pri teh argumentih nič, ostane samo C.",
+        "0=T(0)=-\\tfrac14\\ln1+\\tfrac14\\ln1+\\tfrac12\\arctan0+C=0+0+0+C\\ \\Rightarrow\\ C=0"
+      ],
+      [
+        "Vstavimo dobljeni C, združimo logaritma in delimo z x². S tem dobimo zahtevano prvotno vsoto.",
+        "S(x)=\\frac{T(x)}{x^2}=\\frac{\\tfrac14\\ln\\!\\frac{1+x}{1-x}+\\tfrac12\\arctan x}{x^2},\\qquad 0<|x|<1"
       ]
     ],
     "mtest": [
@@ -744,8 +776,8 @@
         "x^2-\\nu^2=x^2-25\\quad\\Rightarrow\\quad\\nu=5"
       ],
       [
-        "Na pozitivni polosi vzamemo linearno kombinacijo standardnih neodvisnih rešitev tega reda.",
-        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0"
+        "Enačba drugega reda ima dve neodvisni osnovni rešitvi. Naloga poda samo enačbo, zato lahko njuni uteži prosto izberemo. Dva neodvisna začetna podatka bi določila posamezno rešitev.",
+        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0,\\quad C_1,C_2\\in\\mathbb R"
       ]
     ],
     "ortho": [

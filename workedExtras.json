@@ -55,8 +55,12 @@
       "i'+i=1\\quad\\Longrightarrow\\quad sI-0+I=1/s"
     ],
     [
-      "Izpostavi I, deli z njegovim faktorjem in razstavi ulomek.",
-      "I=\\frac1{s(s+1)}=\\frac1s-\\frac1{s+1}"
+      "Zberi oba člena z $I$ in deli z njunim skupnim faktorjem.",
+      "(s+1)I=1/s\\ \\Longrightarrow\\ I=\\frac{1}{s(s+1)}"
+    ],
+    [
+      "Nastavi parcialna ulomka in odpravi imenovalec. Izberi ničli faktorjev, da vsakič ostane ena neznanka.",
+      "I=\\frac{A}{s}+\\frac{B}{s+1}\\ \\Longrightarrow\\ 1=A(s+1)+Bs,\\qquad s=0:\\ A=1,\\quad s=-1:\\ -B=1\\ \\Longrightarrow\\ B=-1"
     ],
     [
       "Vsak ulomek prevedi nazaj v čas in preveri začetni tok.",
@@ -79,7 +83,11 @@
       "0\\le\\sum_{k=n+1}^{m}2^{-k}\\le\\frac{(1/2)^{n+1}}{1-1/2}=2^{-n}"
     ],
     [
-      "Za n vsaj 7 primerjaj dobljeno mejo z zahtevano napako 0,01. Ocena velja za vsak m večji od n.",
+      "Zahtevaj napako pod 0,01. Po množenju z $2^n$ mora potenca dvojke preseči 100.",
+      "2^{-n}<0{,}01\\ \\Longleftrightarrow\\ 2^n>100,\\qquad 2^6=64<100<128=2^7"
+    ],
+    [
+      "Najmanjši indeks, ki zadošča tej oceni, je 7.",
       "2^{-n}\\le2^{-7}=\\frac1{128}<0{,}01"
     ]
   ],

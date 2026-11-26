@@ -86,6 +86,12 @@
         "\\frac{d}{dy}\\int_A^B f(x,y)dx=\\int_A^B\\frac{\\partial f}{\\partial y}(x,y)dx",
         "$y=a$, $A=0$, $B=2$, $f(x,a)=1+ax^2$. Pri odvajanju po $a$ je $x$ stalnica. Zveznost integranda in parcialnega odvoda dovoljuje menjavo.",
         "F'(a)=\\int_0^2(0+x^2\\cdot1)dx=\\left[\\frac{x^3}{3}\\right]_0^2=\\frac83"
+      ],
+      [
+        "Obnova funkcije iz odvoda in ene znane vrednosti",
+        "P'=F'\\quad\\Longrightarrow\\quad F(a)=P(a)+C,\\qquad C=F(a_0)-P(a_0)",
+        "$P$ je ena primitivna funkcija odvoda. Izbereš $a_0=0$, ker lahko tedaj $F(0)$ prebereš iz prvotnega integrala.",
+        "P(a)=\\tfrac83a,\\quad F(0)=\\int_0^2 1\\,dx=2,\\quad C=2-\\tfrac83\\cdot0=2"
       ]
     ],
     "gauss": [

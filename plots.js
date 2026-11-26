@@ -8,7 +8,7 @@ function plotSettings(id,k=0){
  if(id==='beta'&&k===1)return ['Vsota r = x + y',1,4,.1,2];
  if(id==='radius'&&k===1)return ['Zadnji indeks N',2,40,1,12];
  const settings={
- area:['Parameter a',.2,1.4,.05,.65],leib:['Parameter a',.25,1.25,.05,.7],tail:['Meja R',.4,3,.05,1.2],
+ area:['Parameter a',0,1.4,.05,.65],leib:['Parameter a',.25,1.25,.05,.7],tail:['Meja R',.4,3,.05,1.2],
  gamma:['Argument p',1,4,.1,2],beta:['Argument p',1,4,.1,2],betasub:['Zgornja meja x',.1,2,.05,1.6],
  lap:['Parameter s',1.2,3.2,.1,1.8],deriv:['Parameter s',.6,2.5,.1,1.2],system:['Čas t',0,2,.05,1],
  shift:['Čas preklopa a',.5,3,.1,2],conv:['Čas t',.1,4,.05,2],impulse:['Širina h',.1,1,.05,.6],
@@ -31,10 +31,16 @@ function chartModel(id,k,v){
  const twoSignals=(f,g,end,lo,hi)=>{x=[0,end];y=[lo,hi];label='t';graph('y(t)',f);graph('z(t)',g,lilac);mark(v,f);points.push([v,g(v),lilac]);caption='Pri t = '+fmt(v)+' je y = '+fmt(f(v))+' in z = '+fmt(g(v))+'.'};
  if(id==='area'){
   x=[0,2.35];y=[0,8];label='x (m)';const f=a=>u=>1+a*u*u;
-  if(k<2){graph('Višina plošče (m)',f(v));area(f(v),0,2);marks=[2];
-   if(k===1){graph('f(x, a + h)',f(v+.3),lilac);area(f(v+.3),0,2,lilac,f(v))}
-   else{graph('a = 0,2',f(.2),lilac);graph('a = 1,4',f(1.4),gold)}
-   caption=k===0?'Ploščina pri a = '+fmt(v)+': F(a) = 2 + 8 × '+fmt(v)+' / 3 ≈ '+fmt(2+8*v/3)+' m². To je '+fmt(8*(v-.2)/3)+' m² več kot pri a = 0,2.':'Če a povečaš za 0,3, vijolični pas pokaže dodatnih 0,8 m² pločevine.'}
+  if(k===0){
+   graph('Izbrani rob',f(v));graph('Rob pri a = 0',f(0),gold);marks=[2];
+   area(f(0),0,2,gold);area(f(v),0,2,mint,f(0));
+   caption='Pri a = 0 ostane pravokotnik. Njegova ploščina je F(0) = 2 × 1 = 2 m², zato je C = 2.'+
+    (v>0?' Pri a = '+fmt(v)+' se prišteje še '+fmt(8*v/3)+' m².':'');
+  }else if(k===1){
+   graph('Višina plošče (m)',f(v));graph('f(x, a + h)',f(v+.3),lilac);marks=[2];
+   area(f(v),0,2);area(f(v+.3),0,2,lilac,f(v));
+   caption='Če a povečaš za 0,3, vijolični pas pokaže dodatnih 0,8 m² pločevine.';
+  }
   else {const h=.3;graph('Δf / h',u=>(f(v+h)(u)-f(v)(u))/h);area(u=>u*u,0,2);y=[0,5];caption='Za vsak dodaten 0,1 pri a potrebuješ približno 0,27 m² več pločevine.'}
  }else if(id==='leib'){
   x=[0,2.8];y=[0,5];const u=v/2,b=1+v,h=.24,f=t=>t+v,g=t=>t+v+h;graph('Stara višina',f);marks=[u,b];area(f,u,b);

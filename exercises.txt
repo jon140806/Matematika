@@ -1,11 +1,11 @@
-@1|Prvi odvod ploščine|area|Ogrevanje po ITFR-01 (2), str. 4
-Izračunaj $F'(a)$ za $F(a)=\int_0^2(1+ax^2)dx$. Napiši tudi, zakaj smeš odvajati pod integralom.
+@1|Od odvoda do ploščine|area|Ogrevanje po ITFR-01 (2), str. 4
+Izračunaj $F'(a)$ za $F(a)=\int_0^2(1+ax^2)dx$ in utemelji odvajanje pod integralom. Nato iz odvoda obnovi $F(a)$ in iz prvotnega integrala določi konstanto $C$.
 Meji sta stalni. Parameter nastopa samo v integrandu.
-Najprej odvajaj izraz po $a$ in pri tem obravnavaj $x$ kot konstanto.
+Pri odvajanju po $a$ je $x$ konstanta. Za določitev $C$ postavi $a=0$ v prvotni integral in preberi višino ter širino pravokotnika.
 Polinom in njegov parcialni odvod sta zvezna na vsakem obravnavanem kompaktnem pravokotniku.
 Pod integralom ostane $x^2$. Primitivna funkcija je $x^3/3$.
-Vstavi meji in dobiš $8/3$. Tudi neposredni račun $F(a)=2+8a/3$ da isti odvod.
-?Kolikšen je odvod?|$8/3$|$2+8a/3$|$4a$
+Meji dasta $F'(a)=8/3$. Po integriranju po $a$ dobiš $F(a)=8a/3+C$. Pri $a=0$ je višina 1 na intervalu dolžine 2, zato $C=F(0)=2$.
+?Katero konstanto $C$ dobiš iz začetne ploščine $F(0)$?|$C=2$|$C=8/3$|$C=0$
 @1|Gaussov integral s kosinusom|gauss|Račun 2022 · naloga 1
 Utemelji odvajanje $I(a)=\int_0^\infty e^{-x^2}\cos(ax)dx$, izpelji enačbo za $I'$ in določi $I$, če je $I(0)=\sqrt\pi/2$.
 Ob neskončni meji poišči majoranto za parcialni odvod. Faktor $x$ nato združi z eksponentom.
