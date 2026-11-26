@@ -21,20 +21,25 @@
       ],
       "worked": [
         [
-          "Dopolni kvadrat v imenovalcu.",
+          "Prepoznaj premaknjeni kvadrat",
+          "Pri paru za dušeno nihanje iščeš obliko $(s+a)^2+b^2$. Polovica koeficienta pri $s$ je 2.",
           "s^2+4s+13=(s+2)^2-4+13=(s+2)^2+3^2"
         ],
         [
-          "Števec izrazi z istim premaknjenim argumentom.",
+          "Uskladi števec",
+          "Kosinusni par zahteva $s+2$ v števcu. Zato ga izloči tudi iz prvotnega števca.",
           "2s+5=2(s+2)+1"
         ],
         [
-          "Ulomek razdeli. V drugem števcu ustvari 3 in pred ulomkom deli s 3.",
+          "Loči sinusni in kosinusni člen",
+          "Za frekvenco 3 mora biti v števcu sinusnega člena 3. Zunanji faktor $1/3$ ohrani vrednost.",
           "F(s)=2\\frac{s+2}{(s+2)^2+9}+\\frac13\\frac{3}{(s+2)^2+9}"
         ],
         [
-          "Prvi ulomek obrneš s kosinusnim parom, drugega s sinusnim. Premik za 2 oba pomnoži z istim eksponentom.",
-          "f(t)=e^{-2t}\\left(2\\cos 3t+\\frac13\\sin 3t\\right)"
+          "Uporabi premik",
+          "Zamenjava $s$ z $s+2$ da skupni faktor $e^{-2t}$ pri obeh nihanjih.",
+          "f(t)=e^{-2t}\\left(2\\cos 3t+\\frac13\\sin 3t\\right)",
+          "damping34"
         ]
       ],
       "quiz": [
@@ -65,23 +70,33 @@
       ],
       "worked": [
         [
-          "Za ponovljeni faktor napiši ulomek za vsako potenco.",
+          "Razčleni ponovljeni pol",
+          "Za dvojni faktor morata nastopiti prva in druga potenca. Tako lahko upoštevaš oba časovna prispevka.",
           "F=\\frac A{s+1}+\\frac B{(s+1)^2}+\\frac C{s+3}"
         ],
         [
-          "Pomnoži s skupnim imenovalcem.",
+          "Odpravi imenovalec",
+          "Po množenju lahko izbiraš ničle faktorjev v polinomski identiteti.",
           "1=A(s+1)(s+3)+B(s+3)+C(s+1)^2"
         ],
         [
-          "V polinomsko identiteto vstavi ničli. Vsakič preživi samo en člen.",
-          "s=-1:\\ 1=2B\\Rightarrow B=\\tfrac12,\\qquad s=-3:\\ 1=4C\\Rightarrow C=\\tfrac14"
+          "Določi B",
+          "Pri $s=-1$ izginejo členi s faktorjem $s+1$.",
+          "1=B(-1+3)=2B\\ \\Rightarrow\\ B=\\tfrac12"
         ],
         [
-          "Na levi je koeficient pri kvadratu nič. Na desni ga dasta prvi in tretji člen.",
+          "Določi C",
+          "Pri $s=-3$ izginejo členi s faktorjem $s+3$.",
+          "1=C(-3+1)^2=4C\\ \\Rightarrow\\ C=\\tfrac14"
+        ],
+        [
+          "Določi A",
+          "Primerjaj še koeficient kvadratnega člena na obeh straneh.",
           "0=A+C\\ \\Rightarrow\\ A=-\\tfrac14"
         ],
         [
-          "Obrni tri pare in vstavi koeficiente.",
+          "Obrni vsak ulomek",
+          "Dvojni pol da dodaten faktor $t$, enostavna pola pa eksponenta.",
           "f(t)=-\\tfrac14e^{-t}+\\tfrac12te^{-t}+\\tfrac14e^{-3t}"
         ]
       ],
@@ -113,19 +128,33 @@
       ],
       "worked": [
         [
-          "Transformiraj enačbo in prenesi začetno vrednost na desno stran.",
-          "(s+3)Y=2+\\frac2{s+1}"
+          "Označi transformiranko",
+          "V enačbi nastopa prvi odvod in znana začetna vrednost. Zato uporabi Laplaceovo pravilo za odvod.",
+          "Y=\\mathcal L(y),\\qquad \\mathcal L(y')=sY-y(0)=sY-2"
         ],
         [
-          "Deli s faktorjem pred neznanko.",
+          "Vstavi transformirane člene",
+          "Vhod $2e^{-t}$ da $2/(s+1)$. Konstanto iz začetnega pogoja prenesi na desno.",
+          "sY-2+3Y=\\frac2{s+1}\\ \\Rightarrow\\ (s+3)Y=2+\\frac2{s+1}"
+        ],
+        [
+          "Izoliraj Y",
+          "Vsak člen na desni deli z istim faktorjem.",
           "Y=\\frac2{s+3}+\\frac2{(s+1)(s+3)}"
         ],
         [
-          "V drugem ulomku nastavi $A/(s+1)+B/(s+3)$. Odpravi imenovalec in vstavi ničli.",
+          "Pripravi razcep",
+          "Dva različna linearna faktorja zahtevata dva ulomka.",
+          "\\frac2{(s+1)(s+3)}=\\frac A{s+1}+\\frac B{s+3}"
+        ],
+        [
+          "Določi števca",
+          "Po odpravi imenovalca vstavi obe ničli, da vsakokrat ostane ena neznanka.",
           "2=A(s+3)+B(s+1),\\qquad s=-1:\\ A=1,\\quad s=-3:\\ B=-1"
         ],
         [
-          "Združi oba člena z imenovalcem $s+3$. Obrni po posameznih ulomkih.",
+          "Zberi enake imenovalce",
+          "Pri $1/(s+3)$ se koeficienta 2 in $-1$ seštejeta. Oba preostala enostavna pola lahko obrneš.",
           "Y=\\frac1{s+3}+\\frac1{s+1}\\ \\Rightarrow\\ y(t)=e^{-3t}+e^{-t}"
         ]
       ],
@@ -157,15 +186,18 @@
       ],
       "worked": [
         [
-          "Najprej preberi transformiranko kosinusa brez časovnega faktorja.",
+          "Izberi osnovni signal",
+          "Množenje s časom bo odvod po $s$. Najprej zato potrebuješ transformiranko samega kosinusa.",
           "f(t)=\\cos(3t),\\qquad F(s)=\\frac{s}{s^2+3^2}"
         ],
         [
-          "Odvajaj s pravilom za količnik.",
+          "Uporabi pravilo za količnik",
+          "Števec ima odvod 1, imenovalec pa $2s$. Njuna odvoda vstavita dva prispevka z nasprotnim predznakom.",
           "F'(s)=\\frac{1\\cdot(s^2+9)-s\\cdot2s}{(s^2+9)^2}=\\frac{9-s^2}{(s^2+9)^2}"
         ],
         [
-          "Upoštevaj minus iz pravila za množenje s časom.",
+          "Vrni faktor t",
+          "Negativni odvod $-F'$ predstavlja signal, pomnožen s časom.",
           "\\mathcal L(t\\cos3t)=-F'(s)=\\frac{s^2-9}{(s^2+9)^2}"
         ]
       ],
@@ -197,15 +229,19 @@
       ],
       "worked": [
         [
-          "Zapiši skoka ob robovih časovnega okna.",
+          "Izmeri oba skoka",
+          "Za zapis s stopnicami potrebuješ spremembo višine ob vsakem preklopu.",
           "\\Delta f(1)=3-0=3,\\qquad \\Delta f(4)=0-3=-3"
         ],
         [
-          "Vsak skok pomnoži s stopnico, ki se vklopi v njegovem trenutku.",
-          "f(t)=3H(t-1)-3H(t-4)"
+          "Sestavi časovno okno",
+          "Prva stopnica prišteje višino 3. Druga jo ob izklopu odšteje.",
+          "f(t)=3H(t-1)-3H(t-4)",
+          "window34"
         ],
         [
-          "Uporabi linearnost in transformiraj oba člena.",
+          "Transformiraj stopnici",
+          "Vsak čas vklopa da svoj zamik v eksponentu. Oba člena imata jedro $1/s$.",
           "F(s)=3\\frac{e^{-s}}s-3\\frac{e^{-4s}}s=\\frac3s(e^{-s}-e^{-4s})"
         ]
       ],
@@ -237,16 +273,25 @@
       ],
       "worked": [
         [
-          "Loči osnovno obliko in čas vklopa.",
+          "Preberi zakasnitev",
+          "Faktor $e^{-3s}$ pomeni, da se osnovni signal začne tri časovne enote pozneje.",
           "F(s)=e^{-3s}G(s),\\qquad G(s)=2/s^2,\\quad a=3"
         ],
         [
-          "Iz inverznega para za rampo dobiš njeno višino pri lokalnem času.",
-          "g(u)=2u,\\quad u=t-3\\ \\Rightarrow\\ g(t-3)=2(t-3)"
+          "Obrni osnovni signal",
+          "Časovni par za $1/s^2$ je $u$. Dvojka v števcu podvoji naklon.",
+          "g(u)=\\mathcal L^{-1}\\{2/s^2\\}=2u"
         ],
         [
-          "Pomnoži s stopnico in preberi odgovor po intervalih.",
-          "f(t)=2H(t-3)(t-3)=\\begin{cases}0,&0\\le t<3,\\\\2(t-3),&t\\ge3.\\end{cases}"
+          "Nastavi uro na vklop",
+          "Pri $t=3$ se lokalna ura postavi na nič, zato $u=t-3$.",
+          "g(t-3)=2(t-3)"
+        ],
+        [
+          "Zapiši obe veji",
+          "Stopnica izključi rampo pred vklopom. Po vklopu njena višina raste od nič.",
+          "f(t)=2H(t-3)(t-3)=\\begin{cases}0,&0\\le t<3,\\\\2(t-3),&t\\ge3.\\end{cases}",
+          "rampStart34"
         ]
       ],
       "quiz": [
@@ -277,24 +322,40 @@
       ],
       "worked": [
         [
-          "V pravilo za drugi odvod vstavi začetni odmik in hitrost.",
+          "Transformiraj odmik",
+          "Znana začetna pogoja omogočita neposredno pretvorbo drugega odvoda.",
           "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y"
         ],
         [
-          "Transformiraj enačbo in izpostavi $Y$.",
+          "Pretvori sunek",
+          "Jakost 3 je njegov faktor, mesto pri $t=1$ pa da zakasnitev $e^{-s}$.",
+          "\\mathcal L(3\\delta(t-1))=3e^{-s}"
+        ],
+        [
+          "Izoliraj odziv",
+          "Na levi izpostavi $Y$ in deli s kvadratnim faktorjem.",
           "(s^2+4)Y=3e^{-s}\\ \\Rightarrow\\ Y=e^{-s}\\frac3{s^2+4}"
         ],
         [
-          "Ustvari števec 2 za sinusni par in prilagodi zunanji faktor.",
+          "Pripravi sinusni par",
+          "Frekvenca je 2. Da bo v števcu tudi 2, izpostavi faktor $3/2$.",
           "\\frac3{s^2+4}=\\frac32\\frac2{s^2+2^2}\\ \\longleftrightarrow\\ \\frac32\\sin(2t)"
         ],
         [
-          "Po zamiku teče nihanje od trenutka udarca. Prej nihalo miruje.",
+          "Prestavi uro nihala",
+          "Zamik začne nihanje pri $t=1$. Lokalni čas v sinusu je zato $t-1$.",
           "y(t)=\\frac32 H(t-1)\\sin(2(t-1))"
         ],
         [
-          "Tik po udarcu odvajaj desno vejo. Razlika z začetno hitrostjo pred udarcem je enaka jakosti sunka.",
-          "y'(1^+)-y'(1^-)=3\\cos(0)-0=3"
+          "Izračunaj hitrost pred in po sunku",
+          "Pred udarcem je odmik nič. Za njim odvajaj sinus in upoštevaj notranji faktor 2.",
+          "t<1:\\ y'=0,\\qquad t>1:\\ y'=\\tfrac32\\cdot2\\cos(2(t-1))"
+        ],
+        [
+          "Izmeri skok hitrosti",
+          "Od desne robne vrednosti odštej levo. Rezultat mora biti enak jakosti impulza.",
+          "y'(1^+)-y'(1^-)=3\\cos(0)-0=3",
+          "velocityJump34"
         ]
       ],
       "quiz": [
@@ -325,19 +386,24 @@
       ],
       "worked": [
         [
-          "V definicijo vstavi predpisa obeh signalov.",
-          "(f*g)(t)=\\int_0^t e^{-2u}e^{-(t-u)}\\,du"
+          "Označi čas integriranja",
+          "Pri danem času $t$ množimo prvi signal pri $u$ in zamaknjeni drugi signal pri $t-u$. Ker sta oba vzročna, se prekrivata samo na $[0,t]$.",
+          "(f*g)(t)=\\int_0^t e^{-2u}e^{-(t-u)}\\,du",
+          "productArea34"
         ],
         [
-          "Združi eksponente in izpostavi faktor brez $u$.",
+          "Združi eksponenta",
+          "Člen $-t$ se med integriranjem po $u$ ne spreminja, zato ga lahko izpostaviš.",
           "-2u-(t-u)=-u-t,\\qquad (f*g)(t)=e^{-t}\\int_0^t e^{-u}\\,du"
         ],
         [
-          "V primitivni funkciji vstavi obe meji. Konstanta se odšteje.",
+          "Vstavi obe meji",
+          "Primitivna funkcija $e^{-u}$ je $-e^{-u}$. Od zgornje vrednosti odštej spodnjo.",
           "[-e^{-u}]_0^t=-e^{-t}-(-1)=1-e^{-t}"
         ],
         [
-          "Pomnoži z zunanjim faktorjem.",
+          "Vrni izpostavljeni faktor",
+          "Pri produktu eksponentov se eksponenta seštejeta.",
           "(f*g)(t)=e^{-t}(1-e^{-t})=e^{-t}-e^{-2t}"
         ]
       ],

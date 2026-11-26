@@ -9,7 +9,7 @@ Meji dasta $F'(a)=8/3$. Po integriranju po $a$ dobiš $F(a)=8a/3+C$. Pri $a=0$ j
 @1|Gaussov integral s kosinusom|gauss|Račun 2022 · naloga 1
 Utemelji odvajanje $I(a)=\int_0^\infty e^{-x^2}\cos(ax)dx$, izpelji enačbo za $I'$ in določi $I$, če je $I(0)=\sqrt\pi/2$.
 Ob neskončni meji poišči majoranto za parcialni odvod. Faktor $x$ nato združi z eksponentom.
-Uporabi $(e^{-x^2})'=-2xe^{-x^2}$ pri integraciji po delih.
+Pri stalnem $x$ odvajaj $\cos(ax)$ po $a$. Nato poveži novi faktor $x$ z odvodom Gaussove uteži po $x$.
 Prvotni integral omeji $\int_0^\infty e^{-x^2}dx$. Odvod po $a$ omeji $xe^{-x^2}$ z integralom $1/2$, neodvisno od $a$.
 $I'=\tfrac12\int_0^\infty(e^{-x^2})'\sin(ax)dx$. Robni člen izgine pri 0 in v neskončnosti. Ostane $I'=-aI/2$.
 Reši linearno enačbo z integrirnim faktorjem $e^{a^2/4}$. Začetna vrednost da $I=(\sqrt\pi/2)e^{-a^2/4}$.
@@ -17,7 +17,7 @@ Reši linearno enačbo z integrirnim faktorjem $e^{a^2/4}$. Začetna vrednost da
 @1|Kvadrat v zgornji meji|atan|Račun 2023 · naloga 1a
 Poišči $I'(t)$ za $I(t)=\int_0^{t^2}\frac{\arctan(tx)-\arctan x}{x}dx$. Pojasni tudi primer $t=0$.
 Parameter je v integrandu in v meji. Vidna delitev z $x$ zahteva pregled pri ničli.
-Pri $x=0$ uporabi limito $\arctan(kx)/x\to k$. Za odvod integranda dobiš $1/(1+t^2x^2)$.
+Pri stalnem $x\ne0$ najprej odvajaj $\arctan(tx)$ po $t$. Kateri faktor iz verižnega pravila pokrajša $1/x$?
 Zvezna razširitev integranda ima pri 0 vrednost $t-1$. Tudi parcialni odvod je zvezen, zato na vsakem lokalnem pravokotniku velja Leibnizovo pravilo.
 Notranji prispevek je $\arctan(t^3)/t$ za $t\ne0$. Zgornji rob prispeva $2[\arctan(t^3)-\arctan(t^2)]/t$.
 Seštej prispevka. Dobiš $[3\arctan(t^3)-2\arctan(t^2)]/t$. Pri $t=0$ integralni člen in odvod meje izgineta, torej $I'(0)=0$.

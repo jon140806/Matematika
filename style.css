@@ -42,3 +42,12 @@
 .exercisePrompt .question{margin:10px 0 0;padding:10px 14px;border-left:3px solid var(--plum);background:#f7f5fa;color:var(--ink);line-height:1.8;max-width:80ch}
 .practice .quiz{margin:18px 0 20px}.practice .quiz h3{margin-top:0}
 .practice .helpBody{padding:0 clamp(12px,2vw,22px) 12px}.exerciseHelp .helpText{margin-top:4px}
+
+.exerciseProcedure ol>li{row-gap:5px;padding-block:14px}
+.exerciseProcedure li>h3{grid-column:2;margin:0;font:600 17px/1.4 var(--sans)}
+.exerciseProcedure li>p b{color:var(--plum);font-size:14px}
+.exerciseProcedure li>.calcLine{padding:.4em .55em;background:#f7f5fa;border-radius:5px;justify-self:start}
+.stepFigure{grid-column:2;box-sizing:border-box;min-width:0;width:min(100%,440px);margin:6px 0 2px;background:#30253f;color:#fff;border-radius:9px;padding:12px 14px}
+.stepFigure>strong{font:600 14px/1.4 var(--sans)}.stepFigure .drawing{margin-top:5px}.stepFigure .legend{flex-wrap:wrap;margin:6px 0}
+.stepFigure figcaption{font-size:14px;line-height:1.45;color:#f1ecf6}.stepFigure .graphKey i{background:var(--key);width:12px;height:3px;display:inline-block}
+.formulaReference{margin:0 14px 14px}

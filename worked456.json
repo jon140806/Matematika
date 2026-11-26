@@ -452,416 +452,579 @@
   "exercises": {
     "triple": [
       [
-        "Za prvi del vzamemo znano transformiranko sinusa in pravilo za časovni faktor.",
+        "Izberi sinusni par",
+        "Zunanji faktor $t$ pomeni odvajanje transformiranke sinusa po $s$.",
         "\\mathcal L\\{\\sin(2t)\\}=\\frac{2}{s^2+4},\\qquad \\mathcal L\\{tf(t)\\}=-F'(s)"
       ],
       [
-        "Odvajamo po s. Pri negativni potenci uporabimo verižno pravilo.",
+        "Odvajaj po s",
+        "Pri $(s^2+4)^{-1}$ poleg zunanjega odvoda potrebuješ notranji odvod $2s$.",
         "\\frac{d}{ds}\\big[2(s^2+4)^{-1}\\big]=-2(s^2+4)^{-2}(2s)"
       ],
       [
-        "Minus iz pravila spremeni predznak.",
+        "Upoštevaj predznak",
+        "Pravilo za $tf(t)$ vsebuje še en minus.",
         "\\mathcal L\\{t\\sin(2t)\\}=\\frac{4s}{(s^2+4)^2}"
       ],
       [
-        "Za trojno konvolucijo transformiramo vsakega od treh signalov.",
+        "Pretvori tri signale",
+        "Za konvolucijo potrebuješ produkt njihovih transformirank.",
         "\\mathcal L\\{2t\\}=\\frac2{s^2},\\quad \\mathcal L\\{\\sin(2t)\\}=\\frac2{s^2+4},\\quad \\mathcal L\\{\\cos(2t)\\}=\\frac{s}{s^2+4}"
       ],
       [
-        "Konvolucija se spremeni v produkt. Pokrajšamo en faktor s.",
+        "Pomnoži in pokrajšaj",
+        "Faktor $s$ v števcu pokrajša eno potenco v imenovalcu.",
         "K(s)=\\frac{2}{s^2}\\frac{2}{s^2+4}\\frac{s}{s^2+4}=\\frac{4}{s(s^2+4)^2}"
       ],
       [
-        "Uporabimo podani nastavek za parcialne ulomke.",
+        "Nastavi tri ulomke",
+        "Faktor $s^2+4$ je ponovljen. V podanem nastavku zato nastopata obe njegovi potenci.",
         "K(s)=\\frac{A}{s}+\\frac{Bs}{s^2+4}+\\frac{Cs}{(s^2+4)^2}"
       ],
       [
-        "Odpravimo imenovalec in razmnožimo oklepaje. Tako vidimo koeficient pri vsaki potenci.",
-        "4=A(s^2+4)^2+Bs^2(s^2+4)+Cs^2=(A+B)s^4+(8A+4B+C)s^2+16A"
+        "Odpravi imenovalce",
+        "Celotno enačbo pomnoži z imenovalcem izvirnega ulomka.",
+        "4=A(s^2+4)^2+Bs^2(s^2+4)+Cs^2"
       ],
       [
-        "Na levi je konstantni člen 4, koeficient pri četrti potenci pa 0. Zaporedoma določimo A in B.",
+        "Razvrsti potence s",
+        "Na vsaki strani enačbe izberi posebej člene z isto potenco.",
+        "4=(A+B)s^4+(8A+4B+C)s^2+16A"
+      ],
+      [
+        "Izračunaj A in B",
+        "Leva stran nima člena s četrto potenco, njen konstantni člen pa je 4.",
         "16A=4\\ \\Rightarrow\\ A=\\tfrac14,\\qquad A+B=0\\ \\Rightarrow\\ B=-\\tfrac14"
       ],
       [
-        "Tudi koeficient pri drugi potenci je na levi nič. Vstavimo pravkar dobljena A in B ter osamimo C.",
+        "Izračunaj C",
+        "Tudi člen s kvadratom manjka. V njegovo enačbo vstavi $A$ in $B$.",
         "8A+4B+C=0\\ \\Rightarrow\\ 8\\cdot\\tfrac14+4\\cdot(-\\tfrac14)+C=0\\ \\Rightarrow\\ 2-1+C=0\\ \\Rightarrow\\ C=-1"
       ],
       [
-        "Zadnji člen zapišemo kot četrtino transformiranke iz prvega dela.",
+        "Pripravi inverzne pare",
+        "V zadnjem ulomku ustvari števec $4s$, da lahko uporabiš prvi del naloge.",
         "K(s)=\\frac1{4s}-\\frac14\\frac{s}{s^2+4}-\\frac14\\frac{4s}{(s^2+4)^2}"
       ],
       [
-        "Obrnemo vsak par iz tabele in izpostavimo četrtino.",
+        "Zapiši rezultat v času",
+        "Prvi ulomek da konstanto, drugi kosinus, tretji pa čas krat sinus.",
         "(2t*\\sin(2t)*\\cos(2t))(x)=\\frac{1-\\cos(2x)-x\\sin(2x)}4"
       ]
     ],
     "force24": [
       [
-        "Od nove sile odštejemo staro. Za uporabo zamika razliko izrazimo s časom od preklopa.",
+        "Ugotovi, kaj se spremeni",
+        "Sila je pred časom 2 enaka 1 in nato enaka $t$. Nova sila je stara sila plus razlika.",
+        "f_{\\rm pred}=1,\\quad f_{\\rm po}=t,\\quad \\Delta f=t-1",
+        "switch34"
+      ],
+      [
+        "Začni uro pri preklopu",
+        "Pravilo za zamik potrebuje $u=t-2$. Zato za $t$ v razliki vstavi $u+2$.",
         "u=t-2,\\quad t-1=u+1,\\quad f(t)=1+H(t-2)(u+1)"
       ],
       [
-        "Po pravilu za časovni zamik dobimo transformiranko sile.",
+        "Pretvori silo",
+        "Osnovna sila deluje od začetka. Samo popravek pomnožiš z zakasnitvijo $e^{-2s}$.",
         "F(s)=\\frac1s+e^{-2s}\\left(\\frac1{s^2}+\\frac1s\\right)"
       ],
       [
-        "V obrazca za odvoda vstavimo začetni položaj 1 in hitrost 0.",
+        "Vstavi začetna pogoja",
+        "V transformiranki drugega odvoda potrebuješ tudi začetno hitrost.",
         "\\mathcal L(y')=sY-1,\\qquad \\mathcal L(y'')=s^2Y-s"
       ],
       [
-        "Vstavimo izraze v diferencialno enačbo in zberemo člene z Y.",
+        "Osami transformiranko odziva",
+        "Vse člene z $Y$ postavi levo in izpostavi njihov skupni faktor.",
         "s^2Y-s+2(sY-1)+Y=F\\quad\\Rightarrow\\quad(s+1)^2Y=s+2+F"
       ],
       [
-        "Po deljenju se pri osnovni sili pojavi popolni kvadrat v števcu.",
+        "Izračunaj osnovni odziv",
+        "Pri delu brez zamika razširi števec s $s$ in prepoznaj popolni kvadrat.",
         "\\frac{s+2+1/s}{(s+1)^2}=\\frac{s^2+2s+1}{s(s+1)^2}=\\frac1s"
       ],
       [
-        "Pri popravku združimo števec in pokrajšamo en faktor.",
+        "Poenostavi zamaknjeni del",
+        "Ta člen ima skupni faktor $s+1$, zato ostane manjši imenovalec.",
         "\\frac{1/s^2+1/s}{(s+1)^2}=\\frac{1+s}{s^2(s+1)^2}=\\frac1{s^2(s+1)}"
       ],
       [
-        "Postavimo delne ulomke za dvojni pol pri ničli in enostavni pol pri −1.",
+        "Nastavi parcialne ulomke",
+        "Dvojni pol pri ničli zahteva dve različni potenci v imenovalcu.",
         "\\frac1{s^2(s+1)}=\\frac{A}{s^2}+\\frac{B}{s}+\\frac{C}{s+1}"
       ],
       [
-        "Pomnožimo s skupnim imenovalcem. Nato vstavimo ničlo prvega faktorja.",
+        "Izračunaj A",
+        "Po množenju s skupnim imenovalcem pri $s=0$ ostane en sam člen.",
         "1=A(s+1)+Bs(s+1)+Cs^2,\\qquad s=0:\\ 1=A(0+1)=A"
       ],
       [
-        "Pri ničli drugega faktorja ostane samo C. Nato primerjamo koeficient pri drugi potenci in določimo še B.",
+        "Izračunaj C in B",
+        "Pri $s=-1$ izračunaj $C$. Nato uporabi, da na levi manjka člen s kvadratom.",
         "s=-1:\\ 1=C(-1)^2=C,\\qquad [s^2]:\\ 0=B+C=B+1\\ \\Rightarrow\\ B=-1"
       ],
       [
-        "Obrnemo popravek v lokalnem času.",
+        "Obrni popravek",
+        "Vsak ulomek da znano časovno funkcijo. Njena ura začne teči ob vklopu.",
         "\\mathcal L^{-1}\\left\\{\\frac1{s^2}-\\frac1s+\\frac1{s+1}\\right\\}(u)=u-1+e^{-u}"
       ],
       [
-        "Prištejemo osnovni odziv in popravek vklopimo šele po času 2.",
+        "Sestavi celoten odziv",
+        "Popravek pred časom 2 izključi stopnica, osnovni odziv 1 pa je prisoten ves čas.",
         "y(t)=1+H(t-2)\\big[(t-2)-1+e^{-(t-2)}\\big]"
       ],
       [
-        "Preverimo, da se ob vklopu popravek začne brez skoka v položaju in hitrosti.",
+        "Preveri stik vej",
+        "Novo dodani odmik in njegova začetna hitrost morata biti pri lokalnem času nič oba enaka nič.",
         "g(0)=0-1+1=0,\\qquad g'(0)=1-e^0=0"
       ]
     ],
     "force23": [
       [
-        "Sprememba sile je minus prej prisotni kosinus. Pri zamiku uporabimo adicijsko formulo.",
+        "Zapiši razliko sil",
+        "Pri času $a=\\pi/2$ sinus ostane, kosinus izgine. Od nove sile odštej staro.",
+        "a=\\pi/2,\\qquad \\Delta f=3\\sin t-(3\\sin t+3\\cos t)=-3\\cos t"
+      ],
+      [
+        "Uporabi lokalni čas",
+        "Identiteta $\\cos(u+\\pi/2)=-\\sin u$ spremeni popravek v sinus.",
         "a=\\pi/2,\\quad u=t-a,\\quad -3\\cos(u+\\pi/2)=3\\sin u"
       ],
       [
-        "Zapišemo osnovno silo in zamaknjeni popravek ter ju transformiramo.",
+        "Pretvori osnovo in popravek",
+        "Le naknadni sinus dobi faktor $e^{-as}$.",
         "f=3\\sin t+3\\cos t+H(t-a)3\\sin(t-a),\\qquad F=\\frac{3+3s}{s^2+1}+e^{-as}\\frac3{s^2+1}"
       ],
       [
-        "V obrazec za drugi odvod vstavimo začetni položaj 1 in hitrost 2. Nato v transformirani enačbi osamimo Y.",
-        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y-s-2,\\qquad s^2Y-s-2+4Y=F\\ \\Rightarrow\\ Y=\\frac{s+2+F}{s^2+4}"
+        "Vstavi začetna pogoja",
+        "Drugi odvod v transformaciji vsebuje začetni položaj in hitrost.",
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y-s-2"
       ],
       [
-        "Ločimo osnovni in zamaknjeni del, da bo zamik vplival le na popravek.",
+        "Izoliraj Y",
+        "Zberi oba člena pri $Y$ ter deli s faktorjem, ki ostane pred njim.",
+        "s^2Y-s-2+4Y=F\\ \\Rightarrow\\ (s^2+4)Y=F+s+2"
+      ],
+      [
+        "Loči zamaknjeni člen",
+        "V obeh delih prepoznaj isti ulomek $D$. Tako njegov inverz izračunaš enkrat.",
         "Y=\\frac{s+2}{s^2+4}+(s+1)D+e^{-as}D,\\qquad D=\\frac3{(s^2+1)(s^2+4)}"
       ],
       [
-        "Za D nastavimo dva ulomka in odpravimo imenovalec.",
+        "Odpravi imenovalec D",
+        "Dva različna kvadratna faktorja dasta podani razcep. Števca sta lahko konstanti, ker je $D$ soda funkcija $s$.",
         "D=\\frac A{s^2+1}+\\frac B{s^2+4}\\quad\\Rightarrow\\quad 3=(A+B)s^2+4A+B"
       ],
       [
-        "Primerjamo koeficiente in rešimo sistem. Prištejemo še člen iz začetnih pogojev.",
+        "Določi A in B",
+        "Iz $A+B=0$ dobiš $B=-A$. Ko to vstaviš v $4A+B=3$, ostane samo $A$.",
         "A+B=0,\\quad 4A+B=3\\quad\\Rightarrow\\quad 3A=3,\\quad A=1,\\ B=-1"
       ],
       [
-        "Osnovni del uredimo tako, da združimo ulomka z imenovalcem s² + 4.",
+        "Združi osnovne člene",
+        "Oba ulomka z imenovalcem $s^2+4$ združi, preden uporabiš inverz.",
         "Y_0=\\frac{s+1}{s^2+1}+\\frac{(s+2)-(s+1)}{s^2+4}=\\frac{s+1}{s^2+1}+\\frac1{s^2+4}"
       ],
       [
-        "Inverz zadnjega člena zahteva faktor ena polovica, ker ima sinus frekvenco 2.",
+        "Obrni osnovni odziv",
+        "Pri frekvenci 2 potrebuje sinusni par števec 2, zato izpostavi polovico.",
         "\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+4}\\right\\}=\\tfrac12\\sin(2t),\\qquad y_0=\\cos t+\\sin t+\\tfrac12\\sin(2t)"
       ],
       [
-        "V lokalnem času posebej obrnemo D.",
+        "Obrni D",
+        "Enak faktor $1/2$ uporabi tudi pri zamaknjenem delu.",
         "\\mathcal L^{-1}\\{D\\}(u)=\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+1}-\\frac1{s^2+4}\\right\\}(u)=\\sin u-\\tfrac12\\sin(2u)"
       ],
       [
-        "Sestavimo rešitev. V koraku po vklopu povsod uporabimo isto lokalno uro.",
+        "Vrni globalni čas",
+        "Zapiši osnovo za ves čas, popravek pa vključi šele pri $t=a$.",
         "y(t)=\\cos t+\\sin t+\\tfrac12\\sin(2t)+H(t-a)\\big[\\sin u-\\tfrac12\\sin(2u)\\big],\\quad u=t-\\pi/2"
       ]
     ],
     "volterra": [
       [
-        "V integralu prepoznamo konvolucijo neznanega signala z jedrom.",
+        "Prepoznaj konvolucijo",
+        "Ena funkcija je ovrednotena pri $u$, druga pri $t-u$. To je oblika konvolucije.",
         "\\int_0^t y(u)\\cos(t-u)\\,du=(y*\\cos)(t)"
       ],
       [
-        "Transformiramo obe strani. Produkt razrešimo za Y.",
-        "Y(s)\\frac{s}{s^2+1}=\\frac2{s^2+4}\\quad\\Rightarrow\\quad Y=\\frac{2(s^2+1)}{s(s^2+4)}"
+        "Transformiraj obe strani",
+        "Konvolucija postane produkt. Desna stran je sinus s frekvenco 2.",
+        "Y(s)\\frac{s}{s^2+1}=\\frac2{s^2+4}"
       ],
       [
-        "Postavimo parcialne ulomke in izraz pomnožimo s skupnim imenovalcem.",
+        "Osami Y",
+        "Obe strani deli s transformiranko kosinusa.",
+        "Y=\\frac2{s^2+4}\\cdot\\frac{s^2+1}{s}"
+      ],
+      [
+        "Razcepi ulomek",
+        "Za linearni faktor nastavi konstantni števec, za kvadratnega pa linearni števec.",
         "Y=\\frac A s+\\frac{Bs+C}{s^2+4}\\quad\\Rightarrow\\quad 2s^2+2=(A+B)s^2+Cs+4A"
       ],
       [
-        "Na levi je konstantni člen 2, linearni člen manjka, koeficient pri kvadratu pa je 2. Primerjava določi vse tri neznanke.",
-        "4A=2\\ \\Rightarrow\\ A=\\tfrac12,\\qquad C=0,\\qquad A+B=2\\ \\Rightarrow\\ B=2-\\tfrac12=\\tfrac32"
+        "Primerjaj konstantni in linearni člen",
+        "Na levi je konstanta 2 in koeficient ob $s$ enak nič.",
+        "4A=2\\ \\Rightarrow\\ A=\\tfrac12,\\qquad C=0"
       ],
       [
-        "Uporabimo osnovna para za konstanto in kosinus ter preverimo vrednost na začetku.",
+        "Primerjaj kvadratni člen",
+        "V njegovo enačbo vstavi že izračunani $A$.",
+        "A+B=2\\ \\Rightarrow\\ B=2-\\tfrac12=\\tfrac32"
+      ],
+      [
+        "Obrni konstanto in kosinus",
+        "Člen $1/s$ ustreza enoti, $s/(s^2+4)$ pa kosinusu s frekvenco 2.",
         "y(t)=\\tfrac12+\\tfrac32\\cos(2t),\\qquad y(0)=\\tfrac12+\\tfrac32=2"
       ]
     ],
     "sum22": [
       [
+        "Zapiši splošni člen",
+        "V členu je potenca z eksponentom $n$. Količnik sosednjih členov odstrani večino te potence in razkrije območje konvergence.",
+        "a_n(x)=\\frac{x^n}{n^2-1},\\quad n\\ge2,\\qquad a_{n+1}(x)=\\frac{x^{n+1}}{(n+1)^2-1}"
+      ],
+      [
+        "Sestavi količnik sosednjih členov",
         "Za neničelni $x$ pokrajšaj sosednja člena in deli števec in imenovalec z $n^2$.",
         "\\left|\\frac{a_{n+1}}{a_n}\\right|=|x|\\frac{n^2-1}{n^2+2n}=|x|\\frac{1-1/n^2}{1+2/n}"
       ],
       [
+        "Določi notranjost intervala",
         "Člena z $1/n$ in $1/n^2$ gresta proti nič. Kvocientni kriterij določi notranjost. V središču so vsi členi nič.",
         "L=|x|\\frac{1-0}{1+0}=|x|,\\qquad L<1\\iff |x|<1"
       ],
       [
+        "Primerjaj oba robova s p-vrsto",
         "Na obeh robovih primerjaj absolutno vrednost s seštevno vrsto $1/n^2$. Po deljenju z $n^2$ dobiš pozitivno končno limito.",
         "\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac1{1-1/n^2}=\\frac1{1-0}=1"
       ],
       [
-        "Zato sta vključeni obe krajišči, zunaj polmera pa vrsta divergira.",
+        "Zapiši celoten interval",
+        "Za $|x|>1$ je limita količnika večja od 1. Pri $|x|=1$ pa sta absolutni vrsti primerljivi s konvergentno p-vrsto.",
         "R=1,\\qquad x\\in[-1,1]"
       ],
       [
+        "Razstavi imenovalec na faktorja",
         "Razstavimo imenovalec. Na vsakega od faktorjev pripnemo neznan števec in pomnožimo s skupnim imenovalcem.",
         "\\frac1{(n-1)(n+1)}=\\frac A{n-1}+\\frac B{n+1}\\ \\Rightarrow\\ 1=A(n+1)+B(n-1)=(A+B)n+A-B"
       ],
       [
+        "Določi oba števca",
         "Na levi je koeficient pri n nič, konstanta pa ena. Seštejemo enačbi in nato vstavimo A v prvo.",
         "A+B=0,\\qquad A-B=1\\ \\Rightarrow\\ 2A=1\\ \\Rightarrow\\ A=\\tfrac12,\\qquad B=-A=-\\tfrac12"
       ],
       [
-        "V prvotni vsoti tako nastaneta dve enostavnejši vsoti.",
+        "Vstavi dobljena koeficienta",
+        "Razlika dveh ulomkov omogoči uporabo logaritemske vrste za vsakega posebej.",
         "\\frac1{n^2-1}=\\frac12\\left(\\frac1{n-1}-\\frac1{n+1}\\right)"
       ],
       [
+        "Prepoznaj logaritemsko vrsto",
+        "Integracija geometrijske vrste od nič do $x$ ustvari imenovalec $k$. Zato lahko obe prestavljeni vsoti povežemo z logaritmom.",
+        "\\int_0^x\\frac{dt}{1-t}=\\sum_{j=0}^\\infty\\frac{x^{j+1}}{j+1}=\\sum_{k=1}^\\infty\\frac{x^k}{k}=-\\ln(1-x),\\qquad |x|<1"
+      ],
+      [
+        "Premakni indeks prve vsote",
         "V prvi vsoti postavimo k = n−1. Za neničelni x znotraj polmera uporabimo logaritemsko vrsto.",
         "\\sum_{n=2}^\\infty\\frac{x^n}{n-1}=x\\sum_{k=1}^\\infty\\frac{x^k}{k}=-x\\ln(1-x)"
       ],
       [
+        "Premakni indeks druge vsote",
         "V drugi postavimo k = n+1. Prva dva člena znane vrste odštejemo, ker vsota začne pri k = 3.",
         "\\sum_{n=2}^\\infty\\frac{x^n}{n+1}=\\frac1x\\sum_{k=3}^\\infty\\frac{x^k}{k}=\\frac{-\\ln(1-x)-x-x^2/2}{x}"
       ],
       [
-        "Od prve vsote odštejemo drugo in pomnožimo s polovico.",
+        "Odštej vsoti",
+        "Predznak druge vsote ohranimo iz razcepa na parcialna ulomka.",
         "S(x)=\\tfrac12\\left[-x\\ln(1-x)+\\frac{\\ln(1-x)+x+x^2/2}{x}\\right]"
       ],
       [
-        "Zberemo oba člena z logaritmom, preostala pa delimo z x.",
+        "Zberi logaritemska člena",
+        "Skupni faktor $\\ln(1-x)$ izpostavimo, da lahko robni vrednosti obravnavamo posebej.",
         "S(x)=\\tfrac12\\left[(1/x-x)\\ln(1-x)+1+x/2\\right],\\quad 0<|x|<1"
       ],
       [
+        "Vrni se k prvotni vrsti pri ničli",
         "Funkcijsko vrsto na celotnem zaprtem intervalu omejuje seštevna vrsta $\\sum_{n=2}^\\infty 1/(n^2-1)$. Po M-testu je vsota zvezna tudi na robovih. Pri ničli uporabi prvotno vrsto.",
         "S(0)=\\sum_{n=2}^\\infty\\frac{0^n}{n^2-1}=0"
       ],
       [
+        "Vstavi levi rob",
         "K levemu robu se približaj z notranje strani. Oba faktorja imata končno limito.",
         "\\lim_{x\\to-1^+}(1/x-x)\\ln(1-x)=(-1+1)\\ln2=0,\\qquad S(-1)=\\tfrac12(1-\\tfrac12)=\\tfrac14"
       ],
       [
+        "Na desnem robu uvedi t",
         "Na desnem robu se pojavi produkt ničle in neomejenega logaritma. Izloči $1-x$ in ga označi z $t$.",
         "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}\\,t\\ln t,\\qquad t=1-x\\to0^+"
       ],
       [
+        "Izračunaj limito produkta",
         "Za limito prepiši produkt kot količnik. V obliki neskončno skozi neskončno uporabi l’Hôpitalovo pravilo.",
-        "\\lim_{t\\to0^+}t\\ln t=\\lim_{t\\to0^+}\\frac{\\ln t}{1/t}=\\lim_{t\\to0^+}\\frac{1/t}{-1/t^2}=\\lim_{t\\to0^+}(-t)=0"
+        "\\lim_{t\\to0^+}t\\ln t=\\lim_{t\\to0^+}\\frac{\\ln t}{1/t}=\\lim_{t\\to0^+}\\frac{1/t}{-1/t^2}=\\lim_{t\\to0^+}(-t)=0",
+        "xlogx56"
       ],
       [
+        "Izračunaj vsoto na desnem robu",
         "Preostali faktor teži k 2, zato celotni logaritemski člen izgine. Vstavi še ostala dva člena.",
         "S(1)=\\tfrac12\\left[2\\cdot0+1+\\tfrac12\\right]=\\tfrac34"
       ],
       [
+        "Prepoznaj argument številske vsote",
         "Za številsko vsoto zapišemo potenco kot 4 krat potenco ene četrtine in vstavimo x = 1/4.",
         "4^{1-n}=4(1/4)^n,\\qquad 4S(1/4)=2\\left[(4-\\tfrac14)\\ln(\\tfrac34)+1+\\tfrac18\\right]"
       ],
       [
-        "Pomnožimo konstanti in koeficient logaritma.",
+        "Poenostavi rezultat",
+        "Pri množenju s faktorjem 2 dobi logaritem koeficient $2(4-1/4)$, konstanta pa vrednost $2(1+1/8)$.",
         "4S(1/4)=\\frac94+\\frac{15}2\\ln\\!\\left(\\frac34\\right)"
       ]
     ],
     "sum24": [
       [
+        "Preberi eksponent in imenovalec",
+        "Za območje potrebujemo splošni člen. Indeks se začne pri nič, zato preverimo tudi, ali je prvi člen povsod definiran.",
+        "a_n(x)=\\frac{x^{4n-1}}{4n+1},\\quad S(x)=\\sum_{n=0}^\\infty a_n(x)"
+      ],
+      [
+        "Preveri prvi člen",
         "Najprej napišemo prvi člen, ker lahko izključi središče.",
         "n=0:\\quad \\frac{x^{-1}}1=\\frac1x\\quad\\Rightarrow\\quad x\\ne0"
       ],
       [
+        "Pokrajšaj sosednja člena",
         "Pri neničelnem $x$ v kvocientu pokrajšamo potence in delimo števec ter imenovalec z $n$.",
         "\\left|\\frac{a_{n+1}}{a_n}\\right|=|x|^4\\frac{4n+1}{4n+5}=|x|^4\\frac{4+1/n}{4+5/n}"
       ],
       [
+        "Določi območje absolutne konvergence",
         "Člena $1/n$ in $5/n$ izgineta. Absolutno konvergenco dobimo, ko je limita manjša od ena.",
         "L=|x|^4\\frac{4+0}{4+0}=|x|^4,\\qquad L<1\\iff |x|<1"
       ],
       [
+        "Vstavi oba robova",
         "Pri $x=1$ so vsi členi pozitivni, pri $x=-1$ vsi negativni. Njihove velikosti primerjamo s harmonično vrsto.",
         "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\qquad \\frac{1/(4n+1)}{1/n}=\\frac1{4+1/n}"
       ],
       [
+        "Primerjaj s harmonično vrsto",
         "Ko gre $n$ v neskončnost, je limita količnika pozitivna in končna, zato imata primerjani pozitivni vrsti enako obnašanje. Harmonična vrsta divergira.",
         "\\lim_{n\\to\\infty}\\frac1{4+1/n}=\\frac1{4+0}=\\frac14"
       ],
       [
+        "Uvedi pomožno vsoto",
         "Oba robova izločimo. Znotraj polmera množimo z x², da eksponent postane enak imenovalcu.",
         "x\\in(-1,0)\\cup(0,1),\\quad T(x)=x^2S(x)=\\sum_{n=0}^\\infty\\frac{x^{4n+1}}{4n+1}"
       ],
       [
+        "Določi vrednost pomožne vrste v ničli",
         "V pomožni vrsti so vse potence pozitivne. Če vstavimo nič, dobimo začetno vrednost T.",
         "T(x)=x+\\frac{x^5}{5}+\\frac{x^9}{9}+\\cdots\\quad\\Rightarrow\\quad T(0)=0"
       ],
       [
-        "Znotraj polmera odvajamo členoma. Po krajšanju je končna delna vsota odvodov geometrijska.",
+        "Preveri odvod enega člena",
+        "S potenčnim pravilom se v števcu pojavi prav faktor iz imenovalca. Zato je bilo koristno vpeljati $T$.",
+        "\\left(\\frac{x^{4n+1}}{4n+1}\\right)'=\\frac{4n+1}{4n+1}x^{4n}=(x^4)^n"
+      ],
+      [
+        "Odvajaj po členih",
+        "Znotraj polmera smemo potenčno vrsto odvajati členoma. Potence v delni vsoti odvodov se množijo z istim količnikom $x^4$.",
         "\\sum_{n=0}^{N}(4n+1)\\frac{x^{4n}}{4n+1}=\\sum_{n=0}^{N}(x^4)^n=\\frac{1-(x^4)^{N+1}}{1-x^4}"
       ],
       [
+        "Preidi od delne vsote do odvoda",
         "Za $|x|<1$ je tudi $x^4<1$, zato gre zadnja potenca proti nič. Vstavimo njeno limito.",
         "\\lim_{N\\to\\infty}(x^4)^{N+1}=0,\\qquad T'(x)=\\frac{1-0}{1-x^4}"
       ],
       [
+        "Razstavi četrto potenco",
         "Razstavimo četrto potenco. Števca dobimo s primerjavo konstant in kvadratnih členov.",
         "\\frac1{1-x^4}=\\frac A{1-x^2}+\\frac B{1+x^2}\\ \\Rightarrow\\ 1=(A+B)+(A-B)x^2\\ \\Rightarrow\\ A=B,\\quad 2A=1"
       ],
       [
+        "Razstavi še razliko kvadratov",
         "V prvem ulomku razstavimo še razliko kvadratov. Primerjamo konstantni in linearni člen.",
         "\\frac1{1-x^2}=\\frac D{1-x}+\\frac E{1+x}\\ \\Rightarrow\\ 1=(D+E)+(D-E)x\\ \\Rightarrow\\ D=E=\\tfrac12"
       ],
       [
+        "Vstavi dobljene števce",
         "Vstavimo A = B = 1/2. Po razcepu prvi ulomek prispeva dve četrtini.",
         "T'(x)=\\frac1{4(1-x)}+\\frac1{4(1+x)}+\\frac1{2(1+x^2)}"
       ],
       [
+        "Prepoznaj primitivne funkcije",
+        "Prvi imenovalec ima notranji odvod −1, drugi ima +1. Tretji ulomek je odvod arkus tangensa.",
+        "(-\\ln(1-x))'=\\frac1{1-x},\\quad(\\ln(1+x))'=\\frac1{1+x},\\quad(\\arctan x)'=\\frac1{1+x^2}"
+      ],
+      [
+        "Integriraj vse tri ulomke",
         "Integriramo členoma. Minus pri prvem logaritmu izvira iz odvoda njegovega argumenta. Pri integriranju se pojavi ena skupna konstanta.",
         "T(x)=-\\tfrac14\\ln(1-x)+\\tfrac14\\ln(1+x)+\\tfrac12\\arctan x+C"
       ],
       [
+        "Določi integracijsko konstanto",
         "Vstavimo začetno vrednost pomožne vrste. Ker sta oba logaritma in arkus tangens pri teh argumentih nič, ostane samo C.",
         "0=T(0)=-\\tfrac14\\ln1+\\tfrac14\\ln1+\\tfrac12\\arctan0+C=0+0+0+C\\ \\Rightarrow\\ C=0"
       ],
       [
+        "Vrni se iz T k S",
         "Vstavimo dobljeni C, združimo logaritma in delimo z x². S tem dobimo zahtevano prvotno vsoto.",
         "S(x)=\\frac{T(x)}{x^2}=\\frac{\\tfrac14\\ln\\!\\frac{1+x}{1-x}+\\tfrac12\\arctan x}{x^2},\\qquad 0<|x|<1"
       ]
     ],
     "mtest": [
       [
+        "Izberi majorantni kriterij",
+        "Iščemo eno omejitev, ki velja za vsako točko. Zato poiščemo številsko majoranto, odvisno le od indeksa.",
+        "f_n(x)=\\frac{\\sin(nx)}{n^2},\\qquad |f_n(x)|\\le M_n"
+      ],
+      [
+        "Omeji absolutno vrednost člena",
         "Za vse realne x vzamemo absolutno vrednost in omejimo sinus.",
         "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n"
       ],
       [
+        "Omeji končni rep s ploščino",
         "Naj bo $m>N\\ge1$. Ker je $1/u^2$ padajoča, je ploščina na vsakem intervalu od $n-1$ do $n$ vsaj $1/n^2$.",
-        "\\sum_{n=N+1}^m\\frac1{n^2}\\le\\int_N^m\\frac{du}{u^2}"
+        "\\sum_{n=N+1}^m\\frac1{n^2}\\le\\int_N^m\\frac{du}{u^2}",
+        "stairs56"
       ],
       [
+        "Izračunaj ploščino do končne meje",
         "Najprej ovrednotimo integral do končne zgornje meje.",
         "\\int_N^m u^{-2}\\,du=\\left[-\\frac1u\\right]_N^m=-\\frac1m+\\frac1N"
       ],
       [
+        "Odstrani zgornji rez",
         "Pri fiksnem $N$ pošljemo $m$ v neskončnost. Zgornji rob izgine, zato dobimo skupno oceno neskončnega repa.",
         "\\int_N^\\infty\\frac{du}{u^2}=\\lim_{m\\to\\infty}\\left(\\frac1N-\\frac1m\\right)=\\frac1N-0=\\frac1N"
       ],
       [
+        "Izberi indeks za zahtevano napako",
         "Za želeno napako izberemo isti indeks za vse x. To zagotovi enakomerno in absolutno konvergenco.",
         "N>1/\\varepsilon\\quad\\Rightarrow\\quad \\sum_{n>N}\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le1/N<\\varepsilon"
       ],
       [
+        "Zapiši M-test kot implikacijo",
         "Za drugo vrsto naj bo M veljavna majoranta. Po M-testu bi konvergenca njene številske vsote dala enakomerno konvergenco funkcijske vrste.",
         "|f_n(x)|\\le M_n,\\quad\\sum M_n<\\infty\\quad\\Rightarrow\\quad\\sum f_n\\ \\text{konvergira enakomerno}"
       ],
       [
+        "Obrni smer sklepanja",
         "Ker je tokrat dano ravno nasprotno o funkcijski vrsti, uporabimo kontrapozicijo.",
         "\\sum f_n\\ \\text{ne konvergira enakomerno}\\quad\\Rightarrow\\quad\\sum M_n=\\infty"
       ]
     ],
     "leg": [
       [
+        "Izberi sodi polinom",
         "Pri stopnji 2 vstavimo n = 2 v Legendrovo enačbo in za iskani sodi polinom postavimo dva neznana koeficienta.",
         "(1-x^2)y''-2xy'+2(2+1)y=0,\\quad y=a+bx^2"
       ],
       [
-        "Odvajamo po x. Konstantni člen pri prvem odvajanju izgine.",
+        "Odvajaj polinom",
+        "Za vstavljanje v enačbo potrebujemo prvi in drugi odvod istega polinoma.",
         "y'=0+b\\cdot 2x=2bx,\\qquad y''=2b"
       ],
       [
-        "V isti vrstni red enačbe vstavimo polinom in njegova odvoda.",
+        "Vstavi v diferencialno enačbo",
+        "Vsak člen je zdaj izražen le z $x$, $a$ in $b$, zato lahko poiščemo pogoje za koeficienta.",
         "(1-x^2)2b-2x(2bx)+6(a+bx^2)=0"
       ],
       [
-        "Razmnožimo oklepaje in zberemo koeficiente ob enakih potencah.",
+        "Zberi enake potence",
+        "Enačba velja pri vsakem $x$. Zato moramo posebej zbrati konstantne in kvadratne člene.",
         "(2b+6a)+(-2b-4b+6b)x^2=0"
       ],
       [
+        "Izrazi b z a",
         "Kvadratni členi se pokrajšajo. Konstantni koeficient mora biti nič.",
         "2b+6a=0\\quad\\Rightarrow\\quad b=-3a"
       ],
       [
+        "Določi a iz normalizacije",
         "V normalizacijski pogoj vstavimo x = 1 in zamenjamo b z −3a.",
         "P_2(1)=a+b=1\\quad\\Rightarrow\\quad a-3a=1\\quad\\Rightarrow\\quad a=-\\tfrac12"
       ],
       [
+        "Izračunaj b in zapiši polinom",
         "Izračunamo drugi koeficient, zapišemo polinom in ga ovrednotimo še pri ničli.",
         "b=-3(-\\tfrac12)=\\tfrac32,\\qquad P_2(x)=\\frac{3x^2-1}{2},\\quad P_2(0)=-\\tfrac12"
       ]
     ],
     "bessel": [
       [
+        "Deli enačbo z vodilnim koeficientom",
         "Za pozitivni x enačbo delimo z x², da preberemo koeficienta v normalizirani obliki.",
         "y''+\\frac1x y'+\\left(1-\\frac{25}{x^2}\\right)y=0"
       ],
       [
+        "Preveri vrsto singularnosti",
         "Preverimo Frobeniusov pogoj. Oba produkta sta polinoma in zato analitična pri ničli.",
         "xP(x)=x\\frac1x=1,\\qquad x^2Q(x)=x^2-25"
       ],
       [
+        "Določi robna koeficienta",
         "Izračunamo robni vrednosti že poenostavljenih polinomov. Njuna analitična razširitev dovoljuje Frobeniusov nastavek.",
         "p_0=\\lim_{x\\to0}1=1,\\qquad q_0=\\lim_{x\\to0}(x^2-25)=0-25=-25"
       ],
       [
+        "Izberi Frobeniusov nastavek",
         "Uporabimo nastavek z neznanim začetnim eksponentom. Prvi koeficient mora biti neničeln.",
         "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0"
       ],
       [
-        "Za najnižjo potenco potrebujemo le odvoda prvega člena.",
+        "Odvajaj začetno potenco",
+        "Indicialna enačba nastane ob najnižji potenci. Višji členi zato pri tem koraku ne prispevajo.",
         "(a_0x^r)'=ra_0x^{r-1},\\qquad (a_0x^r)''=r(r-1)a_0x^{r-2}"
       ],
       [
+        "Izlušči najnižjo potenco",
         "Odvoda pomnožimo z x oziroma x². Člen x²y prispeva šele dve potenci pozneje.",
         "r(r-1)a_0x^r+ra_0x^r-25a_0x^r=[r(r-1)+r-25]a_0x^r"
       ],
       [
+        "Reši indicialno enačbo",
         "Koeficient postavimo na nič, delimo z neničelnim a₀ in razcepimo razliko kvadratov.",
         "r(r-1)+r-25=r^2-25=(r-5)(r+5)=0\\quad\\Rightarrow\\quad r=\\pm5"
       ],
       [
+        "Prepoznaj red Besselove enačbe",
         "Obliko enačbe primerjamo s standardno Besselovo. Red je nenegativni koren iz 25.",
         "x^2-\\nu^2=x^2-25\\quad\\Rightarrow\\quad\\nu=5"
       ],
       [
+        "Zapiši družino rešitev",
         "Enačba drugega reda ima dve neodvisni osnovni rešitvi. Naloga poda samo enačbo, zato lahko njuni uteži prosto izberemo. Dva neodvisna začetna podatka bi določila posamezno rešitev.",
         "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0,\\quad C_1,C_2\\in\\mathbb R"
       ]
     ],
     "ortho": [
       [
-        "Najprej zapišemo definicijo za dve funkciji na intervalu s pozitivno zvezno utežjo.",
+        "Izberi uteženi skalarni produkt",
+        "Ortogonalnost pomeni, da je uteženi integral produkta enak nič.",
         "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx"
       ],
       [
+        "Vstavi funkciji in utež",
         "Vstavimo konkretni funkciji, utež 1 ter meji −1 in 1.",
         "\\langle 1,P_2\\rangle_1=\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx"
       ],
       [
+        "Poišči primitivno funkcijo",
         "Faktor eno polovico izpostavimo. Za x² potenco povečamo na 3 in delimo s 3.",
         "\\frac12\\int_{-1}^1(3x^2-1)\\,dx=\\frac12\\left[3\\frac{x^3}{3}-x\\right]_{-1}^{1}"
       ],
       [
+        "Vstavi obe meji",
         "Najprej vstavimo 1 in nato odštejemo vrednost pri −1.",
-        "\\frac12\\big[(1^3-1)-((-1)^3-(-1))\\big]=\\frac12[0-0]=0"
+        "\\frac12\\big[(1^3-1)-((-1)^3-(-1))\\big]=\\frac12[0-0]=0",
+        "orthogonal56"
       ],
       [
+        "Razberi geometrijski pomen",
         "Ničelni skalarni produkt pomeni, da sta funkciji na tem intervalu z dano utežjo pravokotni.",
         "\\langle 1,P_2\\rangle_1=0\\quad\\Rightarrow\\quad 1\\perp P_2"
       ]

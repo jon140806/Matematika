@@ -1,4 +1,5 @@
 const practicePlots={...practicePlots12,...practicePlots34,...practicePlots56};
+const stepPlots={...mini12,...mini34,...mini56};
 const $=id=>document.getElementById(id);
 const icons={book:'M3 4c4-1 6 0 9 2 3-2 5-3 9-2v14c-4-1-6 0-9 2-3-2-5-3-9-2z M12 6v14',folder:'M3 7V5h6l2 2h10v12H3z',chart:'M3 20V7m0 13h18 M7 16v-4m5 4V8m5 8V4',sun:'M12 3v2m0 14v2M3 12h2m14 0h2M5.5 5.5l1.5 1.5m10 10 1.5 1.5m0-13L17 7M7 17l-1.5 1.5 M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',info:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M12 11v6 M12 7v.2',pen:'m5 15 10-10 4 4L9 19l-5 1z M13 7l4 4',cards:'m3 6 12-3 3 10 M7 8h14v12H7z',wave:'M2 15c4 0 4-10 8-10s3 14 7 14 3-6 5-7',pin:'m12 3 2.5 5 5.5.8-4 4 1 5.5-5-2.6-5 2.6 1-5.5-4-4 5.5-.8z',check:'m4 12 5 5L20 6',file:'M5 3h9l5 5v13H5z M14 3v5h5 M8 13h8m-8 4h6',clock:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M12 6v6l4 2'};
 const icon=n=>'<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="'+icons[n]+'"/></svg>';
@@ -18,7 +19,7 @@ const current=()=>data(tab())[idx()];
 const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));canSave=true}catch{canSave=false}if(!canSave)$('saveState').textContent='Shranjevanje ni na voljo'}
 function counts(day){let total=0,done=0;for(const type of kinds){let items=course[type].filter(o=>!day||o.day===day);total+=items.length;let seen={};for(const item of items){let n=seen[item.day]||0;seen[item.day]=n+1;if(state.marks[idAt(type,n,item.day)])done++}}return {total,done,pct:Math.round(100*done/total)}}
-function resetView(){graphStage=0;choice=null;flipped=false;notice='';sliderValue=undefined}
+function resetView(){graphStage=tab()==='exercises'&&['atan','gauss'].includes(current()?.plot)?1:0;choice=null;flipped=false;notice='';sliderValue=undefined}
 function setDone(value=true){const id=currentId();if(value){state.marks[id]??=today()}else delete state.marks[id];save()}
 function dashboard(){
  let all=counts(),day=counts(state.day);$('pctAll').textContent=all.pct+' %';$('barAll').value=all.pct;$('pctDay').textContent=day.pct+' %';$('barDay').value=day.pct;$('dayMetricLabel').textContent='Napredek za '+state.day+'. dan';
@@ -106,6 +107,24 @@ function ruleBridge(rules){
 function calculation(rows,label){
  return '<div class="calculation"><h3>'+label+'</h3><ol>'+rows.map(([instruction,equation])=>'<li><p>'+instruction+'</p><div class="calcLine">'+equation+'</div></li>').join('')+'</ol></div>';
 }
+function stepFigure(id,index){
+ const plot=stepPlots[id];
+ const model={x:plot.x,y:plot.y,bars:[],barColors:[gold,lilac,rose],markColors:[gold,rose,lilac,mint],...plot.make()};
+ return compactFigure(plot.label,model,'step-clip-'+index);
+}
+function compactFigure(label,model,clip){
+ const legend=(color,name)=>'<span class="graphKey" style="--key:'+color+'"><i></i>'+escapeGraph(name)+'</span>';
+ const keys=model.curves.map((curve,i)=>legend(curve.color,model.keys.curves?.[i]||curve.name))
+   .concat(model.fills.map((area,i)=>legend(area.color,model.keys.areas[i])));
+ const svg=svgChart(model).replaceAll('graph-clip',clip);
+ return '<figure class="stepFigure"><strong>'+escapeGraph(label)+'</strong><div class="drawing">'+svg+'</div><div class="legend">'+keys.join('')+'</div><figcaption>'+escapeGraph(model.caption)+'</figcaption></figure>';
+}
+function exerciseProcedure(steps){
+ return '<div class="calculation exerciseProcedure"><ol>'+steps.map((step,index)=>
+  '<li><h3>'+step.action+'</h3><p><b>Zakaj?</b> '+step.reason+'</p><div class="calcLine">'+step.equation+'</div>'+
+  (step.visual?stepFigure(step.visual,index):'')+'</li>'
+ ).join('')+'</ol></div>';
+}
 function lesson(){
  const o=current(),done=!!state.marks[currentId()];
  const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols],['Uporaba',o.use]];
@@ -124,8 +143,20 @@ function lesson(){
 }
 function solvedExamples(){
  const examples=course.examples.filter(o=>o.day===state.day);
- return '<details class="base examples"><summary>Rešeni zgledi za '+state.day+'. dan</summary>'+examples.map(o=>'<details class="baseEntry"><summary>'+o.subtitle+'</summary><p>'+o.purpose.question+'</p><p>'+o.purpose.use+'</p>'+ruleBridge(o.rules)+o.steps.map(([heading],i)=>calculation(o.worked[i],heading)).join('')+'</details>').join('')+'</details>';
+ return '<details class="base examples"><summary>Rešeni zgledi za '+state.day+'. dan</summary>'+examples.map(o=>'<details class="baseEntry"><summary>'+o.subtitle+'</summary><p>'+o.purpose.question+'</p><p>'+o.purpose.use+'</p>'+o.steps.map(([heading],i)=>{
+  const graphic=i===1?'<div data-example-graph="'+o.plot+'"></div>':'';
+  return calculation(o.worked[i],heading)+graphic;
+ }).join('')+'<details class="base"><summary>Uporabljene formule</summary>'+ruleBridge(o.rules)+'</details></details>').join('')+'</details>';
 }
+document.addEventListener('toggle',event=>{
+ const entry=event.target;
+ if(!entry.open||!entry.matches('.examples .baseEntry'))return;
+ const slot=entry.querySelector('[data-example-graph]');
+ if(!slot||slot.childElementCount)return;
+ const id=slot.dataset.exampleGraph,phase=1,value=plotSettings(id,phase)[4];
+ const model=chartModel(id,phase,value);
+ slot.innerHTML=compactFigure('Ponazoritev drugega koraka',model,'example-clip-'+id);
+},true);
 function unitLink(kind,plot,label){
  const index=data(kind).findIndex(item=>item.plot===plot);
  return index<0?'':btn('goto',label,'quiet','data-val="'+kind+','+state.day+','+index+'"');
@@ -145,7 +176,7 @@ function exercise(){
  const prompt='<header class="exercisePrompt"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2><div class="question">'+o.prompt+'</div></header>';
  const quiz='<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div>';
  const help='<details class="base exerciseHelp"><summary>Namig, razlaga in graf</summary><div class="helpBody">'+hint+reading(o.symbols)+application('Uporaba',o.purpose)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+afterGraph+'</div></details>';
- const solution='<details class="base"><summary>Postopek po korakih</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>';
+ const solution='<details class="base"><summary>Postopek po korakih</summary>'+exerciseProcedure(o.worked)+'<details class="base formulaReference"><summary>Uporabljene formule</summary>'+ruleBridge(o.rules)+'</details></details>';
  return '<article class="practice" data-unit="'+currentId()+'">'+prompt+quiz+help+solution+'</article>';
 }
 function flash(){

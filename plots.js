@@ -17,7 +17,7 @@ function plotSettings(id,k=0){
  shift:['Čas preklopa a',.5,3,.1,2],conv:['Čas t',.1,4,.05,2],impulse:['Širina h',.1,1,.05,.6],
  radius:['Vrednost x',-1.15,1.15,.05,-1],series:['Zadnji indeks N',1,20,1,4],uniform:['Zadnji indeks N',1,20,1,5],
  leg:['Vrednost x',-1,1,.05,.6],bessel:['Število členov N',1,12,1,4],ortho:['Zgornja meja b',-1,1,.05,.6],pde:['Prerez y',-2,2,.1,1],
- gauss:['Parameter a',0,8,.1,3],atan:['Parameter t',.2,1.6,.05,1.2],root:['Parameter t',2,4,.05,2.5],
+ gauss:['Parameter a',0,8,.1,3],atan:['Parameter t',-1.6,1.6,.05,1.2],root:['Parameter t',2,4,.05,2.5],
  cubeta:['Zgornja meja x',.02,.5,.01,.35],loggamma:['Zgornja meja x',1.1,8,.1,4],betarec:['Argument p',1,4,.1,2.5],
  inverse:['Čas t',0,2,.05,1],sys22:['Čas t',0,2.3,.05,1],sys23:['Čas t',0,2,.05,.7],devar:['Parameter s',0,4,.1,1.5],
  triple:['Čas x',0,5,.1,2],force24:['Čas t',0,5,.05,3],force23:['Čas t',0,6,.05,3],volterra:['Čas t',0,5,.05,2],
@@ -132,7 +132,16 @@ function chartModel(id,k,v){
   else{const g=t=>(t**3-t)/2;y=[-.26,.26];label='b';graph('Integral do b',g);mark(v,g);points.push([1,0,lilac]);caption='Tekoča vsota ploščin pri b = '+fmt(v)+' je '+fmt(g(v))+'. Ob desnem robu se vrne na 0.'}
  }else if(id==='bessel'){x=[0,6];y=[-.25,.65];const part=(t,n)=>{let a=(t/2)**5/120,s=a;for(let i=1;i<n;i++){a*=-(t*t/4)/(i*(i+5));s+=a}return s};graph('N členov za J₅',t=>part(t,v));if(k===0){graph('Vodilni člen',t=>part(t,1),gold);caption='Prvi člen je x⁵/(2⁵ · 5!). Drsnik dodaja nadaljnje člene regularne veje.'}else if(k===1){graph('N + 1 členov',t=>part(t,v+1),lilac);caption='Primerjaj dva zaporedna približka pri r = 5. Naslednja neničelna potenca skoči za 2.'}else{graph('J₅ (24 členov)',t=>part(t,24),lilac);caption='Prikazana je regularna veja J₅. Druga neodvisna rešitev Y₅ je pri 0 singularna.'}}
  else if(id==='pde'){x=[-2,2];y=[-8,8];graph('Izbrani prerez',t=>v*Math.cosh(t));if(k>0){graph('y = −1',t=>-Math.cosh(t),lilac);graph('y = 1',Math.cosh,gold)}caption='Prerez pri y = '+fmt(v)+' ima u(0, y) = '+fmt(v)+'.'}
- else if(id==='atan'){x=[0,2.7];y=[-1,1.5];let f=u=>u===0?v-1:(Math.atan(v*u)-Math.atan(u))/u,g=u=>1/(1+v*v*u*u);graph('Integrand',f);graph('Parcialni odvod',g,lilac);area(k?g:f,0,v*v);mark(v*v,f);caption='Zgornja meja je t² = '+fmt(v*v)+', tam se pri odvajanju pojavi robni člen.'}
+ else if(id==='atan'){
+  x=[0,2.7];y=[Math.min(-1,v-1.14),1.3];
+  const f=u=>u===0?v-1:(Math.atan(v*u)-Math.atan(u))/u;
+  const g=u=>1/(1+v*v*u*u),edge=v*v;
+  graph('Integrand',f);graph('Parcialni odvod',g,lilac);
+  area(k?g:f,0,edge,k?lilac:mint);mark(edge,k?g:f,k?lilac:mint);
+  caption=v===0?'Pri t = 0 interval nima širine. Tudi hitrost meje 2t je nič, zato oba prispevka izgineta.':
+   k?'Vijolična ploščina meri notranji prispevek. Rob posebej prispeva 2t · f(t²,t) ≈ '+fmt(2*v*f(edge))+'.':
+   'Interval sega od 0 do t² = '+fmt(edge)+'. Hitrost desnega roba je 2t = '+fmt(2*v)+'.';
+ }
  else if(id==='root'){x=[0,2];y=[0,3];label='y';let f=t=>1/sqrt(v*v-t*t);graph('Odvod po t',f);graph('Majoranta pri t = 2',t=>1/sqrt(4-t*t),lilac);area(f,0,2);caption='Ploščina = arcsin(2/t) = '+fmt(Math.asin(2/v))+'. Na robu je singularnost integrabilna.'}
  // Some derivations change coordinates or switch from an integrand to its integral.
  function fresh(){curves=[];fills=[];marks=[];points=[];bars=[]}

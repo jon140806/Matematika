@@ -21,30 +21,38 @@
       ],
       "worked": [
         [
-          "Izberi $q$, da bo člen krajši. Pri obeh sosednjih členih vstavi isti $x$.",
+          "Zapiši sosednja člena",
+          "Pri premaknjenem središču je dolgi izraz v oklepaju ravno osnova potence. Označimo jo z $q$, da lahko primerjamo sosednja člena.",
           "q=(x-2)/3,\\qquad b_n=q^n/n,\\quad b_{n+1}=q^{n+1}/(n+1)"
         ],
         [
+          "Sestavi absolutni količnik",
           "Pri neničelnem $q$ pokrajšaj potence in deli števec in imenovalec z $n$.",
           "\\left|\\frac{b_{n+1}}{b_n}\\right|=|q|\\frac{n}{n+1}=\\frac{|q|}{1+1/n}"
         ],
         [
+          "Izračunaj limito količnika",
           "Izračunaj limito. Parameter $q$ je fiksen, $1/n$ pa teži k nič.",
           "L=\\lim_{n\\to\\infty}\\frac{|q|}{1+1/n}=\\frac{|q|}{1+0}=|q|"
         ],
         [
+          "Poišči notranjost intervala",
           "Reši neenačbo in odčitaj razdaljo od središča do roba. Središče samo je vključeno.",
           "|x-2|<3\\ \\Longleftrightarrow\\ -1<x<5,\\qquad R=3"
         ],
         [
+          "Preveri levi rob",
           "Na levem robu so predznaki izmenični. Za velikosti preveri oba pogoja Leibnizovega kriterija.",
           "q=-1:\\quad |b_{n+1}|=\\frac1{n+1}<\\frac1n,\\qquad \\lim_{n\\to\\infty}|b_n|=\\lim_{n\\to\\infty}\\frac1n=0"
         ],
         [
+          "Oceni vsoto na desnem robu",
           "Na desnem robu so vsi členi pozitivni. Ker je $1/t$ padajoča, pravokotniki višine $1/n$ pokrijejo površino pod njo.",
-          "q=1:\\quad S_N=\\sum_{n=1}^N\\frac1n\\ \\ge\\ \\int_1^{N+1}\\frac{dt}{t}=\\ln(N+1)-\\ln1"
+          "q=1:\\quad S_N=\\sum_{n=1}^N\\frac1n\\ \\ge\\ \\int_1^{N+1}\\frac{dt}{t}=\\ln(N+1)-\\ln1",
+          "harmonic56"
         ],
         [
+          "Združi notranjost in krajišči",
           "Izračunaj limito spodnje meje. Desni rob odpade, levi ostane.",
           "\\lim_{N\\to\\infty}\\ln(N+1)=+\\infty\\ \\Longrightarrow\\ S_N\\to+\\infty,\\qquad x\\in[-1,5)"
         ]
@@ -77,22 +85,37 @@
       ],
       "worked": [
         [
+          "Prepoznaj odvod potence",
+          "Faktor $n$ nastane pri odvajanju $x^n$. Izhodišče naj bo geometrijska vrsta, katere vsoto že znamo izračunati.",
+          "S_N(x)=1+x+\\cdots+x^N,\\qquad (x^n)'=nx^{n-1}"
+        ],
+        [
+          "Odštej premaknjeno delno vsoto",
+          "Po množenju z $x$ so vmesne potence enake. V razliki zato ostaneta prvi in zadnji člen.",
+          "S_N-xS_N=(1+x+\\cdots+x^N)-(x+x^2+\\cdots+x^{N+1})=1-x^{N+1}"
+        ],
+        [
+          "Seštej končno geometrijsko vrsto",
           "Začni s končno geometrijsko vsoto. Ko odšteješ njen premik za eno potenco, ostaneta prvi in zadnji člen.",
           "(1-x)S_N=1-x^{N+1},\\qquad S_N=\\frac{1-x^{N+1}}{1-x}"
         ],
         [
+          "Pošlji zadnjo potenco v nič",
           "Za $|x|<1$ množenje z $|x|$ pri vsakem koraku zmanjša velikost potence. Vstavi njeno limito v delno vsoto.",
           "\\lim_{N\\to\\infty}|x|^{N+1}=0,\\qquad G(x)=\\lim_{N\\to\\infty}S_N=\\frac{1-0}{1-x}"
         ],
         [
-          "Odvajaj vsako potenco. Na desni uporabi verižno pravilo.",
+          "Odvajaj vsoto",
+          "Znotraj polmera smemo odvajati členoma. Tako v koeficientu dobimo iskani faktor $n$.",
           "G'(x)=\\sum_{n=1}^{\\infty}nx^{n-1}=-(1-x)^{-2}(-1)=(1-x)^{-2}"
         ],
         [
+          "Poravnaj eksponent",
           "Pomnoži obe strani z $x$, da poravnaš eksponent s tistim iz naloge.",
           "\\sum_{n=1}^{\\infty}nx^n=xG'(x)=\\frac{x}{(1-x)^2}"
         ],
         [
+          "Vstavi eno četrtino",
           "Izberi $x=1/4$ in poenostavi dvojni ulomek.",
           "\\frac{1/4}{(1-1/4)^2}=\\frac{1/4}{9/16}=\\frac14\\cdot\\frac{16}9=\\frac49"
         ]
@@ -125,24 +148,39 @@
       ],
       "worked": [
         [
+          "Prepoznaj odvod arkus tangensa",
+          "Imenovalec $1+t^2$ prepišemo v obliko $1-q$. Tako lahko odvod razvijemo v geometrijsko vrsto in ga nato integriramo.",
+          "(\\arctan t)'=\\frac1{1+t^2}=\\frac1{1-(-t^2)}"
+        ],
+        [
+          "Izberi količnik geometrijske vrste",
           "V končno geometrijsko vsoto vstavi $-t^2$.",
           "S_N(t)=\\sum_{n=0}^N(-t^2)^n=\\frac{1-(-t^2)^{N+1}}{1+t^2}"
         ],
         [
+          "Oceni napako delne vsote",
           "Na intervalu od 0 do 1/2 ima ostanek eno samo zgornjo mejo. Njena osnova je manjša od 1, zato je limita nič.",
           "0\\le\\left|S_N(t)-\\frac1{1+t^2}\\right|\\le (1/4)^{N+1},\\qquad \\lim_{N\\to\\infty}(1/4)^{N+1}=0"
         ],
         [
+          "Prenesi oceno pod integral",
           "Ocena je neodvisna od $t$. Tudi napaka pod integralom zato teži k nič in smemo integrirati členoma.",
           "\\left|\\int_0^x S_N(t)\\,dt-\\int_0^x\\frac{dt}{1+t^2}\\right|\\le x(1/4)^{N+1}\\longrightarrow0\\quad(0\\le x\\le1/2)"
         ],
         [
+          "Integriraj posamezni člen",
           "Integriraj posamezni člen in vstavi obe meji. S tem nastane lihi imenovalec.",
           "\\int_0^x(-1)^nt^{2n}dt=(-1)^n\\left[\\frac{t^{2n+1}}{2n+1}\\right]_0^x=\\frac{(-1)^nx^{2n+1}}{2n+1}"
         ],
         [
-          "Integriraj še desno stran in vstavi $x=1/2$. Spodnja meja da nič.",
+          "Izračunaj integral znane funkcije",
+          "Integral iste funkcije smo dobili na dva načina. Po osnovnem izreku je njegova vrednost razlika vrednosti arkus tangensa.",
           "[\\arctan t]_0^{1/2}=\\arctan(1/2)-\\arctan0=\\arctan(1/2)"
+        ],
+        [
+          "Poveži integral z iskano vsoto",
+          "Primerjaj integrirani razvoj s pravkar dobljenim rezultatom. Pri $x=1/2$ prva potenca prispeva faktor $1/2$.",
+          "\\sum_{n=0}^\\infty\\frac{(-1)^n(1/2)^{2n+1}}{2n+1}=\\arctan(1/2)"
         ]
       ],
       "quiz": [
@@ -173,22 +211,38 @@
       ],
       "worked": [
         [
+          "Zapiši delno vsoto",
+          "Za preizkus enakomernosti potrebujemo napako končnega približka pri vseh $x$. Najprej zato poiščemo formulo za delno vsoto.",
+          "S_N(x)=\\sum_{n=0}^N(1-x)x^n,\\qquad 0\\le x<1"
+        ],
+        [
+          "Odštej sosednji potenci",
           "Razstavi člen. V delni vsoti se notranje potence odštejejo.",
           "(1-x)x^n=x^n-x^{n+1},\\qquad S_N=1-x^{N+1}"
         ],
         [
+          "Opazuj eno izbrano točko",
           "Izračunaj točkovno limito. Za fiksen $0<x<1$ je $\\ln x<0$, zato eksponent teži k negativni neskončnosti. Pri $x=0$ je potenca že nič.",
           "\\lim_{N\\to\\infty}x^{N+1}=\\lim_{N\\to\\infty}e^{(N+1)\\ln x}=0\\qquad(0<x<1)"
         ],
         [
+          "Izračunaj napako",
           "Vstavi limito v končno vsoto in odštej približek.",
           "S(x)=1-0=1,\\qquad R_N(x)=1-(1-x^{N+1})=x^{N+1}"
         ],
         [
-          "Izberi točko, pri kateri je napaka enaka polovici. Ta točka leži na intervalu pri vsakem $N$.",
-          "x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=1/2"
+          "Obrni enačbo za napako",
+          "Za preverjanje enakomernosti smeš po izbiri $N$ iskati najslabši $x$. Izberi napako $1/2$ in vzemi koren stopnje $N+1$.",
+          "x^{N+1}=\\tfrac12\\quad\\Longleftrightarrow\\quad x=(\\tfrac12)^{1/(N+1)}"
         ],
         [
+          "Poišči točko z veliko napako",
+          "Izberi točko, pri kateri je napaka enaka polovici. Ta točka leži na intervalu pri vsakem $N$.",
+          "x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=1/2",
+          "edge56"
+        ],
+        [
+          "Preveri zahtevo enakomernosti",
           "Za dovoljeno napako četrtine vsak indeks odpove pri svojem $x_N$. Vrsta konvergira le točkovno na celotnem intervalu.",
           "|R_N(x_N)|=1/2>1/4\\qquad(N=0,1,\\ldots)"
         ]
@@ -221,18 +275,27 @@
       ],
       "worked": [
         [
+          "Zapiši izpuščene člene",
+          "Napaka je vsota vsega, česar približek do $x^N$ ne zajame. Ker je $x$ nenegativen, imajo vsi izpuščeni členi isti predznak.",
+          "R_N(x)=x^{N+1}+x^{N+2}+\\cdots,\\quad 0\\le x\\le\\tfrac12"
+        ],
+        [
+          "Seštej končni rep",
           "Rep najprej prekini pri indeksu $m>N$. Izpostavi prvo izpuščeno potenco in uporabi končno geometrijsko vsoto.",
           "\\sum_{n=N+1}^m x^n=x^{N+1}\\frac{1-x^{m-N}}{1-x}"
         ],
         [
+          "Povečaj zgornji indeks",
           "Drži $N$ pri miru in pošlji $m$ v neskončnost. Pri $0\\le x\\le1/2$ je visoka potenca omejena z geometrijskim zaporedjem, ki pada proti nič.",
           "0\\le x^{m-N}\\le (1/2)^{m-N}\\to0,\\qquad R_N(x)=\\lim_{m\\to\\infty}\\sum_{n=N+1}^m x^n=\\frac{x^{N+1}}{1-x}"
         ],
         [
+          "Poišči največjo napako na intervalu",
           "Vsaka potenca na tem intervalu z $x$ narašča. Največji rep dobiš pri $1/2$.",
           "\\max_{0\\le x\\le1/2}R_N(x)=\\frac{(1/2)^{N+1}}{1-1/2}=2^{-N}"
         ],
         [
+          "Izračunaj število členov",
           "Prepiši zahtevano napako kot potenco iste osnove. Najmanjši indeks je 5, torej uporabi šest členov.",
           "2^{-N}\\le1/32=2^{-5}\\ \\Longleftrightarrow\\ N\\ge5,\\qquad N+1=6"
         ]
@@ -265,22 +328,37 @@
       ],
       "worked": [
         [
+          "Izberi potenčno vrsto",
           "Zapiši vrsto in njena prva člena. Začetna pogoja določita njuni vrednosti.",
           "y=a_0+a_1x+a_2x^2+\\cdots,\\quad a_0=y(0)=1,\\quad a_1=y'(0)=0"
         ],
         [
-          "Dvakrat odvajaj in v vsoti prestavi indeks za dve mesti.",
+          "Odvajaj prvič in drugič",
+          "Drugi odvod zniža vsako potenco za dve. Zato se zapis drugega odvoda začne pri $j=2$.",
+          "y'=\\sum_{j=1}^\\infty j a_jx^{j-1},\\qquad y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}"
+        ],
+        [
+          "Izenači potence po odvajanju",
+          "Nastavi $k=j-2$. Tedaj je $j=k+2$ in spodnja meja $j=2$ pomeni $k=0$.",
           "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k"
         ],
         [
+          "Vstavi obe vrsti",
+          "Po zamenjavi $k=j-2$ imata $y''$ in $4y$ povsod isto potenco $x^k$. Koeficienta pri isti potenci lahko sešteješ.",
+          "\\sum_{k=0}^\\infty[(k+2)(k+1)a_{k+2}+4a_k]x^k=0"
+        ],
+        [
+          "Izpelji rekurzijo",
           "Pri vsaki potenci izenači koeficient v $y''+4y$ z nič in izrazi naslednji člen.",
           "(k+2)(k+1)a_{k+2}=-4a_k,\\qquad a_{k+2}=\\frac{-4a_k}{(k+2)(k+1)}"
         ],
         [
+          "Izračunaj naslednje koeficiente",
           "Vstavi zaporedoma $k=0,1,2$. Liha veja ostane nič, ker se začne z nič.",
           "a_2=-4/(2\\cdot1)=-2,\\quad a_3=0,\\quad a_4=\\frac{(-4)(-2)}{4\\cdot3}=\\frac23"
         ],
         [
+          "Sestavi polinom",
           "Koeficiente vstavi ob pripadajoče potence.",
           "T_4(x)=1-2x^2+\\frac23x^4"
         ]
@@ -313,22 +391,33 @@
       ],
       "worked": [
         [
-          "Zapiši potenco in njena odvoda.",
+          "Primerjaj potence ob odvodih",
+          "Pri odvajanju potence se eksponent vsakič zniža za ena. Faktorja $x$ in $x^2$ v enačbi začetno potenco obnovita.",
+          "x^2y''+xy'-4y=0,\\qquad x>0"
+        ],
+        [
+          "Poskusi potenčno rešitev",
+          "Za sestavljanje enačbe za neznani eksponent potrebujemo oba odvoda iste potence.",
           "y=x^r,\\quad y'=rx^{r-1},\\quad y''=r(r-1)x^{r-2}"
         ],
         [
+          "Izpostavi skupno potenco",
           "Vstavi vse člene. Na $x>0$ je skupni faktor $x^r$ neničeln.",
           "x^r[r(r-1)+r-4]=0\\ \\Longrightarrow\\ (r-2)(r+2)=0"
         ],
         [
+          "Sestavi splošno rešitev",
           "Različna korena določita dve neodvisni rešitvi. Zapiši njuno linearno kombinacijo.",
           "r=2,-2,\\qquad y=Ax^2+Bx^{-2}"
         ],
         [
+          "Preveri omejenost pri ničli",
           "Preveri vsako potenco pri približevanju ničli z desne. Prva izgine. Pri drugi deliš ena s pozitivnim številom, ki postaja poljubno majhno.",
-          "\\lim_{x\\to0^+}x^2=0,\\qquad \\lim_{x\\to0^+}x^{-2}=\\lim_{x\\to0^+}\\frac1{x^2}=+\\infty"
+          "\\lim_{x\\to0^+}x^2=0,\\qquad \\lim_{x\\to0^+}x^{-2}=\\lim_{x\\to0^+}\\frac1{x^2}=+\\infty",
+          "branches56"
         ],
         [
+          "Uporabi podatek pri ena",
           "Za omejeno rešitev mora utež druge potence izginiti. Nato v prvi člen vstavi začetno vrednost pri 1.",
           "B=0,\\qquad y(1)=A\\cdot1^2=3\\quad\\Longrightarrow\\quad y(x)=3x^2"
         ]
@@ -361,23 +450,38 @@
       ],
       "worked": [
         [
-          "Zapiši lihi polinom in oba odvoda.",
+          "Preberi stopnjo in parnost",
+          "Pri stopnji tri je $n(n+1)=12$. Lihi polinom do tretje stopnje vsebuje samo prvo in tretjo potenco.",
+          "(1-x^2)P_3''-2xP_3'+12P_3=0,\\qquad P_3(-x)=-P_3(x)"
+        ],
+        [
+          "Izberi lihi polinom",
+          "Za vstavljanje v diferencialno enačbo potrebujemo polinom in njegova prva dva odvoda.",
           "P_3=ax+bx^3,\\quad P_3'=a+3bx^2,\\quad P_3''=6bx"
         ],
         [
+          "Ujemi vsak odvod s faktorjem",
+          "Zapiši celotno enačbo z oklepaji. Šele nato razmnoži posamezne produkte.",
+          "(1-x^2)(6bx)-2x(a+3bx^2)+12(ax+bx^3)=0"
+        ],
+        [
+          "Vstavi v Legendrovo enačbo",
           "Vstavi vse tri izraze v enačbo in odpri oklepaje.",
           "6bx-6bx^3-2ax-6bx^3+12ax+12bx^3=0"
         ],
         [
+          "Izenači koeficient pri x",
           "Kubični členi se odštejejo. Ker enačba velja za vsak $x$, mora biti koeficient pri $x$ enak nič.",
           "(6b+10a)x=0\\ \\Longrightarrow\\ b=-5a/3"
         ],
         [
+          "Določi merilo polinoma",
           "Pogoj pri 1 določi $a$, nato izračunaj $b$.",
           "a+b=1\\ \\Longrightarrow\\ a-5a/3=1\\ \\Longrightarrow\\ a=-3/2,\\quad b=5/2"
         ],
         [
-          "Vrni koeficienta v nastavek.",
+          "Sestavi normalizirani polinom",
+          "Normalizacija je določila obe uteži. Zdaj vsako vrnemo k njeni potenci.",
           "P_3(x)=\\frac{5x^3-3x}{2}"
         ]
       ],
@@ -409,16 +513,25 @@
       ],
       "worked": [
         [
+          "Zapiši pogoj pravokotnosti",
+          "Konstanta $c$ je izbrana tako, da je uteženi skalarni produkt nič. V integralu so trije faktorji.",
+          "f=1,\\quad g=x-c,\\quad w=2x,\\qquad \\int_0^1f(x)g(x)w(x)\\,dx=0"
+        ],
+        [
+          "Pomnoži funkciji in utež",
           "Vstavi funkciji in odpri produkt.",
           "2x\\cdot1\\cdot(x-c)=2x^2-2cx"
         ],
         [
+          "Izračunaj predznačeno ploščino",
           "Integriraj po $x$ in odštej vrednosti v mejah.",
           "\\int_0^1(2x^2-2cx)\\,dx=\\left[\\frac23x^3-cx^2\\right]_0^1=(2/3-c)-0"
         ],
         [
+          "Izravnaj pozitivno in negativno ploščino",
           "Postavi predznačeno ploščino na nič in prenesi $c$ na drugo stran.",
-          "2/3-c=0\\ \\Longrightarrow\\ c=2/3,\\qquad g(x)=x-2/3"
+          "2/3-c=0\\ \\Longrightarrow\\ c=2/3,\\qquad g(x)=x-2/3",
+          "weighted56"
         ]
       ],
       "quiz": [
@@ -449,20 +562,35 @@
       ],
       "worked": [
         [
+          "Izberi prerez pri stalnem y",
+          "Enačba vsebuje samo odvoda po $x$. Pri izbranem $y$ je ukrivljenost zato stalno število, ki ga integriramo dvakrat.",
+          "U(x)=u(x,y),\\qquad U''(x)=2y"
+        ],
+        [
+          "Integriraj ukrivljenost",
           "Prvič integriraj po $x$. Dodaj poljubno funkcijo $A$ druge spremenljivke.",
           "u_{xx}=2y\\ \\Longrightarrow\\ u_x=2yx+A(y)"
         ],
         [
+          "Uporabi začetni naklon",
           "Pri $x=0$ člen z $x$ izgine. Preostala funkcija je podani začetni naklon.",
           "u_x(0,y)=0+A(y)=1-y\\ \\Longrightarrow\\ A(y)=1-y"
         ],
         [
-          "Drugič integriraj po $x$. Faktor $1-y$ je pri tem stalen.",
+          "Integriraj naklon",
+          "Integriramo po $x$, zato je $1-y$ za izbrani prerez stalna vrednost.",
           "u=\\int(2yx+1-y)\\,dx=yx^2+(1-y)x+B(y)"
         ],
         [
+          "Preveri, zakaj je B odvisen od y",
+          "Pri odvajanju po $x$ izgine katerakoli funkcija samo od $y$. Vsak prerez ima zato lahko drugo začetno višino.",
+          "\\partial_x B(y)=0,\\qquad u(0,y)=y\\cdot0^2+(1-y)\\cdot0+B(y)"
+        ],
+        [
+          "Uporabi začetno višino",
           "Podana višina pri $x=0$ določi zadnjo funkcijo. Vstavi jo v rešitev.",
-          "u(0,y)=B(y)=y^2,\\qquad u(x,y)=yx^2+(1-y)x+y^2"
+          "u(0,y)=B(y)=y^2,\\qquad u(x,y)=yx^2+(1-y)x+y^2",
+          "slices56"
         ]
       ],
       "quiz": [

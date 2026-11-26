@@ -21,18 +21,27 @@
       ],
       "worked": [
         [
+          "Preveri odvisnost višine",
+          "Parameter $a$ ne nastopa v višini zvona. Zato odvod v notranjosti intervala ne prispeva.",
+          "f(x,a)=e^{-x^2},\\quad \\partial_a f=0"
+        ],
+        [
+          "Odvajaj meji",
           "Označi obe meji. Zgornja meja miruje in integrand je neodvisen od parametra.",
           "u=a^2,\\quad u'=2a,\\quad v=2,\\quad v'=0,\\quad \\partial_a e^{-x^2}=0"
         ],
         [
+          "Odštej premik levega roba",
           "Vstavi spodnjo mejo namesto $x$. Nato odštej prispevek levega roba.",
           "F'(a)=0+0-e^{-(a^2)^2}\\cdot2a=-2ae^{-a^4}"
         ],
         [
+          "Odvajaj eksponent",
           "Za drugi odvod potrebuješ tudi odvod eksponenta. Uporabi verižno pravilo.",
           "(e^{-a^4})'=e^{-a^4}(-4a^3)"
         ],
         [
+          "Odvajaj produkt",
           "Pri produktu enkrat odvajaj prvi faktor in enkrat drugega.",
           "F''(a)=-2e^{-a^4}+(-2a)e^{-a^4}(-4a^3)=(8a^4-2)e^{-a^4}"
         ]
@@ -65,18 +74,27 @@
       ],
       "worked": [
         [
+          "Odvajaj integrand po a",
+          "Pri fiksnem $x$ se višina ne spreminja. Odvod integrala bomo zato dobili neposredno iz obeh mej.",
+          "g(x)=\\cos(x^2),\\quad\\partial_a g=0"
+        ],
+        [
+          "Odvajaj obe meji",
           "Odvajaj obe meji posebej in preveri, kateri del integrala se spreminja.",
           "u=a,\\quad u'=1,\\qquad v=2a,\\quad v'=2,\\qquad \\partial_a\\cos(x^2)=0"
         ],
         [
+          "Izračunaj desni prispevek",
           "Za zgornjo mejo najprej kvadriraj celoten izraz $2a$, nato pomnoži s hitrostjo.",
           "g(v)v'=\\cos((2a)^2)\\cdot2=2\\cos(4a^2)"
         ],
         [
+          "Odštej levi prispevek",
           "Spodnji rob se odšteje. Zapiši oba prispevka skupaj.",
           "G'(a)=2\\cos(4a^2)-\\cos(a^2)"
         ],
         [
+          "Vstavi izbrani parameter",
           "Vstavi zahtevani parameter. Kota v kosinusu sta v radianih.",
           "G'(\\tfrac12)=2\\cos(1)-\\cos(\\tfrac14)\\approx0{,}112"
         ]
@@ -109,18 +127,37 @@
       ],
       "worked": [
         [
+          "Označi integrand in ga odvajaj po a",
+          "Pri stalnem $x$ odvod konstante izgine, odvod produkta $ax$ pa je $x$.",
+          "f(x,a)=1+ax,\\qquad \\partial_a f=0+1\\cdot x=x"
+        ],
+        [
+          "Odvajaj meji",
+          "Ko $a$ povečujemo, se desni rob premika dvakrat tako hitro kot levi. Višino vsakega roba pomnožimo z njegovo hitrostjo.",
+          "u=a,\\quad u'=1,\\qquad v=2a,\\quad v'=2"
+        ],
+        [
+          "Zapiši Leibnizovo pravilo",
+          "Označi tri prispevke, da v naslednjih vrsticah ohraniš pravilen predznak levega roba.",
+          "M'=\\underbrace{\\int_a^{2a}f_a\\,dx}_{H}+\\underbrace{2f(2a,a)}_{D}-f(a,a),\\qquad L=-f(a,a)"
+        ],
+        [
+          "Integriraj spremembo višine",
           "Integriraj spremembo višine med trenutnima mejama.",
           "H=\\int_a^{2a}x\\,dx=\\frac{(2a)^2-a^2}{2}=\\frac32a^2"
         ],
         [
+          "Izračunaj desni prispevek",
           "Pri zgornji meji vstavi $2a$ namesto $x$ in pomnoži z 2.",
           "D=(1+a\\cdot2a)\\cdot2=2+4a^2"
         ],
         [
+          "Izračunaj levi prispevek",
           "Pri spodnji meji vstavi $a$ namesto $x$. Predznak prispevka je minus.",
           "L=-(1+a\\cdot a)\\cdot1=-1-a^2"
         ],
         [
+          "Seštej tri prispevke",
           "Združi konstanti in koeficiente pri kvadratu.",
           "M'(a)=H+D+L=2-1+\\left(\\tfrac32+4-1\\right)a^2=1+\\tfrac92a^2"
         ]
@@ -153,34 +190,47 @@
       ],
       "worked": [
         [
+          "Označi integrand in odvajaj po frekvenci",
+          "Pri stalnem $x$ je ovojnica konstanta. Pri odvajanju kosinusa prinese notranji izraz $bx$ faktor $x$.",
+          "f(x,b)=e^{-4x^2}\\cos(bx),\\qquad\\partial_b f=-xe^{-4x^2}\\sin(bx)"
+        ],
+        [
+          "Oceni odvod z ovojnico",
           "Odvajaj po frekvenci ter omeji sinus z 1. Integral dobljenega izraza izračunaj do končne meje $R$.",
           "|\\partial_b f|\\le xe^{-4x^2},\\qquad\\int_0^R xe^{-4x^2}dx=\\left[-\\tfrac18e^{-4x^2}\\right]_0^R=\\tfrac18(1-e^{-4R^2})"
         ],
         [
+          "Izračunaj limito ocene",
           "Pošlji $R$ v neskončnost. Ker $e^{4R^2}$ raste brez meje, se njegova recipročna vrednost približuje nič. Zgornja ocena je integrabilna in neodvisna od frekvence.",
           "\\lim_{R\\to\\infty}e^{-4R^2}=0,\\qquad \\int_0^\\infty xe^{-4x^2}dx=\\tfrac18(1-0)=\\tfrac18"
         ],
         [
+          "Prepiši faktor x",
           "Odvajaj po $b$. Prepiši faktor ob sinusu kot odvod po $x$.",
           "J'(b)=-\\int_0^\\infty xe^{-4x^2}\\sin(bx)dx=\\tfrac18\\int_0^\\infty(e^{-4x^2})'\\sin(bx)dx"
         ],
         [
+          "Oceni oba robova",
           "Pred prehodom v limito oceni robni produkt pri $R$. Pri ničli je sinus enak nič.",
           "|e^{-4R^2}\\sin(bR)|\\le e^{-4R^2}\\to0,\\qquad e^0\\sin0=0"
         ],
         [
+          "Uporabi integracijo po delih",
           "Pri integraciji po delih robni člen izgine zaradi dušenja pri neskončnosti in sinusa pri ničli.",
           "J'(b)=\\left[\\tfrac18e^{-4x^2}\\sin(bx)\\right]_0^\\infty-\\tfrac b8 J(b)=-\\tfrac b8J(b)"
         ],
         [
+          "Poišči integrirni faktor",
           "Integrirni faktor mora imeti logaritemski odvod $b/8$. Tedaj na levi dobiš odvod produkta.",
           " \\mu=e^{\\int b/8\\,db}=e^{b^2/16},\\quad (\\mu J)'=\\mu(J'+bJ/8)=0,\\quad J=Ce^{-b^2/16}"
         ],
         [
+          "Pri ničelni frekvenci zamenjaj spremenljivko",
           "Za $b=0$ je kosinus povsod ena. Najprej uvedi $u=2x$ na končnem intervalu.",
           "J_R(0)=\\int_0^R e^{-4x^2}dx=\\tfrac12\\int_0^{2R}e^{-u^2}du"
         ],
         [
+          "Določi konstanto",
           "Ko $R$ raste, tudi $2R$ raste brez meje. Uporabi začetno Gaussovo ploščino, izpeljano pri prvi nalogi.",
           "C=\\lim_{R\\to\\infty}J_R(0)=\\tfrac12 I(0)=\\frac{\\sqrt\\pi}{4},\\qquad J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/16}"
         ]
@@ -213,18 +263,27 @@
       ],
       "worked": [
         [
+          "Izrazi stari diferencial",
+          "Zamenjava odstrani parameter iz eksponenta. Ker je $\\lambda$ stalna in pozitivna, se oba konca intervala preslikata v istem vrstnem redu.",
+          "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\qquad x^3 dx=u^3du/\\lambda^4"
+        ],
+        [
+          "Uvedi u = λx",
           "Zamenjaj $u=\\lambda x$ na končnem intervalu. Kub in diferencial skupaj prispevata štiri faktorje $1/\\lambda$.",
           "A_R(\\lambda)=\\int_0^R x^3e^{-\\lambda x}dx=\\frac1{\\lambda^4}\\int_0^{\\lambda R}u^3e^{-u}du"
         ],
         [
+          "Pošlji rez v neskončnost",
           "Ker je $\\lambda>0$, gre nova zgornja meja v neskončnost. Tako dobiš nepravi gama integral.",
           "\\lim_{R\\to\\infty}\\lambda R=\\infty,\\qquad A(\\lambda)=\\frac1{\\lambda^4}\\int_0^\\infty u^3e^{-u}du"
         ],
         [
+          "Pretvori gama v fakulteto",
           "Stopnja tri pomeni argument štiri. Za cel argument uporabi fakulteto.",
           "A(\\lambda)=\\frac{\\Gamma(4)}{\\lambda^4}=\\frac{3!}{\\lambda^4}=\\frac6{\\lambda^4}"
         ],
         [
+          "Vstavi λ = 2",
           "Vstavi podano dušenje in okrajšaj.",
           "A(2)=\\frac6{2^4}=\\frac6{16}=\\frac38"
         ]
@@ -257,18 +316,32 @@
       ],
       "worked": [
         [
-          "Poišči diferencial nove spremenljivke in preslikaj meji.",
-          "u=\\sin^2t,\\quad du=2\\sqrt{u}\\sqrt{1-u}\\,dt,\\quad u(0)=0,\\quad u(\\pi/2)=1"
+          "Izberi u = sin²t",
+          "Identiteta za sinus in kosinus spremeni preostalo potenco v izraz $1-u$.",
+          "\\sin^2t=u,\\qquad \\cos^2t=1-u"
         ],
         [
-          "Nadomesti potenci in diferencial. Nato eksponentoma prištej 1.",
-          "I=\\tfrac12\\int_0^1\\frac{u^2(1-u)}{\\sqrt{u}\\sqrt{1-u}}du=\\tfrac12\\int_0^1u^{3/2}(1-u)^{1/2}du=\\tfrac12B(\\tfrac52,\\tfrac32)"
+          "Izrazi diferencial",
+          "Na intervalu od nič do $\\pi/2$ sta obe trigonometrični funkciji nenegativni, zato uporabimo pozitivna korena.",
+          "du=2\\sin t\\cos t\\,dt=2\\sqrt{u}\\sqrt{1-u}\\,dt"
         ],
         [
+          "Preslikaj meji in vstavi faktorje",
+          "Četrta potenca sinusa postane $u^2$. Kvadrat kosinusa postane $1-u$.",
+          "u(0)=0,\\quad u(\\pi/2)=1,\\quad I=\\frac12\\int_0^1\\frac{u^2(1-u)}{\\sqrt u\\sqrt{1-u}}du"
+        ],
+        [
+          "Preberi argumenta beta",
+          "Pri deljenju potenc odštej eksponente. Argumenta beta sta za ena večja od dobljenih eksponentov.",
+          "I=\\frac12\\int_0^1u^{3/2}(1-u)^{1/2}du=\\frac12 B(5/2,3/2)"
+        ],
+        [
+          "Znižaj argumente gama",
           "Vrednosti gama znižuj po ena do osnovne vrednosti.",
           "\\Gamma(\\tfrac52)=\\tfrac32\\cdot\\tfrac12\\sqrt\\pi=\\tfrac34\\sqrt\\pi,\\quad \\Gamma(\\tfrac32)=\\tfrac12\\sqrt\\pi,\\quad \\Gamma(4)=6"
         ],
         [
+          "Sestavi količnik",
           "V imenovalcu seštej oba argumenta in okrajšaj.",
           "I=\\frac{\\Gamma(5/2)\\Gamma(3/2)}{2\\Gamma(4)}=\\frac{(3/4)(1/2)\\pi}{12}=\\frac{\\pi}{32}"
         ]
@@ -301,22 +374,32 @@
       ],
       "worked": [
         [
+          "Izrazi x iz zamenjave",
+          "Cilj je prevesti neskončni interval na interval do 1. Reši enačbo za $x$, da lahko prepišeš tudi diferencial.",
+          "u=\\frac{x}{1+x}\\Rightarrow u+ux=x\\Rightarrow x(1-u)=u\\Rightarrow x=\\frac u{1-u}"
+        ],
+        [
+          "Preslikaj končno mejo",
           "Najprej vzemi končno zgornjo mejo $R$. Pri $u=x/(1+x)$ se rob $R$ preslika v $R/(1+R)$.",
           "x=\\frac u{1-u},\\quad 1+x=\\frac1{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad U_R=\\frac R{1+R}"
         ],
         [
+          "Združi potence",
           "Po zamenjavi združi potence in integriraj le do novega roba.",
           "I_R=\\int_0^{U_R}\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^{U_R}u^2(1-u)du"
         ],
         [
+          "Poišči limito meje",
           "Deli števec in imenovalec roba z $R$. Novi integrand je zvezen do enice, tako da lahko mejo pomakneš do 1.",
           "\\lim_{R\\to\\infty}U_R=\\lim_{R\\to\\infty}\\frac1{1+1/R}=1,\\qquad I=\\int_0^1u^2(1-u)du"
         ],
         [
+          "Preberi argumenta beta",
           "Argumenta sta za ena večja od eksponentov. Pretvori v gama funkcije.",
           "I=B(3,2)=\\frac{\\Gamma(3)\\Gamma(2)}{\\Gamma(5)}"
         ],
         [
+          "Izračunaj fakultete",
           "Pri celih argumentih uporabi fakultete.",
           "\\frac{2!\\,1!}{4!}=\\frac2{24}=\\frac1{12}"
         ]
@@ -349,30 +432,47 @@
       ],
       "worked": [
         [
+          "Preveri obnašanje pri ničli",
           "Razdeli poltrak pri 1 in preveri vsako krajišče posebej. Pri ničli primerjaj s potenco v števcu.",
           "\\lim_{x\\downarrow0}\\frac{f(x)}{x^{p-1}}=\\lim_{x\\downarrow0}\\frac1{(1+x)^3}=1"
         ],
         [
+          "Preizkusi spodnji rob",
           "Za $p\\ne0$ vstavi končni meji. Pri $p>0$ gre spodnja potenca proti nič, pri $p<0$ pa proti neskončnosti. Za $p=0$ dobiš divergentni logaritem.",
           "\\int_\\varepsilon^1x^{p-1}dx=\\frac{1-\\varepsilon^p}{p},\\qquad \\int_\\varepsilon^1\\frac{dx}{x}=-\\ln\\varepsilon\\longrightarrow\\infty"
         ],
         [
+          "Primerjaj potence v neskončnosti",
           "V neskončnosti primerjaj z $x^{p-4}$. Razmerje je kub ulomka, ki po deljenju z $x$ teži k 1.",
           "\\lim_{x\\to\\infty}\\frac{f(x)}{x^{p-4}}=\\lim_{x\\to\\infty}(1+1/x)^{-3}=1"
         ],
         [
+          "Preizkusi zgornji rob",
           "Za $p\\ne3$ je limita končna natanko pri $p-3<0$. Za $p=3$ spet dobiš logaritem. Oba robova sta torej integrabilna pri $0<p<3$.",
           "\\int_1^Rx^{p-4}dx=\\frac{R^{p-3}-1}{p-3},\\qquad \\int_1^R\\frac{dx}{x}=\\ln R\\longrightarrow\\infty"
         ],
         [
+          "Presekaj dopustna pogoja",
+          "Integral je končen samo, če hkrati obstajata dela ob ničli in ob neskončnosti.",
+          "p>0,\\quad p<3\\quad\\Longrightarrow\\quad 0<p<3"
+        ],
+        [
+          "Izberi novo spremenljivko",
+          "Ko poznaš območje konvergence, prepiši integral v standardno obliko beta na intervalu od 0 do 1.",
+          "u=\\frac{x}{1+x}\\quad\\Longrightarrow\\quad x=\\frac{u}{1-u}"
+        ],
+        [
+          "Preslikaj krajišči",
           "Preslikaj končna robova. Spodnji se približa nič, zgornji enici z leve.",
           "u(\\varepsilon)=\\frac{\\varepsilon}{1+\\varepsilon}\\to0,\\qquad u(R)=\\frac1{1+1/R}\\to1"
         ],
         [
+          "Zamenjaj spremenljivko",
           "Zamenjaj $u=x/(1+x)$. Meji postaneta 0 in 1, faktor iz diferenciala ima eksponent −2.",
           "x=\\frac{u}{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad I(p)=\\int_0^1u^{p-1}(1-u)^{-(p-1)+3-2}du"
         ],
         [
+          "Izračunaj vrednost pri p = 2",
           "Drugi eksponent primerjaj z $q-1$. Pri $p=2$ uporabi zvezo z gama funkcijo.",
           "I(p)=B(p,3-p),\\quad 0<p<3,\\qquad I(2)=B(2,1)=\\frac{1!\\,0!}{2!}=\\frac12"
         ]
@@ -387,73 +487,77 @@
   ],
   "guides": {
     "gauss": {
-      "title": "Zakaj je začetna Gaussova ploščina √π/2?",
+      "title": "Odvajanje po frekvenci",
       "steps": [
         [
-          "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
-          "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
+          "Pri stalnem $x$ odvajaj samo kosinus. Eksponentna utež je neodvisna od frekvence.",
+          "f(x,a)=e^{-x^2}\\cos(ax),\\qquad \\partial_a f=-xe^{-x^2}\\sin(ax)"
         ],
         [
-          "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
-          "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
+          "Odvod omeji z $xe^{-x^2}$, ker je velikost sinusa največ 1. Da upravičiš odvajanje pod integralom, izračunaj ploščino te ovojnice do reza $R$.",
+          "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
         ],
         [
-          "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
-          "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
+          "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+          "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
         ],
         [
-          "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
-          "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
+          "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
+          "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
         ],
         [
-          "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
-          "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
-        ],
-        [
-          "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
-          "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
+          "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
+          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
         ]
       ],
       "afterGraph": {
-        "title": "Od začetne ploščine do integrala s kosinusom",
+        "title": "Začetni pogoj določi konstanto",
         "steps": [
           [
-            "Odvajanje po frekvenci ustvari faktor $x$.",
-            "\\partial_a(e^{-x^2}\\cos(ax))=-xe^{-x^2}\\sin(ax),\\quad |\\partial_a f|\\le xe^{-x^2}"
+            "Zdaj potrebuješ $C=I(0)$. Pri ničelni frekvenci je kosinus ena. Za izračun te konkretne ploščine izberi končni rez $R$.",
+            "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
           ],
           [
-            "Integriraj ovojnico najprej do končnega $R$. Faktor $1/2$ dobiš iz odvoda $-x^2$.",
-            "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+            "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
+            "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
           ],
           [
-            "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
-            "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
+            "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
+            "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
           ],
           [
-            "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
-            "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
+            "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
+            "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
           ],
           [
-            "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
-            "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
+            "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
+            "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
+          ],
+          [
+            "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
+            "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
+          ],
+          [
+            "Začetno vrednost vstavi v rešitev diferencialne enačbe.",
+            "C=I(0)=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
           ]
         ]
       }
     },
     "atan": {
-      "title": "Leibnizovo pravilo · od številske do premične meje",
+      "title": "Odvod po parametru in premični rob",
       "steps": [
         [
-          "Pri stalnih mejah ostane samo sprememba integranda. Pri vseh treh oblikah naj bosta funkcija in njen parcialni odvod zvezna na obravnavanem pravokotniku, premični meji pa zvezno odvedljivi.",
-          "\\frac d{dt}\\int_A^B f(x,t)dx=\\int_A^B f_t(x,t)dx"
+          "Najprej označi integrand. Pri stalnem $x\\ne0$ odvajaj po $t$. Faktor $1/x$ je stalnica.",
+          "f(x,t)=\\frac{\\arctan(tx)-\\arctan x}{x},\\quad f_t=\\frac1x\\frac{x}{1+(tx)^2}=\\frac1{1+t^2x^2}"
         ],
         [
-          "Ko se premakne desni rob, njegovo višino pomnoži s hitrostjo meje in prištej. Pri meji $t^2$ je hitrost $2t$.",
-          "\\frac d{dt}\\int_A^{v(t)} f(x,t)dx=\\int_A^{v(t)} f_t(x,t)dx+f(v(t),t)v'(t)"
+          "Na spodnjem robu ima prvotni ulomek obliko $0/0$. Ker je $f(x,1)=0$, lahko integrand obnoviš iz pravkar dobljenega odvoda. Novi zapis ima vrednost tudi pri $x=0$.",
+          "f(x,t)=\\int_1^t\\frac{dr}{1+r^2x^2},\\qquad f(0,t)=\\int_1^t1\\,dr=t-1"
         ],
         [
-          "Ko se premikata oba robova, odštej še višino na levem robu krat njegovo hitrost. Pri stalnem desnem robu je $v'=0$.",
-          "\\frac d{dt}\\int_{u(t)}^{v(t)} f(x,t)dx=\\int_{u(t)}^{v(t)} f_t(x,t)dx+f(v(t),t)v'(t)-f(u(t),t)u'(t)"
+          "Zdaj lahko uporabiš pravilo za odvod integrala. Meja $t^2$ doda robno višino krat hitrost $2t$, spodnja meja miruje.",
+          "I'(t)=\\int_0^{t^2} f_t(x,t)\\,dx+2t\\,f(t^2,t)"
         ]
       ]
     },

@@ -51,6 +51,16 @@ def worked_rows(rows):
     return [[math_text(reason),worked_formula(tex)] for reason,tex in rows]
 
 
+def exercise_steps(rows):
+    steps=[]
+    for action,reason,tex,*visual in rows:
+        step=dict(action=math_text(action),reason=math_text(reason),equation=worked_formula(tex))
+        if visual:
+            step["visual"],=visual
+        steps.append(step)
+    return steps
+
+
 def rule_rows(rows):
     return [
         dict(name=name,general=worked_formula(general),mapping=math_text(mapping),
@@ -121,7 +131,7 @@ for filename,day_range in [("worked123.json",range(1,4)),("worked456.json",range
             item["worked"]=[worked_rows(rows) for rows in scenes]
     for item in exercises:
         if item["day"] in day_range:
-            item["worked"]=worked_rows(worked["exercises"][item["plot"]])
+            item["worked"]=exercise_steps(worked["exercises"][item["plot"]])
 # Append practice without moving saved indexes or the original exam references.
 practice_by_plot={item["plot"]:item for item in exercises}
 for pair in ("12","34","56"):
@@ -135,7 +145,7 @@ for pair in ("12","34","56"):
         for key in ("prompt","cue","hint","symbols","purpose"):
             item[key]=math_text(item[key])
         item["quiz"]=list(map(math_text,item["quiz"]))
-        item["worked"]=worked_rows(item["worked"])
+        item["worked"]=exercise_steps(item["worked"])
         item["rules"]=rule_rows(item["rules"])
         exercises.append(item)
         practice_by_plot[item["plot"]]=item
@@ -195,7 +205,7 @@ for lesson in lesson_topics:
         lesson["steps"][-1][2]=leibniz["general"]
         lesson["cases"]=[[label,worked_formula(tex)] for label,tex in topic["cases"]]
     lessons.append(lesson)
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,examples=examples,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js"])).replace("/*APP*/",read("app.js"))
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,examples=examples,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
 print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(cards)} cards")
