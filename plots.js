@@ -5,6 +5,8 @@ const fmt=n=>new Intl.NumberFormat('sl-SI',{maximumFractionDigits:2}).format(n);
 const line=(name,fn,color=mint)=>({name,fn,color});
 const fill=(fn,a,b,color=mint,low=()=>0)=>({fn,a,b,color,low});
 function plotSettings(id,k=0){
+ if(practicePlots[id])return practicePlots[id].slider;
+ if(id==='gaussTheory')return k===0?['Meja polmera R',.2,3,.05,1.2]:['Parameter a',0,5,.1,1.5];
  if(id==='beta'&&k===1)return ['Vsota r = x + y',1,4,.1,2];
  if(id==='radius'&&k===1)return ['Zadnji indeks N',2,40,1,12];
  const settings={
@@ -24,12 +26,27 @@ function plotSettings(id,k=0){
 const graphKeys={...graphKeys123,...graphKeys456};
 const escapeGraph=value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 function chartModel(id,k,v){
+ if(practicePlots[id])return {bars:[],barColors:[lilac,gold,rose],markColors:[gold,rose,lilac,mint],...practicePlots[id].make(v)};
  let x=[0,4],y=[0,4],curves=[],fills=[],marks=[],bars=[],label='x',caption='',points=[];
  const graph=(name,fn,color)=>{curves.push(line(name,fn,color));return fn};
  const area=(fn,a,b,color,low)=>fills.push(fill(fn,a,b,color,low));
  const mark=(a,fn,color=mint)=>{marks.push(a);points.push([a,fn(a),color])};
  const twoSignals=(f,g,end,lo,hi)=>{x=[0,end];y=[lo,hi];label='t';graph('y(t)',f);graph('z(t)',g,lilac);mark(v,f);points.push([v,g(v),lilac]);caption='Pri t = '+fmt(v)+' je y = '+fmt(f(v))+' in z = '+fmt(g(v))+'.'};
- if(id==='area'){
+ if(id==='gaussTheory'){
+  if(k===0){
+   x=[0,3];y=[0,1.05];const radial=r=>Math.PI/2*r*exp(-r*r);
+   graph('Prispevek četrtinskega kolobarja',radial);area(radial,0,v);mark(v,radial,gold);
+   caption='Do R = '+fmt(v)+' je prispevek k I(0)² enak '+fmt(Math.PI/4*(-Math.expm1(-v*v)))+'.';
+  }else if(k===1){
+   x=[0,3.5];y=[-.55,.55];const g=t=>-t*exp(-t*t)*sin(v*t),bound=t=>t*exp(-t*t);
+   graph('Odvod po parametru',g);graph('Zgornja ovojnica',bound,lilac);graph('Spodnja ovojnica',t=>-bound(t),lilac);area(g,0,3.5);
+   caption='Pri a = '+fmt(v)+' ostane odvod med istima ovojnicama.';
+  }else{
+   x=[0,5];y=[0,1];const response=a=>Math.sqrt(Math.PI)/2*exp(-a*a/4);
+   graph('I(a)',response);mark(v,response,gold);points.push([0,response(0),lilac]);
+   caption='Za a = '+fmt(v)+' je I(a) ≈ '+fmt(response(v))+'.';
+  }
+ }else if(id==='area'){
   x=[0,2.35];y=[0,8];label='x (m)';const f=a=>u=>1+a*u*u;
   if(k===0){
    graph('Izbrani rob',f(v));graph('Rob pri a = 0',f(0),gold);marks=[2];
@@ -164,5 +181,5 @@ function svgChart(m){
  for(const [i,[t,value]] of m.bars.entries())art+='<path d="M'+pt(t,0)+' L'+pt(t,value)+'" stroke="'+m.barColors[i]+'" stroke-width="8"/>';
  for(const [t,value,col] of m.points)if(Number.isFinite(value))art+='<circle cx="'+X(t)+'" cy="'+Y(value)+'" r="4.5" fill="'+col+'" stroke="'+(col==='#30253f'?mint:'#39304e')+'" stroke-width="2"/>';
  const axisNames='<text class="axisName" x="'+L+'" y="16">'+escapeGraph(m.keys.y)+'</text><text class="axisName" x="'+(W-R)+'" y="'+(H-3)+'" text-anchor="end">'+escapeGraph(m.keys.x)+'</text>';
- return '<svg role="img" aria-label="'+m.caption+'" viewBox="0 0 '+W+' '+H+'"><defs><clipPath id="graph-clip"><rect x="'+L+'" y="'+T+'" width="'+w+'" height="'+h+'"/></clipPath></defs><g class="grid">'+grid+'</g>'+axis+'<g clip-path="url(#graph-clip)">'+art+'</g>'+labels+axisNames+'</svg>';
+ return '<svg role="img" aria-label="'+escapeGraph(m.caption)+'" viewBox="0 0 '+W+' '+H+'"><defs><clipPath id="graph-clip"><rect x="'+L+'" y="'+T+'" width="'+w+'" height="'+h+'"/></clipPath></defs><g class="grid">'+grid+'</g>'+axis+'<g clip-path="url(#graph-clip)">'+art+'</g>'+labels+axisNames+'</svg>';
 }

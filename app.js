@@ -1,3 +1,4 @@
+const practicePlots={...practicePlots12,...practicePlots34,...practicePlots56};
 const $=id=>document.getElementById(id);
 const icons={book:'M3 4c4-1 6 0 9 2 3-2 5-3 9-2v14c-4-1-6 0-9 2-3-2-5-3-9-2z M12 6v14',folder:'M3 7V5h6l2 2h10v12H3z',chart:'M3 20V7m0 13h18 M7 16v-4m5 4V8m5 8V4',sun:'M12 3v2m0 14v2M3 12h2m14 0h2M5.5 5.5l1.5 1.5m10 10 1.5 1.5m0-13L17 7M7 17l-1.5 1.5 M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',info:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M12 11v6 M12 7v.2',pen:'m5 15 10-10 4 4L9 19l-5 1z M13 7l4 4',cards:'m3 6 12-3 3 10 M7 8h14v12H7z',wave:'M2 15c4 0 4-10 8-10s3 14 7 14 3-6 5-7',pin:'m12 3 2.5 5 5.5.8-4 4 1 5.5-5-2.6-5 2.6 1-5.5-4-4 5.5-.8z',check:'m4 12 5 5L20 6',file:'M5 3h9l5 5v13H5z M14 3v5h5 M8 13h8m-8 4h6',clock:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M12 6v6l4 2'};
 const icon=n=>'<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="'+icons[n]+'"/></svg>';
@@ -69,6 +70,7 @@ function drawPlot(panel){
    m.keys.x='x · spremenljivka integriranja';m.keys.y=phase===2?'Δf/h · sprememba višine na enoto parametra':'f · vrednost funkcije';
    m.keys.areas=[['F(0) · začetna ploščina','F(a) − F(0) · sprememba'],['F(a) · prvotna ploščina','ΔF · prirastek'],['F′(a) · odvod']][phase];
   }
+  if(current().plot==='gaussTheory')panel.querySelector('.caption').append(' '+m.caption);
  }else panel.querySelector('.caption').textContent=m.caption;
  if(tab()==='lessons')m.caption=panel.querySelector('.caption').textContent;
  panel.querySelector('.drawing').innerHTML=svgChart(m).replaceAll('graph-clip','graph-clip-'+phase);
@@ -109,16 +111,32 @@ function lesson(){
  const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols],['Uporaba',o.use]];
  const intro='<section class="concept"><h3>Definicija</h3><p>'+o.definition+'</p><dl>'+facts.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl></section>';
  const scenes=o.steps.map(([heading,reason,formula],i)=>'<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p><div class="formula calcLine">'+formula+'</div>'+(o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'')+'</div>'+plotPanel(o.plot,i)+'</section>').join('');
- return '<div class="lessonName"><h2>'+o.title+'</h2>'+source(o)+'</div>'+intro+scenes+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
+ const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
+ let practice='';
+ if(o.plot==='leib')practice=unitLink('exercises','edgeDensity','Vaja z obema premičnima mejama');
+ if(o.plot==='gaussTheory')practice=unitLink('exercises','gauss','Gaussova naloga s kolokvija');
+ return '<div class="lessonName"><h2>'+o.title+'</h2>'+source(o)+'</div>'+intro+cases+scenes+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
 function solvedExamples(){
  const examples=course.examples.filter(o=>o.day===state.day);
  return '<details class="base examples"><summary>Rešeni zgledi za '+state.day+'. dan</summary>'+examples.map(o=>'<details class="baseEntry"><summary>'+o.subtitle+'</summary><p>'+o.purpose.question+'</p><p>'+o.purpose.use+'</p>'+ruleBridge(o.rules)+o.steps.map(([heading],i)=>calculation(o.worked[i],heading)).join('')+'</details>').join('')+'</details>';
 }
+function unitLink(kind,plot,label){
+ const index=data(kind).findIndex(item=>item.plot===plot);
+ return index<0?'':btn('goto',label,'quiet','data-val="'+kind+','+state.day+','+index+'"');
+}
+function theoryLink(exercise){
+ if(exercise.plot==='area')return unitLink('lessons','leib','Ko se premikata tudi meji');
+ if(['atan','lowerGaussian','twoCosEdges','edgeDensity'].includes(exercise.plot))return unitLink('lessons','leib','Izpeljava Leibnizovega pravila');
+ if(['gauss','narrowGaussian'].includes(exercise.plot))return unitLink('lessons','gaussTheory','Izpeljava Gaussovega integrala');
+ return '';
+}
 function exercise(){
  const o=current(),done=!!state.marks[currentId()],answers=o.quiz.slice(1),order=[[1,0,2],[2,1,0],[0,2,1]][(idx()+state.day)%3];
  const hint='<p class="helpText"><b>Namig</b> '+o.hint+'</p>';
- return '<article class="practice"><div class="taskmeta">'+icon('pen')+o.source+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p></div>'+plotPanel(o.plot)+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
+ const guide=o.guide?'<section class="methodGuide"><div class="stepLabel">Uvod v metodo</div>'+calculation(o.guide.steps,o.guide.title)+'</section>':'';
+ const citation=o.url?'<a href="'+escapeGraph(o.url)+'" target="_blank" rel="noopener noreferrer">'+escapeGraph(o.source)+' ↗</a>':o.source;
+ return '<article class="practice"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
 }
 function flash(){
  const c=current(),done=!!state.marks[currentId()];

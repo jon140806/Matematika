@@ -1,0 +1,541 @@
+{
+  "exercises": [
+    {
+      "day": 5,
+      "title": "Polmer okoli točke 2",
+      "plot": "shiftRadius",
+      "source": "MIT OpenCourseWare · priredba vaje o polmeru",
+      "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/ce95c6111e8e778a8105153518663d99_MIT18_01SCF10_ex97sol.pdf",
+      "prompt": "Določi polmer in obe krajišči konvergence vrste $\\sum_{n=1}^{\\infty}(x-2)^n/(3^n n)$.",
+      "cue": "Potenca $x-2$ pove središče. Faktor $1/n$ postane odločilen na robovih.",
+      "hint": "Zapiši $q=(x-2)/3$. V krajiščih ima $q$ vrednost $-1$ ali $1$.",
+      "symbols": "$x$ izbira točko, $n$ šteje člene, $R$ je polmer okoli $2$. Graf riše delne vsote pri obeh krajiščih.",
+      "purpose": "Določiš, kje ima formula z neskončno vsoto končno vrednost.",
+      "rules": [
+        [
+          "Kvocient zaporednih členov",
+          "L=\\lim_{n\\to\\infty}|b_{n+1}/b_n|",
+          "Pri $x\\ne2$ je $b_n=q^n/n$. Pri $x=2$ so vsi členi nič.",
+          "L=|q|\\lim_{n\\to\\infty}\\frac n{n+1}=|q|"
+        ]
+      ],
+      "worked": [
+        [
+          "Izberi $q$, da bo člen krajši. Pri obeh sosednjih členih vstavi isti $x$.",
+          "q=(x-2)/3,\\qquad b_n=q^n/n,\\quad b_{n+1}=q^{n+1}/(n+1)"
+        ],
+        [
+          "Pri neničelnem $q$ pokrajšaj potence. Limita manjša od 1 da absolutno konvergenco, večja od 1 divergenco.",
+          "|b_{n+1}/b_n|=|q|n/(n+1)\\to|q|"
+        ],
+        [
+          "Reši neenačbo in odčitaj razdaljo od središča do roba. Središče samo je vključeno.",
+          "|x-2|<3\\ \\Longleftrightarrow\\ -1<x<5,\\qquad R=3"
+        ],
+        [
+          "Na levem robu dobiš alternirajočo vrsto. Velikosti členov padajo proti nič, zato konvergira po Leibnizovem kriteriju.",
+          "x=-1:\\quad q=-1,\\qquad \\sum_{n=1}^{\\infty}(-1)^n/n"
+        ],
+        [
+          "Na desnem robu dobiš divergentno harmonično vrsto. Zato vključiš samo levi rob.",
+          "x=5:\\quad q=1,\\qquad \\sum_{n=1}^{\\infty}1/n=\\infty,\\qquad x\\in[-1,5)"
+        ]
+      ],
+      "quiz": [
+        "Kakšen je interval konvergence?",
+        "$[-1,5)$",
+        "$(-1,5]$",
+        "$[-3,3]$"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Števec n iz odvoda",
+      "plot": "diffGeom",
+      "source": "MIT OpenCourseWare · priredba vaj 7D",
+      "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/resources/e_exrcs_scsn_1_7/",
+      "prompt": "Seštej $\\sum_{n=1}^{\\infty} n/4^n$. Najprej izpelji formulo za poljuben $|x|<1$.",
+      "cue": "Števec $n$ nastane, ko odvedeš potenco $x^n$.",
+      "hint": "Po odvajanju pomnoži z $x$, da znova dobiš potenco $x^n$.",
+      "symbols": "$S_N$ je vsota prvih $N$ členov. Drsnik izbira $x$, na grafu vidiš približevanje vsoti.",
+      "purpose": "Dobiš točno vsoto členov, kjer je geometrijska potenca pomnožena z indeksom.",
+      "rules": [
+        [
+          "Odvajanje potenčne vrste",
+          "\\frac{d}{dx}\\sum_{n=0}^{\\infty}a_nx^n=\\sum_{n=1}^{\\infty}na_nx^{n-1}",
+          "Velja znotraj konvergenčnega polmera. Pri geometrijski vrsti so vsi $a_n=1$.",
+          "\\sum_{n=1}^{\\infty}nx^{n-1}=(1-x)^{-2}"
+        ]
+      ],
+      "worked": [
+        [
+          "Začni z geometrijsko vrsto ter njenim območjem veljavnosti.",
+          "G(x)=\\sum_{n=0}^{\\infty}x^n=(1-x)^{-1},\\qquad |x|<1"
+        ],
+        [
+          "Odvajaj vsako potenco. Na desni uporabi verižno pravilo.",
+          "G'(x)=\\sum_{n=1}^{\\infty}nx^{n-1}=-(1-x)^{-2}(-1)=(1-x)^{-2}"
+        ],
+        [
+          "Pomnoži obe strani z $x$, da poravnaš eksponent s tistim iz naloge.",
+          "\\sum_{n=1}^{\\infty}nx^n=xG'(x)=\\frac{x}{(1-x)^2}"
+        ],
+        [
+          "Izberi $x=1/4$ in poenostavi dvojni ulomek.",
+          "\\frac{1/4}{(1-1/4)^2}=\\frac{1/4}{9/16}=\\frac14\\cdot\\frac{16}9=\\frac49"
+        ]
+      ],
+      "quiz": [
+        "Kateri korak obnovi potenco $x^n$ po odvajanju?",
+        "Množenje z $x$",
+        "Deljenje z $x$",
+        "Prištevanje $1$"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Izmenični lihi členi",
+      "plot": "atanSeries",
+      "source": "MIT OpenCourseWare · priredba vaj 7D",
+      "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/resources/e_exrcs_scsn_1_7/",
+      "prompt": "Iz geometrijske vrste izpelji vsoto $\\sum_{n=0}^{\\infty}(-1)^n/\\big((2n+1)2^{2n+1}\\big)$.",
+      "cue": "Liha potenca in isti lihi imenovalec nastaneta z integriranjem sodih potenc.",
+      "hint": "Geometrijski količnik naj bo $-t^2$. Integriraj od 0 do $x=1/2$.",
+      "symbols": "$t$ je integracijska spremenljivka, $x$ zgornja meja. $N$ na grafu pomeni število členov približka.",
+      "purpose": "Prepoznaš, katero znano funkcijo približujejo izmenični delni seštevki.",
+      "rules": [
+        [
+          "Integriranje geometrijske vrste",
+          "\\int_0^x\\sum_{n=0}^\\infty q(t)^n\\,dt=\\int_0^x\\frac{dt}{1-q(t)}",
+          "Tu velja $q(t)=-t^2$ in $|t|\\le 1/2$, zato lahko integriraš členoma.",
+          "\\int_0^x\\frac{dt}{1+t^2}=\\arctan x"
+        ]
+      ],
+      "worked": [
+        [
+          "V geometrijsko vsoto vstavi $-t^2$ in razpiši prve člene.",
+          "1-t^2+t^4-\\cdots=\\frac1{1+t^2},\\qquad |t|<1"
+        ],
+        [
+          "Na intervalu od 0 do 1/2 člene omeji konvergentna geometrijska vrsta. To upraviči integriranje členoma.",
+          "|(-t^2)^n|\\le(1/4)^n,\\qquad \\sum_{n=0}^{\\infty}(1/4)^n=4/3"
+        ],
+        [
+          "Integriraj posamezni člen in vstavi obe meji. S tem nastane lihi imenovalec.",
+          "\\int_0^x(-1)^nt^{2n}dt=(-1)^n\\left[\\frac{t^{2n+1}}{2n+1}\\right]_0^x=\\frac{(-1)^nx^{2n+1}}{2n+1}"
+        ],
+        [
+          "Integriraj še desno stran in vstavi $x=1/2$. Spodnja meja da nič.",
+          "[\\arctan t]_0^{1/2}=\\arctan(1/2)-\\arctan0=\\arctan(1/2)"
+        ]
+      ],
+      "quiz": [
+        "Katera funkcija poda iskano vsoto?",
+        "$\\arctan(1/2)$",
+        "$\\arcsin(1/2)$",
+        "$\\ln(3/2)$"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Kaj se zalomi tik ob robu?",
+      "plot": "uniformEdge",
+      "source": "J. Lebl · priredba po Basic Analysis, § 6.1",
+      "url": "https://www.jirka.org/ra/html/sec_puconv.html",
+      "prompt": "Na $[0,1)$ obravnavaj vrsto $\\sum_{n=0}^{\\infty}(1-x)x^n$. Poišči vsoto in presodi enakomerno konvergenco.",
+      "cue": "Zaporedna člena v obliki $x^n-x^{n+1}$ se v vsoti odštejeta.",
+      "hint": "Izračunaj rep. Za vsak indeks poišči točko, kjer je napaka še vedno $1/2$.",
+      "symbols": "$S_N$ se konča pri indeksu $N$, $R_N$ je njegova napaka. Navpična oznaka sledi točki $x_N$.",
+      "purpose": "Ugotoviš, ali ena dolžina približka zadošča za ves interval.",
+      "rules": [
+        [
+          "Enakomerna konvergenca",
+          "\\sup_{x\\in I}|S(x)-S_N(x)|\\longrightarrow0",
+          "Vsoto določiš pri fiksnem $x$. Nato pregledaš napako po vseh $x$ hkrati.",
+          "R_N(x)=x^{N+1}"
+        ]
+      ],
+      "worked": [
+        [
+          "Razstavi člen. V delni vsoti se notranje potence odštejejo.",
+          "(1-x)x^n=x^n-x^{n+1},\\qquad S_N=1-x^{N+1}"
+        ],
+        [
+          "Pri vsakem fiksnem $x<1$ potence težijo k nič, zato poznaš vsoto in rep.",
+          "S(x)=1,\\qquad R_N(x)=S(x)-S_N(x)=x^{N+1}"
+        ],
+        [
+          "Izberi točko, pri kateri je napaka enaka polovici. Ta točka leži na intervalu pri vsakem $N$.",
+          "x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=1/2"
+        ],
+        [
+          "Za dovoljeno napako četrtine vsak indeks odpove pri svojem $x_N$. Vrsta konvergira le točkovno na celotnem intervalu.",
+          "|R_N(x_N)|=1/2>1/4\\qquad(N=0,1,\\ldots)"
+        ]
+      ],
+      "quiz": [
+        "Kaj se zgodi s točko napake $1/2$, ko $N$ raste?",
+        "Približuje se 1.",
+        "Približuje se 0.",
+        "Ves čas je 1/2."
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Koliko členov potrebuješ?",
+      "plot": "geomError",
+      "source": "J. Lebl · priredba po Basic Analysis, § 6.1",
+      "url": "https://www.jirka.org/ra/html/sec_puconv.html",
+      "prompt": "Poišči najmanjši $N$, da $S_N(x)=1+x+\\cdots+x^N$ na $[0,1/2]$ približa $1/(1-x)$ z napako največ $1/32$.",
+      "cue": "Za geometrijsko vrsto znaš rep sešteti natančno.",
+      "hint": "Pri večjem $x$ sta vsak člen in njihov seštevek večja. Preizkusi desni rob.",
+      "symbols": "$N$ je zadnji indeks. Ker je prvi indeks nič, ima $S_N$ skupaj $N+1$ členov.",
+      "purpose": "Število členov izbereš glede na dovoljeno napako v celotnem območju.",
+      "rules": [
+        [
+          "Rep geometrijske vrste",
+          "R_N(x)=\\sum_{k=N+1}^{\\infty}x^k=\\frac{x^{N+1}}{1-x}",
+          "Prvi izpuščeni člen je $x^{N+1}$, skupni količnik je $x$.",
+          "R_N(1/2)=2^{-N}"
+        ]
+      ],
+      "worked": [
+        [
+          "Od vsote odštej prvih $N+1$ členov in izpostavi prvo izpuščeno potenco.",
+          "R_N=x^{N+1}(1+x+x^2+\\cdots)=\\frac{x^{N+1}}{1-x}"
+        ],
+        [
+          "Vsaka potenca na tem intervalu z $x$ narašča. Največji rep dobiš pri $1/2$.",
+          "\\max_{0\\le x\\le1/2}R_N(x)=\\frac{(1/2)^{N+1}}{1-1/2}=2^{-N}"
+        ],
+        [
+          "Prepiši zahtevano napako kot potenco iste osnove. Najmanjši indeks je 5, torej uporabi šest členov.",
+          "2^{-N}\\le1/32=2^{-5}\\ \\Longleftrightarrow\\ N\\ge5,\\qquad N+1=6"
+        ]
+      ],
+      "quiz": [
+        "Koliko členov vsebuje najkrajši ustrezni približek?",
+        "6",
+        "5",
+        "7"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Začetni pogoj izbere koeficiente",
+      "plot": "odeRec",
+      "source": "UNC Wilmington · priredba po poglavju Series Solutions",
+      "url": "https://people.uncw.edu/hermanr/mat361/ODEBook/Series.pdf",
+      "prompt": "Za $y''+4y=0$, $y(0)=1$ in $y'(0)=0$ izračunaj Taylorjev polinom do stopnje 4 okoli nič.",
+      "cue": "Koeficient ob $y''$ je pri ničli neničeln. Uporabi navadno potenčno vrsto.",
+      "hint": "Pri $x=0$ iz vrste za $y$ prebereš $a_0$, iz vrste za $y'$ pa $a_1$.",
+      "symbols": "$a_k$ je koeficient pri $x^k$. Na grafu stopnja pove, koliko sodih potenc obdržiš.",
+      "purpose": "Iz enačbe in začetnih podatkov izračunaš obliko nihanja v bližini ničle.",
+      "rules": [
+        [
+          "Primerjanje koeficientov",
+          "\\sum_{k=0}^{\\infty}b_kx^k=0\\ \\Longrightarrow\\ b_k=0\\quad(k\\ge0)",
+          "Vse člene najprej prepiši na isto potenco $x^k$.",
+          "(k+2)(k+1)a_{k+2}+4a_k=0"
+        ]
+      ],
+      "worked": [
+        [
+          "Zapiši vrsto in njena prva člena. Začetna pogoja določita njuni vrednosti.",
+          "y=a_0+a_1x+a_2x^2+\\cdots,\\quad a_0=y(0)=1,\\quad a_1=y'(0)=0"
+        ],
+        [
+          "Dvakrat odvajaj in v vsoti prestavi indeks za dve mesti.",
+          "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k"
+        ],
+        [
+          "Pri vsaki potenci izenači koeficient v $y''+4y$ z nič in izrazi naslednji člen.",
+          "(k+2)(k+1)a_{k+2}=-4a_k,\\qquad a_{k+2}=\\frac{-4a_k}{(k+2)(k+1)}"
+        ],
+        [
+          "Vstavi zaporedoma $k=0,1,2$. Liha veja ostane nič, ker se začne z nič.",
+          "a_2=-4/(2\\cdot1)=-2,\\quad a_3=0,\\quad a_4=\\frac{(-4)(-2)}{4\\cdot3}=\\frac23"
+        ],
+        [
+          "Koeficiente vstavi ob pripadajoče potence.",
+          "T_4(x)=1-2x^2+\\frac23x^4"
+        ]
+      ],
+      "quiz": [
+        "Kolikšen je koeficient pri $x^4$?",
+        "$2/3$",
+        "$8$",
+        "$-2/3$"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Katera potenca ostane omejena?",
+      "plot": "eulerRoots",
+      "source": "J. Lebl · priredba po Notes on Diffy Qs, § 7.3",
+      "url": "https://www.jirka.org/diffyqs/html/frobenius_section.html",
+      "prompt": "Na $x>0$ za $x^2y''+xy'-4y=0$ določi obe potenčni rešitvi. Poišči omejeno rešitev ob ničli s podatkom $y(1)=3$.",
+      "cue": "Pri vsakem odvajanju se potenca zniža za ena. Faktorja $x$ in $x^2$ jo povrneta.",
+      "hint": "Vstavi $y=x^r$. Primerjaj vedenje obeh dobljenih potenc, ko $x$ pada proti nič.",
+      "symbols": "$r$ je iskani eksponent. $A,B$ sta uteži obeh rešitev na pozitivni polosi.",
+      "purpose": "Iz zahteve omejenosti izbereš dovoljeno rešitev pri singularni točki.",
+      "rules": [
+        [
+          "Potenčni nastavek za Eulerjevo enačbo",
+          "x^2y''+\\alpha xy'+\\beta y=0\\quad\\Longrightarrow\\quad r(r-1)+\\alpha r+\\beta=0",
+          "Tu sta $\\alpha=1$ in $\\beta=-4$.",
+          "r(r-1)+r-4=0"
+        ]
+      ],
+      "worked": [
+        [
+          "Zapiši potenco in njena odvoda.",
+          "y=x^r,\\quad y'=rx^{r-1},\\quad y''=r(r-1)x^{r-2}"
+        ],
+        [
+          "Vstavi vse člene. Na $x>0$ je skupni faktor $x^r$ neničeln.",
+          "x^r[r(r-1)+r-4]=0\\ \\Longrightarrow\\ (r-2)(r+2)=0"
+        ],
+        [
+          "Različna korena določita dve neodvisni rešitvi. Zapiši njuno linearno kombinacijo.",
+          "r=2,-2,\\qquad y=Ax^2+Bx^{-2}"
+        ],
+        [
+          "Drugi člen po velikosti raste brez meje, če je $B$ neničeln. Omejenost določi $B$, vrednost pri 1 določi $A$.",
+          "B=0,\\quad y(1)=A\\cdot1^2=3\\ \\Longrightarrow\\ y=3x^2"
+        ]
+      ],
+      "quiz": [
+        "Katera utež mora biti nič zaradi omejenosti ob ničli?",
+        "$B$, utež pri $x^{-2}$",
+        "$A$, utež pri $x^2$",
+        "Obe uteži"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Lihi Legendrov polinom",
+      "plot": "legOdd",
+      "source": "UNC Wilmington · priredba po poglavju Series Solutions",
+      "url": "https://people.uncw.edu/hermanr/mat361/ODEBook/Series.pdf",
+      "prompt": "Iz Legendrove enačbe za $n=3$ in normalizacije $P_3(1)=1$ določi lihi polinom tretje stopnje.",
+      "cue": "Pri lihi rešitvi tretje stopnje zadoščata člena $x$ in $x^3$.",
+      "hint": "Po vstavljanju zberi člene pri $x$. Drugo enačbo da vrednost pri 1.",
+      "symbols": "$a$ je koeficient pri $x$, $b$ pri $x^3$. Drsnik izbere točko polinoma.",
+      "purpose": "Pokažeš, kako enačba določi obliko, normalizacija pa velikost polinoma.",
+      "rules": [
+        [
+          "Legendrova enačba",
+          "(1-x^2)P_n''-2xP_n'+n(n+1)P_n=0",
+          "Za $n=3$ je produkt $3\\cdot4=12$.",
+          "(1-x^2)P_3''-2xP_3'+12P_3=0"
+        ]
+      ],
+      "worked": [
+        [
+          "Zapiši lihi polinom in oba odvoda.",
+          "P_3=ax+bx^3,\\quad P_3'=a+3bx^2,\\quad P_3''=6bx"
+        ],
+        [
+          "Vstavi vse tri izraze v enačbo in odpri oklepaje.",
+          "6bx-6bx^3-2ax-6bx^3+12ax+12bx^3=0"
+        ],
+        [
+          "Kubični členi se odštejejo. Ker enačba velja za vsak $x$, mora biti koeficient pri $x$ enak nič.",
+          "(6b+10a)x=0\\ \\Longrightarrow\\ b=-5a/3"
+        ],
+        [
+          "Pogoj pri 1 določi $a$, nato izračunaj $b$.",
+          "a+b=1\\ \\Longrightarrow\\ a-5a/3=1\\ \\Longrightarrow\\ a=-3/2,\\quad b=5/2"
+        ],
+        [
+          "Vrni koeficienta v nastavek.",
+          "P_3(x)=\\frac{5x^3-3x}{2}"
+        ]
+      ],
+      "quiz": [
+        "Kolikšen je koeficient pri $x$?",
+        "$-3/2$",
+        "$5/2$",
+        "$3/2$"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Katera funkcija je pravokotna?",
+      "plot": "weightZero",
+      "source": "Univerza Maryland · priredba po poglavju Approximations",
+      "url": "https://www.math.umd.edu/~dlevy/classes/amsc466/lecture-notes/approximation-chap.pdf",
+      "prompt": "Na $[0,1]$ je utež $w(x)=2x$. Izberi $c$ tako, da bo $g(x)=x-c$ pravokotna na $f(x)=1$.",
+      "cue": "Pravokotnost pomeni, da je uteženi skalarni produkt enak nič.",
+      "hint": "Pred integriranjem zmnoži utež in obe funkciji. Parametra $c$ ne odvajaš.",
+      "symbols": "$w$ določa težo položaja. Drsnik spreminja $c$ in s tem ravnovesje predznačenih ploščin.",
+      "purpose": "Iz funkcije odstraniš konstantni del glede na izbrano utež.",
+      "rules": [
+        [
+          "Uteženi skalarni produkt",
+          "\\langle f,g\\rangle_w=\\int_a^b w(x)f(x)g(x)\\,dx",
+          "Utež je pozitivna v notranjosti intervala. Zahtevana vrednost produkta je nič.",
+          "0=\\int_0^1 2x(x-c)\\,dx"
+        ]
+      ],
+      "worked": [
+        [
+          "Vstavi funkciji in odpri produkt.",
+          "2x\\cdot1\\cdot(x-c)=2x^2-2cx"
+        ],
+        [
+          "Integriraj po $x$ in odštej vrednosti v mejah.",
+          "\\int_0^1(2x^2-2cx)\\,dx=\\left[\\frac23x^3-cx^2\\right]_0^1=(2/3-c)-0"
+        ],
+        [
+          "Postavi predznačeno ploščino na nič in prenesi $c$ na drugo stran.",
+          "2/3-c=0\\ \\Longrightarrow\\ c=2/3,\\qquad g(x)=x-2/3"
+        ]
+      ],
+      "quiz": [
+        "Kaj na grafu pomeni pravokotnost?",
+        "Pozitivna in negativna ploščina se izničita.",
+        "Obe krivulji imata povsod vrednost nič.",
+        "Utež mora biti stalna."
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Dva podatka za vsak prerez",
+      "plot": "sliceData",
+      "source": "UC San Diego · priredba po First examples",
+      "url": "https://www.math.ucsd.edu/~jmckerna/Teaching/18-19/Autumn/110A/l_1.pdf",
+      "prompt": "Poišči $u(x,y)$ iz $u_{xx}=2y$, $u(0,y)=y^2$ in $u_x(0,y)=1-y$.",
+      "cue": "V enačbi nastopajo samo odvodi po $x$. Pri integriranju zato $y$ držiš pri miru.",
+      "hint": "Po vsakem integriranju dodaj funkcijo spremenljivke $y$. Vsak od obeh podatkov določi eno funkcijo.",
+      "symbols": "$u_x$ je naklon prereza. Drsnik izbira $y$, vodoravna os prikazuje $x$.",
+      "purpose": "Iz ukrivljenosti, začetnega naklona in višine sestaviš celotno polje.",
+      "rules": [
+        [
+          "Primitivna funkcija pri stalnem parametru",
+          "\\partial_x u=h(x,y)\\ \\Longrightarrow\\ u=\\int h(x,y)\\,dx+C(y)",
+          "Vsaka funkcija $C(y)$ ima parcialni odvod po $x$ enak nič.",
+          "\\partial_x C(y)=0"
+        ]
+      ],
+      "worked": [
+        [
+          "Prvič integriraj po $x$. Dodaj poljubno funkcijo $A$ druge spremenljivke.",
+          "u_{xx}=2y\\ \\Longrightarrow\\ u_x=2yx+A(y)"
+        ],
+        [
+          "Pri $x=0$ člen z $x$ izgine. Preostala funkcija je podani začetni naklon.",
+          "u_x(0,y)=0+A(y)=1-y\\ \\Longrightarrow\\ A(y)=1-y"
+        ],
+        [
+          "Drugič integriraj po $x$. Faktor $1-y$ je pri tem stalen.",
+          "u=\\int(2yx+1-y)\\,dx=yx^2+(1-y)x+B(y)"
+        ],
+        [
+          "Podana višina pri $x=0$ določi zadnjo funkcijo. Vstavi jo v rešitev.",
+          "u(0,y)=B(y)=y^2,\\qquad u(x,y)=yx^2+(1-y)x+y^2"
+        ]
+      ],
+      "quiz": [
+        "Kateri podatek določi $A(y)$ po prvem integriranju?",
+        "$u_x(0,y)=1-y$",
+        "$u(0,y)=y^2$",
+        "$x=1$"
+      ]
+    }
+  ],
+  "guides": {
+    "sum22": {
+      "title": "Kako iz imenovalca prepoznaš pomožno vrsto",
+      "steps": [
+        [
+          "Dva linearna faktorja razstavi na enostavna ulomka. Identiteto pomnoži z njunim produktom.",
+          "\\frac{1}{uv}=\\frac{A}{u}+\\frac{B}{v}\\ \\Longrightarrow\\ 1=Av+Bu"
+        ],
+        [
+          "V vsakem delu izberi novo potenco, ki ob odvajanju odstrani imenovalec. Po integriranju določi konstanto iz prvega člena vrste.",
+          "\\frac{d}{dx}\\frac{x^k}{k}=x^{k-1},\\qquad \\sum_{k=1}^{\\infty}\\frac{x^k}{k}=-\\ln(1-x)"
+        ]
+      ]
+    },
+    "mtest": {
+      "title": "Kako najdeš skupno mejo napake",
+      "steps": [
+        [
+          "Najprej oceni velikost vsakega člena z enim številom za vse dovoljene vrednosti spremenljivke.",
+          "|f_n(x)|\\le M_n\\qquad (x\\in I)"
+        ],
+        [
+          "Preveri konvergenco številske vrste majorant. Njen rep omejuje napako po vsem intervalu.",
+          "\\sup_{x\\in I}|S(x)-S_N(x)|\\le\\sum_{n>N} M_n\\longrightarrow0"
+        ]
+      ]
+    },
+    "shiftRadius": {
+      "title": "Kaj pove polmer in kaj povesta robova",
+      "steps": [
+        [
+          "Pri členu, ki vsebuje potenco razdalje od središča, uporabi kvocient za notranjost intervala.",
+          "b_n=c_n(x-a)^n,\\quad \\lim |b_{n+1}/b_n|<1"
+        ],
+        [
+          "Na obeh krajiščih vstavljaj v prvotno vrsto. Alternirajoča in pozitivna harmonična vrsta se vedeta različno.",
+          "\\sum_{n=1}^{\\infty}(-1)^n/n=-\\ln2,\\qquad \\sum_{n=1}^{\\infty}1/n=\\infty"
+        ]
+      ]
+    },
+    "leg": {
+      "title": "Kako začneš potenčno metodo",
+      "steps": [
+        [
+          "Pri navadni točki razvij rešitev po potencah. Koeficienta pri ničti in prvi potenci določata začetno vrednost in naklon.",
+          "y=\\sum_{k=0}^{\\infty}a_k x^k,\\qquad a_0=y(0),\\quad a_1=y'(0)"
+        ],
+        [
+          "Odvedi, poravnaj eksponente in primerjaj koeficiente pri vsaki potenci. Če iščeš normiran Legendrov polinom, njegovo merilo določi pogoj pri 1.",
+          "y''=\\sum_{k=0}^{\\infty}(k+2)(k+1)a_{k+2}x^k,\\qquad P_n(1)=1"
+        ]
+      ]
+    },
+    "bessel": {
+      "title": "Kako prepoznaš regularno singularno točko",
+      "steps": [
+        [
+          "Deli z vodilnim koeficientom. Če sta pri ničli spodnja produkta analitično razširljiva, je singularna točka regularno singularna.",
+          "y''+P(x)y'+Q(x)y=0,\\qquad xP(x),\\ x^2Q(x)"
+        ],
+        [
+          "V Frobeniusovem nastavku najnižja potenca določi dovoljene eksponente. Pri Besselovi enačbi dobiš kvadrat reda.",
+          "y=x^r(a_0+a_1x+\\cdots),\\quad a_0\\ne0,\\qquad r^2-\\nu^2=0"
+        ]
+      ]
+    },
+    "ortho": {
+      "title": "Kako vidiš ortogonalnost na grafu",
+      "steps": [
+        [
+          "Pomnoži funkciji in utež. Krivulja tega produkta je integrand za skalarni produkt.",
+          "h(x)=w(x)f(x)g(x),\\qquad \\langle f,g\\rangle_w=\\int_a^b h(x)\\,dx"
+        ],
+        [
+          "Dela nad in pod osjo štejeta z nasprotnima predznakoma. Funkciji sta pravokotni, ko se prispevka izničita.",
+          "\\langle f,g\\rangle_w=0"
+        ]
+      ]
+    },
+    "sliceData": {
+      "title": "Kako iz delne enačbe dobiš prerez",
+      "steps": [
+        [
+          "Ko imaš samo odvode po eni koordinati, je druga koordinata pri integriranju stalna. Konstanta je lahko funkcija te koordinate.",
+          "\\partial_x A(y)=0"
+        ],
+        [
+          "Pri drugem odvodu sta dva prosta podatka. Na začetni črti eden določi naklon, drugi pa višino vsakega prereza.",
+          "u_x(0,y)=h(y),\\qquad u(0,y)=g(y)"
+        ]
+      ]
+    }
+  }
+}

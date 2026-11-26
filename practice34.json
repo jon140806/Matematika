@@ -1,0 +1,475 @@
+{
+  "exercises": [
+    {
+      "day": 3,
+      "title": "Dušeno nihanje iz kvadratnega imenovalca",
+      "plot": "damped34",
+      "source": "Lastna priredba po MIT 18.03 · 3A-10",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Obrni $F(s)=(2s+5)/(s^2+4s+13)$ za $s>-2$.",
+      "cue": "Imenovalec nima realnih ničel. Dopolni kvadrat in preberi frekvenco.",
+      "hint": "Zapiši $2s+5=2(s+2)+1$. Za sinus mora v števcu stati 3.",
+      "symbols": "$s$ je parameter transformacije, $t$ čas. Število 2 določa dušenje, 3 krožno frekvenco.",
+      "purpose": "Iz racionalne funkcije prebereš, kako hitro se nihanje umirja.",
+      "rules": [
+        [
+          "Premik in sinusni par",
+          "\\mathcal L(e^{-at}\\sin bt)=\\frac{b}{(s+a)^2+b^2}",
+          "Pri nas sta $a=2$ in $b=3$. Za kosinus je števec $s+a$.",
+          "\\mathcal L(e^{-2t}\\cos3t)=\\frac{s+2}{(s+2)^2+9}"
+        ]
+      ],
+      "worked": [
+        [
+          "Dopolni kvadrat v imenovalcu.",
+          "s^2+4s+13=(s+2)^2-4+13=(s+2)^2+3^2"
+        ],
+        [
+          "Števec izrazi z istim premaknjenim argumentom.",
+          "2s+5=2(s+2)+1"
+        ],
+        [
+          "Ulomek razdeli. V drugem števcu ustvari 3 in pred ulomkom deli s 3.",
+          "F(s)=2\\frac{s+2}{(s+2)^2+9}+\\frac13\\frac{3}{(s+2)^2+9}"
+        ],
+        [
+          "Prvi ulomek obrneš s kosinusnim parom, drugega s sinusnim. Premik za 2 oba pomnoži z istim eksponentom.",
+          "f(t)=e^{-2t}\\left(2\\cos 3t+\\frac13\\sin 3t\\right)"
+        ]
+      ],
+      "quiz": [
+        "Zakaj ima sinus koeficient $1/3$?",
+        "Ker imamo v števcu 1, sinusni par pa potrebuje 3.",
+        "Ker je premik enak 3.",
+        "Ker ima kvadrat vrednost 3."
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Enostavni in dvojni pol",
+      "plot": "doublePole34",
+      "source": "Lastna priredba po MIT 18.03 · 3A-3 in 3A-10",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Določi inverz $F(s)=1/[(s+1)^2(s+3)]$ za $s>-1$.",
+      "cue": "Faktor $s+1$ nastopa dvakrat. Nastavek zato vsebuje obe njegovi potenci.",
+      "hint": "Najprej odpravi imenovalec. Vstavi obe ničli, nato primerjaj koeficient pri kvadratu.",
+      "symbols": "$A,B,C$ so koeficienti ulomkov. Dvojni pol pomeni člen s faktorjem $t$ v času.",
+      "purpose": "Razcep s ponovljenim faktorjem se pojavi tudi pri reševanju sistemov na kolokviju.",
+      "rules": [
+        [
+          "Ponovljeni pol",
+          "\\mathcal L(t e^{-at})=\\frac1{(s+a)^2}",
+          "Pri $a=1$ dvojni pol da časovni faktor $t$.",
+          "\\frac{B}{(s+1)^2}\\ \\longleftrightarrow\\ Bte^{-t}"
+        ]
+      ],
+      "worked": [
+        [
+          "Za ponovljeni faktor napiši ulomek za vsako potenco.",
+          "F=\\frac A{s+1}+\\frac B{(s+1)^2}+\\frac C{s+3}"
+        ],
+        [
+          "Pomnoži s skupnim imenovalcem.",
+          "1=A(s+1)(s+3)+B(s+3)+C(s+1)^2"
+        ],
+        [
+          "V polinomsko identiteto vstavi ničli. Vsakič preživi samo en člen.",
+          "s=-1:\\ 1=2B\\Rightarrow B=\\tfrac12,\\qquad s=-3:\\ 1=4C\\Rightarrow C=\\tfrac14"
+        ],
+        [
+          "Na levi je koeficient pri kvadratu nič. Na desni ga dasta prvi in tretji člen.",
+          "0=A+C\\ \\Rightarrow\\ A=-\\tfrac14"
+        ],
+        [
+          "Obrni tri pare in vstavi koeficiente.",
+          "f(t)=-\\tfrac14e^{-t}+\\tfrac12te^{-t}+\\tfrac14e^{-3t}"
+        ]
+      ],
+      "quiz": [
+        "Kaj prispeva ulomek $B/(s+1)^2$?",
+        "$\\tfrac12te^{-t}$",
+        "$\\tfrac12e^{-2t}$",
+        "$\\tfrac12t^2e^{-t}$"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Odziv z neničelno začetno vrednostjo",
+      "plot": "initial34",
+      "source": "Lastna priredba po MIT 18.03 · 3B-1",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Z Laplaceovo transformacijo reši $y'+3y=2e^{-t}$ pri $y(0)=2$.",
+      "cue": "Enačba vsebuje odvod in podano vrednost pri nič. Ta vstopi že v transformacijo odvoda.",
+      "hint": "Najprej vpiši $sY-2$ namesto transformiranke odvoda. Nato izpostavi $Y$.",
+      "symbols": "$y(t)$ je odziv, $Y(s)$ njegova transformiranka. Število 2 je dana začetna višina.",
+      "purpose": "Odziv je odvisen od začetnega stanja in od zunanjega vzbujanja.",
+      "rules": [
+        [
+          "Odvod v času",
+          "\\mathcal L(y')=sY-y(0)",
+          "Iz pogoja $y(0)=2$ dobiš začetni člen.",
+          "sY-2+3Y=\\frac2{s+1}"
+        ]
+      ],
+      "worked": [
+        [
+          "Transformiraj enačbo in prenesi začetno vrednost na desno stran.",
+          "(s+3)Y=2+\\frac2{s+1}"
+        ],
+        [
+          "Deli s faktorjem pred neznanko.",
+          "Y=\\frac2{s+3}+\\frac2{(s+1)(s+3)}"
+        ],
+        [
+          "V drugem ulomku nastavi $A/(s+1)+B/(s+3)$. Odpravi imenovalec in vstavi ničli.",
+          "2=A(s+3)+B(s+1),\\qquad s=-1:\\ A=1,\\quad s=-3:\\ B=-1"
+        ],
+        [
+          "Združi oba člena z imenovalcem $s+3$. Obrni po posameznih ulomkih.",
+          "Y=\\frac1{s+3}+\\frac1{s+1}\\ \\Rightarrow\\ y(t)=e^{-3t}+e^{-t}"
+        ]
+      ],
+      "quiz": [
+        "Kateri zapis pravilno uporabi začetni pogoj?",
+        "$\\mathcal L(y')=sY-2$",
+        "$\\mathcal L(y')=sY+2$",
+        "$\\mathcal L(y')=sY-2s$"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Časovni faktor pred kosinusom",
+      "plot": "timeWeight34",
+      "source": "Lastna priredba po MIT 18.03 · 3B-3",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Izračunaj $\\mathcal L(t\\cos 3t)$ za $s>0$.",
+      "cue": "Faktor $t$ stoji pred znanim signalom. Odvajaš njegovo transformiranko po $s$.",
+      "hint": "Pri odvajanju količnika se odvod števca in odvod imenovalca pojavita z različnima predznakoma.",
+      "symbols": "$t$ je čas. $s$ določa dušenje pri transformiranju. Črtica na $F$ označuje odvod po $s$.",
+      "purpose": "To pravilo potrebuješ tudi pri enačbi s faktorjem $t$ pred časovnim odvodom.",
+      "rules": [
+        [
+          "Množenje s časom",
+          "\\mathcal L(tf(t))=-F'(s)",
+          "Časovni signal je kosinus s frekvenco 3.",
+          "F(s)=\\frac{s}{s^2+9}"
+        ]
+      ],
+      "worked": [
+        [
+          "Najprej preberi transformiranko kosinusa brez časovnega faktorja.",
+          "f(t)=\\cos(3t),\\qquad F(s)=\\frac{s}{s^2+3^2}"
+        ],
+        [
+          "Odvajaj s pravilom za količnik.",
+          "F'(s)=\\frac{1\\cdot(s^2+9)-s\\cdot2s}{(s^2+9)^2}=\\frac{9-s^2}{(s^2+9)^2}"
+        ],
+        [
+          "Upoštevaj minus iz pravila za množenje s časom.",
+          "\\mathcal L(t\\cos3t)=-F'(s)=\\frac{s^2-9}{(s^2+9)^2}"
+        ]
+      ],
+      "quiz": [
+        "Pri katerem pozitivnem $s$ je transformiranka nič?",
+        "$s=3$",
+        "$s=9$",
+        "$s=1$"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Pulz z ločenim vklopom in izklopom",
+      "plot": "pulse34",
+      "source": "Lastna priredba po MIT 18.03 · 3C-1 in 3C-2",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Signal ima vrednost 3 za $1\\le t<4$, sicer je nič. Zapiši ga s stopnicama in določi transformiranko.",
+      "cue": "Signal ima dva skoka. Ob vsakem izračunaj spremembo višine.",
+      "hint": "Pri vklopu višina naraste za 3. Pri izklopu moraš odšteti enako količino.",
+      "symbols": "$H(t-a)$ se vklopi pri času $a$. $s>0$ je parameter transformacije.",
+      "purpose": "Tako opišeš silo, ki deluje samo v določenem časovnem oknu.",
+      "rules": [
+        [
+          "Transformacija stopnice",
+          "\\mathcal L(H(t-a))=\\frac{e^{-as}}s",
+          "Vsak čas preklopa da svoj eksponent.",
+          "H(t-4)\\ \\longleftrightarrow\\ \\frac{e^{-4s}}s"
+        ]
+      ],
+      "worked": [
+        [
+          "Zapiši skoka ob robovih časovnega okna.",
+          "\\Delta f(1)=3-0=3,\\qquad \\Delta f(4)=0-3=-3"
+        ],
+        [
+          "Vsak skok pomnoži s stopnico, ki se vklopi v njegovem trenutku.",
+          "f(t)=3H(t-1)-3H(t-4)"
+        ],
+        [
+          "Uporabi linearnost in transformiraj oba člena.",
+          "F(s)=3\\frac{e^{-s}}s-3\\frac{e^{-4s}}s=\\frac3s(e^{-s}-e^{-4s})"
+        ]
+      ],
+      "quiz": [
+        "Kateri člen signal izklopi?",
+        "$-3H(t-4)$",
+        "$3H(t-4)$",
+        "$-3H(t-1)$"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Inverz zakasnjene rampe",
+      "plot": "ramp34",
+      "source": "Lastna priredba po MIT 18.03 · 3C-2 in 3C-5",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Obrni $F(s)=2e^{-3s}/s^2$ in zapiši signal pred časom 3 in po njem.",
+      "cue": "Faktor $e^{-as}$ pomeni časovni zamik za $a$. Najprej obrni preostanek.",
+      "hint": "Po vklopu šteješ čas od 3 naprej. Zato v osnovni rampi zamenjaš $t$ z $t-3$.",
+      "symbols": "$u=t-3$ je čas od vklopa. Število 2 je naklon rampe.",
+      "purpose": "Zakasnjen vnos lahko začne rasti šele po določenem času.",
+      "rules": [
+        [
+          "Zakasnitev signala",
+          "e^{-as}G(s)\\ \\longleftrightarrow\\ H(t-a)g(t-a)",
+          "Preostanek je transformiranka linearnega naraščanja.",
+          "G(s)=2/s^2\\ \\longleftrightarrow\\ g(u)=2u"
+        ]
+      ],
+      "worked": [
+        [
+          "Loči osnovno obliko in čas vklopa.",
+          "F(s)=e^{-3s}G(s),\\qquad G(s)=2/s^2,\\quad a=3"
+        ],
+        [
+          "Iz inverznega para za rampo dobiš njeno višino pri lokalnem času.",
+          "g(u)=2u,\\quad u=t-3\\ \\Rightarrow\\ g(t-3)=2(t-3)"
+        ],
+        [
+          "Pomnoži s stopnico in preberi odgovor po intervalih.",
+          "f(t)=2H(t-3)(t-3)=\\begin{cases}0,&0\\le t<3,\\\\2(t-3),&t\\ge3.\\end{cases}"
+        ]
+      ],
+      "quiz": [
+        "Kolikšna je višina pri času $t=4$?",
+        "$2$",
+        "$8$",
+        "$6$"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Odziv nihala na sunek",
+      "plot": "impact34",
+      "source": "Lastna priredba po MIT 18.03 · 3D-1 in 3D-7",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Z Laplaceovo transformacijo reši $y''+4y=3\\delta(t-1)$ za $y(0)=y'(0)=0$.",
+      "cue": "Diracov sunek v trenutku 1 sproži odziv nihala. V domeni $s$ da faktor zamika.",
+      "hint": "Najprej obrni $3/(s^2+4)$. Nato uporabi zamik za eno časovno enoto.",
+      "symbols": "$\\delta(t-1)$ je enotski sunek pri 1. $y$ je odmik nihala. Faktor 3 določa velikost sunka.",
+      "purpose": "Udarec spremeni hitrost, medtem ko se odmik nadaljuje zvezno.",
+      "rules": [
+        [
+          "Diracov sunek",
+          "\\mathcal L(\\delta(t-a))=e^{-as}",
+          "Čas zadetka je $a=1$, jakost je 3.",
+          "\\mathcal L(3\\delta(t-1))=3e^{-s}"
+        ]
+      ],
+      "worked": [
+        [
+          "V pravilo za drugi odvod vstavi začetni odmik in hitrost.",
+          "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y"
+        ],
+        [
+          "Transformiraj enačbo in izpostavi $Y$.",
+          "(s^2+4)Y=3e^{-s}\\ \\Rightarrow\\ Y=e^{-s}\\frac3{s^2+4}"
+        ],
+        [
+          "Ustvari števec 2 za sinusni par in prilagodi zunanji faktor.",
+          "\\frac3{s^2+4}=\\frac32\\frac2{s^2+2^2}\\ \\longleftrightarrow\\ \\frac32\\sin(2t)"
+        ],
+        [
+          "Po zamiku teče nihanje od trenutka udarca. Prej nihalo miruje.",
+          "y(t)=\\frac32 H(t-1)\\sin(2(t-1))"
+        ],
+        [
+          "Tik po udarcu odvajaj desno vejo. Razlika z začetno hitrostjo pred udarcem je enaka jakosti sunka.",
+          "y'(1^+)-y'(1^-)=3\\cos(0)-0=3"
+        ]
+      ],
+      "quiz": [
+        "Katera količina skoči za 3?",
+        "Hitrost nihala",
+        "Odmik nihala",
+        "Krožna frekvenca"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Konvolucija kot integral prekrivanja",
+      "plot": "overlap34",
+      "source": "Lastna priredba po MIT 18.03 · 3D-4 in 3D-6",
+      "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/d132835c950aa50fde695bdf049aea9a_MIT18_03S10_3ex.pdf",
+      "prompt": "Za vzročna signala $f(t)=e^{-2t}$ in $g(t)=e^{-t}$, $t\\ge0$, izračunaj $(f*g)(t)$ neposredno iz definicije.",
+      "cue": "En signal zapišeš v času $u$, drugega v času $t-u$. Oba sta aktivna med 0 in $t$.",
+      "hint": "V produktu združi eksponenta. Pri integriranju po $u$ je $t$ stalen.",
+      "symbols": "$t$ je čas opazovanja. $u$ preteče prekrivanje. Osenčena ploščina je vrednost konvolucije.",
+      "purpose": "Iz trenutnih prispevkov v preteklosti sestaviš odziv v izbranem trenutku.",
+      "rules": [
+        [
+          "Vzročna konvolucija",
+          "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du",
+          "Jedro je produkt vrednosti pri $u$ in pri $t-u$.",
+          "f(u)g(t-u)=e^{-2u}e^{-(t-u)}"
+        ]
+      ],
+      "worked": [
+        [
+          "V definicijo vstavi predpisa obeh signalov.",
+          "(f*g)(t)=\\int_0^t e^{-2u}e^{-(t-u)}\\,du"
+        ],
+        [
+          "Združi eksponente in izpostavi faktor brez $u$.",
+          "-2u-(t-u)=-u-t,\\qquad (f*g)(t)=e^{-t}\\int_0^t e^{-u}\\,du"
+        ],
+        [
+          "V primitivni funkciji vstavi obe meji. Konstanta se odšteje.",
+          "[-e^{-u}]_0^t=-e^{-t}-(-1)=1-e^{-t}"
+        ],
+        [
+          "Pomnoži z zunanjim faktorjem.",
+          "(f*g)(t)=e^{-t}(1-e^{-t})=e^{-t}-e^{-2t}"
+        ]
+      ],
+      "quiz": [
+        "Katera funkcija je pri izbranem $t$ pod integralom?",
+        "$e^{-t-u}$",
+        "$e^{-3t}$",
+        "$e^{-2u-t}$"
+      ]
+    }
+  ],
+  "guides": {
+    "inverse": {
+      "title": "Kako iz ulomka dobiš časovni signal",
+      "steps": [
+        [
+          "Imenovalec razstavi na faktorje. Vsaka različna enostavna ničla prinese en ulomek.",
+          "\\frac{N(s)}{(s-p)(s-q)}=\\frac A{s-p}+\\frac B{s-q}"
+        ],
+        [
+          "Odpravi imenovalec. V polinomsko identiteto vstavi ničli, da določiš koeficienta.",
+          "N(s)=A(s-q)+B(s-p)"
+        ],
+        [
+          "Vsak dobljeni ulomek preberi iz tabele transformacij.",
+          "\\frac{A}{s-p}\\ \\longleftrightarrow\\ Ae^{pt}"
+        ]
+      ]
+    },
+    "sys22": {
+      "title": "Kako transformiraš sistem",
+      "steps": [
+        [
+          "Vsaki časovni funkciji priredi svojo transformiranko. V pravilo za odvod vstavi njeno začetno vrednost.",
+          "y'\\ \\longleftrightarrow\\ sY-y(0),\\qquad z'\\ \\longleftrightarrow\\ sZ-z(0)"
+        ],
+        [
+          "Dobiš dve algebrajski enačbi. Iz prve izrazi eno transformiranko, jo vstavi v drugo in nato obe obrni.",
+          "Y(s)\\ \\longleftrightarrow\\ y(t),\\qquad Z(s)\\ \\longleftrightarrow\\ z(t)"
+        ]
+      ]
+    },
+    "devar": {
+      "title": "Ko se čas in odvod pojavita skupaj",
+      "steps": [
+        [
+          "Najprej transformiraj časovni odvod in upoštevaj oba začetna pogoja.",
+          "G(s)=\\mathcal L(y'')=s^2Y-sy(0)-y'(0)"
+        ],
+        [
+          "Faktor časa spremeni celotno dobljeno funkcijo v negativni odvod po parametru.",
+          "\\mathcal L(ty'')=-\\frac{dG}{ds}"
+        ]
+      ]
+    },
+    "triple": {
+      "title": "Od konvolucije do produkta",
+      "steps": [
+        [
+          "Pri izbranem času množiš vrednosti prvih dveh signalov ob komplementarnih časih in produkt sešteješ po preteklosti.",
+          "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du"
+        ],
+        [
+          "Laplaceova transformacija spremeni ta integral v produkt. Pri treh signalih lahko najprej združiš poljubna sosednja dva.",
+          "\\mathcal L((f*g)*h)=F(s)G(s)H(s)"
+        ]
+      ]
+    },
+    "force24": {
+      "title": "Kako zapišeš preklop brez ugibanja",
+      "steps": [
+        [
+          "Ob preklopu pri $a$ izračunaj razliko novega in starega predpisa. Ta popravek vklopi stopnica.",
+          "f(t)=f_1(t)+H(t-a)[f_2(t)-f_1(t)]"
+        ],
+        [
+          "Popravek zapiši v lokalnem času $u=t-a$. Šele v tej obliki lahko uporabiš zamik.",
+          "g(u)=f_2(u+a)-f_1(u+a),\\qquad \\mathcal L(H(t-a)g(t-a))=e^{-as}G(s)"
+        ]
+      ]
+    },
+    "volterra": {
+      "title": "Kako iz integrala določiš neznan signal",
+      "steps": [
+        [
+          "Če je odmik drugega faktorja $t-u$, preberi integral kot konvolucijo neznanke z znanim jedrom.",
+          "(y*k)(t)=r(t)\\ \\Longrightarrow\\ Y(s)K(s)=R(s)"
+        ],
+        [
+          "Izrazi transformiranko na območju, kjer jedro dovoljuje deljenje. Nato jo obrni.",
+          "Y(s)=R(s)/K(s)"
+        ]
+      ]
+    },
+    "damped34": {
+      "title": "Kako prepoznaš dušeno nihanje",
+      "steps": [
+        [
+          "S polovico koeficienta pri $s$ dopolni kvadrat. Preostala pozitivna konstanta je kvadrat frekvence.",
+          "s^2+2as+c=(s+a)^2+(c-a^2)"
+        ],
+        [
+          "Razdeli števec na del s $s+a$ za kosinus in del brez $s$ za sinus.",
+          "\\frac{s+a}{(s+a)^2+b^2}\\longleftrightarrow e^{-at}\\cos bt,\\qquad \\frac b{(s+a)^2+b^2}\\longleftrightarrow e^{-at}\\sin bt"
+        ]
+      ]
+    },
+    "doublePole34": {
+      "title": "Zakaj dvojni pol potrebuje dva ulomka",
+      "steps": [
+        [
+          "Pri dvakratnem faktorju nastavek vsebuje prvo in drugo potenco. Pri enostavnem faktorju zadošča prva.",
+          "(s+a)^2\\ \\longrightarrow\\ \\frac A{s+a}+\\frac B{(s+a)^2}"
+        ],
+        [
+          "Prvo potenco obrneš v eksponent. Pri drugi dobi eksponent še časovni faktor.",
+          "\\frac1{s+a}\\longleftrightarrow e^{-at},\\qquad \\frac1{(s+a)^2}\\longleftrightarrow te^{-at}"
+        ]
+      ]
+    },
+    "impact34": {
+      "title": "Kaj pomeni trenutni sunek",
+      "steps": [
+        [
+          "Jakost sunka je njegov integral skozi trenutek udarca $a$. Na vzmetnem nihalu s podano maso $m$ to določi spremembo hitrosti.",
+          "\\int_{a-\\varepsilon}^{a+\\varepsilon}J\\delta(t-a)\\,dt=J,\\qquad m[y'(a^+)-y'(a^-)]=J"
+        ],
+        [
+          "V prostoru transformirank čas udarca določi zamik. Inverz brez faktorja zamika da odziv na udarec ob času nič.",
+          "J\\delta(t-a)\\longleftrightarrow Je^{-as}"
+        ]
+      ]
+    }
+  }
+}

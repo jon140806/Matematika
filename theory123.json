@@ -27,7 +27,7 @@
     ]
   },
   "leib": {
-    "title": "Leibnizovo pravilo",
+    "title": "Leibnizovo pravilo z mejama u(y) in v(y)",
     "definition": "Pri integralu s spremenljivima mejama se lahko s parametrom spreminjajo višina krivulje in oba robova intervala.",
     "conditions": "Funkciji $f$ in $\\partial_y f$ naj bosta zvezni na pravokotniku, ki zajema vse obravnavane meje, $u$ in $v$ pa zvezno odvedljivi.",
     "symbols": "$y$ je parameter (na grafu $a$). $u$ je leva meja, $v$ desna. Indeks $+$ pomeni vrednost po spremembi parametra za $h$.",
@@ -50,6 +50,24 @@
         "Po deljenju s $h$ notranji člen preide v integral $f_y$. Povprečna višina robnega pasu teži k robni višini, širina pasu na enoto $h$ pa k odvodu meje.",
         "F'(y)=\\int_{u(y)}^{v(y)}f_y(x,y)\\,dx+v'(y)f(v(y),y)-u'(y)f(u(y),y)",
         "Trije predznačeni stolpci predstavljajo notranjost, desni rob in levi rob."
+      ]
+    ],
+    "cases": [
+      [
+        "Obe meji sta stalni",
+        "u'=v'=0\\quad\\Longrightarrow\\quad F'(y)=\\int_u^v f_y(x,y)\\,dx"
+      ],
+      [
+        "Premika se zgornja meja",
+        "u'=0\\quad\\Longrightarrow\\quad F'(y)=\\int_u^{v(y)} f_y\\,dx+f(v(y),y)\\,v'(y)"
+      ],
+      [
+        "Premika se spodnja meja",
+        "v'=0\\quad\\Longrightarrow\\quad F'(y)=\\int_{u(y)}^v f_y\\,dx-f(u(y),y)\\,u'(y)"
+      ],
+      [
+        "Premikata se obe meji",
+        "F'(y)=\\int_{u(y)}^{v(y)}f_y\\,dx+f(v(y),y)v'(y)-f(u(y),y)u'(y)"
       ]
     ]
   },
@@ -239,6 +257,33 @@
         "Kadar je matrika $sI-A$ obrnljiva, njen inverz določa odziv v domeni $s$. Inverzna transformacija vsake komponente vrne ustrezno časovno funkcijo.",
         "\\mathbf Y(s)=(sI-A)^{-1}(\\mathbf y_0+\\mathbf G(s)),\\qquad \\mathbf y(t)=\\mathcal L^{-1}(\\mathbf Y)(t)",
         "Časovni krivulji ponazarjata komponenti istega vektorskega odziva."
+      ]
+    ]
+  },
+  "gaussTheory": {
+    "title": "Gaussov integral in kosinusna utež",
+    "definition": "Funkcija $e^{-x^2}$ ima obliko zvona. Integral $I(a)=\\int_0^\\infty e^{-x^2}\\cos(ax)\\,dx$ meri njegovo predznačeno ploščino po množenju s kosinusom.",
+    "conditions": "Velja za vsak realen $a$. Integrand po absolutni vrednosti omejuje $e^{-x^2}$, njegov odvod po parametru pa $xe^{-x^2}$. Obe ovojnici sta integrabilni na poltraku.",
+    "symbols": "$x$ je spremenljivka integriranja, $a$ določa frekvenco kosinusa. Pri $a=0$ ima kosinus povsod vrednost 1. $r$ je razdalja od izhodišča v ravnini.",
+    "use": "Z odvajanjem po frekvenci ugotovimo, koliko ploščine ostane, ko se pozitivni in negativni deli nihanja izravnajo.",
+    "steps": [
+      [
+        "Zakaj je začetna ploščina enaka √π/2?",
+        "Kvadrat $I(0)$ je produkt dveh integralov z neodvisnima spremenljivkama $x$ in $y$. Dobimo integral $e^{-(x^2+y^2)}$ v prvi četrtini. V polarnih koordinatah je $x^2+y^2=r^2$, ploščinski element pa $r\\,dr\\,d\\theta$. Kot preteče od 0 do $\\pi/2$.",
+        "I(0)^2=\\frac{\\pi}{2}\\int_0^\\infty re^{-r^2}\\,dr=\\frac{\\pi}{2}\\left[-\\frac12 e^{-r^2}\\right]_0^\\infty=\\frac{\\pi}{4}\\ \\Longrightarrow\\ I(0)=\\frac{\\sqrt\\pi}{2}",
+        "Z večanjem polmera $R$ osenčena ploščina narašča proti $\\pi/4$. To je kvadrat začetnega integrala."
+      ],
+      [
+        "Zakaj se po odvajanju vrne isti integral?",
+        "Odvod kosinusa po $a$ prinese faktor $-x\\sin(ax)$. Ker je $(e^{-x^2})'=-2xe^{-x^2}$, lahko integriramo po delih. Robni produkt $e^{-x^2}\\sin(ax)$ je pri ničli nič in v neskončnosti teži k nič.",
+        "I'(a)=\\frac12\\int_0^\\infty(e^{-x^2})'\\sin(ax)\\,dx=-\\frac a2\\int_0^\\infty e^{-x^2}\\cos(ax)\\,dx=-\\frac a2I(a)",
+        "Zelena krivulja kaže odvod integranda po $a$. Med premikanjem drsnika ga omejujeta isti vijolični ovojnici."
+      ],
+      [
+        "Kako začetna ploščina določi konstanto?",
+        "Enačbo $I'+(a/2)I=0$ pomnožimo z $e^{a^2/4}$. Leva stran je odvod produkta. Produkt je torej konstanta $C$. Pri $a=0$ je eksponentni faktor enak 1, zato je $C$ ravno začetna ploščina.",
+        "(e^{a^2/4}I(a))'=0\\ \\Longrightarrow\\ e^{a^2/4}I(a)=C,\\quad C=I(0)=\\frac{\\sqrt\\pi}{2},\\quad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}",
+        "Začetna točka določa višino krivulje. Z drsnikom odčitaj $I(a)$ ob drugi frekvenci."
       ]
     ]
   }

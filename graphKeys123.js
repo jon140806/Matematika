@@ -1,4 +1,9 @@
 const graphKeys123 = {
+  gaussTheory: k => [
+    {x:'r · polmer',y:'prispevek na enoto polmera',curves:['(π/2) r exp(−r²)'],areas:['del I(0)² do R'],marks:['R']},
+    {x:'x · položaj',y:'odvod in ovojnici',curves:['−x exp(−x²) sin(ax)','+x exp(−x²)','−x exp(−x²)'],areas:['prispevek k I′(a)'],marks:[]},
+    {x:'a · parameter',y:'I(a) · predznačena ploščina',curves:['I(a) = C exp(−a²/4)'],areas:[],marks:['a']}
+  ][k],
   area: k => ({
     x: 'x · razdalja (m)', y: k === 2 ? 'Δf/h · sprememba višine na enoto a' : 'f · višina plošče (m)',
     curves: [['f(x,a) · izbrani rob', 'f(x,0) = 1'], ['f(x,a) · stari rob', 'f(x,a+h) · novi rob'], ['Δf/h = x²']][k],

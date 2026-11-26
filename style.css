@@ -29,3 +29,9 @@
 
 .concept{border-top:3px solid var(--plum);background:white;border-radius:7px 7px 12px 12px;border-inline:1px solid var(--border);border-bottom:1px solid var(--border);padding:17px 22px;margin:0 0 18px}.concept h3,.concept dt{font:600 14px/1.4 var(--sans);color:var(--plum)}.concept>p{font-size:18px;max-width:78ch;margin:5px 0 13px}.concept dl{margin:0}.concept dl div{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:10px;border-top:1px solid var(--border);padding:7px 0}.concept dd{margin:0;overflow-x:auto}.scene .formula.calcLine{line-height:2.15;padding:8px 12px}.concept p,.scene .explain>p{overflow-x:auto}
 @media(max-width:650px){.concept{padding:13px}.concept dl div{display:block}.concept dt{margin-bottom:3px}.concept>p{font-size:16px}}
+
+.methodGuide{background:#f7f5fa;border-left:3px solid var(--plum);border-radius:0 9px 9px 0;margin:16px 0;padding:14px clamp(14px,2vw,24px);min-width:0}
+.methodGuide .calculation{background:transparent;border:0;padding:0;margin:5px 0 0}
+.methodGuide .calculation li:last-child{padding-bottom:0}
+.ruleCases dl div{align-items:center}.method .quiet{padding:4px 0;color:var(--plum);text-decoration:underline;text-underline-offset:3px}
+.taskmeta a{color:inherit;text-underline-offset:3px}

@@ -1,0 +1,439 @@
+{
+  "exercises": [
+    {
+      "day": 1,
+      "title": "Premakne se levi rob",
+      "plot": "lowerGaussian",
+      "source": "UConn · priredba Leibnizovega pravila",
+      "url": "https://www.phys.uconn.edu/~rozman/Courses/P2400_25S/downloads/differentiation-under-integral-sign.pdf",
+      "prompt": "Za $0<a<1$ izračunaj $F'(a)$ in $F''(a)$, če je $F(a)=\\int_{a^2}^{2}e^{-x^2}\\,dx$.",
+      "cue": "Parameter se pojavi samo v spodnji meji. Ko ta naraste, iz območja izgubiš pas.",
+      "hint": "Najprej zapiši minus pred prispevkom spodnje meje. Pri drugem odvodu uporabi pravilo za produkt.",
+      "symbols": "$x$ označuje položaj. $a^2$ je levi rob, $2a$ njegova hitrost. Graf kaže ploščino, ki ostane do $x=2$.",
+      "purpose": "Določi, kako hitro se zmanjšuje količina pod zvonasto krivuljo, ko premikaš začetek merjenja.",
+      "rules": [
+        [
+          "Spremenljiva spodnja meja",
+          "F'(a)=-g(u(a))u'(a)",
+          "Vrednost višine pri levem robu pomnoži z njegovim odvodom.",
+          "g(a^2)=e^{-a^4},\\quad u'(a)=2a"
+        ]
+      ],
+      "worked": [
+        [
+          "Označi obe meji. Zgornja meja miruje in integrand je neodvisen od parametra.",
+          "u=a^2,\\quad u'=2a,\\quad v=2,\\quad v'=0,\\quad \\partial_a e^{-x^2}=0"
+        ],
+        [
+          "Vstavi spodnjo mejo namesto $x$. Nato odštej prispevek levega roba.",
+          "F'(a)=0+0-e^{-(a^2)^2}\\cdot2a=-2ae^{-a^4}"
+        ],
+        [
+          "Za drugi odvod potrebuješ tudi odvod eksponenta. Uporabi verižno pravilo.",
+          "(e^{-a^4})'=e^{-a^4}(-4a^3)"
+        ],
+        [
+          "Pri produktu enkrat odvajaj prvi faktor in enkrat drugega.",
+          "F''(a)=-2e^{-a^4}+(-2a)e^{-a^4}(-4a^3)=(8a^4-2)e^{-a^4}"
+        ]
+      ],
+      "quiz": [
+        "Zakaj ima prvi odvod negativen predznak?",
+        "Levi rob se pomika desno in odvzema ploščino.",
+        "Eksponent je negativen.",
+        "Zgornja meja ima negativen odvod."
+      ]
+    },
+    {
+      "day": 1,
+      "title": "Dve premični meji na isti krivulji",
+      "plot": "twoCosEdges",
+      "source": "UConn · priredba Leibnizovega pravila",
+      "url": "https://www.phys.uconn.edu/~rozman/Courses/P2400_25S/downloads/differentiation-under-integral-sign.pdf",
+      "prompt": "Za $0<a<1$ določi $G'(a)$, če je $G(a)=\\int_a^{2a}\\cos(x^2)\\,dx$. Izračunaj še $G'(\\tfrac12)$.",
+      "cue": "Krivulja je ves čas ista. Odvod določata višini na obeh premičnih robovih.",
+      "hint": "Najprej vstavi $x=2a$ in $x=a$ v kosinus. Vsako višino pomnoži s hitrostjo njenega roba.",
+      "symbols": "$a$ je leva meja, $2a$ desna. Graf kaže predznačeno ploščino med njima.",
+      "purpose": "Izračunaj spremembo integrala tudi tedaj, ko primitivne funkcije ne znaš zapisati z običajnimi funkcijami.",
+      "rules": [
+        [
+          "Premik obeh robov",
+          "G'(a)=g(v(a))v'(a)-g(u(a))u'(a)",
+          "Višini beremo pri različnih položajih.",
+          "g(v)=\\cos(4a^2),\\quad g(u)=\\cos(a^2)"
+        ]
+      ],
+      "worked": [
+        [
+          "Odvajaj obe meji posebej in preveri, kateri del integrala se spreminja.",
+          "u=a,\\quad u'=1,\\qquad v=2a,\\quad v'=2,\\qquad \\partial_a\\cos(x^2)=0"
+        ],
+        [
+          "Za zgornjo mejo najprej kvadriraj celoten izraz $2a$, nato pomnoži s hitrostjo.",
+          "g(v)v'=\\cos((2a)^2)\\cdot2=2\\cos(4a^2)"
+        ],
+        [
+          "Spodnji rob se odšteje. Zapiši oba prispevka skupaj.",
+          "G'(a)=2\\cos(4a^2)-\\cos(a^2)"
+        ],
+        [
+          "Vstavi zahtevani parameter. Kota v kosinusu sta v radianih.",
+          "G'(\\tfrac12)=2\\cos(1)-\\cos(\\tfrac14)\\approx0{,}112"
+        ]
+      ],
+      "quiz": [
+        "Katera hitrost pomnoži višino na desnem robu?",
+        "$2$",
+        "$2a$",
+        "$1$"
+      ]
+    },
+    {
+      "day": 1,
+      "title": "Parameter v obeh mejah in višini",
+      "plot": "edgeDensity",
+      "source": "UConn · priredba Leibnizovega pravila",
+      "url": "https://www.phys.uconn.edu/~rozman/Courses/P2400_25S/downloads/differentiation-under-integral-sign.pdf",
+      "prompt": "Za $a>0$ izračunaj odvod $M(a)=\\int_a^{2a}(1+ax)\\,dx$. Posebej označi notranji, desni in levi prispevek.",
+      "cue": "Parameter je na treh mestih. Spremeni višino na prejšnjem intervalu ter položaj obeh robov.",
+      "hint": "Pri notranjem delu drži $x$ pri miru. Na robovih uporabi prvotni integrand.",
+      "symbols": "$f(x,a)=1+ax$ je višina, $u(a)=a$ levi in $v(a)=2a$ desni rob.",
+      "purpose": "Ugotovi, kolikšen del spremembe izvira iz višanja premice in kolikšen iz premikov robov.",
+      "rules": [
+        [
+          "Leibnizovo pravilo",
+          "M'(a)=\\int_{u}^{v}\\partial_a f\\,dx+f(v,a)v'-f(u,a)u'",
+          "Funkcija in parcialni odvod sta zvezna, obe meji pa odvedljivi.",
+          "u'=1,\\quad v'=2,\\quad \\partial_a(1+ax)=x"
+        ]
+      ],
+      "worked": [
+        [
+          "Integriraj spremembo višine med trenutnima mejama.",
+          "H=\\int_a^{2a}x\\,dx=\\frac{(2a)^2-a^2}{2}=\\frac32a^2"
+        ],
+        [
+          "Pri zgornji meji vstavi $2a$ namesto $x$ in pomnoži z 2.",
+          "D=(1+a\\cdot2a)\\cdot2=2+4a^2"
+        ],
+        [
+          "Pri spodnji meji vstavi $a$ namesto $x$. Predznak prispevka je minus.",
+          "L=-(1+a\\cdot a)\\cdot1=-1-a^2"
+        ],
+        [
+          "Združi konstanti in koeficiente pri kvadratu.",
+          "M'(a)=H+D+L=2-1+\\left(\\tfrac32+4-1\\right)a^2=1+\\tfrac92a^2"
+        ]
+      ],
+      "quiz": [
+        "Kateri člen izvira iz spreminjanja višine znotraj intervala?",
+        "$\\tfrac32a^2$",
+        "$2+4a^2$",
+        "$-1-a^2$"
+      ]
+    },
+    {
+      "day": 1,
+      "title": "Gaussov integral z ožjo ovojnico",
+      "plot": "narrowGaussian",
+      "source": "K. Conrad, UConn · priredba § 6",
+      "url": "https://kconrad.math.uconn.edu/blurbs/analysis/diffunderint.pdf",
+      "prompt": "Določi $J(b)=\\int_0^\\infty e^{-4x^2}\\cos(bx)\\,dx$. Uporabi odvod po $b$ in znano vrednost $\\int_0^\\infty e^{-u^2}du=\\sqrt\\pi/2$.",
+      "cue": "Po odvajanju kosinusa dobiš $x$. Ta faktor je že skrit v odvodu Gaussove ovojnice.",
+      "hint": "Odvajanje $e^{-4x^2}$ po $x$ ustvari faktor $-8x$. Pri $b=0$ najprej zamenjaj $u=2x$.",
+      "symbols": "$b$ meri hitrost nihanja. $x$ teče od nič do neskončnosti, graf prikazuje začetni del tega intervala.",
+      "purpose": "Preveri, kako drugačna širina zvona spremeni enačbo in začetno vrednost istega tipa integrala.",
+      "rules": [
+        [
+          "Odvod pod integralom in per partes",
+          "J'(b)=\\int_0^\\infty \\partial_b f\\,dx,\\quad \\int v'u=[vu]-\\int vu'",
+          "Za vse $b$ velja ista integrabilna majoranta odvoda.",
+          "x e^{-4x^2}=-\\tfrac18(e^{-4x^2})'"
+        ]
+      ],
+      "worked": [
+        [
+          "Prvotni integrand omejuje Gaussova ovojnica. Za odvod uporabi še omejitev sinusa in integriraj majoranto.",
+          "\\left|\\partial_b f\\right|\\le xe^{-4x^2},\\qquad \\int_0^\\infty xe^{-4x^2}dx=\\left[-\\tfrac18e^{-4x^2}\\right]_0^\\infty=\\tfrac18"
+        ],
+        [
+          "Odvajaj po $b$. Prepiši faktor ob sinusu kot odvod po $x$.",
+          "J'(b)=-\\int_0^\\infty xe^{-4x^2}\\sin(bx)dx=\\tfrac18\\int_0^\\infty(e^{-4x^2})'\\sin(bx)dx"
+        ],
+        [
+          "Pri integraciji po delih robni člen izgine zaradi dušenja pri neskončnosti in sinusa pri ničli.",
+          "J'(b)=\\left[\\tfrac18e^{-4x^2}\\sin(bx)\\right]_0^\\infty-\\tfrac b8 J(b)=-\\tfrac b8J(b)"
+        ],
+        [
+          "Integrirni faktor mora imeti logaritemski odvod $b/8$. Tedaj na levi dobiš odvod produkta.",
+          " \\mu=e^{\\int b/8\\,db}=e^{b^2/16},\\quad (\\mu J)'=\\mu(J'+bJ/8)=0,\\quad J=Ce^{-b^2/16}"
+        ],
+        [
+          "Pri ničelni frekvenci kosinus postane ena. Izračunaj konstanto z raztegom $u=2x$.",
+          "C=J(0)=\\tfrac12\\int_0^\\infty e^{-u^2}du=\\tfrac{\\sqrt\\pi}{4},\\qquad J(b)=\\tfrac{\\sqrt\\pi}{4}e^{-b^2/16}"
+        ]
+      ],
+      "quiz": [
+        "Kakšna je diferencialna enačba za ožjo ovojnico?",
+        "$J'=-bJ/8$",
+        "$J'=-bJ/2$",
+        "$J'=bJ/8$"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Skalirana eksponentna utež",
+      "plot": "scaledGamma",
+      "source": "J. Yu, MIT · priredba zgleda za skaliranje",
+      "url": "https://www.mit.edu/~jeffery/gamma_beta.pdf",
+      "prompt": "Za $\\lambda>0$ izračunaj $A(\\lambda)=\\int_0^\\infty x^3 e^{-\\lambda x}dx$. Nato določi $A(2)$.",
+      "cue": "V eksponentu je linearni večkratnik spremenljivke. Zamenjava tega produkta ustvari standardno jedro gama.",
+      "hint": "Faktor $\\lambda$ pride iz potence in iz diferenciala. Zapiši oba.",
+      "symbols": "$x$ je položaj, $\\lambda$ uravnava dušenje, $A$ meri celotno ploščino.",
+      "purpose": "Ugotovi, za kolikšen faktor se spremeni integral, ko dušenje podvojiš.",
+      "rules": [
+        [
+          "Eulerjev integral gama",
+          "\\Gamma(p)=\\int_0^\\infty u^{p-1}e^{-u}du,\\qquad \\Gamma(n+1)=n!",
+          "Po zamenjavi bo eksponent pri $u$ enak 3.",
+          "p-1=3\\quad\\Rightarrow\\quad p=4"
+        ]
+      ],
+      "worked": [
+        [
+          "Zamenjaj celoten eksponent in preračunaj diferencial. Pozitivni faktor ohrani obe meji.",
+          "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\quad x:0\\to\\infty\\ \\Rightarrow\\ u:0\\to\\infty"
+        ],
+        [
+          "Kub pretvori v novo spremenljivko in izpostavi tudi faktor iz diferenciala.",
+          "A=\\int_0^\\infty (u/\\lambda)^3e^{-u}\\frac{du}{\\lambda}=\\frac{1}{\\lambda^4}\\int_0^\\infty u^3e^{-u}du"
+        ],
+        [
+          "Stopnja tri pomeni argument štiri. Za cel argument uporabi fakulteto.",
+          "A(\\lambda)=\\frac{\\Gamma(4)}{\\lambda^4}=\\frac{3!}{\\lambda^4}=\\frac6{\\lambda^4}"
+        ],
+        [
+          "Vstavi podano dušenje in okrajšaj.",
+          "A(2)=\\frac6{2^4}=\\frac6{16}=\\frac38"
+        ]
+      ],
+      "quiz": [
+        "Od kod pride četrta potenca v imenovalcu?",
+        "Tri potence iz $x^3$ in ena iz $dx$.",
+        "Vse štiri pridejo iz $dx$.",
+        "Ena iz $x^3$ in tri iz $dx$."
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Potenčni integral sinusa in kosinusa",
+      "plot": "trigBeta",
+      "source": "J. Yu, MIT · priredba trigonometrične bete",
+      "url": "https://www.mit.edu/~jeffery/gamma_beta.pdf",
+      "prompt": "S funkcijo beta izračunaj $I=\\int_0^{\\pi/2}\\sin^4t\\cos^2t\\,dt$.",
+      "cue": "Na četrtini periode sta sinus in kosinus nenegativna. Njuna kvadrata povezuje zveza $\\cos^2t=1-\\sin^2t$.",
+      "hint": "Uporabi $u=\\sin^2t$. Pri pretvorbi $dt$ obe potenci izgubljata po polovico v spremenljivki $u$.",
+      "symbols": "$t$ je kot v radianih, $u$ njegov kvadrat sinusa. Drsnik določa, do katerega kota seštevaš ploščino.",
+      "purpose": "Prevedi kotni integral v standardni integral na intervalu od 0 do 1.",
+      "rules": [
+        [
+          "Trigonometrična oblika bete",
+          "\\int_0^{\\pi/2}\\sin^\\alpha t\\cos^\\beta t\\,dt=\\tfrac12B((\\alpha+1)/2,(\\beta+1)/2)",
+          "Eksponenta preberi pred zamenjavo. Veljati mora $\\alpha,\\beta>-1$.",
+          "\\alpha=4,\\quad \\beta=2"
+        ]
+      ],
+      "worked": [
+        [
+          "Poišči diferencial nove spremenljivke in preslikaj meji.",
+          "u=\\sin^2t,\\quad du=2\\sqrt{u}\\sqrt{1-u}\\,dt,\\quad u(0)=0,\\quad u(\\pi/2)=1"
+        ],
+        [
+          "Nadomesti potenci in diferencial. Nato eksponentoma prištej 1.",
+          "I=\\tfrac12\\int_0^1\\frac{u^2(1-u)}{\\sqrt{u}\\sqrt{1-u}}du=\\tfrac12\\int_0^1u^{3/2}(1-u)^{1/2}du=\\tfrac12B(\\tfrac52,\\tfrac32)"
+        ],
+        [
+          "Vrednosti gama znižuj po ena do osnovne vrednosti.",
+          "\\Gamma(\\tfrac52)=\\tfrac32\\cdot\\tfrac12\\sqrt\\pi=\\tfrac34\\sqrt\\pi,\\quad \\Gamma(\\tfrac32)=\\tfrac12\\sqrt\\pi,\\quad \\Gamma(4)=6"
+        ],
+        [
+          "V imenovalcu seštej oba argumenta in okrajšaj.",
+          "I=\\frac{\\Gamma(5/2)\\Gamma(3/2)}{2\\Gamma(4)}=\\frac{(3/4)(1/2)\\pi}{12}=\\frac{\\pi}{32}"
+        ]
+      ],
+      "quiz": [
+        "Katera beta funkcija nastane?",
+        "$B(5/2,3/2)$",
+        "$B(2,1)$",
+        "$B(4,2)$"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Racionalni integral na poltraku",
+      "plot": "rationalBeta",
+      "source": "N. Elkies, Harvard · priredba naloge o racionalnem integralu",
+      "url": "https://people.math.harvard.edu/~elkies/M55b.16/index.html",
+      "prompt": "Izračunaj $I=\\int_0^\\infty x^2/(1+x)^5\\,dx$ s preslikavo na interval bete.",
+      "cue": "Imenovalec vsebuje potenco izraza $1+x$. Količnik $x/(1+x)$ stisne celotni poltrak na interval do 1.",
+      "hint": "Iz $u=x/(1+x)$ najprej izrazi $x$, šele nato izračunaj $dx$.",
+      "symbols": "$x$ teče do neskončnosti, $u$ po preslikavi teži k 1. Drsnik kaže, kateri novi meji ustreza izbrani rez.",
+      "purpose": "Prepoznaj beta integral tudi pri začetni zgornji meji v neskončnosti.",
+      "rules": [
+        [
+          "Substitucija na interval bete",
+          "B(p,q)=\\int_0^1u^{p-1}(1-u)^{q-1}du",
+          "Iz novega diferenciala se pojavi dodatna potenca imenovalca.",
+          "u=\\frac{x}{1+x},\\quad x=\\frac{u}{1-u}"
+        ]
+      ],
+      "worked": [
+        [
+          "Zapiši izraz v imenovalcu, diferencial in novi meji.",
+          "1+x=\\frac1{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\qquad x:0\\to\\infty\\ \\Rightarrow\\ u:0\\to1"
+        ],
+        [
+          "Prepiši vse tri faktorje in zberi potence pri $1-u$.",
+          "I=\\int_0^1\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^1u^2(1-u)du"
+        ],
+        [
+          "Argumenta sta za ena večja od eksponentov. Pretvori v gama funkcije.",
+          "I=B(3,2)=\\frac{\\Gamma(3)\\Gamma(2)}{\\Gamma(5)}"
+        ],
+        [
+          "Pri celih argumentih uporabi fakultete.",
+          "\\frac{2!\\,1!}{4!}=\\frac2{24}=\\frac1{12}"
+        ]
+      ],
+      "quiz": [
+        "Kaj se zgodi z mejo $x\\to\\infty$?",
+        "$u\\to1$",
+        "$u\\to0$",
+        "$u\\to\\infty$"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Kdaj je beta integral končen?",
+      "plot": "betaRange",
+      "source": "N. Elkies, Harvard · priredba družine beta integralov",
+      "url": "https://people.math.harvard.edu/~elkies/M55b.16/index.html",
+      "prompt": "Za katere realne $p$ konvergira $I(p)=\\int_0^\\infty x^{p-1}/(1+x)^3\\,dx$? Izrazi ga s funkcijo beta in izračunaj $I(2)$.",
+      "cue": "Na poltraku preveri dva konca. Blizu ničle prevlada števec, daleč od ničle upoštevaj tudi stopnjo imenovalca.",
+      "hint": "Pri ničli mora biti eksponent večji od $-1$, pri neskončnosti manjši od $-1$.",
+      "symbols": "$p$ je eksponentni parameter. Na grafu je omejen del integrala, pri presoji konvergence šteje ves poltrak.",
+      "purpose": "Ugotovi, kdaj je pretvorba v Eulerjev integral sploh dovoljena.",
+      "rules": [
+        [
+          "Primerjava s potenco",
+          "\\int_0^1x^r dx<\\infty\\ \\Leftrightarrow\\ r>-1,\\quad \\int_1^\\infty x^r dx<\\infty\\ \\Leftrightarrow\\ r<-1",
+          "Oba konca preveri ločeno in pogoja presekaj.",
+          "r_0=p-1,\\qquad r_\\infty=p-4"
+        ]
+      ],
+      "worked": [
+        [
+          "Pri ničli je imenovalec blizu ena. Primerjaj s potenco v števcu.",
+          "f(x)\\sim x^{p-1}\\ (x\\to0^+),\\quad p-1>-1\\ \\Leftrightarrow\\ p>0"
+        ],
+        [
+          "V neskončnosti je imenovalec primerljiv s kubom. Pri mejni potenci −1 integral logaritemsko divergira.",
+          "f(x)\\sim x^{p-4}\\ (x\\to\\infty),\\quad p-4<-1\\ \\Leftrightarrow\\ p<3"
+        ],
+        [
+          "Zamenjaj $u=x/(1+x)$. Meji postaneta 0 in 1, faktor iz diferenciala ima eksponent −2.",
+          "x=\\frac{u}{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad I(p)=\\int_0^1u^{p-1}(1-u)^{-(p-1)+3-2}du"
+        ],
+        [
+          "Drugi eksponent primerjaj z $q-1$. Pri $p=2$ uporabi zvezo z gama funkcijo.",
+          "I(p)=B(p,3-p),\\quad 0<p<3,\\qquad I(2)=B(2,1)=\\frac{1!\\,0!}{2!}=\\frac12"
+        ]
+      ],
+      "quiz": [
+        "Kateri interval izpolni pogoja na obeh koncih?",
+        "$0<p<3$",
+        "$0\\le p\\le3$",
+        "$p>0$"
+      ]
+    }
+  ],
+  "guides": {
+    "gauss": {
+      "title": "Gaussova ovojnica in kosinus · ITFR-01p, str. 11",
+      "steps": [
+        [
+          "Gaussova ovojnica je zvon $e^{-x^2}$. Pri ničelni frekvenci je kosinus povsod ena. V predavanju je ta začetna ploščina podana.",
+          "I(0)=\\int_0^\\infty e^{-x^2}dx=\\sqrt\\pi/2"
+        ],
+        [
+          "Odvajanje po frekvenci ustvari faktor $x$. Absolutno vrednost odvoda omeji integrabilna ovojnica, zato smemo odvajati pod integralom.",
+          "\\partial_a\\cos(ax)=-x\\sin(ax),\\quad \\int_0^\\infty xe^{-x^2}dx=\\tfrac12"
+        ],
+        [
+          "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
+          "-xe^{-x^2}=\\tfrac12(e^{-x^2})',\\qquad I'=-\\tfrac a2 I"
+        ],
+        [
+          "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
+          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
+        ]
+      ]
+    },
+    "atan": {
+      "title": "Leibnizovo pravilo · od številske do premične meje",
+      "steps": [
+        [
+          "Pri stalnih mejah ostane samo sprememba integranda. Pri vseh treh oblikah naj bosta funkcija in njen parcialni odvod zvezna na obravnavanem pravokotniku, premični meji pa zvezno odvedljivi.",
+          "\\frac d{dt}\\int_A^B f(x,t)dx=\\int_A^B f_t(x,t)dx"
+        ],
+        [
+          "Ko se premakne desni rob, njegovo višino pomnoži s hitrostjo meje in prištej. Pri meji $t^2$ je hitrost $2t$.",
+          "\\frac d{dt}\\int_A^{v(t)} f(x,t)dx=\\int_A^{v(t)} f_t(x,t)dx+f(v(t),t)v'(t)"
+        ],
+        [
+          "Ko se premikata oba robova, odštej še višino na levem robu krat njegovo hitrost. Pri stalnem desnem robu je $v'=0$.",
+          "\\frac d{dt}\\int_{u(t)}^{v(t)} f(x,t)dx=\\int_{u(t)}^{v(t)} f_t(x,t)dx+f(v(t),t)v'(t)-f(u(t),t)u'(t)"
+        ]
+      ]
+    },
+    "lowerGaussian": {
+      "title": "Drugi odvod pri premični meji",
+      "steps": [
+        [
+          "Pri stalni zgornji meji in integrandu, ki je odvisen samo od $x$, prvi odvod vsebuje višino na spodnji meji in njeno hitrost.",
+          "F(a)=\\int_{u(a)}^B g(x)dx,\\qquad F'=-g(u)u'"
+        ],
+        [
+          "Če je $g$ odvedljiva in $u$ dvakrat odvedljiva, pri drugem odvajanju uporabi pravilo za produkt. Pri višini $g(u)$ uporabi še verižno pravilo.",
+          "F''=-\\big(g'(u)u'\\big)u'-g(u)u''=-g'(u)(u')^2-g(u)u''"
+        ]
+      ]
+    },
+    "betasub": {
+      "title": "Kako prebereš integral beta",
+      "steps": [
+        [
+          "Po zamenjavi poišči meji 0 in 1 ter potenci $u$ in $1-u$. Pri obeh eksponentih prištej ena, ker v definiciji nastopata $p-1$ in $q-1$.",
+          "B(p,q)=\\int_0^1u^{p-1}(1-u)^{q-1}\\,du,\\qquad p,q>0"
+        ],
+        [
+          "Številsko vrednost dobiš z gama funkcijami. Polcele argumente znižuj do ene polovice, cele pa do ena.",
+          "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)},\\quad \\Gamma(z+1)=z\\Gamma(z),\\quad\\Gamma(1)=1,\\quad\\Gamma(\\tfrac12)=\\sqrt\\pi"
+        ]
+      ]
+    },
+    "loggamma": {
+      "title": "Kako prebereš integral gama",
+      "steps": [
+        [
+          "Pri meji v neskončnosti išči padajočo eksponentno funkcijo. Izberi $u$ tako, da eksponent postane $-u$, nato pretvori še diferencial in meje.",
+          "\\Gamma(p)=\\int_0^\\infty u^{p-1}e^{-u}du,\\qquad p>0"
+        ],
+        [
+          "Ko vidiš potenco $u^r$, je argument gama za ena večji. Pri polcelih argumentih uporabi rekurzijo do znane vrednosti.",
+          "p=r+1,\\qquad\\Gamma(p+1)=p\\Gamma(p),\\quad\\Gamma(\\tfrac12)=\\sqrt\\pi"
+        ]
+      ]
+    }
+  }
+}
