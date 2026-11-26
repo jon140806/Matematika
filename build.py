@@ -53,10 +53,14 @@ def worked_rows(rows):
 
 def exercise_steps(rows):
     steps=[]
-    for action,reason,tex,*visual in rows:
+    for action,reason,tex,*options in rows:
         step=dict(action=math_text(action),reason=math_text(reason),equation=worked_formula(tex))
-        if visual:
-            step["visual"],=visual
+        if options and isinstance(options[-1],dict):
+            step["detail"]=math_text(options.pop()["detail"])
+            if not steps:
+                raise ValueError("An optional explanation must follow a calculation step")
+        if options:
+            step["visual"],=options
         steps.append(step)
     return steps
 

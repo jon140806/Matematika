@@ -279,12 +279,12 @@
         ],
         [
           "Obrni osnovni signal",
-          "Časovni par za $1/s^2$ je $u$. Dvojka v števcu podvoji naklon.",
-          "g(u)=\\mathcal L^{-1}\\{2/s^2\\}=2u"
+          "Par za $1/s^2$ je čas $t$. Dvojka podvoji naklon rampe.",
+          "g(t)=\\mathcal L^{-1}\\{2/s^2\\}=2t"
         ],
         [
-          "Nastavi uro na vklop",
-          "Pri $t=3$ se lokalna ura postavi na nič, zato $u=t-3$.",
+          "Zamakni rampo za tri enote",
+          "V izrazu za rampo nadomesti $t$ s časom, ki je minil od vklopa.",
           "g(t-3)=2(t-3)"
         ],
         [
@@ -349,13 +349,35 @@
         [
           "Izračunaj hitrost pred in po sunku",
           "Pred udarcem je odmik nič. Za njim odvajaj sinus in upoštevaj notranji faktor 2.",
-          "t<1:\\ y'=0,\\qquad t>1:\\ y'=\\tfrac32\\cdot2\\cos(2(t-1))"
+          "t<1:\\ y'=0,\\qquad t>1:\\ y'=\\tfrac32\\cdot2\\cos(2(t-1))",
+          {
+            "detail": "Zakaj pri sunku skoči hitrost?"
+          }
         ],
         [
           "Izmeri skok hitrosti",
           "Od desne robne vrednosti odštej levo. Rezultat mora biti enak jakosti impulza.",
           "y'(1^+)-y'(1^-)=3\\cos(0)-0=3",
-          "velocityJump34"
+          "velocityJump34",
+          {
+            "detail": "Zakaj pri sunku skoči hitrost?"
+          }
+        ],
+        [
+          "Poveži skok s silo",
+          "Integriraj enačbo čez kratek interval okrog časa 1. Ta zajame sunek z jakostjo 3.",
+          "y'(1+\\varepsilon)-y'(1-\\varepsilon)+4\\int_{1-\\varepsilon}^{1+\\varepsilon}y(t)\\,dt=3",
+          {
+            "detail": "Zakaj pri sunku skoči hitrost?"
+          }
+        ],
+        [
+          "Skrči interval",
+          "Odmik je v bližini udarca omejen, zato integral odmika izgine in ostane razlika hitrosti.",
+          "|y|\\le M\\quad\\Longrightarrow\\quad\\left|4\\int_{1-\\varepsilon}^{1+\\varepsilon}y(t)\\,dt\\right|\\le8M\\varepsilon\\to0,\\quad y'(1^+)-y'(1^-)=3",
+          {
+            "detail": "Zakaj pri sunku skoči hitrost?"
+          }
         ]
       ],
       "quiz": [
@@ -525,23 +547,15 @@
       ]
     },
     "impact34": {
-      "title": "Kaj pomeni trenutni sunek",
+      "title": "Kako upoštevaš čas udarca",
       "steps": [
         [
-          "Enačbo nihala $my''+ky=J\\delta(t-a)$ integriraj skozi čas udarca. Interval zajame vso maso sunka.",
-          "m[y'(a+\\varepsilon)-y'(a-\\varepsilon)]+k\\int_{a-\\varepsilon}^{a+\\varepsilon}y(t)\\,dt=J"
+          "Sunek pri času $a$ v transformiranki prispeva faktor za zakasnitev.",
+          "\\mathcal L\\{J\\delta(t-a)\\}=Je^{-as}"
         ],
         [
-          "Interval skrči proti trenutku udarca. Če je odmik v bližini omejen z $M$, njegov integral izgine skupaj z dolžino intervala.",
-          "\\left|\\int_{a-\\varepsilon}^{a+\\varepsilon}y(t)\\,dt\\right|\\le 2\\varepsilon M\\xrightarrow{\\varepsilon\\to0^+}0"
-        ],
-        [
-          "Na robovih ostaneta hitrost tik po udarcu in tik pred njim. Njuna razlika je sunek na enoto mase.",
-          "m[y'(a^+)-y'(a^-)]+0=J"
-        ],
-        [
-          "V prostoru transformirank čas udarca določi zamik. Inverz brez faktorja zamika da odziv na udarec ob času nič.",
-          "J\\delta(t-a)\\longleftrightarrow Je^{-as}"
+          "Najprej obrni del brez zakasnitve. Nato odziv premakni za $a$ in ga vključi s stopnico.",
+          "Y(s)=e^{-as}G(s)\\quad\\Longrightarrow\\quad y(t)=H(t-a)g(t-a)"
         ]
       ]
     }

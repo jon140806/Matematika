@@ -51,3 +51,8 @@
 .stepFigure>strong{font:600 14px/1.4 var(--sans)}.stepFigure .drawing{margin-top:5px}.stepFigure .legend{flex-wrap:wrap;margin:6px 0}
 .stepFigure figcaption{font-size:14px;line-height:1.45;color:#f1ecf6}.stepFigure .graphKey i{background:var(--key);width:12px;height:3px;display:inline-block}
 .formulaReference{margin:0 14px 14px}
+
+.stepNote{grid-column:2;min-width:0;max-width:100%;margin-top:4px;border-left:2px solid var(--border);padding-left:10px}
+.stepNote summary{padding:4px 0;color:var(--plum);font:600 14px/1.5 var(--sans)}
+.noteStep{margin:10px 0 6px}.exerciseProcedure .noteStep h3{font-size:15px;margin:0}.noteStep p{margin:4px 0;font-size:15px}
+.noteStep .calcLine{width:fit-content;max-width:100%}

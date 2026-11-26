@@ -1,7 +1,7 @@
 {
   "area": "$x$ teče od 0 do 2, parameter $a$ določa višino krivulje. $F(a)$ je ploščina, $F'(a)$ njena hitrost spreminjanja. $C$ je začetna ploščina pri $a=0$.",
   "gauss": "$x$ je spremenljivka integriranja, $a$ določa hitrost nihanja kosinusa. $I(a)$ je predznačena ploščina. $I'(a)$ pove, kako se spremeni, ko spremeniš $a$.",
-  "atan": "$t$ določa obliko integranda in konec intervala. $x$ teče od 0 do $t^2$, $I(t)$ pa je rezultat integriranja za izbrani $t$.",
+  "atan": "$t$ je parameter (v splošni formuli $y$), $x$ teče od 0 do $t^2$. Zapis $f_t$ pomeni parcialni odvod integranda po parametru $t$, $I'(t)$ pa odvod celotnega integrala.",
   "root": "$y$ teče od 0 do 2. Parameter $t$ določa krivuljo pod integralom. Pri $t=2$ smeš parameter povečevati samo v desno.",
   "betasub": "$x$ je prvotna koordinata med 0 in 2. $u=x^2/4$ je nova koordinata med 0 in 1. $dx$ oziroma $du$ označuje, po kateri koordinati integriraš.",
   "cubeta": "$x$ teče od 0 do ½. Nova spremenljivka $u=4x^2$ preteče od 0 do 1. Argumenta $B(p,q)$ določata potenci pri $u$ in $1-u$.",

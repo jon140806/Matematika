@@ -537,56 +537,69 @@
         "(\\mu I)'=0\\quad\\Longrightarrow\\quad e^{a^2/4}I(a)=C"
       ],
       [
-        "Vstavi začetni parameter",
-        "Konstanto določi prvotni integral pri frekvenci nič. Tam je kosinus povsod ena.",
-        "C=e^0 I(0)=\\int_0^\\infty e^{-x^2}dx"
-      ],
-      [
-        "Postavi a = 0",
-        "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
-        "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
-      ],
-      [
-        "Kvadriraj ploščino",
-        "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
-        "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
-      ],
-      [
-        "Izračunaj integral po četrtini kroga",
-        "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
-        "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
-      ],
-      [
-        "Vstavi radialni meji",
-        "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
-        "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
-      ],
-      [
-        "Primerjaj disk in kvadrat",
-        "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
-        "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4",
-        "gaussDisks12"
-      ],
-      [
-        "Vzemi pozitivni koren",
-        "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
-        "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
-      ],
-      [
         "Določi konstanto",
-        "V enačbo za produkt vstavi začetno vrednost in izračunaj C.",
+        "V nalogi je začetna vrednost že podana. Pri ničelnem parametru je integrirni faktor enak 1, zato dobiš C neposredno.",
         "C=e^{0^2/4}I(0)=1\\cdot\\frac{\\sqrt\\pi}{2}=\\frac{\\sqrt\\pi}{2}"
       ],
       [
         "Izrazi iskano funkcijo",
         "Deli s faktorjem, da iz znanega produkta dobiš iskano funkcijo.",
         "I(a)=\\frac{C}{e^{a^2/4}}=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
+      ],
+      [
+        "Postavi a = 0",
+        "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
+        "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
+      ],
+      [
+        "Kvadriraj ploščino",
+        "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
+        "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
+      ],
+      [
+        "Izračunaj integral po četrtini kroga",
+        "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
+        "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
+      ],
+      [
+        "Vstavi radialni meji",
+        "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
+        "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
+      ],
+      [
+        "Primerjaj disk in kvadrat",
+        "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
+        "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4",
+        "gaussDisks12",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
+      ],
+      [
+        "Vzemi pozitivni koren",
+        "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
+        "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}",
+        {
+          "detail": "Od kod izvira podana začetna ploščina?"
+        }
       ]
     ],
     "atan": [
       [
         "Označi funkcijo pod integralom",
-        "Parameter je $t$. Spremenljivka $x$ označuje položaj, na katerem primerjamo dve višini.",
+        "V splošnem pravilu je parameter označen z $y$. V nalogi isto vlogo opravlja $t$. Integriraš po $x$, odvajaš po $t$.",
         "f(x,t)=\\frac{\\arctan(tx)-\\arctan x}{x}\\quad(x\\ne0),\\qquad I(t)=\\int_0^{t^2}f(x,t)\\,dx"
       ],
       [
@@ -596,30 +609,36 @@
       ],
       [
         "Pokrajšaj faktor x",
-        "Le prvi člen števca se spreminja s parametrom. Ker za zdaj velja $x\\ne0$, se faktorja krajšata.",
+        "Člen $\\arctan x$ ima po $t$ odvod nič. Faktor $x$ iz verižnega pravila pokrajša $1/x$. To je parcialni odvod, ki ga v splošni formuli označuje $f_y$.",
         "f_t(x,t)=\\frac1x\\left(\\frac{x}{1+t^2x^2}-0\\right)=\\frac1{1+t^2x^2}"
       ],
       [
-        "Določi premik meje",
-        "Pri odvajanju integrala se poleg višine spreminja še širina območja. Spodnja meja miruje.",
+        "Preberi spodnjo in zgornjo mejo",
+        "Iz prvotnega integrala prebereš, da je spodnja meja stalna, zgornja pa se s parametrom spreminja.",
         "u=0,\\quad u'=0,\\qquad v(t)=t^2,\\quad v'(t)=2t"
       ],
       [
-        "Razjasni deljenje z nič",
-        "Pravilo zahteva zvezen integrand. Pri $x=0$ prvotni ulomek nima vrednosti. Ker že poznamo $f_t$ in ker je $f(x,1)=0$, lahko $f$ obnovimo z integriranjem po parametru od 1 do $t$. Črka $r$ označuje vmesni parameter.",
+        "Vstavi v Leibnizovo pravilo",
+        "V notranji člen vstavi že dobljeni $f_t$. Na premičnem robu uporabi prvotni $f$ pri $x=t^2$ in ga pomnoži z $2t$. Pri $x=0$ ima integrand zvezno razširitev $f(0,t)=t-1$.",
+        "I'(t)=\\underbrace{\\int_0^{t^2}\\frac{dx}{1+t^2x^2}}_{H}+\\underbrace{2t\\,f(t^2,t)}_{D}",
+        "atanParts12"
+      ],
+      [
+        "Izberi znano vrednost parametra",
+        "Za utemeljitev zveznosti izberi parameter 1, ker je takrat $\\arctan(x)-\\arctan(x)=0$. Zgornja meja $t$ je vrednost parametra, pri kateri želiš dobiti $f(x,t)$. Med 1 in $t$ teče pomožna spremenljivka $r$.",
         "f(x,t)-f(x,1)=\\int_1^t f_t(x,r)\\,dr=\\int_1^t\\frac{dr}{1+r^2x^2}\\quad(x\\ne0)",
-        "atanAnchor12"
+        "atanAnchor12",
+        {
+          "detail": "Kako utemeljim zveznost pri x = 0?"
+        }
       ],
       [
         "Dopolni vrednost pri x = 0",
         "Novi integrand je zvezen tudi pri ničli. Tam je povsod enak 1. Dobljena razširitev in njen odvod po $t$ sta zvezna, zato lahko uporabimo Leibnizovo pravilo.",
-        "f(0,t)=\\int_1^t1\\,dr=t-1,\\qquad f_t(0,t)=1"
-      ],
-      [
-        "Loči notranjost in rob",
-        "Prvi člen sešteje spremembe višine na starem intervalu. Drugi člen je višina na desnem robu krat hitrost tega roba.",
-        "I'(t)=\\underbrace{\\int_0^{t^2}\\frac{dx}{1+t^2x^2}}_{H}+\\underbrace{2t\\,f(t^2,t)}_{D}",
-        "atanParts12"
+        "f(0,t)=\\int_1^t1\\,dr=t-1,\\qquad f_t(0,t)=1",
+        {
+          "detail": "Kako utemeljim zveznost pri x = 0?"
+        }
       ],
       [
         "V notranjem členu zamenjaj z = tx",
@@ -737,16 +756,6 @@
         "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2),\\quad\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
       ],
       [
-        "Odpravi koren z menjavo",
-        "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
-        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
-      ],
-      [
-        "Pošlji reza proti krajiščema",
-        "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
-        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2\\int_0^\\infty e^{-u^2}\\,du=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
-      ],
-      [
         "Izračunaj polovično vrednost",
         "Spusti argument za ena.",
         "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\sqrt\\pi/2"
@@ -755,6 +764,22 @@
         "Vstavi vse faktorje",
         "Vstavi še faktor 8 iz menjave spremenljivke.",
         "I=8\\,\\frac{(\\sqrt{\\pi}/2)^2}{2}=8\\,\\frac{\\pi}{8}=\\pi"
+      ],
+      [
+        "Odpravi koren z menjavo",
+        "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt",
+        {
+          "detail": "Od kod izvira polovična vrednost gama?"
+        }
+      ],
+      [
+        "Pošlji reza proti krajiščema",
+        "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2\\int_0^\\infty e^{-u^2}\\,du=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi",
+        {
+          "detail": "Od kod izvira polovična vrednost gama?"
+        }
       ]
     ],
     "cubeta": [
@@ -779,14 +804,17 @@
         "I=\\int_0^1\\frac{u^{1/4}}{\\sqrt2}(1-u)^{1/2}\\frac{du}{4u^{1/2}}=\\frac1{4\\sqrt2}\\int_0^1u^{-1/4}(1-u)^{1/2}du"
       ],
       [
-        "Preveri rob pri ničli",
-        "Novi integrand pri ničli zraste. Ker je drugi faktor največ 1, zadostuje integral same potence. Končna limita zagotovi obstoj.",
-        "\\int_\\varepsilon^1u^{-1/4}du=\\tfrac43(1-\\varepsilon^{3/4})\\xrightarrow[\\varepsilon\\downarrow0]{}\\tfrac43"
+        "Preberi argumenta beta",
+        "Argumenta dobimo s prištevanjem 1 k eksponentoma. Oba sta pozitivna, zato beta integral obstaja.",
+        "p=1-\\tfrac14=\\tfrac34,\\quad q=1+\\tfrac12=\\tfrac32,\\quad I=\\frac{B(3/4,3/2)}{4\\sqrt2}"
       ],
       [
-        "Preberi argumenta beta",
-        "V definiciji beta sta eksponenta za ena manjša od argumentov.",
-        "p=1-\\tfrac14=\\tfrac34,\\quad q=1+\\tfrac12=\\tfrac32,\\quad I=\\frac{B(3/4,3/2)}{4\\sqrt2}"
+        "Preveri rob pri ničli",
+        "Novi integrand pri ničli zraste. Ker je drugi faktor največ 1, zadostuje integral same potence. Končna limita zagotovi obstoj.",
+        "\\int_\\varepsilon^1u^{-1/4}du=\\tfrac43(1-\\varepsilon^{3/4})\\xrightarrow[\\varepsilon\\downarrow0]{}\\tfrac43",
+        {
+          "detail": "Zakaj menjava velja tudi pri spodnji meji?"
+        }
       ]
     ],
     "loggamma": [
@@ -816,19 +844,25 @@
         "\\Gamma(p+1)=p\\Gamma(p)\\quad\\Longrightarrow\\quad I=\\tfrac12\\Gamma(1/2)"
       ],
       [
+        "Zapiši rezultat",
+        "Vstavi standardno vrednost $\\Gamma(1/2)=\\sqrt\\pi$.",
+        "I=\\tfrac12\\Gamma(1/2)=\\frac{\\sqrt\\pi}{2}"
+      ],
+      [
         "Zamenjaj x s kvadratom",
         "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
-        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt",
+        {
+          "detail": "Od kod izvira polovična vrednost gama?"
+        }
       ],
       [
         "Izračunaj polovično vrednost",
         "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
-        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2\\int_0^\\infty e^{-u^2}\\,du=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
-      ],
-      [
-        "Zapiši rezultat",
-        "Vstavi dobljeno osnovno vrednost.",
-        "I=\\tfrac12\\Gamma(1/2)=\\frac{\\sqrt\\pi}{2}"
+        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2\\int_0^\\infty e^{-u^2}\\,du=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi",
+        {
+          "detail": "Od kod izvira polovična vrednost gama?"
+        }
       ]
     ],
     "betarec": [
@@ -892,7 +926,10 @@
       [
         "Združi eksponenta",
         "Tako dobljeno razliko lahko krajše zapišeš s hiperboličnim sinusom.",
-        "f(t)=\\frac{e^t-e^{-t}}2=\\sinh t"
+        "f(t)=\\frac{e^t-e^{-t}}2=\\sinh t",
+        {
+          "detail": "Krajši zapis s hiperboličnim sinusom"
+        }
       ]
     ],
     "sys22": [
@@ -969,7 +1006,10 @@
       [
         "Preveri začetni položaj",
         "Pri času nič moraš dobiti obe predpisani vrednosti.",
-        "y(0)=2,\\qquad z(0)=\\tfrac54-\\tfrac14=1"
+        "y(0)=2,\\qquad z(0)=\\tfrac54-\\tfrac14=1",
+        {
+          "detail": "Preverjanje začetnih pogojev"
+        }
       ]
     ],
     "sys23": [
@@ -1026,24 +1066,25 @@
       [
         "Izračunaj hitrost",
         "Tretji začetni podatek govori o odvodu $z$, zato odvajaj produkt.",
-        "z'=e^t+(2+t)e^t=(3+t)e^t"
+        "z'=e^t+(2+t)e^t=(3+t)e^t",
+        {
+          "detail": "Preverjanje začetnih pogojev"
+        }
       ],
       [
         "Preveri čas nič",
         "Dobiti moraš oba položaja in hitrost.",
-        "y(0)=1,\\quad z(0)=2,\\quad z'(0)=3"
+        "y(0)=1,\\quad z(0)=2,\\quad z'(0)=3",
+        {
+          "detail": "Preverjanje začetnih pogojev"
+        }
       ]
     ],
     "devar": [
       [
-        "Izberi funkcijo za odvajanje",
-        "Faktor $t$ pred signalom povzroči odvod njegove transformiranke po $s$. Pri $ty''$ je ta signal celoten $y''$.",
-        "g(t)=y''(t),\\quad G(s)=s^2Y-sy(0)-y'(0),\\quad \\mathcal L(tg)=-G'(s)"
-      ],
-      [
-        "Zapiši odvod po s",
-        "Začetna podatka sta števili in med odvajanjem ostaneta konstantna.",
-        "\\mathcal L(ty'')=-\\frac{d}{ds}[s^2Y-sy(0)-y'(0)]"
+        "Uporabi pravili za drugi odvod in faktor t",
+        "Najprej transformiraj $y''$. Ker je pomnožen s časom, dobljeni izraz odvajaj po $s$ in spremeni predznak.",
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0),\\qquad \\mathcal L(ty'')=-\\frac{d}{ds}\\left[s^2Y-sy(0)-y'(0)\\right]"
       ],
       [
         "Odvajaj produkt",

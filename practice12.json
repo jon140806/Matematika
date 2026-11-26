@@ -231,8 +231,8 @@
         ],
         [
           "Določi konstanto",
-          "Ko $R$ raste, tudi $2R$ raste brez meje. Uporabi začetno Gaussovo ploščino, izpeljano pri prvi nalogi.",
-          "C=\\lim_{R\\to\\infty}J_R(0)=\\tfrac12 I(0)=\\frac{\\sqrt\\pi}{4},\\qquad J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/16}"
+          "Ko $R$ raste, tudi $2R$ raste brez meje. Vstavi Gaussovo ploščino iz navodila.",
+          "C=\\frac12\\int_0^\\infty e^{-u^2}du=\\frac{\\sqrt\\pi}{4},\\qquad J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/16}"
         ]
       ],
       "quiz": [
@@ -268,8 +268,8 @@
           "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\qquad x^3 dx=u^3du/\\lambda^4"
         ],
         [
-          "Uvedi u = λx",
-          "Zamenjaj $u=\\lambda x$ na končnem intervalu. Kub in diferencial skupaj prispevata štiri faktorje $1/\\lambda$.",
+          "Preslikaj zgornjo mejo",
+          "Pri $x=R$ je nova zgornja meja $\\lambda R$. V integral vstavi pravkar dobljeni izraz za $x^3\\,dx$.",
           "A_R(\\lambda)=\\int_0^R x^3e^{-\\lambda x}dx=\\frac1{\\lambda^4}\\int_0^{\\lambda R}u^3e^{-u}du"
         ],
         [
@@ -506,57 +506,20 @@
           "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
         ],
         [
-          "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
-          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
+          "Za rešitev uporabi začetno vrednost, ki je podana v navodilu.",
+          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)=\\frac{\\sqrt\\pi}{2}"
         ]
-      ],
-      "afterGraph": {
-        "title": "Začetni pogoj določi konstanto",
-        "steps": [
-          [
-            "Zdaj potrebuješ $C=I(0)$. Pri ničelni frekvenci je kosinus ena. Za izračun te konkretne ploščine izberi končni rez $R$.",
-            "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
-          ],
-          [
-            "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
-            "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
-          ],
-          [
-            "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
-            "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
-          ],
-          [
-            "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
-            "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
-          ],
-          [
-            "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
-            "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
-          ],
-          [
-            "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
-            "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
-          ],
-          [
-            "Začetno vrednost vstavi v rešitev diferencialne enačbe.",
-            "C=I(0)=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
-          ]
-        ]
-      }
+      ]
     },
     "atan": {
       "title": "Odvod po parametru in premični rob",
       "steps": [
         [
-          "Najprej označi integrand. Pri stalnem $x\\ne0$ odvajaj po $t$. Faktor $1/x$ je stalnica.",
+          "V tej nalogi je parameter $t$. V splošni formuli mu rečemo $y$. Pri stalnem $x\\ne0$ odvajaš po $t$.",
           "f(x,t)=\\frac{\\arctan(tx)-\\arctan x}{x},\\quad f_t=\\frac1x\\frac{x}{1+(tx)^2}=\\frac1{1+t^2x^2}"
         ],
         [
-          "Na spodnjem robu ima prvotni ulomek obliko $0/0$. Ker je $f(x,1)=0$, lahko integrand obnoviš iz pravkar dobljenega odvoda. Novi zapis ima vrednost tudi pri $x=0$.",
-          "f(x,t)=\\int_1^t\\frac{dr}{1+r^2x^2},\\qquad f(0,t)=\\int_1^t1\\,dr=t-1"
-        ],
-        [
-          "Zdaj lahko uporabiš pravilo za odvod integrala. Meja $t^2$ doda robno višino krat hitrost $2t$, spodnja meja miruje.",
+          "V notranjosti potrebuješ že izračunani $f_t$. Na desnem robu vzemi prvotni integrand pri $x=t^2$ in ga pomnoži z odvodom meje.",
           "I'(t)=\\int_0^{t^2} f_t(x,t)\\,dx+2t\\,f(t^2,t)"
         ]
       ]

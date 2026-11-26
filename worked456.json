@@ -478,7 +478,7 @@
       ],
       [
         "Nastavi tri ulomke",
-        "Faktor $s^2+4$ je ponovljen. V podanem nastavku zato nastopata obe njegovi potenci.",
+        "Faktor $s^2+4$ je ponovljen, zato uporabi obe njegovi potenci. Ker je $K(s)$ liha funkcija, v števcih nad sodima imenovalcema zadoščata člena $Bs$ in $Cs$.",
         "K(s)=\\frac{A}{s}+\\frac{Bs}{s^2+4}+\\frac{Cs}{(s^2+4)^2}"
       ],
       [
@@ -577,7 +577,10 @@
       [
         "Preveri stik vej",
         "Novo dodani odmik in njegova začetna hitrost morata biti pri lokalnem času nič oba enaka nič.",
-        "g(0)=0-1+1=0,\\qquad g'(0)=1-e^0=0"
+        "g(0)=0-1+1=0,\\qquad g'(0)=1-e^0=0",
+        {
+          "detail": "Preverjanje stika ob preklopu"
+        }
       ]
     ],
     "force23": [
@@ -639,7 +642,7 @@
       [
         "Vrni globalni čas",
         "Zapiši osnovo za ves čas, popravek pa vključi šele pri $t=a$.",
-        "y(t)=\\cos t+\\sin t+\\tfrac12\\sin(2t)+H(t-a)\\big[\\sin u-\\tfrac12\\sin(2u)\\big],\\quad u=t-\\pi/2"
+        "y(t)=\\cos t+\\sin t+\\tfrac12\\sin(2t)+H(t-a)\\left[\\sin(t-a)-\\tfrac12\\sin(2(t-a))\\right],\\quad a=\\pi/2"
       ]
     ],
     "volterra": [
@@ -676,7 +679,7 @@
       [
         "Obrni konstanto in kosinus",
         "Člen $1/s$ ustreza enoti, $s/(s^2+4)$ pa kosinusu s frekvenco 2.",
-        "y(t)=\\tfrac12+\\tfrac32\\cos(2t),\\qquad y(0)=\\tfrac12+\\tfrac32=2"
+        "y(t)=\\tfrac12+\\tfrac32\\cos(2t)"
       ]
     ],
     "sum22": [
@@ -756,20 +759,39 @@
         "\\lim_{x\\to-1^+}(1/x-x)\\ln(1-x)=(-1+1)\\ln2=0,\\qquad S(-1)=\\tfrac12(1-\\tfrac12)=\\tfrac14"
       ],
       [
+        "Na desnem robu uporabi razcep ulomka",
+        "Pri $x=1$ so števci vsi enaki 1. V delni vsoti se ulomki z istim imenovalcem odštejejo. Tako se izogneš nedoločenemu produktu v logaritemski formuli.",
+        "S_N(1)=\\tfrac12\\sum_{n=2}^N\\left(\\frac1{n-1}-\\frac1{n+1}\\right)=\\tfrac12\\left(1+\\tfrac12-\\tfrac1N-\\tfrac1{N+1}\\right)"
+      ],
+      [
+        "Pošlji indeks v neskončnost",
+        "Zadnja dva ulomka izgineta, ker imenovalca rasteta brez meje.",
+        "S(1)=\\lim_{N\\to\\infty}S_N(1)=\\tfrac12(1+\\tfrac12)=\\tfrac34"
+      ],
+      [
         "Na desnem robu uvedi t",
         "Na desnem robu se pojavi produkt ničle in neomejenega logaritma. Izloči $1-x$ in ga označi z $t$.",
-        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}\\,t\\ln t,\\qquad t=1-x\\to0^+"
+        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}\\,t\\ln t,\\qquad t=1-x\\to0^+",
+        {
+          "detail": "Druga pot do S(1) z logaritemsko formulo"
+        }
       ],
       [
         "Izračunaj limito produkta",
         "Za limito prepiši produkt kot količnik. V obliki neskončno skozi neskončno uporabi l’Hôpitalovo pravilo.",
         "\\lim_{t\\to0^+}t\\ln t=\\lim_{t\\to0^+}\\frac{\\ln t}{1/t}=\\lim_{t\\to0^+}\\frac{1/t}{-1/t^2}=\\lim_{t\\to0^+}(-t)=0",
-        "xlogx56"
+        "xlogx56",
+        {
+          "detail": "Druga pot do S(1) z logaritemsko formulo"
+        }
       ],
       [
         "Izračunaj vsoto na desnem robu",
         "Preostali faktor teži k 2, zato celotni logaritemski člen izgine. Vstavi še ostala dva člena.",
-        "S(1)=\\tfrac12\\left[2\\cdot0+1+\\tfrac12\\right]=\\tfrac34"
+        "S(1)=\\tfrac12\\left[2\\cdot0+1+\\tfrac12\\right]=\\tfrac34",
+        {
+          "detail": "Druga pot do S(1) z logaritemsko formulo"
+        }
       ],
       [
         "Prepoznaj argument številske vsote",
@@ -820,7 +842,7 @@
       ],
       [
         "Določi vrednost pomožne vrste v ničli",
-        "V pomožni vrsti so vse potence pozitivne. Če vstavimo nič, dobimo začetno vrednost T.",
+        "Čeprav $S(0)$ ni definirana, ima vrsta za $T$ samo pozitivne potence. Njena vrednost pri ničli bo določila integracijsko konstanto.",
         "T(x)=x+\\frac{x^5}{5}+\\frac{x^9}{9}+\\cdots\\quad\\Rightarrow\\quad T(0)=0"
       ],
       [
@@ -829,14 +851,25 @@
         "\\left(\\frac{x^{4n+1}}{4n+1}\\right)'=\\frac{4n+1}{4n+1}x^{4n}=(x^4)^n"
       ],
       [
+        "Seštej vrsto odvodov",
+        "Znotraj polmera smemo odvajati členoma. Dobljene potence tvorijo geometrijsko vrsto s količnikom $x^4$.",
+        "T'(x)=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4},\\qquad |x|<1"
+      ],
+      [
         "Odvajaj po členih",
         "Znotraj polmera smemo potenčno vrsto odvajati členoma. Potence v delni vsoti odvodov se množijo z istim količnikom $x^4$.",
-        "\\sum_{n=0}^{N}(4n+1)\\frac{x^{4n}}{4n+1}=\\sum_{n=0}^{N}(x^4)^n=\\frac{1-(x^4)^{N+1}}{1-x^4}"
+        "\\sum_{n=0}^{N}(4n+1)\\frac{x^{4n}}{4n+1}=\\sum_{n=0}^{N}(x^4)^n=\\frac{1-(x^4)^{N+1}}{1-x^4}",
+        {
+          "detail": "Kako iz delne vsote dobim ta ulomek?"
+        }
       ],
       [
         "Preidi od delne vsote do odvoda",
         "Za $|x|<1$ je tudi $x^4<1$, zato gre zadnja potenca proti nič. Vstavimo njeno limito.",
-        "\\lim_{N\\to\\infty}(x^4)^{N+1}=0,\\qquad T'(x)=\\frac{1-0}{1-x^4}"
+        "\\lim_{N\\to\\infty}(x^4)^{N+1}=0,\\qquad T'(x)=\\frac{1-0}{1-x^4}",
+        {
+          "detail": "Kako iz delne vsote dobim ta ulomek?"
+        }
       ],
       [
         "Razstavi četrto potenco",
@@ -886,25 +919,42 @@
         "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n"
       ],
       [
+        "Uporabi M-test",
+        "Majorantna vrsta je konvergentna p-vrsta z eksponentom 2. Ker ista ocena velja za vse realne $x$, je konvergenca enakomerna.",
+        "\\sum_{n=1}^\\infty\\frac1{n^2}<\\infty\\quad\\Longrightarrow\\quad\\sum_{n=1}^\\infty\\frac{\\sin(nx)}{n^2}\\ \\text{konvergira enakomerno na }\\mathbb R"
+      ],
+      [
         "Omeji končni rep s ploščino",
         "Naj bo $m>N\\ge1$. Ker je $1/u^2$ padajoča, je ploščina na vsakem intervalu od $n-1$ do $n$ vsaj $1/n^2$.",
         "\\sum_{n=N+1}^m\\frac1{n^2}\\le\\int_N^m\\frac{du}{u^2}",
-        "stairs56"
+        "stairs56",
+        {
+          "detail": "Kako lahko ocenim tudi velikost napake?"
+        }
       ],
       [
         "Izračunaj ploščino do končne meje",
         "Najprej ovrednotimo integral do končne zgornje meje.",
-        "\\int_N^m u^{-2}\\,du=\\left[-\\frac1u\\right]_N^m=-\\frac1m+\\frac1N"
+        "\\int_N^m u^{-2}\\,du=\\left[-\\frac1u\\right]_N^m=-\\frac1m+\\frac1N",
+        {
+          "detail": "Kako lahko ocenim tudi velikost napake?"
+        }
       ],
       [
         "Odstrani zgornji rez",
         "Pri fiksnem $N$ pošljemo $m$ v neskončnost. Zgornji rob izgine, zato dobimo skupno oceno neskončnega repa.",
-        "\\int_N^\\infty\\frac{du}{u^2}=\\lim_{m\\to\\infty}\\left(\\frac1N-\\frac1m\\right)=\\frac1N-0=\\frac1N"
+        "\\int_N^\\infty\\frac{du}{u^2}=\\lim_{m\\to\\infty}\\left(\\frac1N-\\frac1m\\right)=\\frac1N-0=\\frac1N",
+        {
+          "detail": "Kako lahko ocenim tudi velikost napake?"
+        }
       ],
       [
         "Izberi indeks za zahtevano napako",
         "Za želeno napako izberemo isti indeks za vse x. To zagotovi enakomerno in absolutno konvergenco.",
-        "N>1/\\varepsilon\\quad\\Rightarrow\\quad \\sum_{n>N}\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le1/N<\\varepsilon"
+        "N>1/\\varepsilon\\quad\\Rightarrow\\quad \\sum_{n>N}\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le1/N<\\varepsilon",
+        {
+          "detail": "Kako lahko ocenim tudi velikost napake?"
+        }
       ],
       [
         "Zapiši M-test kot implikacijo",
@@ -956,24 +1006,25 @@
     ],
     "bessel": [
       [
+        "Izberi Frobeniusov nastavek",
+        "V ničli izgine faktor $x^2$ pred najvišjim odvodom. Ker je to regularno singularna točka, začni z neznano potenco $r$. Vodilni koeficient je neničeln.",
+        "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0"
+      ],
+      [
         "Deli enačbo z vodilnim koeficientom",
         "Za pozitivni x enačbo delimo z x², da preberemo koeficienta v normalizirani obliki.",
-        "y''+\\frac1x y'+\\left(1-\\frac{25}{x^2}\\right)y=0"
+        "y''+\\frac1x y'+\\left(1-\\frac{25}{x^2}\\right)y=0",
+        {
+          "detail": "Zakaj je Frobeniusov nastavek tu dovoljen?"
+        }
       ],
       [
         "Preveri vrsto singularnosti",
         "Preverimo Frobeniusov pogoj. Oba produkta sta polinoma in zato analitična pri ničli.",
-        "xP(x)=x\\frac1x=1,\\qquad x^2Q(x)=x^2-25"
-      ],
-      [
-        "Določi robna koeficienta",
-        "Izračunamo robni vrednosti že poenostavljenih polinomov. Njuna analitična razširitev dovoljuje Frobeniusov nastavek.",
-        "p_0=\\lim_{x\\to0}1=1,\\qquad q_0=\\lim_{x\\to0}(x^2-25)=0-25=-25"
-      ],
-      [
-        "Izberi Frobeniusov nastavek",
-        "Uporabimo nastavek z neznanim začetnim eksponentom. Prvi koeficient mora biti neničeln.",
-        "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0"
+        "xP(x)=x\\frac1x=1,\\qquad x^2Q(x)=x^2-25",
+        {
+          "detail": "Zakaj je Frobeniusov nastavek tu dovoljen?"
+        }
       ],
       [
         "Odvajaj začetno potenco",
@@ -1025,7 +1076,7 @@
       ],
       [
         "Razberi geometrijski pomen",
-        "Ničelni skalarni produkt pomeni, da sta funkciji na tem intervalu z dano utežjo pravokotni.",
+        "Izračunani skalarni produkt je nič. Po definiciji sta zato funkciji pravokotni.",
         "\\langle 1,P_2\\rangle_1=0\\quad\\Rightarrow\\quad 1\\perp P_2"
       ]
     ]

@@ -120,10 +120,18 @@ function compactFigure(label,model,clip){
  return '<figure class="stepFigure"><strong>'+escapeGraph(label)+'</strong><div class="drawing">'+svg+'</div><div class="legend">'+keys.join('')+'</div><figcaption>'+escapeGraph(model.caption)+'</figcaption></figure>';
 }
 function exerciseProcedure(steps){
- return '<div class="calculation exerciseProcedure"><ol>'+steps.map((step,index)=>
-  '<li><h3>'+step.action+'</h3><p><b>Zakaj?</b> '+step.reason+'</p><div class="calcLine">'+step.equation+'</div>'+
-  (step.visual?stepFigure(step.visual,index):'')+'</li>'
- ).join('')+'</ol></div>';
+ const main=[];
+ steps.forEach((step,index)=>{
+  const body='<h3>'+step.action+'</h3><p><b>Zakaj?</b> '+step.reason+'</p><div class="calcLine">'+step.equation+'</div>'+
+   (step.visual?stepFigure(step.visual,index):'');
+  if(!step.detail){main.push({body,notes:[]});return}
+  const notes=main[main.length-1].notes;
+  let group=notes[notes.length-1];
+  if(group?.title!==step.detail){group={title:step.detail,rows:[]};notes.push(group)}
+  group.rows.push('<div class="noteStep">'+body+'</div>');
+ });
+ return '<div class="calculation exerciseProcedure"><ol>'+main.map(({body,notes})=>'<li>'+body+
+  notes.map(group=>'<details class="stepNote"><summary>'+group.title+'</summary>'+group.rows.join('')+'</details>').join('')+'</li>').join('')+'</ol></div>';
 }
 function lesson(){
  const o=current(),done=!!state.marks[currentId()];
@@ -187,9 +195,11 @@ function render(){
  const active=document.activeElement,within=$('content').contains(active),oldAct=active?.dataset.do,oldVal=active?.dataset.val;
  const previous=$('content').querySelector('.practice');
  const opened=previous?.dataset.unit===currentId()?Array.from(previous.children).filter(el=>el.tagName==='DETAILS').map(el=>el.open):[];
+ const openedNotes=previous?.dataset.unit===currentId()?Array.from(previous.querySelectorAll('.stepNote'),note=>note.open):[];
  const fin=state.day===6&&tab()==='exercises'?'<div class="dayfinish"><div><h2>Preizkus s staro polo</h2><p>Računska pola traja 90 minut, teoretična 30 minut.</p></div>'+btn('archive','Izberi kolokvij')+'</div>':'';
  $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise()+solvedExamples():flash())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
  if(opened.length)document.querySelectorAll('#content .practice > details').forEach((el,i)=>el.open=opened[i]);
+ if(openedNotes.length)document.querySelectorAll('#content .stepNote').forEach((note,i)=>note.open=openedNotes[i]);
  if(within){let match=oldAct&&Array.from($('content').querySelectorAll('[data-do]')).find(b=>b.dataset.do===oldAct&&b.dataset.val===oldVal);let next=match||$('content').querySelector('.explain h2,.practice h2,.flash h2');if(next){if(next.tagName==='H2')next.tabIndex=-1;next.focus({preventScroll:true})}}
 }
 function modal(title,html){

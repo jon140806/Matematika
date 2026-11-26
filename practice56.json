@@ -87,22 +87,31 @@
         [
           "Prepoznaj odvod potence",
           "Faktor $n$ nastane pri odvajanju $x^n$. Izhodišče naj bo geometrijska vrsta, katere vsoto že znamo izračunati.",
-          "S_N(x)=1+x+\\cdots+x^N,\\qquad (x^n)'=nx^{n-1}"
+          "G(x)=\\sum_{n=0}^\\infty x^n=\\frac1{1-x},\\qquad (x^n)'=nx^{n-1},\\quad |x|<1"
         ],
         [
           "Odštej premaknjeno delno vsoto",
-          "Po množenju z $x$ so vmesne potence enake. V razliki zato ostaneta prvi in zadnji člen.",
-          "S_N-xS_N=(1+x+\\cdots+x^N)-(x+x^2+\\cdots+x^{N+1})=1-x^{N+1}"
+          "Če želiš izpeljati izhodiščno formulo, vzemi $S_N=1+x+\\cdots+x^N$. Po množenju z $x$ se vmesne potence odštejejo.",
+          "S_N-xS_N=(1+x+\\cdots+x^N)-(x+x^2+\\cdots+x^{N+1})=1-x^{N+1}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
         ],
         [
           "Seštej končno geometrijsko vrsto",
           "Začni s končno geometrijsko vsoto. Ko odšteješ njen premik za eno potenco, ostaneta prvi in zadnji člen.",
-          "(1-x)S_N=1-x^{N+1},\\qquad S_N=\\frac{1-x^{N+1}}{1-x}"
+          "(1-x)S_N=1-x^{N+1},\\qquad S_N=\\frac{1-x^{N+1}}{1-x}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
         ],
         [
           "Pošlji zadnjo potenco v nič",
           "Za $|x|<1$ množenje z $|x|$ pri vsakem koraku zmanjša velikost potence. Vstavi njeno limito v delno vsoto.",
-          "\\lim_{N\\to\\infty}|x|^{N+1}=0,\\qquad G(x)=\\lim_{N\\to\\infty}S_N=\\frac{1-0}{1-x}"
+          "\\lim_{N\\to\\infty}|x|^{N+1}=0,\\qquad G(x)=\\lim_{N\\to\\infty}S_N=\\frac{1-0}{1-x}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
         ],
         [
           "Odvajaj vsoto",
@@ -153,24 +162,38 @@
           "(\\arctan t)'=\\frac1{1+t^2}=\\frac1{1-(-t^2)}"
         ],
         [
+          "Razvij odvod v geometrijsko vrsto",
+          "V znano vsoto vstavi količnik $-t^2$. Na intervalu od 0 do $1/2$ je njegova velikost največ $1/4$, zato lahko potenčno vrsto integriraš členoma.",
+          "\\frac1{1+t^2}=\\sum_{n=0}^\\infty(-t^2)^n,\\qquad 0\\le t\\le\\tfrac12"
+        ],
+        [
           "Izberi količnik geometrijske vrste",
           "V končno geometrijsko vsoto vstavi $-t^2$.",
-          "S_N(t)=\\sum_{n=0}^N(-t^2)^n=\\frac{1-(-t^2)^{N+1}}{1+t^2}"
+          "S_N(t)=\\sum_{n=0}^N(-t^2)^n=\\frac{1-(-t^2)^{N+1}}{1+t^2}",
+          {
+            "detail": "Zakaj lahko integriramo členoma?"
+          }
         ],
         [
           "Oceni napako delne vsote",
           "Na intervalu od 0 do 1/2 ima ostanek eno samo zgornjo mejo. Njena osnova je manjša od 1, zato je limita nič.",
-          "0\\le\\left|S_N(t)-\\frac1{1+t^2}\\right|\\le (1/4)^{N+1},\\qquad \\lim_{N\\to\\infty}(1/4)^{N+1}=0"
+          "0\\le\\left|S_N(t)-\\frac1{1+t^2}\\right|\\le (1/4)^{N+1},\\qquad \\lim_{N\\to\\infty}(1/4)^{N+1}=0",
+          {
+            "detail": "Zakaj lahko integriramo členoma?"
+          }
         ],
         [
           "Prenesi oceno pod integral",
           "Ocena je neodvisna od $t$. Tudi napaka pod integralom zato teži k nič in smemo integrirati členoma.",
-          "\\left|\\int_0^x S_N(t)\\,dt-\\int_0^x\\frac{dt}{1+t^2}\\right|\\le x(1/4)^{N+1}\\longrightarrow0\\quad(0\\le x\\le1/2)"
+          "\\left|\\int_0^x S_N(t)\\,dt-\\int_0^x\\frac{dt}{1+t^2}\\right|\\le x(1/4)^{N+1}\\longrightarrow0\\quad(0\\le x\\le1/2)",
+          {
+            "detail": "Zakaj lahko integriramo členoma?"
+          }
         ],
         [
           "Integriraj posamezni člen",
-          "Integriraj posamezni člen in vstavi obe meji. S tem nastane lihi imenovalec.",
-          "\\int_0^x(-1)^nt^{2n}dt=(-1)^n\\left[\\frac{t^{2n+1}}{2n+1}\\right]_0^x=\\frac{(-1)^nx^{2n+1}}{2n+1}"
+          "Iskana vsota vsebuje potence $1/2$. Zato integriraj neposredno od 0 do $1/2$ in vstavi obe meji.",
+          "\\int_0^{1/2}(-1)^nt^{2n}dt=(-1)^n\\left[\\frac{t^{2n+1}}{2n+1}\\right]_0^{1/2}=\\frac{(-1)^n(1/2)^{2n+1}}{2n+1}"
         ],
         [
           "Izračunaj integral znane funkcije",
@@ -222,8 +245,8 @@
         ],
         [
           "Opazuj eno izbrano točko",
-          "Izračunaj točkovno limito. Za fiksen $0<x<1$ je $\\ln x<0$, zato eksponent teži k negativni neskončnosti. Pri $x=0$ je potenca že nič.",
-          "\\lim_{N\\to\\infty}x^{N+1}=\\lim_{N\\to\\infty}e^{(N+1)\\ln x}=0\\qquad(0<x<1)"
+          "Pri vsakem fiksnem $x$ na tem intervalu visoke potence težijo k nič. Vstavi to v delno vsoto.",
+          "0\\le x<1\\quad\\Longrightarrow\\quad x^{N+1}\\to0,\\qquad S(x)=1"
         ],
         [
           "Izračunaj napako",
@@ -231,14 +254,9 @@
           "S(x)=1-0=1,\\qquad R_N(x)=1-(1-x^{N+1})=x^{N+1}"
         ],
         [
-          "Obrni enačbo za napako",
-          "Za preverjanje enakomernosti smeš po izbiri $N$ iskati najslabši $x$. Izberi napako $1/2$ in vzemi koren stopnje $N+1$.",
-          "x^{N+1}=\\tfrac12\\quad\\Longleftrightarrow\\quad x=(\\tfrac12)^{1/(N+1)}"
-        ],
-        [
-          "Poišči točko z veliko napako",
-          "Izberi točko, pri kateri je napaka enaka polovici. Ta točka leži na intervalu pri vsakem $N$.",
-          "x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=1/2",
+          "Izberi točko z napako ½",
+          "Za vsak $N$ lahko izbereš drug $x_N$ tik ob desnem robu. Poišči ga tako, da v izrazu za napako vzameš koren stopnje $N+1$.",
+          "x_N^{N+1}=\\tfrac12\\ \\Longrightarrow\\ x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=\\tfrac12",
           "edge56"
         ],
         [
@@ -276,18 +294,24 @@
       "worked": [
         [
           "Zapiši izpuščene člene",
-          "Napaka je vsota vsega, česar približek do $x^N$ ne zajame. Ker je $x$ nenegativen, imajo vsi izpuščeni členi isti predznak.",
-          "R_N(x)=x^{N+1}+x^{N+2}+\\cdots,\\quad 0\\le x\\le\\tfrac12"
+          "Prvi izpuščeni člen je $x^{N+1}$. Izpostavi ga in seštej preostalo geometrijsko vrsto s količnikom $x$.",
+          "R_N(x)=x^{N+1}(1+x+x^2+\\cdots)=\\frac{x^{N+1}}{1-x},\\qquad 0\\le x\\le\\tfrac12"
         ],
         [
           "Seštej končni rep",
           "Rep najprej prekini pri indeksu $m>N$. Izpostavi prvo izpuščeno potenco in uporabi končno geometrijsko vsoto.",
-          "\\sum_{n=N+1}^m x^n=x^{N+1}\\frac{1-x^{m-N}}{1-x}"
+          "\\sum_{n=N+1}^m x^n=x^{N+1}\\frac{1-x^{m-N}}{1-x}",
+          {
+            "detail": "Kako dobimo rep iz končne vsote?"
+          }
         ],
         [
           "Povečaj zgornji indeks",
           "Drži $N$ pri miru in pošlji $m$ v neskončnost. Pri $0\\le x\\le1/2$ je visoka potenca omejena z geometrijskim zaporedjem, ki pada proti nič.",
-          "0\\le x^{m-N}\\le (1/2)^{m-N}\\to0,\\qquad R_N(x)=\\lim_{m\\to\\infty}\\sum_{n=N+1}^m x^n=\\frac{x^{N+1}}{1-x}"
+          "0\\le x^{m-N}\\le (1/2)^{m-N}\\to0,\\qquad R_N(x)=\\lim_{m\\to\\infty}\\sum_{n=N+1}^m x^n=\\frac{x^{N+1}}{1-x}",
+          {
+            "detail": "Kako dobimo rep iz končne vsote?"
+          }
         ],
         [
           "Poišči največjo napako na intervalu",
@@ -391,13 +415,8 @@
       ],
       "worked": [
         [
-          "Primerjaj potence ob odvodih",
-          "Pri odvajanju potence se eksponent vsakič zniža za ena. Faktorja $x$ in $x^2$ v enačbi začetno potenco obnovita.",
-          "x^2y''+xy'-4y=0,\\qquad x>0"
-        ],
-        [
           "Poskusi potenčno rešitev",
-          "Za sestavljanje enačbe za neznani eksponent potrebujemo oba odvoda iste potence.",
+          "Pri $y=x^r$ množenje prvega odvoda z $x$ in drugega z $x^2$ v obeh členih obnovi prvotno potenco. Zato boš lahko primerjal koeficiente.",
           "y=x^r,\\quad y'=rx^{r-1},\\quad y''=r(r-1)x^{r-2}"
         ],
         [
@@ -564,11 +583,11 @@
         [
           "Izberi prerez pri stalnem y",
           "Enačba vsebuje samo odvoda po $x$. Pri izbranem $y$ je ukrivljenost zato stalno število, ki ga integriramo dvakrat.",
-          "U(x)=u(x,y),\\qquad U''(x)=2y"
+          "u_{xx}(x,y)=2y,\\qquad y\\ \\text{je pri integriranju po }x\\text{ stalen}"
         ],
         [
           "Integriraj ukrivljenost",
-          "Prvič integriraj po $x$. Dodaj poljubno funkcijo $A$ druge spremenljivke.",
+          "Ker je $y$ stalen pri integriranju po $x$, je integracijska konstanta lahko funkcija $y$. Označi jo z $A(y)$.",
           "u_{xx}=2y\\ \\Longrightarrow\\ u_x=2yx+A(y)"
         ],
         [
@@ -580,11 +599,6 @@
           "Integriraj naklon",
           "Integriramo po $x$, zato je $1-y$ za izbrani prerez stalna vrednost.",
           "u=\\int(2yx+1-y)\\,dx=yx^2+(1-y)x+B(y)"
-        ],
-        [
-          "Preveri, zakaj je B odvisen od y",
-          "Pri odvajanju po $x$ izgine katerakoli funkcija samo od $y$. Vsak prerez ima zato lahko drugo začetno višino.",
-          "\\partial_x B(y)=0,\\qquad u(0,y)=y\\cdot0^2+(1-y)\\cdot0+B(y)"
         ],
         [
           "Uporabi začetno višino",
