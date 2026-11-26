@@ -77,7 +77,12 @@
       "Predpis je znan na obeh straneh preklopa. Izbira vrednosti v sami točki preklopa ne spremeni Laplaceovega integrala.",
       "$a$ je fiksen čas vklopa. Za $t\\ge a$ je novi čas $u=t-a$ nenegativen.",
       "Predpostavimo $a\\ge0$ in obstoj $G(s)$. Tako spodnja meja po vklopu preide v nič in preostali integral prepoznamo kot $G(s)$."
-    ]
+    ],
+    "intuition": [
+      "Kako zapišeš silo, ki se vključi šele pozneje?",
+      "Trenutek $a$ je pritisk na stikalo. Pred njim dodani učinek miruje, po njem pa nova ura kaže $t-a$. Tako isti predpis deluje ne glede na čas vklopa."
+    ],
+    "calculation": "Če se sila velikosti 3 N vklopi pri $t=2$, jo zapišeš $3H(t-2)$. Pred vklopom je sila 0, po njem 3 N; transformiranka je $3e^{-2s}/s$ pri $s>0$."
   },
   "conv": {
     "title": "Konvolucija in konvolucijski izrek",
@@ -152,7 +157,12 @@
       "Oba signala pred časom nič izgineta. Za opazovani $t\\ge0$ zato prispeva samo njuno prekrivanje.",
       "Produkt naj bo integrabilen na $[0,t]$, da lahko uporabimo menjavo $v=t-u$.",
       "Absolutna integrabilnost uteženega dvojnega integrala dovoljuje spremembo vrstnega reda integriranja."
-    ]
+    ],
+    "intuition": [
+      "Kako iz pretekle sile izračunaš odziv zdaj?",
+      "Vsak pretekli sunek pusti nekaj učinka. Njegovo velikost pomnožiš z odzivom, ki je ostal do časa $t$. Ploščina prekrivanja sešteje vse te prispevke."
+    ],
+    "calculation": "Za $f(u)=u$ in $g=1$ po vklopu je pri $t=2$ prekrivanje trikotnik: $(f*g)(2)=\\int_0^2u\\,du=2$. Graf pokaže njegovo osnovnico in višino."
   },
   "impulse": {
     "title": "Diracov impulz in njegova transformacija",
@@ -225,7 +235,12 @@
       "Izberemo $a>0$ in $h>0$. Celoten pravokotnik je na pozitivni časovni osi in ima pozitivno širino.",
       "Zveznost uteži pri $a$ zagotovi, da njena povprečna vrednost na krčečem se intervalu teži k $\\varphi(a)$. Za prikaz z vmesno točko vzamemo zvezno utež na intervalu.",
       "Utež $e^{-st}$ je zvezna pri $a$, zato jo lahko uporabimo v izbirni lastnosti."
-    ]
+    ],
+    "intuition": [
+      "Kako v računu opišeš kratek udarec kladiva?",
+      "Ozek pravokotnik predstavlja silo v kratkem času. Ploščina je sunek sile. Ob enaki ploščini mora biti krajši udarec višji; to pokaže drsnik za širino."
+    ],
+    "calculation": "Za enotski sunek pri $a=2$ izračunaš transformiranko tako, da v utež vstaviš čas udarca: $e^{-st}|_{t=2}=e^{-2s}$."
   },
   "radius": {
     "title": "Konvergenčni polmer in krajišči",
@@ -305,7 +320,12 @@
       "Pri količniku potrebujemo od nekega indeksa neničelne koeficiente in $x\\ne c$, da ne delimo z nič.",
       "Dve različni končni krajišči dobimo pri $0<R<\\infty$. Kriterij v notranjosti sam ne odloči o robu.",
       "Korenski kriterij ne deli s koeficienti. Zato uporabimo limsup tudi, ko koeficienti izmenično izginjajo."
-    ]
+    ],
+    "intuition": [
+      "Za katere vrednosti lahko računaš z neskončno vrsto?",
+      "Polmer je dovoljena razdalja od središča razvoja do roba notranjosti konvergence. Pri obeh krajiščih vstaviš dejansko vrednost posebej. Graf pokaže, zakaj je izid na levi in desni lahko različen."
+    ],
+    "calculation": "Za $\\sum_{n=1}^\\infty x^n/n$ teži absolutni količnik k $|x|$. Pri $x=0,5$ je manjši od 1, zato vrsta konvergira. Na robu $x=1$ dobiš divergentno harmonično vrsto."
   },
   "series": {
     "title": "Geometrijska vrsta in členoma integrirana vrsta",
@@ -385,7 +405,12 @@
       "Za končno vsoto velja odštevanje za vsak $x$. Šele pri deljenju z $1-x$ potrebujemo $x\\ne1$.",
       "Meja $|x|\\le r<1$ hkrati omeji potenco in drži imenovalec stran od ničle.",
       "Za $|x|<1$ izberemo $r<1$, ki zajame celoten interval med 0 in $x$. Enakomerna konvergenca na njem dovoljuje integriranje členoma."
-    ]
+    ],
+    "intuition": [
+      "Kako izračunaš približek logaritma samo s potencami?",
+      "Začneš z geometrijsko vsoto, katere vzorec že poznaš. Z integriranjem dobi vsak člen svoj imenovalec. Z dodajanjem členov opazuješ, kako se približek približuje logaritmu."
+    ],
+    "calculation": "Pri $x=1/2$ iz vrste za $-\\ln(1-x)$ dobiš približek za $\\ln 2$. Prvi trije členi dajo $1/2+(1/2)^2/2+(1/2)^3/3=2/3$. Z več členi se približuješ 0,6931."
   },
   "uniform": {
     "title": "Enakomerna konvergenca in Weierstrassov kriterij",
@@ -464,7 +489,12 @@
       "Za vsak indeks potrebujemo število $M_n\\ge0$, ki velja na celotnem $I$. Izbira, odvisna od $x$, ne da skupne ocene.",
       "Konvergenca $\\sum M_n$ zagotovi obstoj vsote po točkah z absolutno primerjavo, zato je razlika $S-S_N$ definirana.",
       "Ker ista meja velja za vse $x$, lahko za dano napako izberemo en $N$ za vse delne vsote na celotnem intervalu."
-    ]
+    ],
+    "intuition": [
+      "Kako izbereš eno število členov za celo krivuljo?",
+      "Če rišeš približek na celotnem intervalu, hočeš obvladati napako tudi na najslabšem mestu. Meja, ki velja za vse $x$, pove, koliko členov je dovolj povsod."
+    ],
+    "calculation": "Pri $|x|\\le0,8$ velja $|x^n|\\le0,8^n$. Če obdržiš člene od 0 do 20, je napaka največ $0,8^{21}/(1-0,8)<0,047$ povsod na tem intervalu."
   },
   "leg": {
     "title": "Potenčna metoda in Legendrovi polinomi",
@@ -537,7 +567,12 @@
       "Pri $x=0$ je vodilni koeficient neničeln. Analitičnost normaliziranih koeficientov omogoča iskanje rešitev s potenčno vrsto.",
       "Znotraj konvergenčnega polmera smemo vrsto odvajati členoma in primerjati koeficiente istih potenc.",
       "Stopnja $n$ je nenegativno celo število. Le tedaj indeks $k$ doseže $n$ in se ustrezna veja zaključi."
-    ]
+    ],
+    "intuition": [
+      "Kako iz enačbe dobiš krivuljo, ko ne poznaš njene formule?",
+      "Začneš s potenčno vrsto. Enačba pove, kateri koeficient sledi prejšnjemu. Pri Legendrovih polinomih se ustrezna veriga ustavi; na grafu vidiš, kako nov člen spremeni obliko."
+    ],
+    "calculation": "Za $n=2$ da rekurzija $a_2=-3a_0$. Z izbiro $a_0=-1/2$, $a_1=0$ dobiš $P_2(x)=(3x^2-1)/2$. V sredini je višina $-1/2$, pri $x=1$ pa 1."
   },
   "bessel": {
     "title": "Frobeniusova metoda in Besselova enačba",
@@ -608,7 +643,12 @@
       "Pri šibko singularni točki sta $xP$ in $x^2Q$ analitično razširljiva v nič. Vzamemo $x>0$ za potenco $x^r$ in $a_0\\ne0$ za vodilni člen.",
       "Ker je $a_0\\ne0$, pri enačenju najnižjega koeficienta smemo deliti z $a_0$.",
       "Za $x>0$ ima standardna Besselova enačba neodvisni rešitvi $J_\\nu,Y_\\nu$. Red na poli je celo število, zato izbira $J_{-\\nu}$ za drugo rešitev ne bi delovala."
-    ]
+    ],
+    "intuition": [
+      "Kako opišeš krožno simetrično nihanje, denimo na okrogli opni?",
+      "Odmik opazuješ vzdolž polmera. V preprostem modelu krožne opne radialni del zadošča Besselovi enačbi. Red določi obliko rešitve; če model vključuje središče, mora fizično dopustni odmik tam ostati končen."
+    ],
+    "calculation": "Pri členu $(x^2-25)y$ primerjaš $25=\\nu^2$, torej $\\nu=5$. Za $x>0$ prebereš $y=C_1J_5(x)+C_2Y_5(x)$. Če mora rešitev ostati omejena pri ničli, izbereš $C_2=0$."
   },
   "ortho": {
     "title": "Uteženi skalarni produkt in ortogonalnost",
@@ -691,7 +731,12 @@
       "Na $a<b$ vzamemo zvezne realne funkcije in zvezno utež $w>0$. Integral obstaja in kvadrat norme neničelne funkcije je pozitiven.",
       "Zveznost produkta na intervalu dovoljuje uporabo osnovnega izreka pri notranji točki $z$.",
       "Tu sta $m,n$ različni nenegativni celi števili. Zato je razlika lastnih vrednosti neničelna in na koncu smemo deliti z njo."
-    ]
+    ],
+    "intuition": [
+      "Kako preveriš, ali se dve obliki med seboj izničita?",
+      "Na vsakem mestu pomnoži višini obeh profilov. Kjer imata isti predznak, prištevaš, pri nasprotnem odštevaš. Če se prispevki z izbrano utežjo izravnajo, je skalarni produkt nič."
+    ],
+    "calculation": "Pri $f(x)=1$, $g(x)=x$ in uteži 1 na $[-1,1]$ dobiš $\\int_{-1}^1x\\,dx=-1/2+1/2=0$. Levi in desni del se natančno izničita."
   },
   "pde": {
     "title": "Parcialni odvodi in družina prerezov",
@@ -760,6 +805,11 @@
       "Prerez je dvakrat odvedljiv po $x$. Ker se $y$ med odvajanjem ne spreminja, lahko uporabimo navadno diferencialno enačbo.",
       "Korena $1$ in $-1$ sta različna, zato obe eksponentni funkciji dajeta neodvisni rešitvi prereza.",
       "Za določitev dveh koeficientov v posameznem prerezu potrebujemo oba podatka pri istem $y$: višino in naklon."
-    ]
+    ],
+    "intuition": [
+      "Kako spremljaš spremembo površine samo v eni smeri?",
+      "Zamisli si višinski zemljevid. Pri izbranem $y$ vzameš en prerez in po njem hodiš v smeri $x$. Premik drsnika izbere drug prerez; tako vidiš, zakaj je začetna višina lahko odvisna od $y$."
+    ],
+    "calculation": "Za prikazano površino $u(x,y)=y\\cosh x$ izberi $y=2$. Prerez je $2\\cosh x$; po dveh odvodih po $x$ spet dobiš $2\\cosh x$. Tako preveriš $u_{xx}=u$."
   }
 }

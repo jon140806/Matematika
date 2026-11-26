@@ -218,11 +218,14 @@ lessons=[]
 for lesson in lesson_topics:
     topic=theory[lesson["plot"]]
     lesson["title"]=topic["title"]
+    lesson["intuition"]=list(map(math_text,topic["intuition"]))
     lesson["reading"]=topic["reading"]
     if lesson["reading"] and lesson["reading"][0] not in sources:
         raise ValueError(f"Missing lecture PDF: {lesson['reading'][0]}")
     lesson["papers"]=topic["papers"]
     lesson["focus"]=math_text(topic["focus"])
+    if "calculation" in topic:
+        lesson["quickCalc"]=math_text(topic["calculation"])
     for key in ("definition","conditions","symbols","use"):
         lesson[key]=math_text(topic[key])
     lesson["stepConditions"]=list(map(math_text,topic["stepConditions"]))
@@ -241,7 +244,7 @@ for lesson in lesson_topics:
         lesson["steps"][-1][2]=leibniz["general"]
         lesson["cases"]=[[label,worked_formula(tex)] for label,tex in topic["cases"]]
     lessons.append(lesson)
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,drills=drills,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","vaje12.js","vaje34.js","vaje56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,drills=drills,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","areaLab.js","plots12.js","plots34.js","plots56.js","vaje12.js","vaje34.js","vaje56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
 print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(drills)} drills, {len(cards)} cards")

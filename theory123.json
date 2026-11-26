@@ -72,7 +72,12 @@
       "Na končnem intervalu $[A,B]$ zveznost $f$ zagotovi obstoj integrala za vsak izbran $a$.",
       "Oba parametra $a$ in $a+h$ sta v domeni. Isti meji $A,B$ omogočata odštevanje pod enim integralom.",
       "$h\\ne0$ dovoljuje deljenje. Zveznost $f_a$ na kompaktnem pravokotniku daje enakomerno oceno za vse $x$."
-    ]
+    ],
+    "intuition": [
+      "Koliko materiala potrebuješ za ploščo z ukrivljenim robom?",
+      "Na vsakem mestu $x$ izmeriš višino. Seštevek ozkih trakov da ploščino. Parameter $a$ izbere obliko roba; ko ga premakneš, vidiš, koliko materiala se prišteje."
+    ],
+    "calculation": "Če plošča sega od 0 do 2 in je visoka $1+ax^2$, je $F(a)=2+8a/3$. Pri $a=0$ dobiš 2; povečanje $a$ za 0,3 doda $0,3\\cdot8/3=0,8$ enote ploščine."
   },
   "leib": {
     "title": "Leibnizovo pravilo z mejama u(y) in v(y)",
@@ -178,7 +183,12 @@
       "Meji in vse vrednosti med njima ležijo v domeni $f$, zato je integral definiran.",
       "Potrebujemo $y+h$ v domeni. Uporabimo usmerjene integrale; razcep velja tudi pri premiku meje v levo.",
       "Odvedljivost mej daje hitrosti $u',v'$. Zveznost $f$ določi mejni višini; zveznost $f_y$ dovoljuje odvajanje na starem intervalu."
-    ]
+    ],
+    "intuition": [
+      "Koliko se spremeni količina, ko premakneš tudi začetek in konec merjenja?",
+      "Predstavljaj si pretok vode skozi cev. Integral pretoka čez čas je količina vode. Če merjenje končaš pozneje, pridobiš desni pas; če ga začneš pozneje, izgubiš levi pas."
+    ],
+    "calculation": "Na grafu je $f(x,a)=x+a$, leva meja $a/2$, desna $1+a$. Pri $a=1$ notranjost prispeva $2-0,5=1,5$, desni rob $3\\cdot1=3$, levi pa $-1,5\\cdot0,5=-0,75$. Skupni odvod je $3,75$."
   },
   "tail": {
     "title": "Enakomerna konvergenca nepravega integrala",
@@ -262,7 +272,12 @@
       "Najprej mora obstajati $I(a)$ pri vsakem $a\\in J$, sicer napake glede na $I(a)$ ne moremo meriti.",
       "Ista integrabilna $g$ mora omejiti absolutno vrednost odvoda za vse obravnavane parametre; le tako en rez deluje za vse.",
       "Potrebujemo obstoj v eni točki in lokalno enakomerno konvergenco integralov odvodov. Prvi pogoj določi začetno vrednost, drugi dovoli prehod skozi integral po parametru."
-    ]
+    ],
+    "intuition": [
+      "Kdaj lahko zaključiš meritev signala, ki še ni povsem ugasnil?",
+      "Navpična črta $R$ je čas, ko nehaš meriti. Desno od nje ostane rep. Zgornja meja za njegovo velikost ti pove, kolikšno napako največ narediš."
+    ],
+    "calculation": "Če je velikost odvoda omejena z $xe^{-x^2}$, je napaka po rezu $R$ največ $e^{-R^2}/2$. Pri $R=2$ je to približno 0,0092 za vse obravnavane parametre."
   },
   "gamma": {
     "title": "Funkcija gama in njena rekurzija",
@@ -386,6 +401,10 @@
       "Parameter $p$ je fiksen in pozitiven. To potrebujemo pri ničli. Indeks $m$ za drugi del si izberemo med naravnimi števili, ko je $p$ že znan.",
       "Integracijo po delih najprej naredimo za $0<\\varepsilon<R<\\infty$, kjer sta obe funkciji gladki. Pogoj $p>0$ potrebujemo pri prehodu na spodnjo mejo.",
       "Pri izpeljavi iz integrala velja $p>0$. Pri nadaljevanju na levo uporabimo dobljeno rekurzijo; delimo lahko samo z neničelnim argumentom."
+    ],
+    "intuition": [
+      "Koliko se nabere, če dotok najprej raste in nato usiha?",
+      "Če je dotok ob času $x$ enak $x^2e^{-x}$, vsak ozek trak pomeni količino, ki je pritekla v kratkem času. Vse trakove od 0 do neskončnosti sešteje $\\Gamma(3)$. Potenca $x^2$ določa začetno rast, $e^{-x}$ pa dotok sčasoma zaduši."
     ]
   },
   "beta": {
@@ -415,7 +434,7 @@
         "Skupna velikost in delež",
         "V produktu dveh integralov gama uvedemo $r=x+y$ in $u=x/(x+y)$. Pozitivni kvadrant tako opišeta velikost in delež, Jacobijeva determinanta po absolutni vrednosti znaša $r$.",
         "x=ru,\\qquad y=r(1-u),\\qquad dx\\,dy=r\\,dr\\,du",
-        "Na daljici s stalno vsoto se spreminja samo delež.",
+        "Točka na daljici predstavlja par (x, y). Premakni delež in opazuj obe koordinati.",
         [
           [
             "Zmnoži integrala gama. Ker sta faktorja nenegativna, lahko njun produkt zapišeš kot integral po pozitivnem kvadrantu.",
@@ -435,7 +454,7 @@
         "Razcep produkta",
         "Po zamenjavi koordinat nastane faktor $r^{p+q-1}e^{-r}$ in ločen faktor, odvisen od $u$. Ker je jedro nenegativno, se dvojni integral razcepi na produkt dveh integralov.",
         "\\Gamma(p)\\Gamma(q)=\\Gamma(p+q)B(p,q),\\qquad B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}",
-        "Zrcaljenje profila pri zamenjani vlogi argumentov ponazarja ohranitev ploščine.",
+        "Zeleno ploščino dobiš tako, da vsako višino jedra beta pomnožiš z istim faktorjem gama.",
         [
           [
             "Vstavi novi koordinati. Faktor $r$ iz ploščinskega elementa prispeva še eno potenco.",
@@ -474,6 +493,10 @@
       "$p>0$ zagotovi konvergenco pri ničli, $q>0$ pri enici. Tako lahko tudi po zamenjavi krajišč preidemo k limitama.",
       "V notranjosti pozitivnega kvadranta je $x+y>0$. Zato je delež določen in Jacobijeva determinanta neničelna.",
       "Pri $p,q>0$ sta obe gami končni. Nenegativnost jedra dovoljuje zaporedno integriranje, pozitivnost $\\Gamma(p+q)$ pa deljenje."
+    ],
+    "intuition": [
+      "Kolikšna je ploščina profila med dvema robovoma?",
+      "Vzemi profil širine 1 z višino $u(1-u)^2$. Tu je $u$ razdalja od levega roba in $1-u$ razdalja do desnega. Višina je med robovoma pozitivna, na obeh robovih pa nič. Beta sešteje ozke trakove po celotni širini."
     ]
   },
   "betasub": {
@@ -554,7 +577,12 @@
       "Vzamemo zvezno $f$ in strogo naraščajočo zvezno odvedljivo menjavo. Tako ima vsaka meja enolično novo koordinato.",
       "Odvedljivost $\\varphi$ in $G$ dovoljuje verižni zakon. Ni treba deliti z $\\varphi'$.",
       "Na končnem intervalu uporabimo osnovni izrek. Pri nepravem integralu najprej uporabimo končni meji in preverimo obstoj ustreznih limit."
-    ]
+    ],
+    "intuition": [
+      "Kako isto ploščino izmeriš z drugo lestvico?",
+      "Ko izbereš novo koordinato $u$, se spremenita širina traku in višina v računu. Faktor pri $du$ ohrani ploščino. To uporabiš, da se zapleten koren spremeni v potenco, ki jo prepoznaš v beti."
+    ],
+    "calculation": "Pri $u=x^2/4$ se meja $x=2$ spremeni v $u=1$. Iz $x=2\\sqrt u$ dobiš $dx=du/\\sqrt u$; z obema zamenjavama lahko prebereš integral beta."
   },
   "lap": {
     "title": "Laplaceova transformacija in njen inverz",
@@ -638,7 +666,12 @@
       "Signal naj bo integrabilen na vsakem končnem časovnem intervalu. Za izbrani $s$ mora obstajati še limita pri neskončnosti.",
       "Izberemo $s>\\alpha$, da je eksponent uteženega signala negativen in integral njegove zgornje ocene končen.",
       "Za sklep o enakosti v vsaki točki naj bosta oba signala zvezna, eksponentno omejena in transformiranki enaki za vse dovolj velike $s$."
-    ]
+    ],
+    "intuition": [
+      "Kako poenostaviš račun gibanja vzmeti?",
+      "Iz časovne krivulje narediš vrednost $F(s)$: pozne višine pomnožiš z manjšo utežjo in sešteješ ploščino. Enačbo za vzmet lahko nato rešiš z računanjem z ulomki, na koncu pa se vrneš k odmiku skozi čas."
+    ],
+    "calculation": "Za $f(t)=e^t$ izberi $s=2$. Najprej pomnoži: $e^{-2t}e^t=e^{-t}$. Nato integriraj: $F(2)=\\int_0^\\infty e^{-t}\\,dt=1$."
   },
   "deriv": {
     "title": "Odvodi pri Laplaceovi transformaciji",
@@ -730,7 +763,12 @@
       "Zveznost $f$ in odsekoma zvezni odvod dopuščata integracijo po delih. Pri $s$ nad stopnjo rasti izgine zgornji rob.",
       "Za ponavljanje istega pravila morajo začetne vrednosti do reda $n-1$ obstajati, ustrezni robni členi pa izginiti. Uporabimo pogoje iz začetka lekcije.",
       "V okolici izbranega $s$ potrebujemo skupno integrabilno oceno za $t e^{-st}f(t)$, ker želimo zamenjati odvod in nepravi integral."
-    ]
+    ],
+    "intuition": [
+      "Kako v računu ohraniš začetno lego ali hitrost?",
+      "Odvod lege je hitrost. Pri prehodu v Laplaceov zapis se poleg faktorja $s$ pojavi začetna lega; pri drugem odvodu še začetna hitrost. Tako ločiš dve enaki vzmeti, ki ju spustiš iz različnih položajev."
+    ],
+    "calculation": "Za $f(t)=1+t$ je $F(s)=1/s+1/s^2$ pri $s>0$. Vstavi $f(0)=1$: $\\mathcal L(f')=sF(s)-1=1/s$. To je transformiranka konstante 1."
   },
   "system": {
     "title": "Laplaceova transformacija linearnega sistema",
@@ -810,7 +848,12 @@
       "Uporabimo pravila za odvode pri dovolj velikem $s$. Podani začetni podatki nam omogočijo zapis desnih strani brez dodatnih neznank.",
       "Pri istem $s$ obravnavamo koeficiente kot števila. Za množenje in odštevanje vrstic še ne potrebujemo deljenja.",
       "Pogoj $AD-BC\\ne0$ zagotovi enolično rešitev algebrajskega sistema in dovoljuje deljenje."
-    ]
+    ],
+    "intuition": [
+      "Kako spremljaš dve povezani masi?",
+      "Vsaka krivulja pripada eni masi. Gibanje ene vpliva na drugo, zato imaš dve enačbi. Transformiraj obe, odpravi eno neznanko in nato izračunaj še drugo."
+    ],
+    "calculation": "Pri $y'=z$, $z'=y$, $y(0)=1$, $z(0)=0$ dobiš $sY-1=Z$ in $sZ=Y$. Vstavi $Y=sZ$ v prvo enačbo: $(s^2-1)Z=1$. Tako začneš izračun obeh krivulj."
   },
   "gaussTheory": {
     "title": "Gaussov integral in kosinusna utež",
@@ -921,6 +964,11 @@
       "Začetna ploščina je podana. Pri dodatni izpeljavi je jedro nenegativno, zato smemo primerjati integrale po vsebovanih območjih.",
       "Za vse realne $a$ absolutni odvod omejuje $xe^{-x^2}$. Njegova integrabilnost upraviči odvajanje; pri per partes posebej preverimo robova.",
       "Deljenje z $I$ najprej velja blizu ničle: $I(0)>0$ in $I$ je zvezna. Enoličnost rešitve nato upraviči dobljeni izraz za vse $a$."
-    ]
+    ],
+    "intuition": [
+      "Koliko ostane od zvonastega signala, če ga pomnožiš z nihanjem?",
+      "Pri ničelni frekvenci seštevaš sam pozitivni zvon. Ko kosinus niha, deli ploščine pod osjo odštejejo dele nad njo. Zato je končna vrednost odvisna od frekvence."
+    ],
+    "calculation": "Pri $a=2$ v dobljeno funkcijo vstaviš frekvenco: $I(2)=(\\sqrt\\pi/2)e^{-2^2/4}=\\sqrt\\pi/(2e)$. To je preostala predznačena ploščina."
   }
 }

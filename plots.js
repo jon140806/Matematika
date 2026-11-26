@@ -8,7 +8,8 @@ function plotSettings(id,k=0){
  if(practicePlots[id])return practicePlots[id].slider;
  if(id==='gauss'&&k===0)return ['Meja reza R',0,3,.05,1];
  if(id==='gaussTheory')return k===0?['Meja polmera R',.2,3,.05,1.2]:['Parameter a',0,5,.1,1.5];
- if(id==='beta'&&k===1)return ['Vsota r = x + y',1,4,.1,2];
+ if(id==='beta'&&k===1)return ['Delež u = x/r',0,1,.05,.5];
+ if(id==='beta'&&k===2)return ['Argument p pri q = 2',1,4,.5,2];
  if(id==='radius'&&k===1)return ['Zadnji indeks N',2,40,1,12];
  const settings={
  area:['Parameter a',0,1.4,.05,.65],leib:['Parameter a',.25,1.25,.05,.7],tail:['Meja R',.4,3,.05,1.2],
@@ -83,9 +84,9 @@ function chartModel(id,k,v){
   else{y=[0,Math.max(1.15,1.2*(k>0&&id==='gamma'?g(p):f(Math.max(.01,p-1))))];graph('Jedro gama',f);area(f,0,id==='gamma'?10:Math.log(v));if(k>0&&id==='gamma')graph('Jedro za p + 1',g,lilac);caption=id==='gamma'?(k===0?'Pri p = '+fmt(p)+' prikazana ploščina prispeva k Γ(p).':'Ploščini pod celotnima krivuljama sta v razmerju p = '+fmt(p)+'.'):'Po menjavi meja je označena ploščina enaka prvotni.'}
  }else if(id==='beta'||id==='betarec'){
   const p=v,q=2;x=[0,1];label='u';let f=u=>u**(p-1)*(1-u)**(q-1);
-  if(id==='beta'&&k===1){x=[0,4.2];y=[0,4.2];label='x';let r=v;const g=t=>t<=r?r-t:NaN;graph('x + y = r',g);marks=[r/2];points=[[r/2,r/2,mint]];caption='Na daljici x + y = '+fmt(r)+' teče u od 0 do 1. Sredina ima u = ½.'}
+  if(id==='beta'&&k===1){const r=3;x=[0,r];y=[0,r];label='x';graph('x + y = 3',t=>r-t);marks=[r*v];points=[[r*v,r*(1-v),gold]];caption='Vsota r = 3 je stalna. Pri u = '+fmt(v)+' sta x = 3u = '+fmt(r*v)+' in y = 3(1 − u) = '+fmt(r*(1-v))+'.'}
   else if(id==='betarec'){y=[0,1.12];const a=t=>t**(p-1)*(1-t)**q,b=t=>t**p*(1-t)**(q-1);graph('B(p, q + 1)',a);graph('B(p + 1, q)',b,lilac);area(a,0,1);area(b,0,1,lilac);caption='Za q = 2 je količnik ploščin q/p = '+fmt(2/p)+'.'}
-  else{if(k===2){const norm=p*(p+1);y=[0,5];graph('p, 2',u=>norm*f(u));graph('2, p',u=>norm*f(1-u),lilac);caption='Zamenjava u z 1 − u zrcali gostoto. Obe normalizirani ploščini sta 1.'}else{y=[0,1.1];graph('Beta jedro',f);area(f,0,1);caption='Ploščina pri q = 2 je 1/[p(p+1)] = '+fmt(1/(p*(p+1)))+'.'}}
+  else{if(k===2){const scale=halfIntegerGamma(p+2),scaled=u=>scale*f(u),peak=(p-1)/p;y=[0,1.2*scaled(peak)];graph('Γ(p+2) krat jedro beta',scaled);area(scaled,0,1);caption='Pri q = 2 pomnoži ploščino B(p,2) ≈ '+fmt(1/(p*(p+1)))+' z Γ(p+2) ≈ '+fmt(scale)+'. Osenčena ploščina je Γ(p)Γ(2) ≈ '+fmt(halfIntegerGamma(p))+'.'}else{y=[0,1.1];graph('Beta jedro',f);area(f,0,1);caption='Ploščina pri q = 2 je 1/[p(p+1)] = '+fmt(1/(p*(p+1)))+'.'}}
  }else if(id==='betasub'||id==='cubeta'){
   const old=id==='betasub',a=old?2:.5,u=old?v*v/4:4*v*v;
   if(k===0){x=[0,a];y=[0,old?3.6:.55];const f=old?t=>t*t*sqrt(Math.max(0,4-t*t)):t=>sqrt(Math.max(0,t-4*t**3));graph('Pred menjavo',f);area(f,0,v);mark(v,f);caption='Meja x = '+fmt(v)+' se preslika v u = '+fmt(u)+'.'}

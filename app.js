@@ -116,7 +116,7 @@ function drawPlot(panel){
    m.keys.x='x · spremenljivka integriranja';m.keys.y=phase===2?'Δf/h · sprememba višine na enoto parametra':'f · vrednost funkcije';
    m.keys.areas=[['F(0) · začetna ploščina','F(a) − F(0) · sprememba'],['F(a) · prvotna ploščina','ΔF · prirastek'],['F′(a) · odvod']][phase];
   }
-  if(current().plot==='gaussTheory')panel.querySelector('.caption').append(' '+m.caption);
+  if(m.caption)panel.querySelector('.caption').append(' '+m.caption);
  }else panel.querySelector('.caption').textContent=m.caption;
  if(tab()==='lessons')m.caption=panel.querySelector('.caption').textContent;
  panel.querySelector('.drawing').innerHTML=svgChart(m).replaceAll('graph-clip','graph-clip-'+phase);
@@ -188,7 +188,10 @@ function exerciseProcedure(steps){
 }
 function lesson(){
  const o=current(),done=!!state.marks[currentId()];
- const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols],['Uporaba',o.use]];
+ const lab=['gamma','beta'].includes(o.plot);
+ const intuition='<h3>'+o.intuition[0]+'</h3><p>'+o.intuition[1]+'</p>';
+ const start=lab?'<section class="intuitionLab lesson"><div class="explain">'+intuition+'<h3>Kako izračunaš vrednost?</h3><div class="labCalculation"></div></div>'+areaLab(o.plot)+'</section>':'';
+ const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols]];
  const intro='<section class="concept"><h3>Definicija</h3><p>'+o.definition+'</p><dl>'+facts.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl></section>';
  const scenes=o.steps.map(([heading,reason,formula,,rows],i)=>{
   const result='<div class="formula calcLine">'+formula+'</div>';
@@ -196,13 +199,13 @@ function lesson(){
   const given=o.plot==='gaussTheory'&&i===0;
   const derivation=rows?calculation(rows,'Izpeljava po vrsticah'):'';
   const details=rows?'<div class="derivationRows">'+(given?'<details><summary>Od kod pride začetna vrednost?</summary>'+derivation+'</details>':derivation+result)+'</div>':'';
-  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p><b>Zakaj?</b> '+reason+'</p><p class="sceneCondition"><b>Pogoj za ta korak</b> '+o.stepConditions[i]+'</p>'+(rows&&!given?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
- }).join('');
+  return '<section class="lesson scene"><div class="explain">'+(!lab&&i===0?'<div class="firstLook">'+intuition+'<div class="quickCalc"><b>Kako računaš</b>'+o.quickCalc+'</div></div>':'')+'<div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p><b>Zakaj?</b> '+reason+'</p><p class="sceneCondition"><b>Pogoj za ta korak</b> '+o.stepConditions[i]+'</p>'+(rows&&!given?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
+ });
  const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
  let practice='';
  if(o.plot==='leib')practice=unitLink('exercises','atan','Kolokvij 2023 · premična zgornja meja');
  if(o.plot==='gaussTheory')practice=unitLink('exercises','gauss','Gaussova naloga s kolokvija');
- return '<div class="lessonName"><h2>'+o.title+'</h2></div>'+lessonEvidence(o)+intro+cases+scenes+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
+ return '<div class="lessonName"><h2>'+o.title+'</h2></div>'+lessonEvidence(o)+start+(lab?intro+cases+scenes.join(''):scenes[0]+intro+cases+scenes.slice(1).join(''))+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
 function unitLink(kind,plot,label){
  const index=data(kind).findIndex(item=>item.plot===plot);
@@ -235,7 +238,7 @@ function render(){
  const opened=previous?.dataset.unit===currentId()?Array.from(previous.children).filter(el=>el.tagName==='DETAILS').map(el=>el.open):[];
  const openedNotes=previous?.dataset.unit===currentId()?Array.from(previous.querySelectorAll('.stepNote'),note=>note.open):[];
  const fin=state.day===6&&tab()==='exercises'?'<div class="dayfinish"><div><h2>Preizkus s staro polo</h2><p>Računska pola traja 90 minut, teoretična 30 minut.</p></div>'+btn('archive','Izberi kolokvij')+'</div>':'';
- $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='cards'?flash():exercise())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
+ $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='cards'?flash():exercise())+fin;document.querySelectorAll('#content .plot[data-plot]').forEach(drawPlot);document.querySelectorAll('#content .areaLab').forEach(drawAreaLab);
  if(opened.length)document.querySelectorAll('#content .practice > details').forEach((el,i)=>el.open=opened[i]);
  if(openedNotes.length)document.querySelectorAll('#content .stepNote').forEach((note,i)=>note.open=openedNotes[i]);
  if(within){let match=oldAct&&Array.from($('content').querySelectorAll('[data-do]')).find(b=>b.dataset.do===oldAct&&b.dataset.val===oldVal);let next=match||$('content').querySelector('.explain h2,.practice h2,.flash h2');if(next){if(next.tagName==='H2')next.tabIndex=-1;next.focus({preventScroll:true})}}
@@ -263,7 +266,7 @@ function showProgress(){const all=counts(),d=counts(state.day),n=Object.values(s
  modal('Kako se meri napredek?','<p><b>Skupaj</b> si potrdil '+all.done+' od '+all.total+' učnih enot. Vsaka izpeljava, samostojno rešena naloga in naučena kartica šteje enkrat.</p><p><b>Za '+state.day+'. dan</b> je dokončanih '+d.done+' od '+d.total+' enot tega dneva načrta.</p><p><b>Danes</b> si potrdil '+n+' novih enot. Odstotek pove, kolikšen del celotne snovi si osvojil na današnji koledarski dan.</p><p class="sourceNote">Napredek se shrani v tem brskalniku. Oznako lahko umakneš, ko želiš enoto še ponoviti.</p>')}
 $('menu').onclick=()=>{const open=$('side').classList.toggle('open');$('menu').setAttribute('aria-expanded',open)};
 document.addEventListener('change',e=>{if(e.target.id==='bankTopic'){state.bank.topic=+e.target.value;resetView();save();layout();$('bankTopic').focus()}if(e.target.id==='item'){selectItem(+e.target.value);$('item').focus({preventScroll:true})}if(e.target.id==='graphView'){graphStage=+e.target.value;sliderValue=undefined;render();$('graphView').focus({preventScroll:true})}});
-document.addEventListener('input',e=>{if(e.target.matches('.plot input[type=range]')){if(tab()!=='lessons')sliderValue=+e.target.value;drawPlot(e.target.closest('.plot'))}});
+document.addEventListener('input',e=>{const lab=e.target.closest('.areaLab');if(lab){drawAreaLab(lab);return}if(e.target.matches('.plot input[type=range]')){if(tab()!=='lessons')sliderValue=+e.target.value;drawPlot(e.target.closest('.plot'))}});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-do]');if(!b)return;const act=b.dataset.do,val=b.dataset.val;
  if(act==='day'){setDay(+val);return}if(act==='tab'){changeTab(val);return}

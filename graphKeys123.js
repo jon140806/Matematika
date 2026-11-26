@@ -42,9 +42,9 @@ const graphKeys123 = {
   }),
   beta: k => ({
     x: k === 1 ? 'x · prva koordinata' : 'u · delež med 0 in 1',
-    y: ['višina jedra beta', 'y · druga koordinata', 'gostota · normirana višina'][k],
-    curves: [['uᵖ⁻¹(1−u) · jedro pri q = 2'], ['y = r−x · daljica pri stalnem r'], ['g(u) · gostota za (p,2)', 'g(1−u) · gostota za (2,p)']][k],
-    marks: k === 1 ? ['r/2'] : [], areas: k === 0 ? ['B(p,2) · integral jedra'] : []
+    y: ['višina jedra beta', 'y · druga koordinata', 'jedro beta × Γ(p+2)'][k],
+    curves: [['uᵖ⁻¹(1−u) · jedro pri q = 2'], ['y = r−x · daljica pri stalnem r'], ['Γ(p+2) · uᵖ⁻¹(1−u)']][k],
+    marks: k === 1 ? ['x = ru'] : [], areas: k === 0 ? ['B(p,2) · integral jedra'] : k === 2 ? ['Γ(p+2)B(p,2) = Γ(p)Γ(2)'] : []
   }),
   betasub: k => ({
     x: ['x · prvotna koordinata', 'u = x²/4 · nova koordinata', 'b · zgornja meja'][k],
