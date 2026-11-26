@@ -1,0 +1,245 @@
+{
+  "area": {
+    "title": "Integral s parametrom in njegov odvod",
+    "definition": "Vsak parameter določi eno funkcijo spremenljivke $x$. Njen določeni integral je nova funkcija parametra.",
+    "conditions": "Na končnem pravokotniku naj bosta $f$ in njen parcialni odvod po parametru zvezna. Meji integracije sta stalni.",
+    "symbols": "$x$ teče med $A$ in $B$. $a$ izbira krivuljo, $F(a)$ pa meri njeno predznačeno ploščino.",
+    "use": "Izrek opiše občutljivost celotne ploščine na spremembo parametra.",
+    "steps": [
+      [
+        "Družina krivulj",
+        "Pri stalnem parametru seštejemo prispevke vzdolž osi $x$. Parameter ostane argument dobljene funkcije.",
+        "F(a)=\\int_A^B f(x,a)\\,dx",
+        "Vse krivulje imajo isti interval integracije."
+      ],
+      [
+        "Razlika integralov",
+        "Linearnost integrala spremeni razliko dveh ploščin v integral razlike višin.",
+        "F(a+h)-F(a)=\\int_A^B [f(x,a+h)-f(x,a)]\\,dx",
+        "Pas med krivuljama prikazuje spremembo ploščine."
+      ],
+      [
+        "Prehod k odvodu",
+        "Po deljenju s $h$ dobimo diferenčni količnik višin. Zveznost parcialnega odvoda na kompaktnem pravokotniku zagotovi enakomeren prehod k limiti pod integralom.",
+        "F'(a)=\\lim_{h\\to0}\\int_A^B\\frac{f(x,a+h)-f(x,a)}h\\,dx=\\int_A^B\\partial_a f(x,a)\\,dx",
+        "Ploščina pod krivuljo parcialnega odvoda predstavlja odvod celotnega integrala."
+      ]
+    ]
+  },
+  "leib": {
+    "title": "Leibnizovo pravilo",
+    "definition": "Pri integralu s spremenljivima mejama se lahko s parametrom spreminjajo višina krivulje in oba robova intervala.",
+    "conditions": "Funkciji $f$ in $\\partial_y f$ naj bosta zvezni na pravokotniku, ki zajema vse obravnavane meje, $u$ in $v$ pa zvezno odvedljivi.",
+    "symbols": "$y$ je parameter (na grafu $a$). $u$ je leva meja, $v$ desna. Indeks $+$ pomeni vrednost po spremembi parametra za $h$.",
+    "use": "Pravilo loči prispevek spremembe v notranjosti od prispevkov gibanja obeh robov.",
+    "steps": [
+      [
+        "Predznačena ploščina",
+        "Pri izbranem $y$ sta obe meji določeni. Ko se $y$ spremeni, novi integral zajame drugo območje.",
+        "F(y)=\\int_{u(y)}^{v(y)}f(x,y)\\,dx",
+        "Navpični oznaki omejujeta prvotni interval."
+      ],
+      [
+        "Razcep prirastka",
+        "Naj bosta $u_+=u(y+h)$ in $v_+=v(y+h)$. Na starem intervalu je $\\Delta f=f(x,y+h)-f(x,y)$. Desni pas se prišteje, levi odšteje.",
+        "F(y+h)-F(y)=\\int_u^v\\Delta f\\,dx+\\int_v^{v_+}f(x,y+h)\\,dx-\\int_u^{u_+}f(x,y+h)\\,dx",
+        "Od stare do nove meje potekata dva robna pasova."
+      ],
+      [
+        "Vsota treh prispevkov",
+        "Po deljenju s $h$ notranji člen preide v integral $f_y$. Povprečna višina robnega pasu teži k robni višini, širina pasu na enoto $h$ pa k odvodu meje.",
+        "F'(y)=\\int_{u(y)}^{v(y)}f_y(x,y)\\,dx+v'(y)f(v(y),y)-u'(y)f(u(y),y)",
+        "Trije predznačeni stolpci predstavljajo notranjost, desni rob in levi rob."
+      ]
+    ]
+  },
+  "tail": {
+    "title": "Enakomerna konvergenca nepravega integrala",
+    "definition": "Integral konvergira enakomerno glede na parameter, kadar lahko njegov rep hkrati omejimo za vse parametre z enim mestom reza.",
+    "conditions": "Za spodnji izrek o odvajanju naj bosta $f$ in $\\partial_a f$ zvezni na vsakem končnem pravokotniku. Integral parcialnega odvoda naj konvergira enakomerno glede na parameter. Prvotni integral naj obstaja za vsaj en parameter iz obravnavanega zaprtega intervala.",
+    "symbols": "$R$ je meja reza, $I_R$ odrezani integral, $I$ njegova limita in $\\varepsilon$ dovoljena napaka.",
+    "use": "Skupna ocena repa utemelji zamenjavo odvoda in nepravega integrala.",
+    "steps": [
+      [
+        "En rez za vse parametre",
+        "Pri točkovni konvergenci lahko rez izbiramo posebej za vsak parameter. Enakomerna konvergenca zahteva, da največja napaka na celotnem intervalu parametrov teži k nič.",
+        "I_R(a)=\\int_A^R f(x,a)\\,dx,\\qquad\\sup_{a\\in J}|I(a)-I_R(a)|\\longrightarrow0\\quad(R\\to\\infty)",
+        "Meja reza loči obdržani del krivulje od njenega repa."
+      ],
+      [
+        "Majoranta odvoda",
+        "Če odvod po absolutni vrednosti omejuje integrabilna funkcija $g$, neodvisna od $a$, potem njegov rep omejuje isti rep majorante za vse parametre.",
+        "|\\partial_a f(x,a)|\\le g(x),\\qquad\\left|\\int_R^\\infty\\partial_a f(x,a)\\,dx\\right|\\le\\int_R^\\infty g(x)\\,dx",
+        "Odvod ostaja med zgornjo in spodnjo ovojnico."
+      ],
+      [
+        "Odvod nepravega integrala",
+        "Na vsakem končnem intervalu velja pravilo za odvod. Ker odvodi odrezanih integralov konvergirajo enakomerno in prvotni integrali konvergirajo v eni točki, lahko tudi v limiti odvajamo pod integralom.",
+        "I'(a)=\\lim_{R\\to\\infty}I_R'(a)=\\int_A^\\infty\\partial_a f(x,a)\\,dx",
+        "Krivulja ocene repa pada proti nič z oddaljevanjem reza."
+      ]
+    ]
+  },
+  "gamma": {
+    "title": "Funkcija gama in njena rekurzija",
+    "definition": "Gama je funkcija, definirana z nepravim integralom potence z eksponentno utežjo. Za pozitivne cele argumente je povezana s fakulteto.",
+    "conditions": "V integralski definiciji velja $p>0$. To zagotovi integrabilnost pri ničli, eksponentni faktor pa konvergenco v neskončnosti.",
+    "symbols": "$p$ je argument funkcije, $x$ spremenljivka integriranja. $\\Gamma(p)$ označuje ploščino pod jedrom.",
+    "use": "Rekurzija poveže vrednosti gama pri sosednjih argumentih in omogoča razširitev zunaj pozitivne polosi.",
+    "steps": [
+      [
+        "Integralska definicija",
+        "Potenca določa vedenje pri ničli, eksponentna utež pa v neskončnosti prevlada nad vsako potenco.",
+        "\\Gamma(p)=\\int_0^\\infty x^{p-1}e^{-x}\\,dx",
+        "Parameter spremeni obliko jedra."
+      ],
+      [
+        "Integracija po delih",
+        "Pri argumentu $p+1$ nastopi potenca $x^p$. Njen odvod je $p x^{p-1}$, primitivna funkcija uteži pa $-e^{-x}$. Robni člen izgine pri obeh mejah.",
+        "\\Gamma(p+1)=\\left[-x^p e^{-x}\\right]_0^\\infty+p\\int_0^\\infty x^{p-1}e^{-x}\\,dx",
+        "Primerjani jedri se razlikujeta za eno potenco spremenljivke."
+      ],
+      [
+        "Rekurzija in fakulteta",
+        "Preostali integral je po definiciji $\\Gamma(p)$. Ponavljanje rekurzije iz $\\Gamma(1)=1$ pojasni povezavo s fakulteto. V obratni smeri razmerje določi tudi vrednosti pri negativnih necelih argumentih.",
+        "\\Gamma(p+1)=p\\Gamma(p),\\qquad \\Gamma(n+1)=n!\\quad(n\\in\\mathbb N_0)",
+        "Krivulji zadnjega prikaza imata na pozitivni polosi enaki ploščini."
+      ]
+    ]
+  },
+  "beta": {
+    "title": "Funkcija beta in zveza z gama",
+    "definition": "Beta meri integral produkta dveh potenc na enotskem intervalu. Vsaka potenca predstavlja vedenje ob enem od obeh krajišč.",
+    "conditions": "Argumenta $p$ in $q$ sta pozitivna. Tako je jedro integrabilno ob obeh krajiščih.",
+    "symbols": "$u$ je delež med nič in ena, $1-u$ preostali delež. $p$ in $q$ določata eksponenta.",
+    "use": "Zveza z gama izrazi integral z dvema argumentoma s funkcijami enega argumenta.",
+    "steps": [
+      [
+        "Simetrija krajišč",
+        "Zamenjava $u$ z $1-u$ zamenja le vlogi obeh krajišč, zato se vrednost integrala ohrani.",
+        "B(p,q)=\\int_0^1 u^{p-1}(1-u)^{q-1}\\,du=B(q,p)",
+        "Potenci določata obliko profila ob levem in desnem robu."
+      ],
+      [
+        "Skupna velikost in delež",
+        "V produktu dveh integralov gama uvedemo $r=x+y$ in $u=x/(x+y)$. Pozitivni kvadrant tako opišeta velikost in delež, Jacobijeva determinanta po absolutni vrednosti znaša $r$.",
+        "x=ru,\\qquad y=r(1-u),\\qquad dx\\,dy=r\\,dr\\,du",
+        "Na daljici s stalno vsoto se spreminja samo delež."
+      ],
+      [
+        "Razcep produkta",
+        "Po zamenjavi koordinat nastane faktor $r^{p+q-1}e^{-r}$ in ločen faktor, odvisen od $u$. Ker je jedro nenegativno, se dvojni integral razcepi na produkt dveh integralov.",
+        "\\Gamma(p)\\Gamma(q)=\\Gamma(p+q)B(p,q),\\qquad B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}",
+        "Zrcaljenje profila pri zamenjani vlogi argumentov ponazarja ohranitev ploščine."
+      ]
+    ]
+  },
+  "betasub": {
+    "title": "Menjava spremenljivke v integralu",
+    "definition": "Zamenjava integracijske spremenljivke je drugačen opis iste predznačene ploščine. Skupaj z višino integranda se spremeni tudi širina traku.",
+    "conditions": "Za standardno izpeljavo naj bo $f$ zvezna, $x=\\varphi(u)$ pa naraščajoča in zvezno odvedljiva. Pri nepravem krajišču uporabimo pravilo na notranjem intervalu in nato preidemo k limiti.",
+    "symbols": "$u$ je nova koordinata, $\\varphi(u)$ prvotna koordinata in $\\varphi'(u)$ faktor spremembe širine.",
+    "use": "Pravilo pojasni, zakaj se pri prehodu na standardni integral spremenijo integrand, diferencial in obe meji.",
+    "steps": [
+      [
+        "Primitivna funkcija in meji",
+        "Naj bo $G$ primitivna funkcija funkcije $f$. Stari meji $a,b$ sta sliki novih mej $\\alpha,\\beta$. Vrednosti primitivne funkcije na robovih sta tako enolično določeni.",
+        "G'=f,\\qquad \\varphi(\\alpha)=a,\\quad \\varphi(\\beta)=b",
+        "Prvi graf kaže območje v prvotni koordinati."
+      ],
+      [
+        "Verižni zakon",
+        "Odvod sestavljene funkcije vsebuje odvod zunanje in odvod notranje funkcije. Prav notranji odvod pretvarja širine intervalov med koordinatama.",
+        "(G\\circ\\varphi)'(u)=f(\\varphi(u))\\varphi'(u),\\qquad dx=\\varphi'(u)\\,du",
+        "Višina v novi koordinati vključuje tudi spremembo širine."
+      ],
+      [
+        "Enakost integralov",
+        "Po osnovnem izreku integralnega računa oba zapisa dasta isto razliko robnih vrednosti. Enakost velja tudi za vsako ustrezno premaknjeno zgornjo mejo.",
+        "\\int_\\alpha^\\beta f(\\varphi(u))\\varphi'(u)\\,du=G(b)-G(a)=\\int_a^b f(x)\\,dx",
+        "Krivulja zbrane ploščine pokaže, katera količina se ohranja."
+      ]
+    ]
+  },
+  "lap": {
+    "title": "Laplaceova transformacija in njen inverz",
+    "definition": "Laplaceova transformacija priredi časovnemu signalu funkcijo parametra dušenja. Vsaka vrednost transformiranke je integral uteženega signala.",
+    "conditions": "Za obstoj zadoščata odsekoma zveznost na vsakem končnem intervalu in eksponentna omejenost v neskončnosti. Pri stopnji rasti $\\alpha$ vzamemo realni $s>\\alpha$.",
+    "symbols": "$t$ je čas, $e^{-st}$ utež, $f(t)$ signal in $F(s)$ njegova transformiranka.",
+    "use": "Linearnost in pravila za odvode omogočajo pretvorbo linearnih diferencialnih enačb v algebrajske enačbe.",
+    "steps": [
+      [
+        "Eksponentno jedro",
+        "Jedro pripiše zgodnjim in poznim vrednostim signala različne uteži. Z integracijo po celotni pozitivni časovni osi nastane ena vrednost za vsak dopusten parameter.",
+        "F(s)=\\mathcal L(f)(s)=\\int_0^\\infty e^{-st}f(t)\\,dt",
+        "Prikazana sta prvotni in uteženi signal."
+      ],
+      [
+        "Pogoj za obstoj",
+        "Če je signal od nekega časa naprej omejen z eksponentno funkcijo, utež njegove pozne vrednosti omeji s padajočim eksponentom. Njegov rep je integrabilen.",
+        "|f(t)|\\le Me^{\\alpha t}\\quad\\Longrightarrow\\quad |e^{-st}f(t)|\\le M e^{-(s-\\alpha)t},\\qquad s>\\alpha",
+        "Močnejše dušenje skrajša rep uteženega signala."
+      ],
+      [
+        "Enoličnost in inverz",
+        "Za zvezne eksponentno omejene signale enakost transformirank za vse dovolj velike $s$ pomeni enakost signalov. Zato je na tem razredu smiselno govoriti o inverzni transformaciji.",
+        "\\mathcal L(f)=\\mathcal L(g)\\ \\Longrightarrow\\ f=g,\\qquad \\mathcal L^{-1}(F)=f",
+        "Točka na grafu transformiranke ustreza eni izbiri uteži."
+      ]
+    ]
+  },
+  "deriv": {
+    "title": "Odvodi pri Laplaceovi transformaciji",
+    "definition": "Odvajanje signala po času postane množenje transformiranke s parametrom in vključuje začetne vrednosti. Odvajanje transformiranke po parametru ustreza množenju signala s časom.",
+    "conditions": "Za formuli časovnih odvodov zadoščajo dvakrat zvezno odvedljiv signal in eksponentna omejenost signala ter njegovih prvih dveh odvodov. Parameter naj bo dovolj velik za konvergenco.",
+    "symbols": "$f'(t)$ označuje časovni odvod, $F'(s)$ odvod po parametru. $f(0)$ in $f'(0)$ sta začetna vrednost in začetni naklon.",
+    "use": "Pravili pojasnita vlogo začetnih podatkov v transformirani enačbi in učinek časovno uteženih členov.",
+    "steps": [
+      [
+        "Prvi časovni odvod",
+        "Integracija po delih prenese odvod s signala na eksponentno jedro. Rob v neskončnosti izgine, na spodnji meji ostane začetna vrednost z negativnim predznakom.",
+        "\\mathcal L(f')=\\left[e^{-st}f(t)\\right]_0^\\infty+s\\int_0^\\infty e^{-st}f(t)\\,dt=sF(s)-f(0)",
+        "Višina predstavlja uteženi časovni odvod."
+      ],
+      [
+        "Višji časovni odvodi",
+        "Prvo pravilo velja tudi za signal $f'$. Ponovna uporaba ustvari novo potenco $s$ in doda začetno vrednost naslednjega odvoda.",
+        "\\mathcal L(f'')=s\\mathcal L(f')-f'(0)=s^2F(s)-sf(0)-f'(0)",
+        "Osenčena ploščina ponazarja člen s pomnoženo transformiranko."
+      ],
+      [
+        "Odvod po parametru",
+        "Pri odvajanju jedra po $s$ nastane faktor $-t$. Eksponentno dušenje pri dovolj velikem $s$ zagotovi integrabilno majoranto in dovoljuje odvajanje pod integralom.",
+        "F'(s)=\\int_0^\\infty(-t)e^{-st}f(t)\\,dt=-\\mathcal L(tf)(s)",
+        "Ploščina pod časovno uteženim signalom predstavlja negativni odvod transformiranke."
+      ]
+    ]
+  },
+  "system": {
+    "title": "Laplaceova transformacija linearnega sistema",
+    "definition": "Pri linearnem sistemu je odvod vsake komponente linearna kombinacija komponent in zunanjega vzbujanja. Transformacija deluje na vsako komponento posebej.",
+    "conditions": "Matrika $A$ je konstantna, začetno stanje je podano. Vzbujanje naj bo odsekoma zvezno in eksponentno omejeno. Transformiranke obravnavamo za dovolj velik $s$.",
+    "symbols": "$\\mathbf y$ je vektor stanja, $\\mathbf g$ vzbujanje, $\\mathbf Y$ in $\\mathbf G$ njuni transformiranki. $I$ je enotska matrika.",
+    "use": "Ista zveza poveže začetno stanje, vzbujanje in odziv pri sistemih z več povezanimi količinami.",
+    "steps": [
+      [
+        "Stanje in začetni podatki",
+        "Matrika opisuje vpliv posameznih komponent na njihove odvode. Začetni vektor izbira rešitev sistema.",
+        "\\mathbf y'(t)=A\\mathbf y(t)+\\mathbf g(t),\\qquad \\mathbf y(0)=\\mathbf y_0",
+        "Točki na začetku časovne osi ponazarjata dve komponenti začetnega stanja."
+      ],
+      [
+        "Algebrajska zveza",
+        "Linearnost dovoljuje prenos konstantne matrike pred transformacijo. Iz pravila za odvod dobimo skupen izraz za vse komponente transformiranega stanja.",
+        "s\\mathbf Y-\\mathbf y_0=A\\mathbf Y+\\mathbf G\\quad\\Longrightarrow\\quad (sI-A)\\mathbf Y=\\mathbf y_0+\\mathbf G",
+        "Rastoči in padajoči časovni člen ponazarjata dve možni obliki prispevkov sistema."
+      ],
+      [
+        "Vrnitev v čas",
+        "Kadar je matrika $sI-A$ obrnljiva, njen inverz določa odziv v domeni $s$. Inverzna transformacija vsake komponente vrne ustrezno časovno funkcijo.",
+        "\\mathbf Y(s)=(sI-A)^{-1}(\\mathbf y_0+\\mathbf G(s)),\\qquad \\mathbf y(t)=\\mathcal L^{-1}(\\mathbf Y)(t)",
+        "Časovni krivulji ponazarjata komponenti istega vektorskega odziva."
+      ]
+    ]
+  }
+}

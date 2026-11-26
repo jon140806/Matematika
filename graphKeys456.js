@@ -35,7 +35,7 @@ const graphKeys456 = {
   radius(k) {
     if (k === 0) return {
       x: 'n · indeks člena', y: 'qₙ · absolutni kvocient',
-      curves: ['qₙ = |aₙ₊₁/aₙ|', '|x| · limita'], marks: [], areas: []
+      curves: ['|x| n/(n+1) · kvocient členov', '|x| · limita'], marks: [], areas: []
     };
     if (k === 1) return {
       x: 'N · zadnji indeks', y: 'S_N · delna vsota',

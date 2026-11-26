@@ -26,3 +26,6 @@
 @media(max-width:650px){.rulePart{display:block}.ruleBridge{padding:11px}.ruleMap{font-size:14px}}
 
 .term,.ruleLhs{display:inline-block;vertical-align:middle;margin:3px 4px 3px 0}.term{padding:3px 6px;border-radius:5px;border-bottom:2px solid currentColor}.term small{display:block;font:600 12px var(--sans);margin-bottom:3px}.term0{background:#ede3fc;color:#613398}.term1{background:#fff0d6;color:#835000}.term2{background:#fce6ef;color:#a32a59}.drawing .flagText{font-size:17px}
+
+.concept{border-top:3px solid var(--plum);background:white;border-radius:7px 7px 12px 12px;border-inline:1px solid var(--border);border-bottom:1px solid var(--border);padding:17px 22px;margin:0 0 18px}.concept h3,.concept dt{font:600 14px/1.4 var(--sans);color:var(--plum)}.concept>p{font-size:18px;max-width:78ch;margin:5px 0 13px}.concept dl{margin:0}.concept dl div{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:10px;border-top:1px solid var(--border);padding:7px 0}.concept dd{margin:0;overflow-x:auto}.scene .formula.calcLine{line-height:2.15;padding:8px 12px}.concept p,.scene .explain>p{overflow-x:auto}
+@media(max-width:650px){.concept{padding:13px}.concept dl div{display:block}.concept dt{margin-bottom:3px}.concept>p{font-size:16px}}

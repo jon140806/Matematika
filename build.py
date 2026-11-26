@@ -141,7 +141,28 @@ for item,rows in zip(base_items,json.loads(read("workedBasics.json")),strict=Tru
 extra_items=[item for day in extras for item in day["items"]]
 for item,rows in zip(extra_items,json.loads(read("workedExtras.json")),strict=True):
     item.append(worked_rows(rows))
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js"])).replace("/*APP*/",read("app.js"))
+# The model calculations are reference examples on the practice tab.
+examples=lessons
+theory={**json.loads(read("theory123.json")),**json.loads(read("theory456.json"))}
+if set(theory)!={example["plot"] for example in examples}:
+    raise ValueError("Theory must cover every original topic")
+lessons=[]
+for example in examples:
+    topic=theory[example["plot"]]
+    lesson={key:example[key] for key in ("day","plot","source")}
+    lesson["title"]=topic["title"]
+    for key in ("definition","conditions","symbols","use"):
+        lesson[key]=math_text(topic[key])
+    lesson["steps"]=[
+        [title,math_text(explanation),worked_formula(tex),math_text(graph)]
+        for title,explanation,tex,graph in topic["steps"]
+    ]
+    if len(lesson["steps"])!=3:
+        raise ValueError(f"Missing illustration stage for {lesson['plot']}")
+    if lesson["plot"]=="leib":
+        lesson["steps"][-1][2]=leibniz["general"]
+    lessons.append(lesson)
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,examples=examples,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
 print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(cards)} cards")

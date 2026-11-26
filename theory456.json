@@ -1,0 +1,272 @@
+{
+  "shift": {
+    "title": "Heavisideova funkcija in časovni zamik",
+    "definition": "Heavisideova stopnica $H(t-a)$ predstavlja vklop ob času $a$. Zamaknjeni signal $H(t-a)g(t-a)$ po vklopu ponovi časovni potek funkcije $g$.",
+    "conditions": "Zamik je $a\\geq0$. Za odsekoma zvezno $g$ eksponentne rasti obstaja transformiranka pri dovolj velikem realnem $s$. Posamična vrednost ob vklopu na integral ne vpliva.",
+    "symbols": "$t$ je čas opazovanja, $a$ čas vklopa in $u=t-a$ čas po vklopu. $G(s)=\\mathcal L(g)(s)$ označuje transformiranko osnovnega signala.",
+    "use": "Z isto formulo lahko opišemo preklop sile ali zakasnjen vhod v vezje.",
+    "steps": [
+      [
+        "Zapis preklopa",
+        "Do trenutka $a$ je stopnica nič. Po vklopu novi predpis dobimo tako, da prvotnemu dodamo razliko obeh predpisov.",
+        "f(t)=f_1(t)+H(t-a)\\bigl(f_2(t)-f_1(t)\\bigr)",
+        "Navpična oznaka $a$ loči potek pred preklopom od poteka po njem."
+      ],
+      [
+        "Lokalni čas",
+        "Popravek izrazimo glede na začetek drugega odseka. Zamenjava $t=u+a$ ohrani njegovo obliko.",
+        "g(u)=f_2(u+a)-f_1(u+a),\\qquad f(t)=f_1(t)+H(t-a)g(t-a)",
+        "Črta popravka kaže, koliko k prvotnemu signalu doda preklop."
+      ],
+      [
+        "Izrek o zamiku",
+        "Stopnica prestavi spodnjo mejo Laplaceovega integrala na $a$. Po zamenjavi $u=t-a$ se iz eksponenta izloči konstantni faktor.",
+        "\\int_a^\\infty e^{-st}g(t-a)dt=e^{-as}\\int_0^\\infty e^{-su}g(u)du=e^{-as}G(s)",
+        "Krivulja v spremenljivki $s$ prikazuje faktor zamika."
+      ]
+    ]
+  },
+  "conv": {
+    "title": "Konvolucija in konvolucijski izrek",
+    "definition": "Konvolucija $(f*g)(t)$ je predznačeni integral produkta ene funkcije s časovno obrnjeno in premaknjeno drugo funkcijo.",
+    "conditions": "Pri vzročnih signalih, ki pred časom nič izginejo, se integral omeji na $[0,t]$. Za izrek o transformaciji zadošča absolutna konvergenca pripadajočega dvojnega integrala.",
+    "symbols": "$t$ določi trenutek opazovanja, $u$ označuje pretekli čas, $v=t-u$ pa starost njegovega prispevka. $F$ in $G$ sta Laplaceovi transformiranki.",
+    "use": "Pri linearnem časovno nespremenljivem sistemu konvolucija vhoda z impulznim odzivom poda odziv pri ničelnih začetnih pogojih.",
+    "steps": [
+      [
+        "Prekrivanje dveh signalov",
+        "Prvi signal je lahko neničeln pri $u\\geq0$, drugi pri $t-u\\geq0$. Oba lahko hkrati prispevata le na preseku teh območij.",
+        "u\\geq0,\\quad t-u\\geq0\\quad\\Longleftrightarrow\\quad 0\\leq u\\leq t",
+        "Desni rob prekrivanja se premika s časom opazovanja."
+      ],
+      [
+        "Predznačena ploščina",
+        "Vsakemu preteklemu času pripada produkt dveh vrednosti. Njegov integral sešteje lokalne prispevke. Zamenjava $v=t-u$ pokaže tudi komutativnost.",
+        "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du=\\int_0^t g(v)f(t-v)\\,dv=(g*f)(t)",
+        "Osenčena ploščina pod produktom je ena vrednost konvolucije."
+      ],
+      [
+        "Produkt transformirank",
+        "V transformaciji konvolucije preuredimo dvojni integral. Pri zamenjavi $t=u+v$ trikotno območje preide v prvi kvadrant, eksponent pa se razcepi na produkt.",
+        "\\mathcal L(f*g)(s)=\\int_0^\\infty\\int_0^\\infty e^{-su}f(u)e^{-sv}g(v)\\,dv\\,du=F(s)G(s)",
+        "Krivuljo konvolucije sestavljajo ploščine za vse čase."
+      ]
+    ]
+  },
+  "impulse": {
+    "title": "Diracov impulz in njegova transformacija",
+    "definition": "Diracov impulz pri $a$ je porazdelitev z enotsko maso, zbrano v eni točki. Pod integralom izbere vrednost utežne funkcije v tej točki.",
+    "conditions": "V enostranski Laplaceovi transformaciji obravnavamo $a>0$. Za izbirno lastnost predpostavimo, da je utež neprekinjena pri $a$.",
+    "symbols": "$a$ je lega impulza, $h$ širina njegovega približka in $\\varphi$ utežna funkcija. $\\delta(t-a)$ označuje idealizirani impulz.",
+    "use": "Z impulzom opišemo kratek sunek z znanim skupnim učinkom in preučimo odziv sistema nanj.",
+    "steps": [
+      [
+        "Enotska masa",
+        "Pravokotni približki imajo širino $h$ in višino $1/h$. Ko se njihov nosilec krči, skupna masa ostane nespremenjena.",
+        "p_h(t)=\\frac{1}{h}\\mathbf 1_{[a,a+h]}(t),\\qquad \\int_0^\\infty p_h(t)\\,dt=1",
+        "Ožji pravokotnik je toliko višji, da ohrani isto ploščino."
+      ],
+      [
+        "Izbirna lastnost",
+        "Integral uteženega približka je povprečje uteži na kratkem intervalu. Zaradi zveznosti povprečje v limiti teži k vrednosti uteži pri $a$.",
+        "\\int_0^\\infty p_h(t)\\varphi(t)\\,dt=\\frac1h\\int_a^{a+h}\\varphi(t)\\,dt\\xrightarrow{h\\to0^+}\\varphi(a)",
+        "Uteženi pravokotnik ponazarja povprečenje Laplaceovega jedra."
+      ],
+      [
+        "Laplaceova transformacija impulza",
+        "V izbirni lastnosti je Laplaceova utež $\\varphi(t)=e^{-st}$. Zato transformiranka impulza vsebuje le trenutek, ob katerem je zbrana masa.",
+        "\\mathcal L(\\delta(t-a))(s)=\\int_0^\\infty e^{-st}\\delta(t-a)\\,dt=e^{-as}",
+        "Pri manjšanju širine se utežena ploščina približuje označeni limiti."
+      ]
+    ]
+  },
+  "radius": {
+    "title": "Konvergenčni polmer in krajišči",
+    "definition": "Potenčni vrsti s središčem $c$ pripada polmer $R$. V notranjosti polmera konvergira absolutno, zunaj njega divergira.",
+    "conditions": "Pri kvocientnem kriteriju mora limita absolutnega količnika obstajati in imenovalec od nekega mesta dalje biti neničeln. Korenska formula velja tudi pri ničelnih koeficientih. Možna sta $R=0$ in $R=\\infty$.",
+    "symbols": "$a_n$ je koeficient, $a_n(x-c)^n$ člen vrste, $n$ njegov indeks. $R$ meri oddaljenost meje od središča.",
+    "use": "Polmer določa območje, na katerem lahko neskončna vsota predstavlja funkcijo.",
+    "steps": [
+      [
+        "Velikost zaporednih členov",
+        "V količniku sosednjih členov ostane razdalja do središča kot faktor. Če je limita količnika manjša od ena, primerjava z geometrijsko vrsto da absolutno konvergenco.",
+        "\\left|\\frac{a_{n+1}(x-c)^{n+1}}{a_n(x-c)^n}\\right|=\\left|\\frac{a_{n+1}}{a_n}\\right||x-c| \\qquad (x\\ne c)",
+        "Graf ponazarja vrsto $\\sum_{n=1}^{\\infty}x^n/n$. Pri $x\\ne0$ kvocienti zaporednih členov po absolutni vrednosti težijo k vodoravni črti $|x|$. Pri $x=0$ so vsi členi nič."
+      ],
+      [
+        "Obnašanje na robu",
+        "Pri končnem pozitivnem polmeru se na robovih pojavita dve različni vrsti. Predznaki lahko vplivajo na njuno konvergenco, zato o vsakem robu odloča tamkajšnja številska vrsta.",
+        "x=c+R:\\ \\sum a_nR^n,\\qquad x=c-R:\\ \\sum (-1)^na_nR^n",
+        "Dve zaporedji delnih vsot kažeta, zakaj robova zahtevata ločeno presojo."
+      ],
+      [
+        "Območje konvergence",
+        "N-ti koren absolutne vrednosti člena je $|x-c|\\sqrt[n]{|a_n|}$. Korenski kriterij zato določi polmer iz koeficientov. Pri limsup nič je polmer neskončen, pri neskončnem limsup pa nič.",
+        "\\frac1R=\\limsup_{n\\to\\infty}\\sqrt[n]{|a_n|}",
+        "Polna ali prazna krajna točka pove, ali pripada območju konvergence."
+      ]
+    ]
+  },
+  "series": {
+    "title": "Geometrijska vrsta in členoma integrirana vrsta",
+    "definition": "Geometrijsko vrsto sestavljajo zaporedne potence istega količnika. Njena končna vsota razkrije ostanek ter omogoča izpeljavo logaritemske vrste.",
+    "conditions": "Pri neskončni geometrijski vrsti velja $|x|<1$. Na vsakem zaprtem podintervalu znotraj tega območja je konvergenca enakomerna, zato lahko vrsto integriramo členoma.",
+    "symbols": "$S_N$ je vsota do potence $N$. $u$ je spremenljivka integriranja, $x$ zgornja meja, $r$ pa pozitivno število, manjše od ena.",
+    "use": "Z znanim razvojem funkcije lahko razložimo koeficiente cele družine potenčnih vrst.",
+    "steps": [
+      [
+        "Končna identiteta",
+        "Pri množenju delne vsote z $x$ se vsaka potenca zviša za ena. V razliki prvotne in premaknjene vsote ostaneta samo začetni in končni člen.",
+        "S_N(x)=\\sum_{n=0}^Nx^n,\\qquad (1-x)S_N(x)=1-x^{N+1}",
+        "Navpična razlika med krivuljama je razlika prvotne in premaknjene delne vsote."
+      ],
+      [
+        "Prehod v neskončno vsoto",
+        "Na $|x|\\leq r<1$ število $r^{N+1}$ obvladuje zadnjo potenco za vse $x$ hkrati. Tako nastane enakomerna konvergenca k geometrijski vsoti.",
+        "\\left|\\frac1{1-x}-S_N(x)\\right|=\\left|\\frac{x^{N+1}}{1-x}\\right|\\leq\\frac{r^{N+1}}{1-r}\\longrightarrow0",
+        "Krivulji prikazujeta delno vsoto in njeno limitno funkcijo."
+      ],
+      [
+        "Členoma integrirana identiteta",
+        "Pri integriranju člena $u^n$ nastane imenovalec $n+1$. Enakomerna konvergenca upraviči zamenjavo vsote in integrala med nič in katerimkoli notranjim $x$.",
+        "-\\ln(1-x)=\\int_0^x\\frac{du}{1-u}=\\sum_{n=0}^\\infty\\int_0^x u^n\\,du=\\sum_{n=1}^\\infty\\frac{x^n}{n}",
+        "Po integriranju se delne vsote približujejo logaritemski krivulji."
+      ]
+    ]
+  },
+  "uniform": {
+    "title": "Enakomerna konvergenca in Weierstrassov kriterij",
+    "definition": "Funkcijska vrsta konvergira enakomerno na množici $I$, če za vsako dovoljeno napako en sam začetni indeks zadošča za vse točke množice.",
+    "conditions": "Za Weierstrassov kriterij mora za vsak $x\\in I$ veljati $|f_n(x)|\\leq M_n$, števila $M_n$ pa morajo sestavljati konvergentno vrsto. To je zadosten pogoj.",
+    "symbols": "$f_n(x)$ je funkcijski člen, $S_N(x)$ delna vsota, $S(x)$ limitna funkcija. $\\sup$ je najmanjša zgornja meja, $\\varepsilon$ dopustna napaka.",
+    "use": "Enakomernost pove, ali lahko za celoten interval uporabimo eno oceno napake.",
+    "steps": [
+      [
+        "Majoranta posameznega člena",
+        "Za vsako funkcijo izberemo številčno mejo, ki je neodvisna od položaja $x$. To omogoča primerjavo funkcijske vrste z eno samo številsko vrsto.",
+        "\\sup_{x\\in I}|f_n(x)|\\leq M_n,\\qquad \\sum_{n=0}^\\infty M_n<\\infty",
+        "Vodoravna ovojnica nad členom velja po celotni vodoravni osi prikazanega intervala."
+      ],
+      [
+        "Ocena preostanka",
+        "Trikotniška neenakost omeji absolutno vrednost vsote izpuščenih členov z vsoto njihovih velikosti. Rep konvergentne majorantne vrste gre proti nič.",
+        "\\sup_{x\\in I}|S(x)-S_N(x)|\\leq\\sum_{n=N+1}^\\infty M_n\\longrightarrow0",
+        "Meja repa hkrati pokrije napako v vsaki točki."
+      ],
+      [
+        "Zakaj vsota obstaja enakomerno",
+        "Ista ocena velja že za vsako razliko dveh končnih delnih vsot. Zato je zaporedje delnih vsot enakomerno Cauchyjevo. Po kontrapoziciji pri odsotnosti enakomerne konvergence nobena veljavna majorantna vrsta ne more konvergirati.",
+        "m>N\\ \\Longrightarrow\\ \\sup_{x\\in I}|S_m(x)-S_N(x)|\\leq\\sum_{n=N+1}^{m}M_n\\leq\\sum_{n>N}M_n",
+        "Graf končnega repa kaže primerjavo še pred prehodom v limito."
+      ]
+    ]
+  },
+  "leg": {
+    "title": "Potenčna metoda in Legendrovi polinomi",
+    "definition": "Legendrova enačba je linearna diferencialna enačba drugega reda. Pri nenegativnem celem $n$ ima polinomsko rešitev stopnje $n$.",
+    "conditions": "V okolici nič je vodilni koeficient $1-x^2$ neničeln in normalizirani koeficienti so analitični. Potenčni razvoj okoli nič je zato upravičen.",
+    "symbols": "$x$ je neodvisna spremenljivka, $y$ rešitev, $n$ stopnja polinoma. $a_k$ je koeficient ob $x^k$, $P_n$ normaliziran Legendrov polinom.",
+    "use": "Potenčna metoda poveže diferencialno enačbo z rekurzijo koeficientov njene rešitve.",
+    "steps": [
+      [
+        "Razvoj v regularni točki",
+        "Analitično rešitev predstavimo s potenčno vrsto. Tudi njena odvoda dobimo členoma znotraj konvergenčnega polmera.",
+        "(1-x^2)y''-2xy'+n(n+1)y=0,\\qquad y(x)=\\sum_{k=0}^\\infty a_kx^k",
+        "Vodoravna črta označuje konstantni člen prikazane sode veje."
+      ],
+      [
+        "Rekurzija koeficientov",
+        "Ko zberemo člene ob $x^k$, drugi odvod prispeva $(k+2)(k+1)a_{k+2}$, preostanek pa $[n(n+1)-k(k+1)]a_k$. Njun seštevek je nič.",
+        "a_{k+2}=\\frac{k(k+1)-n(n+1)}{(k+2)(k+1)}a_k=\\frac{(k-n)(k+n+1)}{(k+1)(k+2)}a_k",
+        "Posamezni potenčni prispevek spremeni obliko delne vsote."
+      ],
+      [
+        "Zaključek polinomske veje",
+        "Sodi in lihi koeficienti nastajajo ločeno. V veji enake parnosti kot $n$ faktor $k-n$ pri $k=n$ izgine, zato vsi nadaljnji členi te veje izginejo. Merilo polinoma določa normalizacija.",
+        "a_{n+2}=a_{n+4}=\\cdots=0,\\qquad P_n(1)=1",
+        "Krivulja je primer zaključene sode veje, umerjene pri desnem robu."
+      ]
+    ]
+  },
+  "bessel": {
+    "title": "Frobeniusova metoda in Besselova enačba",
+    "definition": "Frobeniusov nastavek opisuje rešitev v bližini regularno singularne oziroma šibko singularne točke kot potenco $x^r$, pomnoženo z analitično funkcijo.",
+    "conditions": "Pri enačbi $y''+Py'+Qy=0$ sta v regularno singularni točki nič funkciji $xP(x)$ in $x^2Q(x)$ analitično razširljivi v nič. Obravnavamo $x>0$ in realen red $\\nu\\geq0$.",
+    "symbols": "$r$ je začetni eksponent rešitve, $\\nu$ red Besselove enačbe, $a_0$ prvi neničelni koeficient v izbrani Frobeniusovi veji. $J_\\nu,Y_\\nu$ sta Besselovi funkciji prve in druge vrste.",
+    "use": "Začetna potenca pojasni obnašanje rešitve v bližini središča radialnega koordinatnega sistema.",
+    "steps": [
+      [
+        "Frobeniusov nastavek",
+        "Prosta začetna potenca dopusti tudi rešitev, ki nima običajnega Taylorjevega razvoja. Vodilno obnašanje določa prvi neničelni člen.",
+        "y(x)=x^r\\sum_{k=0}^\\infty a_kx^k,\\quad a_0\\ne0,\\qquad y(x)\\sim a_0x^r\\quad(x\\to0^+)",
+        "Vodilna potenca prikazane regularne veje opiše njen začetek."
+      ],
+      [
+        "Indicialna enačba",
+        "V Besselovi enačbi $x^2y''+xy'+(x^2-\\nu^2)y=0$ člen $x^2y$ zviša potenco za dve. Pri najnižji potenci tako ostanejo prispevki obeh odvodov in člena $-\\nu^2y$.",
+        "\\bigl[r(r-1)+r-\\nu^2\\bigr]a_0=0\\quad\\Longrightarrow\\quad r^2-\\nu^2=0",
+        "Primerjava zaporednih približkov pokaže vpliv nadaljnjih potenc za vodilnim členom."
+      ],
+      [
+        "Neodvisni veji",
+        "Indicialna korena sta $\\nu$ in $-\\nu$. Pri celem redu funkcija $J_{-\\nu}$ ne da nove neodvisne veje. Standardna druga rešitev $Y_\\nu$ je tedaj pri ničli singularna in vsebuje logaritemski člen.",
+        "y(x)=C_1J_\\nu(x)+C_2Y_\\nu(x),\\qquad x>0",
+        "Graf prikazuje končno vejo $J_\\nu$; na območju s središčem jo izbere zahteva omejenosti."
+      ]
+    ]
+  },
+  "ortho": {
+    "title": "Uteženi skalarni produkt in ortogonalnost",
+    "definition": "Skalarni produkt dveh realnih funkcij je integral njunega produkta z utežjo. Funkciji sta ortogonalni, kadar je ta skalarni produkt nič.",
+    "conditions": "Za zvezni realni funkciji na zaprtem intervalu in zvezno strogo pozitivno utež dobimo skalarni produkt. Standardna ortogonalnost Legendrovih polinomov velja na $[-1,1]$ z utežjo $w=1$.",
+    "symbols": "$f,g$ sta primerjani funkciji, $w$ utež, $a,b$ krajišči. Indeksa $m,n$ sta stopnji Legendrovih polinomov.",
+    "use": "Ortogonalnost omogoča, da v razvoju funkcije vsak koeficient določimo z ločeno projekcijo.",
+    "steps": [
+      [
+        "Lokalno ujemanje",
+        "Produkt vrednosti v isti točki je pozitiven pri enakih predznakih in negativen pri različnih. Pozitivna utež določa velikost prispevka.",
+        "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx",
+        "Prikazani krivulji sta faktorja, katerih lokalno ujemanje meri produkt."
+      ],
+      [
+        "Predznačeni prispevki",
+        "Do spremenljive desne meje $z$ skalarni produkt nastaja kot predznačena ploščina. Osnovni izrek integralnega računa poveže njeno spreminjanje z vrednostjo produkta.",
+        "I(z)=\\int_a^z f(x)g(x)w(x)\\,dx,\\qquad I'(z)=f(z)g(z)w(z)",
+        "Osenčeni deli nad osjo povečujejo integral, deli pod njo ga zmanjšujejo."
+      ],
+      [
+        "Ortogonalnost Legendrovih polinomov",
+        "Legendrovi enačbi za $P_n$ in $P_m$ zapišemo v obliki z odvodom produkta, ju navzkrižno pomnožimo ter odštejemo. Po integriranju robni člen na obeh krajiščih izgine, ker vsebuje faktor $1-x^2$.",
+        "[m(m+1)-n(n+1)]\\int_{-1}^1 P_mP_n\\,dx=\\left[(1-x^2)(P_n'P_m-P_m'P_n)\\right]_{-1}^1=0",
+        "Pri različnih stopnjah je faktor pred integralom neničeln, zato se tekoči integral na desnem robu vrne na nič."
+      ]
+    ]
+  },
+  "pde": {
+    "title": "Parcialni odvodi in družina prerezov",
+    "definition": "Parcialna diferencialna enačba povezuje funkcijo več spremenljivk z njenimi parcialnimi odvodi. Če nastopajo samo odvodi po eni spremenljivki, vsaka fiksna vrednost druge določi svojo navadno diferencialno enačbo.",
+    "conditions": "Za prikazani tip $u_{xx}=\\lambda^2u$ je $\\lambda>0$ konstanta. Vsak prerez je dvakrat odvedljiv po $x$. Za enolično določitev prereza potrebujemo dve neodvisni informaciji o njem.",
+    "symbols": "$x,y$ sta koordinati, $u(x,y)$ vrednost polja, $u_x$ njegov naklon in $u_{xx}$ drugi odvod v smeri $x$. Funkciji $A(y),B(y)$ opisujeta odvisnost koeficientov od prereza.",
+    "use": "Metoda prerezov pojasni, kako lahko podatki vzdolž črte določijo polje v njeni okolici.",
+    "steps": [
+      [
+        "Enačba pri fiksnem parametru",
+        "V prerezu pri $y=\\eta$ so eksponentne rešitve določene s karakteristično enačbo. Različna korena dajeta dva neodvisna načina spreminjanja v smeri $x$.",
+        "U_\\eta(x)=u(x,\\eta),\\qquad U_\\eta''=\\lambda^2 U_\\eta,\\qquad r^2-\\lambda^2=0",
+        "Vsaka narisana krivulja je en prerez istega polja."
+      ],
+      [
+        "Funkciji začetnih podatkov",
+        "Koeficienta dveh rešitev sta konstantna vzdolž posameznega prereza, med prerezi pa se lahko spreminjata. Višina in naklon na črti $x=0$ določita njuno vsoto in razliko.",
+        "u=A(y)e^{\\lambda x}+B(y)e^{-\\lambda x},\\qquad u(0,y)=A+B,\\quad u_x(0,y)=\\lambda(A-B)",
+        "Različni prerezi ponazarjajo, da se začetna višina lahko spreminja z $y$."
+      ],
+      [
+        "Od začetnih podatkov do polja",
+        "Vsota in razlika eksponentov določata hiperbolični kosinus in sinus. Z $g(y)=u(0,y)$ in $h(y)=u_x(0,y)$ dobimo predpis za vso družino prerezov.",
+        "u(x,y)=g(y)\\cosh(\\lambda x)+\\frac{h(y)}{\\lambda}\\sinh(\\lambda x)",
+        "Graf drugega odvoda pokaže povezanost višine in ukrivljenosti istega prereza."
+      ]
+    ]
+  }
+}
