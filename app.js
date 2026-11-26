@@ -142,7 +142,11 @@ function exercise(){
  const guide=o.guide?'<section class="methodGuide"><div class="stepLabel">Uvod v metodo</div>'+calculation(o.guide.steps,o.guide.title)+'</section>':'';
  const afterGraph=o.afterGraph?'<section class="methodGuide">'+calculation(o.afterGraph.steps,o.afterGraph.title)+'</section>':'';
  const citation=o.url?'<a href="'+escapeGraph(o.url)+'" target="_blank" rel="noopener noreferrer">'+escapeGraph(o.source)+' ↗</a>':o.source;
- return '<article class="practice"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+afterGraph+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
+ const prompt='<header class="exercisePrompt"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2><div class="question">'+o.prompt+'</div></header>';
+ const quiz='<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div>';
+ const help='<details class="base exerciseHelp"><summary>Namig, razlaga in graf</summary><div class="helpBody">'+hint+reading(o.symbols)+application('Uporaba',o.purpose)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+afterGraph+'</div></details>';
+ const solution='<details class="base"><summary>Postopek po korakih</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>';
+ return '<article class="practice" data-unit="'+currentId()+'">'+prompt+quiz+help+solution+'</article>';
 }
 function flash(){
  const c=current(),done=!!state.marks[currentId()];
@@ -150,8 +154,11 @@ function flash(){
 }
 function render(){
  const active=document.activeElement,within=$('content').contains(active),oldAct=active?.dataset.do,oldVal=active?.dataset.val;
+ const previous=$('content').querySelector('.practice');
+ const opened=previous?.dataset.unit===currentId()?Array.from(previous.children).filter(el=>el.tagName==='DETAILS').map(el=>el.open):[];
  const fin=state.day===6&&tab()==='exercises'?'<div class="dayfinish"><div><h2>Preizkus s staro polo</h2><p>Računska pola traja 90 minut, teoretična 30 minut.</p></div>'+btn('archive','Izberi kolokvij')+'</div>':'';
  $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise()+solvedExamples():flash())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
+ if(opened.length)document.querySelectorAll('#content .practice > details').forEach((el,i)=>el.open=opened[i]);
  if(within){let match=oldAct&&Array.from($('content').querySelectorAll('[data-do]')).find(b=>b.dataset.do===oldAct&&b.dataset.val===oldVal);let next=match||$('content').querySelector('.explain h2,.practice h2,.flash h2');if(next){if(next.tagName==='H2')next.tabIndex=-1;next.focus({preventScroll:true})}}
 }
 function modal(title,html){
