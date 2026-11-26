@@ -1,0 +1,231 @@
+{
+  "exercises": [
+    {
+      "day": 5,
+      "title": "Števec n iz odvoda",
+      "plot": "diffGeom",
+      "source": "ITFR-04, str. 9 · naloga 6b",
+      "prompt": "Izračunaj vsoto vrste $\\sum_{n=1}^{\\infty}nx^n$.",
+      "cue": "Števec $n$ nastane, ko odvedeš potenco $x^n$.",
+      "hint": "Po odvajanju pomnoži z $x$, da znova dobiš potenco $x^n$.",
+      "symbols": "$S_N$ je vsota prvih $N$ členov. Drsnik izbira $x$, na grafu vidiš približevanje vsoti.",
+      "purpose": "Dobiš točno vsoto členov, kjer je geometrijska potenca pomnožena z indeksom.",
+      "rules": [
+        [
+          "Odvajanje potenčne vrste",
+          "\\frac{d}{dx}\\sum_{n=0}^{\\infty}a_nx^n=\\sum_{n=1}^{\\infty}na_nx^{n-1}",
+          "Velja znotraj konvergenčnega polmera. Pri geometrijski vrsti so vsi $a_n=1$.",
+          "\\sum_{n=1}^{\\infty}nx^{n-1}=(1-x)^{-2}"
+        ]
+      ],
+      "worked": [
+        [
+          "Prepoznaj odvod potence",
+          "Faktor $n$ nastane pri odvajanju $x^n$. Izhodišče naj bo geometrijska vrsta, katere vsoto že znamo izračunati.",
+          "G(x)=\\sum_{n=0}^\\infty x^n=\\frac1{1-x},\\qquad (x^n)'=nx^{n-1},\\quad |x|<1"
+        ],
+        [
+          "Odštej premaknjeno delno vsoto",
+          "Če želiš izpeljati izhodiščno formulo, vzemi $S_N=1+x+\\cdots+x^N$. Po množenju z $x$ se vmesne potence odštejejo.",
+          "S_N-xS_N=(1+x+\\cdots+x^N)-(x+x^2+\\cdots+x^{N+1})=1-x^{N+1}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
+        ],
+        [
+          "Seštej končno geometrijsko vrsto",
+          "Začni s končno geometrijsko vsoto. Ko odšteješ njen premik za eno potenco, ostaneta prvi in zadnji člen.",
+          "(1-x)S_N=1-x^{N+1},\\qquad S_N=\\frac{1-x^{N+1}}{1-x}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
+        ],
+        [
+          "Pošlji zadnjo potenco v nič",
+          "Za $|x|<1$ množenje z $|x|$ pri vsakem koraku zmanjša velikost potence. Vstavi njeno limito v delno vsoto.",
+          "\\lim_{N\\to\\infty}|x|^{N+1}=0,\\qquad G(x)=\\lim_{N\\to\\infty}S_N=\\frac{1-0}{1-x}",
+          {
+            "detail": "Od kod formula za geometrijsko vsoto?"
+          }
+        ],
+        [
+          "Odvajaj vsoto",
+          "Znotraj polmera smemo odvajati členoma. Tako v koeficientu dobimo iskani faktor $n$.",
+          "G'(x)=\\sum_{n=1}^{\\infty}nx^{n-1}=-(1-x)^{-2}(-1)=(1-x)^{-2}"
+        ],
+        [
+          "Poravnaj eksponent",
+          "Odvod je prinesel iskani faktor $n$, vendar je eksponent zmanjšal za ena. Dopolni vsak člen z enim faktorjem $x$ in enako pomnoži desno stran.",
+          "\\sum_{n=1}^{\\infty}nx^n=xG'(x)=\\frac{x}{(1-x)^2}",
+          {
+            "flow": [
+              "$x^n$",
+              "Odvod da $nx^{n-1}$.",
+              "Množenje z $x$ da $nx^n$."
+            ]
+          }
+        ],
+        [
+          "Določi, kje velja vsota",
+          "Če je $|x|\\ge1$, je absolutna vrednost člena vsaj $n$. Členi se zato ne približujejo ničli.",
+          "|nx^n|\\ge n\\quad (|x|\\ge1)"
+        ]
+      ],
+      "quiz": [
+        "Kolikšna je vsota za $|x|<1$?",
+        "$\\frac{x}{(1-x)^2}$",
+        "$\\frac{1}{(1-x)^2}$",
+        "$\\frac{x}{1-x}$"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Rešitev enačbe s potenčno vrsto",
+      "plot": "odeRec",
+      "source": "ITFR-04, str. 11 · naloga 8.2",
+      "prompt": "Reši diferencialno enačbo $y''+y=0$ z uporabo potenčne vrste.",
+      "cue": "Koeficient ob $y''$ je pri ničli neničeln. Uporabi navadno potenčno vrsto.",
+      "hint": "Izrazi koeficient pri stopnji $k+2$ s koeficientom pri stopnji $k$. Nato ločeno sledi sodim in lihim potencam.",
+      "symbols": "$a_k$ je koeficient pri $x^k$. Začetna koeficienta $a_0$ in $a_1$ sta poljubna. Graf prikazuje približevanje sode veje kosinusu.",
+      "purpose": "Iz koeficientov vrste prepoznaš obe neodvisni rešitvi enačbe.",
+      "rules": [
+        [
+          "Primerjanje koeficientov",
+          "\\sum_{k=0}^{\\infty}b_kx^k=0\\ \\Longrightarrow\\ b_k=0\\quad(k\\ge0)",
+          "Vse člene najprej prepiši na isto potenco $x^k$.",
+          "(k+2)(k+1)a_{k+2}+a_k=0"
+        ]
+      ],
+      "worked": [
+        [
+          "Izberi potenčno vrsto",
+          "Začetnih pogojev ni. Prosta koeficienta bosta določala dve neodvisni rešitvi.",
+          "y=\\sum_{k=0}^\\infty a_kx^k,\\quad a_0=y(0),\\quad a_1=y^{\\prime}(0)"
+        ],
+        [
+          "Odvajaj prvič in drugič",
+          "Drugi odvod zniža vsako potenco za dve. Zato se zapis drugega odvoda začne pri $j=2$.",
+          "y'=\\sum_{j=1}^\\infty j a_jx^{j-1},\\qquad y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}"
+        ],
+        [
+          "Izenači potence po odvajanju",
+          "V $y$ že nastopa $x^k$. Da bomo lahko sešteli koeficienta pri isti potenci v $y$ in $y^{\\prime\\prime}$, tudi v drugi vrsti poimenujemo eksponent $k$.",
+          "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k",
+          {
+            "flow": [
+              "$x^{j-2}=x^k$",
+              "$j=k+2$",
+              "Ob $x^k$ zato stoji $(k+2)(k+1)a_{k+2}$."
+            ]
+          }
+        ],
+        [
+          "Vstavi obe vrsti",
+          "Po zamenjavi $k=j-2$ imata $y''$ in $y$ povsod isto potenco $x^k$. Koeficienta pri isti potenci lahko sešteješ.",
+          "\\sum_{k=0}^\\infty[(k+2)(k+1)a_{k+2}+a_k]x^k=0"
+        ],
+        [
+          "Izpelji rekurzijo",
+          "Pri vsaki potenci izenači koeficient v $y''+y$ z nič in izrazi naslednji člen.",
+          "(k+2)(k+1)a_{k+2}=-a_k,\\qquad a_{k+2}=\\frac{-a_k}{(k+2)(k+1)}"
+        ],
+        [
+          "Izračunaj sode koeficiente",
+          "Vstavi $k=0$, nato $k=2$. Z vsakim korakom dobiš dva nova faktorja v imenovalcu.",
+          "a_2=-a_0/2!,\\quad a_4=-a_2/(4\\cdot3)=a_0/4!,\\quad a_{2m}=(-1)^m a_0/(2m)!"
+        ],
+        [
+          "Izračunaj lihe koeficiente",
+          "Enako začni pri $a_1$. Tokrat vstavi $k=1$, nato $k=3$.",
+          "a_3=-a_1/3!,\\quad a_5=-a_3/(5\\cdot4)=a_1/5!,\\quad a_{2m+1}=(-1)^m a_1/(2m+1)!"
+        ],
+        [
+          "Prepoznaj obe vsoti",
+          "Soda vrsta je Taylorjev razvoj kosinusa, liha pa sinusa. Koeficienta preimenuj v poljubni konstanti $A$ in $B$.",
+          "y=a_0(1-x^2/2!+x^4/4!-\\cdots)+a_1(x-x^3/3!+x^5/5!-\\cdots)=A\\cos x+B\\sin x"
+        ]
+      ],
+      "quiz": [
+        "Katera je splošna rešitev?",
+        "$A\\cos x+B\\sin x$",
+        "$A\\cos(2x)+B\\sin(2x)$",
+        "$Ae^x+Be^{-x}$"
+      ]
+    }
+  ],
+  "guides": {
+    "sum22": {
+      "title": "Kako iz imenovalca prepoznaš pomožno vrsto",
+      "steps": [
+        [
+          "Dva linearna faktorja razstavi na enostavna ulomka. Identiteto pomnoži z njunim produktom.",
+          "\\frac{1}{uv}=\\frac{A}{u}+\\frac{B}{v}\\ \\Longrightarrow\\ 1=Av+Bu"
+        ],
+        [
+          "Poišči vrsto, katere odvod odstrani imenovalec. Geometrijsko delno vsoto zapiši s končnim številom členov.",
+          "\\frac{d}{dx}\\frac{x^k}{k}=x^{k-1},\\qquad \\sum_{k=1}^{N}x^{k-1}=\\frac{1-x^N}{1-x}"
+        ],
+        [
+          "Na vsakem notranjem intervalu $|x|\\le r<1$ zadnja potenca enakomerno izgine. Vsoto nato integriraj od nič do $x$.",
+          "|x|^N\\le r^N\\to0,\\qquad \\sum_{k=1}^{\\infty}\\frac{x^k}{k}=\\int_0^x\\frac{du}{1-u}=[-\\ln(1-u)]_0^x=-\\ln(1-x)"
+        ]
+      ]
+    },
+    "mtest": {
+      "title": "Kako najdeš skupno mejo napake",
+      "steps": [
+        [
+          "Najprej oceni velikost vsakega člena z enim številom za vse dovoljene vrednosti spremenljivke.",
+          "|f_n(x)|\\le M_n\\qquad (x\\in I)"
+        ],
+        [
+          "Naj bo $A_N$ delna vsota majorant. Ko konvergira k končnemu $A$, je njen neskončni rep razlika med celoto in delno vsoto.",
+          "\\sum_{n>N}M_n=\\lim_{m\\to\\infty}(A_m-A_N)=A-A_N"
+        ],
+        [
+          "Pošlji še $N$ v neskončnost. Ta meja velja za vsak $x$.",
+          "\\sup_{x\\in I}|S(x)-S_N(x)|\\le A-A_N,\\qquad \\lim_{N\\to\\infty}(A-A_N)=A-A=0"
+        ]
+      ]
+    },
+    "bessel": {
+      "title": "Kako prepoznaš regularno singularno točko",
+      "steps": [
+        [
+          "Deli z vodilnim koeficientom. Če sta pri ničli spodnja produkta analitično razširljiva, je singularna točka regularno singularna.",
+          "y''+P(x)y'+Q(x)y=0,\\qquad xP(x),\\ x^2Q(x)"
+        ],
+        [
+          "V Frobeniusovem nastavku najnižja potenca določi dovoljene eksponente. Pri Besselovi enačbi dobiš kvadrat reda.",
+          "y=x^r(a_0+a_1x+\\cdots),\\quad a_0\\ne0,\\qquad r^2-\\nu^2=0"
+        ]
+      ]
+    },
+    "ortho": {
+      "title": "Kako na grafu prebereš skalarni produkt",
+      "steps": [
+        [
+          "Pomnoži funkciji in utež. Krivulja tega produkta je integrand za skalarni produkt.",
+          "h(x)=r(x)f(x)g(x),\\qquad \\langle f,g\\rangle_r=\\int_a^b h(x)\\,dx"
+        ],
+        [
+          "Dela nad in pod osjo štejeta z nasprotnima predznakoma. Funkciji sta pravokotni, ko se prispevka izničita.",
+          "\\langle f,g\\rangle_r=0"
+        ]
+      ]
+    },
+    "leg": {
+      "title": "Kako opaziš odvod produkta",
+      "steps": [
+        [
+          "V odvodu produkta se pojavita dva člena. Poskusi s faktorjema $p(x)$ in $y^{\\prime}(x)$.",
+          "(py^\\prime)^\\prime=py^{\\prime\\prime}+p^\\prime y^\\prime"
+        ],
+        [
+          "Ko ob drugem odvodu prebereš $p(x)=1-x^2$, je njegov odvod ravno koeficient ob prvem odvodu.",
+          "p^\\prime(x)=-2x"
+        ]
+      ]
+    }
+  }
+}

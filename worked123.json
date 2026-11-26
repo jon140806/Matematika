@@ -941,7 +941,7 @@
     "betarec": [
       [
         "Zapiši zvezo z gama",
-        "Oba argumenta sta pozitivna, zato lahko uporabiš povezavo beta z gama.",
+        "Na kolokviju sta argumenta $x,y$. Na grafu in v računu ju označimo s $p=x$ in $q=y$. Za oba pozitivna argumenta velja zveza z gama.",
         "B(u,v)=\\frac{\\Gamma(u)\\Gamma(v)}{\\Gamma(u+v)}"
       ],
       [
@@ -974,7 +974,7 @@
       [
         "Izrazi zahtevano funkcijo",
         "Obe strani količnika pomnoži z njegovim imenovalcem.",
-        "B(p,q+1)=\\frac qp B(p+1,q)"
+        "B(p,q+1)=\\frac qp B(p+1,q)\\quad\\Longrightarrow\\quad B(x,y+1)=\\frac yx B(x+1,y)"
       ]
     ],
     "inverse": [

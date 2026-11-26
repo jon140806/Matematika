@@ -1,0 +1,203 @@
+{
+  "exercises": [
+    {
+      "day": 1,
+      "title": "Dva odvoda pri stalnih mejah",
+      "plot": "polyTwoDerivatives",
+      "source": "ITFR-01 (2), str. 4 · naloga 1.1",
+      "prompt": "Izračunajte prvi in drugi odvod funkcije $F(y)=\\int_0^2(x^2+3y)^2\\,dx$.",
+      "cue": "Meji sta stalni. Parameter $y$ spreminja višino v vsaki točki $x$.",
+      "hint": "Kvadrat odvajaj kot zunanjo funkcijo. Njegov odvod pomnoži z odvodom izraza v oklepaju po $y$.",
+      "symbols": "Po $x$ seštevamo od 0 do 2. Pri odvajanju po $y$ vsak $x$ ostane na mestu.",
+      "purpose": "Prvi odvod meri, kako hitro se spreminja integral. Drugi odvod meri, kako hitro se spreminja ta hitrost.",
+      "rules": [
+        [
+          "Verižno pravilo pri stalnih mejah",
+          "F'(y)=\\int_0^2\\partial_y f(x,y)\\,dx",
+          "Integrand in njegova odvoda so polinomi, zato so zvezni.",
+          "\\partial_y(g^2)=2g\\,\\partial_y g"
+        ]
+      ],
+      "worked": [
+        [
+          "Odvajaj vsebino oklepaja",
+          "Člen $x^2$ je pri odvajanju po $y$ konstanta.",
+          "\\partial_y(x^2+3y)=0+3=3"
+        ],
+        [
+          "Odvajaj kvadrat",
+          "Uporabi pravilo za kvadrat in pomnoži z dobljenim notranjim odvodom.",
+          "\\partial_y(x^2+3y)^2=2(x^2+3y)\\cdot3=6x^2+18y",
+          {
+            "flow": [
+              "oklepaj",
+              "odvod kvadrata",
+              "pomnoži s $3$"
+            ]
+          }
+        ],
+        [
+          "Integriraj po x",
+          "Meji ostaneta 0 in 2. Med integriranjem je $y$ konstanta.",
+          "F'(y)=\\int_0^2(6x^2+18y)\\,dx=[2x^3+18yx]_0^2"
+        ],
+        [
+          "Vstavi obe meji",
+          "Pri zgornji meji vstavi $x=2$ v oba člena, nato odštej vrednost pri ničli.",
+          "F'(y)=(2\\cdot2^3+18y\\cdot2)-(0+0)=16+36y"
+        ],
+        [
+          "Odvajaj še enkrat",
+          "Prvi odvod je že izražen samo z $y$, zato odvajaj dobljeno premico.",
+          "F''(y)=\\frac{d}{dy}(16+36y)=0+36=36"
+        ]
+      ],
+      "quiz": [
+        "Katera sta prvi in drugi odvod?",
+        "$F'=16+36y,\\ F''=36$",
+        "$F'=16+18y,\\ F''=18$",
+        "$F'=36y,\\ F''=36$"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Beta s polcelim argumentom",
+      "plot": "betaHalfArgument",
+      "source": "ITFR-03-vse, str. 13 · naloga 13.3",
+      "prompt": "Izračunajte $B(2,n+\\frac12)$.",
+      "cue": "Argumenta funkcije beta sta že podana. Pri pretvorbi v gama funkcije se bosta dva argumenta razlikovala za dve enoti.",
+      "hint": "Začni z $\\Gamma(n+5/2)$ v imenovalcu. Z rekurzijo ga znižaj dvakrat.",
+      "symbols": "$n$ določa drugi argument. $u$ je koordinata znotraj beta integrala, ki teče od 0 do 1.",
+      "purpose": "Izračunaš celotno ploščino za družino beta integralov z istim prvim argumentom.",
+      "rules": [
+        [
+          "Zveza beta z gama",
+          "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}",
+          "Za $p=2$ in $q=n+1/2>0$ je vsota $n+5/2$.",
+          "\\Gamma(s+1)=s\\Gamma(s)"
+        ]
+      ],
+      "worked": [
+        [
+          "Vstavi argumenta",
+          "Imenovalec dobi vsoto, ker velja zveza beta z gama.",
+          "B(2,n+\\tfrac12)=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(2+n+\\tfrac12)}=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(n+\\tfrac52)}"
+        ],
+        [
+          "Znižaj imenovalec dvakrat",
+          "Vsakič od argumenta odštej 1 in ta manjši argument napiši kot faktor pred gama funkcijo.",
+          "\\Gamma(n+\\tfrac52)=(n+\\tfrac32)\\Gamma(n+\\tfrac32)=(n+\\tfrac32)(n+\\tfrac12)\\Gamma(n+\\tfrac12)",
+          {
+            "flow": [
+              "$n+5/2$",
+              "$n+3/2$",
+              "$n+1/2$"
+            ]
+          }
+        ],
+        [
+          "Pokrajšaj skupni faktor",
+          "V števcu je $\\Gamma(2)=1!=1$, druga gama funkcija pa se pojavi tudi v imenovalcu.",
+          "B(2,n+\\tfrac12)=\\frac{\\Gamma(n+\\tfrac12)}{(n+\\tfrac32)(n+\\tfrac12)\\Gamma(n+\\tfrac12)}=\\frac1{(n+\\tfrac32)(n+\\tfrac12)}"
+        ],
+        [
+          "Odpravi polovici v imenovalcu",
+          "Vsak oklepaj zapiši kot ulomek z imenovalcem 2. Njuna imenovalca skupaj prispevata faktor 4 v števec.",
+          "B(2,n+\\tfrac12)=\\frac1{[(2n+3)/2][(2n+1)/2]}=\\frac4{(2n+3)(2n+1)}"
+        ]
+      ],
+      "quiz": [
+        "Kateri izraz je enak dani funkciji beta?",
+        "$\\frac4{(2n+1)(2n+3)}$",
+        "$\\frac2{(2n+1)(2n+3)}$",
+        "$\\frac4{(2n+1)^2}$"
+      ]
+    }
+  ],
+  "guides": {
+    "gauss": {
+      "title": "Odvajanje po frekvenci",
+      "steps": [
+        [
+          "Pri stalnem $x$ odvajaj samo kosinus. Eksponentna utež je neodvisna od frekvence.",
+          "f(x,a)=e^{-x^2}\\cos(ax),\\qquad \\partial_a f=-xe^{-x^2}\\sin(ax)"
+        ],
+        [
+          "Odvod omeji z $xe^{-x^2}$, ker je velikost sinusa največ 1. Da upravičiš odvajanje pod integralom, izračunaj ploščino te ovojnice do reza $R$.",
+          "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+        ],
+        [
+          "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+          "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
+        ],
+        [
+          "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
+          "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
+        ],
+        [
+          "Za rešitev uporabi začetno vrednost, ki je podana v navodilu.",
+          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)=\\frac{\\sqrt\\pi}{2}"
+        ]
+      ]
+    },
+    "atan": {
+      "title": "Odvod po parametru in premični rob",
+      "steps": [
+        [
+          "V tej nalogi je parameter $t$. V splošni formuli mu rečemo $y$. Pri stalnem $x\\ne0$ odvajaš po $t$.",
+          "f(x,t)=\\frac{\\arctan(tx)-\\arctan x}{x},\\quad f_t=\\frac1x\\frac{x}{1+(tx)^2}=\\frac1{1+t^2x^2}"
+        ],
+        [
+          "V notranjosti potrebuješ že izračunani $f_t$. Na desnem robu vzemi prvotni integrand pri $x=t^2$ in ga pomnoži z odvodom meje.",
+          "I'(t)=\\int_0^{t^2} f_t(x,t)\\,dx+2t\\,f(t^2,t)"
+        ]
+      ]
+    },
+    "betasub": {
+      "title": "Kako prebereš integral beta",
+      "steps": [
+        [
+          "Po zamenjavi poišči meji 0 in 1 ter potenci $u$ in $1-u$. Pri obeh eksponentih prištej ena, ker v definiciji nastopata $p-1$ in $q-1$.",
+          "B(p,q)=\\int_0^1u^{p-1}(1-u)^{q-1}\\,du,\\qquad p,q>0"
+        ],
+        [
+          "Po zamenjavi zveza med beta in gama pretvori oba argumenta v vrednosti gama.",
+          "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)},\\quad\\Gamma(z+1)=z\\Gamma(z)"
+        ],
+        [
+          "Začetno vrednost gama najprej izračunaj do končnega $R$.",
+          "\\int_0^R e^{-x}\\,dx=[-e^{-x}]_0^R=1-e^{-R}"
+        ],
+        [
+          "Ker je $e^{-R}=1/e^R$ in imenovalec raste, pošlji $R$ v neskončnost.",
+          "\\Gamma(1)=\\lim_{R\\to\\infty}(1-e^{-R})=1-0=1"
+        ],
+        [
+          "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+          "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+        ],
+        [
+          "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+          "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2I(0)=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+        ]
+      ]
+    },
+    "loggamma": {
+      "title": "Kako prebereš integral gama",
+      "steps": [
+        [
+          "Eksponent po zamenjavi postane $-u$. Najprej preslikaj končni rob $R$.",
+          "u=\\ln x,\\qquad u(1)=0,\\qquad u(R)=\\ln R"
+        ],
+        [
+          "Ko pošlješ $R$ v neskončnost, gre tudi $\\ln R$ prek vsake meje. Tedaj nastopi definicija gama.",
+          "\\lim_{R\\to\\infty}\\int_0^{\\ln R}u^{p-1}e^{-u}du=\\int_0^\\infty u^{p-1}e^{-u}du=\\Gamma(p)\\quad(p>0)"
+        ],
+        [
+          "Ko vidiš potenco $u^r$, je argument gama za ena večji. Pri polcelih argumentih uporabi rekurzijo do znane vrednosti.",
+          "p=r+1,\\qquad\\Gamma(p+1)=p\\Gamma(p),\\quad\\Gamma(\\tfrac12)=\\sqrt\\pi"
+        ]
+      ]
+    }
+  }
+}

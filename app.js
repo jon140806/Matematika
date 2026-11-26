@@ -21,6 +21,26 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(state));canSave=true
 function counts(day){let total=0,done=0;for(const type of kinds){let items=course[type].filter(o=>!day||o.day===day);total+=items.length;let seen={};for(const item of items){let n=seen[item.day]||0;seen[item.day]=n+1;if(state.marks[idAt(type,n,item.day)])done++}}return {total,done,pct:Math.round(100*done/total)}}
 function resetView(){graphStage=tab()==='exercises'&&['atan','gauss'].includes(current()?.plot)?1:0;choice=null;flipped=false;notice='';sliderValue=undefined}
 function setDone(value=true){const id=currentId();if(value){state.marks[id]??=today()}else delete state.marks[id];save()}
+function migrateExerciseProgress(){
+ if(state.originalExercises)return;
+ const previous=[
+  ['area','gauss','atan','root'],['betasub','cubeta','loggamma','betarec'],
+  ['inverse','sys22','sys23','devar'],['triple','force24','force23','volterra'],
+  ['sum22','sum24','mtest'],[null,'bessel']
+ ];
+ const oldMarks={...state.marks};
+ for(const key of Object.keys(oldMarks))if(key.includes('-exercises-'))delete state.marks[key];
+ previous.forEach((old,dayIndex)=>{
+  const day=dayIndex+1,items=course.exercises.filter(o=>o.day===day),position=day+'exercises';
+  const selected=old[state.indices[position]??0];
+  state.indices[position]=Math.max(0,items.findIndex(item=>item.plot===selected));
+  items.forEach((item,index)=>{
+   const oldIndex=old.indexOf(item.plot),date=oldMarks[idAt('exercises',oldIndex,day)];
+   if(oldIndex>=0&&date)state.marks[idAt('exercises',index,day)]=date;
+  });
+ });
+ state.originalExercises=true;
+}
 function dashboard(){
  let all=counts(),day=counts(state.day);$('pctAll').textContent=all.pct+' %';$('barAll').value=all.pct;$('pctDay').textContent=day.pct+' %';$('barDay').value=day.pct;$('dayMetricLabel').textContent='Napredek za '+state.day+'. dan';
  const learnedToday=Object.values(state.marks).filter(d=>d===today()).length;$('todayPct').textContent=(100*learnedToday/all.total).toLocaleString('sl-SI',{maximumFractionDigits:1})+' %';$('todayBar').value=100*learnedToday/all.total;
@@ -55,14 +75,15 @@ function toolbar(){
  return '<div class="toolbar"><div class="pick"><label for="item">'+label+'</label><select id="item">'+items.map((o,i)=>'<option value="'+i+'" '+(idx()===i?' selected':'')+'>'+ (state.marks[idAt(type,i)]?'✓ ':'')+(i+1)+' / '+items.length+'　'+(o.subtitle||o.title||o.q)+'</option>').join('')+'</select></div>'+(type==='lessons'?'':'<span class="chip">'+icon('pin')+course.days[state.day-1].focus+'</span>')+'</div>'
 }
 function plotPanel(id,phase=graphStage){
+ if(tab()==='exercises' && id==='leg') id='legHomework';
  const cfg=plotSettings(id,phase), value=tab()==='lessons'?cfg[4]:(sliderValue??cfg[4]);
  const views={area:['Ploščina','Prirastek','Odvod'],gauss:['Začetna ploščina do R','Odvod in majoranta','Integral s kosinusom'],atan:['Ploščina','Notranji odvod'],betasub:['Prvotni integral','Nova spremenljivka','Vrednost integrala'],cubeta:['Prvotni integral','Nova spremenljivka'],loggamma:['Prvotni integral','Jedro gama'],leg:['Začetni člen','Koeficient','Polinom'],ortho:['Faktorja','Predznačena ploščina','Tekoči integral'],bessel:['Vodilni člen','Naslednja potenca','Regularna veja']};
  const chooser=tab()==='exercises'&&views[id]?'<div class="viewSelect"><label for="graphView">Pogled</label> <select id="graphView">'+views[id].map((name,i)=>'<option value="'+i+'" '+(i===graphStage?'selected':'')+'>'+name+'</option>').join('')+'</select></div>':'';
- return '<section class="plot" data-phase="'+phase+'" aria-label="Interaktivni graf"><div class="plotHead">'+icon('wave')+(tab()==='lessons'?'Ponazoritev':'Graf naloge')+'</div>'+chooser+'<div class="drawing"></div><div class="legend"></div><div class="sliderbox"><label for="slide-'+phase+'">'+cfg[0]+'<output for="slide-'+phase+'"></output></label><input id="slide-'+phase+'" type="range" min="'+cfg[1]+'" max="'+cfg[2]+'" step="'+cfg[3]+'" value="'+value+'"></div><p class="caption"></p></section>';
+ return '<section class="plot" data-plot="'+id+'" data-phase="'+phase+'" aria-label="Interaktivni graf"><div class="plotHead">'+icon('wave')+(tab()==='lessons'?'Ponazoritev':'Graf naloge')+'</div>'+chooser+'<div class="drawing"></div><div class="legend"></div><div class="sliderbox"><label for="slide-'+phase+'">'+cfg[0]+'<output for="slide-'+phase+'"></output></label><input id="slide-'+phase+'" type="range" min="'+cfg[1]+'" max="'+cfg[2]+'" step="'+cfg[3]+'" value="'+value+'"></div><p class="caption"></p></section>';
 }
 function drawPlot(panel){
  const value=+panel.querySelector('input').value,phase=+panel.dataset.phase;
- const m=chartModel(current().plot,phase,value);
+ const m=chartModel(panel.dataset.plot,phase,value);
 
  panel.querySelector('output').textContent=fmt(value);
  if(tab()==='lessons'){
@@ -147,42 +168,25 @@ function lesson(){
  }).join('');
  const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
  let practice='';
- if(o.plot==='leib')practice=unitLink('exercises','edgeDensity','Vaja z obema premičnima mejama');
+ if(o.plot==='leib')practice=unitLink('exercises','atan','Kolokvij 2023 · premična zgornja meja');
  if(o.plot==='gaussTheory')practice=unitLink('exercises','gauss','Gaussova naloga s kolokvija');
  return '<div class="lessonName"><h2>'+o.title+'</h2>'+source(o)+'</div>'+intro+cases+scenes+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
-function solvedExamples(){
- const examples=course.examples.filter(o=>o.day===state.day);
- return '<details class="base examples"><summary>Rešeni zgledi za '+state.day+'. dan</summary>'+examples.map(o=>'<details class="baseEntry"><summary>'+o.subtitle+'</summary><p>'+o.purpose.question+'</p><p>'+o.purpose.use+'</p>'+o.steps.map(([heading],i)=>{
-  const graphic=i===1?'<div data-example-graph="'+o.plot+'"></div>':'';
-  return calculation(o.worked[i],heading)+graphic;
- }).join('')+'<details class="base"><summary>Uporabljene formule</summary>'+ruleBridge(o.rules)+'</details></details>').join('')+'</details>';
-}
-document.addEventListener('toggle',event=>{
- const entry=event.target;
- if(!entry.open||!entry.matches('.examples .baseEntry'))return;
- const slot=entry.querySelector('[data-example-graph]');
- if(!slot||slot.childElementCount)return;
- const id=slot.dataset.exampleGraph,phase=1,value=plotSettings(id,phase)[4];
- const model=chartModel(id,phase,value);
- slot.innerHTML=compactFigure('Ponazoritev drugega koraka',model,'example-clip-'+id);
-},true);
 function unitLink(kind,plot,label){
  const index=data(kind).findIndex(item=>item.plot===plot);
  return index<0?'':btn('goto',label,'quiet','data-val="'+kind+','+state.day+','+index+'"');
 }
 function theoryLink(exercise){
- if(exercise.plot==='area')return unitLink('lessons','leib','Ko se premikata tudi meji');
- if(['atan','lowerGaussian','twoCosEdges','edgeDensity'].includes(exercise.plot))return unitLink('lessons','leib','Izpeljava Leibnizovega pravila');
- if(['gauss','narrowGaussian'].includes(exercise.plot))return unitLink('lessons','gaussTheory','Izpeljava Gaussovega integrala');
+ if(exercise.plot==='atan')return unitLink('lessons','leib','Izpeljava Leibnizovega pravila');
+ if(exercise.plot==='gauss')return unitLink('lessons','gaussTheory','Izpeljava Gaussovega integrala');
  return '';
 }
 function exercise(){
- const o=current(),done=!!state.marks[currentId()],answers=o.quiz.slice(1),order=[[1,0,2],[2,1,0],[0,2,1]][(idx()+state.day)%3];
+ const o=current(),done=!!state.marks[currentId()],answers=o.quiz.slice(1),offset=(idx()+state.day)%answers.length,order=answers.map((_,i)=>(i+offset)%answers.length);
  const hint='<p class="helpText"><b>Namig</b> '+o.hint+'</p>';
  const guide=o.guide?'<section class="methodGuide"><div class="stepLabel">Uvod v metodo</div>'+calculation(o.guide.steps,o.guide.title)+'</section>':'';
  const afterGraph=o.afterGraph?'<section class="methodGuide">'+calculation(o.afterGraph.steps,o.afterGraph.title)+'</section>':'';
- const citation=o.url?'<a href="'+escapeGraph(o.url)+'" target="_blank" rel="noopener noreferrer">'+escapeGraph(o.source)+' ↗</a>':o.source;
+ const citation=escapeGraph(o.source)+' '+o.references.map(ref=>'<a href="'+pdfLink(ref.key)+(ref.page?'#page='+ref.page:'')+'" aria-label="Odpri '+escapeGraph(ref.label)+'" target="_blank" rel="noopener">'+(o.references.length===1?'PDF':escapeGraph(ref.label))+' ↗</a>').join(' · ');
  const prompt='<header class="exercisePrompt"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2><div class="question">'+o.prompt+'</div></header>';
  const quiz='<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div>';
  const help='<details class="base exerciseHelp"><summary>Namig, razlaga in graf</summary><div class="helpBody">'+hint+reading(o.symbols)+application('Uporaba',o.purpose)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+afterGraph+'</div></details>';
@@ -199,7 +203,7 @@ function render(){
  const opened=previous?.dataset.unit===currentId()?Array.from(previous.children).filter(el=>el.tagName==='DETAILS').map(el=>el.open):[];
  const openedNotes=previous?.dataset.unit===currentId()?Array.from(previous.querySelectorAll('.stepNote'),note=>note.open):[];
  const fin=state.day===6&&tab()==='exercises'?'<div class="dayfinish"><div><h2>Preizkus s staro polo</h2><p>Računska pola traja 90 minut, teoretična 30 minut.</p></div>'+btn('archive','Izberi kolokvij')+'</div>':'';
- $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise()+solvedExamples():flash())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
+ $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise():flash())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
  if(opened.length)document.querySelectorAll('#content .practice > details').forEach((el,i)=>el.open=opened[i]);
  if(openedNotes.length)document.querySelectorAll('#content .stepNote').forEach((note,i)=>note.open=openedNotes[i]);
  if(within){let match=oldAct&&Array.from($('content').querySelectorAll('[data-do]')).find(b=>b.dataset.do===oldAct&&b.dataset.val===oldVal);let next=match||$('content').querySelector('.explain h2,.practice h2,.flash h2');if(next){if(next.tagName==='H2')next.tabIndex=-1;next.focus({preventScroll:true})}}
@@ -208,15 +212,15 @@ function modal(title,html){
  $('dialogTitle').textContent=title;$('dialogBody').innerHTML=html;if(!$('dialog').open)$('dialog').showModal();
 }
 const paperNames=['Račun 2022','Račun 2023','Račun 2024','Teorija 2022'];
-const paperEx=[[1,9,4,16],[2,5,10,12,14],[3,6,7,13,17]];
-const theoryRefs=[['Premikajoči se meji','lessons',1,1,'b'],['Četrti odvod','cards',3,2,'d'],['Faktor t in drugi odvod','exercises',3,3,'d'],['Kontrapozicija M-testa','exercises',5,2,'a'],['Definicija enakomerne konvergence integrala','cards',1,2,''],['Razširitev funkcije gama','cards',2,2,''],['Vrednost B(3, ½)','cards',2,4,''],['Frobeniusov nastavek','cards',6,0,''],['Uteženi skalarni produkt','exercises',6,2,''],['Besselova enačba','exercises',6,1,'']];
+const paperEx=[['gauss','sys22','betasub','sum22'],['atan','cubeta','sys23','triple','force23'],['root','loggamma','betarec','force24','sum24']];
+const theoryRefs=[['Premikajoči se meji','lessons',1,1,'b'],['Četrti odvod','cards',3,2,'d'],['Faktor t in drugi odvod','exercises',3,'devar','d'],['Kontrapozicija M-testa','exercises',5,'mtest','a'],['Definicija enakomerne konvergence integrala','cards',1,2,''],['Razširitev funkcije gama','cards',2,2,''],['Vrednost B(3, ½)','cards',2,4,''],['Frobeniusov nastavek','cards',6,0,''],['Uteženi skalarni produkt','exercises',6,'ortho',''],['Besselova enačba','exercises',6,'bessel','']];
 let pdfUrls={};
 function pdfLink(i){
  if(!pdfUrls[i]){const bytes=Uint8Array.from(atob(typeof i==='number'?course.papers[i]:course.sources[i]),c=>c.charCodeAt(0));pdfUrls[i]=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}))}
  return pdfUrls[i];
 }
 function openArchive(){
- let i=archiveIndex,links=i<3?paperEx[i].map(j=>{const o=course.exercises[j];return '<button data-do="goto" data-val="exercises,'+o.day+','+course.exercises.filter(x=>x.day===o.day).indexOf(o)+'"><small>'+o.source+'</small>'+o.title+'</button>'}).join(''):theoryRefs.map(([name,type,d,j,key],n)=>'<button data-do="goto" data-val="'+type+','+d+','+j+'"><small>Naloga '+(n+1)+(key?' · odgovor '+key:'')+'</small>'+name+'</button>').join('');
+ let i=archiveIndex,links=i<3?paperEx[i].map(plot=>{const o=course.exercises.find(ex=>ex.plot===plot);return '<button data-do="goto" data-val="exercises,'+o.day+','+course.exercises.filter(x=>x.day===o.day).indexOf(o)+'"><small>'+o.source+'</small>'+o.title+'</button>'}).join(''):theoryRefs.map(([name,type,d,j,key],n)=>'<button data-do="goto" data-val="'+type+','+d+','+(type==='exercises'?course.exercises.filter(o=>o.day===d).findIndex(o=>o.plot===j):j)+'"><small>Naloga '+(n+1)+(key?' · odgovor '+key:'')+'</small>'+name+'</button>').join('');
  modal('Stari kolokviji','<div class="paperTabs">'+paperNames.map((n,j)=>btn('paper',n,i===j?'active':'','data-val="'+j+'"')).join('')+'</div><p>'+(i===3?'30 minut brez pripomočkov. Pri izbiri je pravilen en odgovor.':'90 minut za štiri naloge. Dovoljen je en list A4 s formulami. Vsak odgovor utemelji.')+'</p><div class="paperActions"><a href="'+pdfLink(i)+'" class="action" target="_blank" rel="noopener">Odpri izvirno polo (PDF)</a>'+(!state.timer?btn('starttimer','Začni merjenje časa'):'')+'</div><div id="timer"></div><details><summary>Razlage in rešitve</summary><div class="paperList">'+links+'</div></details>');timerUpdate();
 }
 function timerUpdate(){
@@ -251,4 +255,4 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){dashboard();timerUpdate()}});
 if(!Number.isInteger(state.day)||state.day<1||state.day>6)state.day=1;
-resetView();layout();save();timerTick=setInterval(timerUpdate,1000);
+migrateExerciseProgress();resetView();layout();save();timerTick=setInterval(timerUpdate,1000);

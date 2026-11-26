@@ -1,0 +1,176 @@
+{
+  "exercises": [
+    {
+      "day": 3,
+      "title": "Inverzna transformiranka dušenega nihanja",
+      "plot": "izvirniInverz34",
+      "source": "ITFR-02, str. 4 · naloga 2c",
+      "prompt": "Izračunajte inverzno Laplaceovo transformiranko funkcije $H(s)=\\frac{3s}{s^2+2s+2}$.",
+      "cue": "Kvadrat v imenovalcu določi premik in frekvenco. Števec nato razstavi v obliki za kosinus in sinus.",
+      "hint": "V števcu zapiši $3s=3(s+1)-3$. Kateri del ustreza kosinusu?",
+      "symbols": "$s$ je parameter transformacije, $t$ je čas. $H(s)$ je dana funkcija, $h(t)$ pa iskani signal.",
+      "purpose": "Iz racionalne funkcije določiš časovni potek nihanja.",
+      "rules": [
+        [
+          "Premaknjena kosinus in sinus",
+          "\\mathcal L(e^{-at}\\cos bt)=\\frac{s+a}{(s+a)^2+b^2}",
+          "Za sinus v števcu stoji $b$. V našem imenovalcu sta $a=b=1$.",
+          "\\mathcal L(e^{-at}\\sin bt)=\\frac{b}{(s+a)^2+b^2}"
+        ]
+      ],
+      "worked": [
+        [
+          "Dopolni kvadrat",
+          "Prva dva člena sta začetek kvadrata vsote. V kvadrat porabiš eno od obeh enic.",
+          "s^2+2s+2=(s^2+2s+1)+1=(s+1)^2+1^2"
+        ],
+        [
+          "Prilagodi števec",
+          "Kosinus potrebuje isti premik kot imenovalec. Prištej in odštej 3, da ohraniš prvotni števec.",
+          "3s=3s+3-3=3(s+1)-3"
+        ],
+        [
+          "Razdeli ulomek",
+          "Člena v števcu loči. Prvi ima števec za kosinus, drugi za sinus frekvence 1.",
+          "H(s)=3\\frac{s+1}{(s+1)^2+1}-3\\frac{1}{(s+1)^2+1}",
+          {
+            "flow": [
+              "$3(s+1)-3$",
+              "dva ulomka z istim imenovalcem",
+              "kosinusni člen minus sinusni člen"
+            ]
+          }
+        ],
+        [
+          "Vrni se v čas",
+          "Premik za 1 v obeh ulomkih doda isti faktor dušenja. Ohranita se oba koeficienta.",
+          "h(t)=3e^{-t}\\cos t-3e^{-t}\\sin t"
+        ]
+      ],
+      "quiz": [
+        "Kateri signal ima dano transformiranko?",
+        "$3e^{-t}(\\cos t-\\sin t)$",
+        "$3e^{-t}(\\cos t+\\sin t)$",
+        "$3e^t(\\cos t-\\sin t)$"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Volterrova enačba z dvema frekvencama",
+      "plot": "izvirnaVolterra34",
+      "source": "ITFR-03-vse, str. 3 · naloga 4",
+      "prompt": "Rešite Volterrovo integralsko enačbo 1. vrste $\\displaystyle\\int_0^x\\cos(a(x-t))\\,y(t)\\,dt=\\sin(bx)$, kjer sta $a,b\\ne0$.",
+      "cue": "Jedro je odvisno od razlike $x-t$. Integral je konvolucija, ki jo Laplaceova transformacija spremeni v produkt.",
+      "hint": "Poišči transformiranki kosinusa in sinusa. S transformiranko kosinusa nato deli obe strani.",
+      "symbols": "$x$ je čas opazovanja, $t$ teče od 0 do $x$. $a$ določa frekvenco jedra, $b$ frekvenco izhoda. Iščeš vhod $y(t)$.",
+      "purpose": "Ko poznaš jedro in izhod, določiš neznani vhod.",
+      "rules": [
+        [
+          "Konvolucijski izrek",
+          "\\mathcal L(k*y)=K(s)Y(s)",
+          "Jedro je $k(t)=\\cos(at)$, izhod je $\\sin(bx)$.",
+          "K(s)=\\frac{s}{s^2+a^2},\\qquad \\mathcal L(\\sin(bx))=\\frac{b}{s^2+b^2}"
+        ]
+      ],
+      "worked": [
+        [
+          "Transformiraj konvolucijo",
+          "Integral postane produkt. Vanj vpiši transformiranki znanih funkcij.",
+          "\\frac{s}{s^2+a^2}Y(s)=\\frac{b}{s^2+b^2}"
+        ],
+        [
+          "Osami neznano transformiranko",
+          "Za pozitiven s lahko deliš s transformiranko jedra. Deljenje z ulomkom pomeni množenje z njegovo obratno vrednostjo.",
+          "Y(s)=\\frac{b}{s^2+b^2}\\frac{s^2+a^2}{s}=\\frac{b(s^2+a^2)}{s(s^2+b^2)}"
+        ],
+        [
+          "Pripravi časovna para",
+          "Člen 1/s se vrne v konstanto. Člen s/(s²+b²) se vrne v kosinus. Pomnoži razcep s skupnim imenovalcem.",
+          "Y(s)=\\frac{A}{s}+\\frac{Bs}{s^2+b^2},\\qquad b(s^2+a^2)=A(s^2+b^2)+Bs^2",
+          {
+            "flow": [
+              "racionalna funkcija",
+              "razcep na dva znana para",
+              "določi koeficienta"
+            ]
+          }
+        ],
+        [
+          "Primerjaj konstantna člena",
+          "Pri s = 0 ostaneta samo konstantna člena. Deli z b², ker b ni nič.",
+          "ba^2=Ab^2\\quad\\Longrightarrow\\quad A=\\frac{a^2}{b}"
+        ],
+        [
+          "Primerjaj člena pri s²",
+          "Na levi je koeficient b, na desni je vsota A in B. Odštej že znani A.",
+          "b=A+B\\quad\\Longrightarrow\\quad B=b-\\frac{a^2}{b}=\\frac{b^2-a^2}{b}"
+        ],
+        [
+          "Preberi vhod",
+          "Vsak ulomek vrni v čas s pripadajočim parom. Pri enakih frekvencah kosinusni člen izgine.",
+          "y(t)=\\frac{a^2}{b}+\\frac{b^2-a^2}{b}\\cos(bt),\\qquad a=b\\ \\Longrightarrow\\ y(t)=a"
+        ]
+      ],
+      "quiz": [
+        "Kateri signal reši enačbo?",
+        "$\\dfrac{a^2}{b}+\\dfrac{b^2-a^2}{b}\\cos(bt)$",
+        "$\\dfrac{a^2}{b}+\\dfrac{b^2-a^2}{b}\\sin(bt)$",
+        "$b\\cos(at)$"
+      ]
+    }
+  ],
+  "guides": {
+    "sys22": {
+      "title": "Kako transformiraš sistem",
+      "steps": [
+        [
+          "Vsaki časovni funkciji priredi svojo transformiranko. V pravilo za odvod vstavi njeno začetno vrednost.",
+          "y'\\ \\longleftrightarrow\\ sY-y(0),\\qquad z'\\ \\longleftrightarrow\\ sZ-z(0)"
+        ],
+        [
+          "Dobiš dve algebrajski enačbi. Iz prve izrazi eno transformiranko, jo vstavi v drugo in nato obe obrni.",
+          "Y(s)\\ \\longleftrightarrow\\ y(t),\\qquad Z(s)\\ \\longleftrightarrow\\ z(t)"
+        ]
+      ]
+    },
+    "devar": {
+      "title": "Ko se čas in odvod pojavita skupaj",
+      "steps": [
+        [
+          "Najprej transformiraj časovni odvod in upoštevaj oba začetna pogoja.",
+          "G(s)=\\mathcal L(y'')=s^2Y-sy(0)-y'(0)"
+        ],
+        [
+          "Faktor časa spremeni celotno dobljeno funkcijo v negativni odvod po parametru.",
+          "\\mathcal L(ty'')=-\\frac{dG}{ds}"
+        ]
+      ]
+    },
+    "triple": {
+      "title": "Od konvolucije do produkta",
+      "steps": [
+        [
+          "Pri izbranem času množiš vrednosti prvih dveh signalov ob komplementarnih časih in produkt sešteješ po preteklosti.",
+          "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du"
+        ],
+        [
+          "Laplaceova transformacija spremeni ta integral v produkt. Pri treh signalih lahko najprej združiš poljubna sosednja dva.",
+          "\\mathcal L((f*g)*h)=F(s)G(s)H(s)"
+        ]
+      ]
+    },
+    "force24": {
+      "title": "Kako zapišeš preklop brez ugibanja",
+      "steps": [
+        [
+          "Ob preklopu pri $a$ izračunaj razliko novega in starega predpisa. Ta popravek vklopi stopnica.",
+          "f(t)=f_1(t)+H(t-a)[f_2(t)-f_1(t)]"
+        ],
+        [
+          "Popravek zapiši v lokalnem času $u=t-a$. Šele v tej obliki lahko uporabiš zamik.",
+          "g(u)=f_2(u+a)-f_1(u+a),\\qquad \\mathcal L(H(t-a)g(t-a))=e^{-as}G(s)"
+        ]
+      ]
+    }
+  }
+}

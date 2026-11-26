@@ -6,7 +6,7 @@
   "betasub": "$x$ je prvotna koordinata med 0 in 2. $u=x^2/4$ je nova koordinata med 0 in 1. $dx$ oziroma $du$ označuje, po kateri koordinati integriraš.",
   "cubeta": "$x$ teče od 0 do ½. Nova spremenljivka $u=4x^2$ preteče od 0 do 1. Argumenta $B(p,q)$ določata potenci pri $u$ in $1-u$.",
   "loggamma": "$x$ je prvotna spremenljivka od 1 naprej, $u$ je nova spremenljivka po substituciji. V zapisu $\\Gamma(p)$ parameter $p$ določa potenco $u^{p-1}$.",
-  "betarec": "$p$ in $q$ sta pozitivna argumenta funkcije beta. Pri integriranju sta stalna. $u$ teče od 0 do 1, eksponenta $p-1$ in $q-1$ pa oblikujeta krivuljo.",
+  "betarec": "V postopku in na grafu pišemo $p=x$ in $q=y$ za pozitivna argumenta iz naloge. Spremenljivka $u$ teče od 0 do 1.",
   "inverse": "$F(s)$ je podana funkcija v Laplaceovi domeni, $s$ njen argument. Po inverziji iščeš signal pri času $t$. $A$ in $B$ sta koeficienta parcialnih ulomkov.",
   "sys22": "$t$ je čas. $y(t)$ in $z(t)$ sta iskana signala, črtica označuje časovni odvod. $Y(s)$ in $Z(s)$ sta njuni transformiranki.",
   "sys23": "$y$ in $z$ sta funkciji časa $t$. $z'(0)$ pomeni začetni naklon, $z''$ drugi časovni odvod. $Y(s)$ in $Z(s)$ sta transformiranki signalov.",
@@ -18,7 +18,7 @@
   "sum22": "$n$ šteje člene od 2 naprej, $x$ izbere vrednost vsakega člena. $S(x)$ je njihova vsota, $R$ pa konvergenčni polmer okrog 0.",
   "sum24": "$n$ se začne pri 0, zato preveri tudi prvo potenco $x^{4n-1}$. $S(x)$ je iskana vsota. $T(x)=x^2 S(x)$ za $x\\ne0$ je pomožna vrsta. Njen odvod je geometrijska vrsta.",
   "mtest": "$n$ šteje člene vrste. $x$ lahko izbereš kjerkoli na realni osi. $M_n$ je eno število, ki omeji velikost $n$-tega člena pri vsakem $x$.",
-  "leg": "$x$ je argument polinoma. $n=2$ označuje njegovo stopnjo. $a$ in $b$ sta neznana koeficienta v $a+bx^2$, $P_2(1)$ pa njegova vrednost pri $x=1$.",
+  "leg": "$x$ je argument iskane funkcije $y$. Oznaki $y^\\prime$ in $y^{\\prime\\prime}$ sta njen prvi in drugi odvod. $A$ in $B$ sta poljubni konstanti.",
   "bessel": "$x$ je neodvisna spremenljivka in $y(x)$ neznana rešitev. $\\nu$ je red enačbe, $r$ začetni eksponent v nastavku. $a_0$ je prvi neničelni koeficient.",
-  "ortho": "$f$ in $g$ sta funkciji, ki ju primerjaš. $w(x)$ je pozitivna utež, $x$ teče po intervalu. $\\langle f,g\\rangle_w$ je število, ki ga dobiš z integriranjem njunega uteženega produkta."
+  "ortho": "$f,g$ sta funkciji na $[a,b]$. $r(x)>0$ je utež, $x$ pa spremenljivka integracije. $\\langle f,g\\rangle$ je iskano število."
 }

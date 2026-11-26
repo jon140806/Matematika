@@ -218,16 +218,10 @@
     ],
     "leg": [
       [
-        "Legendrova diferencialna enačba",
-        "(1-x^2)y''-2xy'+n(n+1)y=0",
-        "Pri stopnji $n=2$ je $n(n+1)=6$. Za sodi polinom $y=a+bx^2$ dobiš $y'=2bx$, $y''=2b$.",
-        "(1-x^2)\\,2b-2x(2bx)+6(a+bx^2)=0"
-      ],
-      [
-        "Normalizacija Legendrovega polinoma",
-        "P_n(1)=1",
-        "V $P_2(x)=a+bx^2$ vstaviš $x=1$. Drugo povezavo $b=-3a$ dobiš s primerjavo prostih členov v enačbi.",
-        "a+b=1,\\qquad a-3a=1\\quad\\Rightarrow\\quad a=-1/2,\\quad b=3/2"
+        "Odvod produkta",
+        "(uv)^\\prime=u^\\prime v+uv^\\prime",
+        "Izberi $u=1-x^2$ in $v=y^\\prime$.",
+        "[(1-x^2)y^\\prime]^\\prime=-2xy^\\prime+(1-x^2)y^{\\prime\\prime}"
       ]
     ],
     "bessel": [
@@ -246,10 +240,10 @@
     ],
     "ortho": [
       [
-        "Preizkus pravokotnosti z utežjo",
-        "f\\perp_w g\\quad\\Longleftrightarrow\\quad\\int_a^b f(x)g(x)w(x)\\,dx=0",
-        "Iz naloge vzameš $f(x)=1$, $g(x)=(3x^2-1)/2$, $w=1$, spodnjo mejo $a=-1$ in zgornjo $b=1$.",
-        "\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx=\\left[\\frac{x^3-x}{2}\\right]_{-1}^1=0"
+        "Skalarni produkt z utežjo",
+        "\\langle f,g\\rangle_r=\\int_a^b f(x)g(x)r(x)\\,dx",
+        "Graf ponazori formulo pri uteži 1 in dveh konkretnih funkcijah.",
+        "r=1,\\quad f=1,\\quad g=(3x^2-1)/2"
       ]
     ]
   }

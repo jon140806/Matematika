@@ -19,7 +19,7 @@
     "sum22": "Neskončno členov želiš nadomestiti z eno funkcijo, ki jo lahko ovrednotiš pri izbranem x. Nato jo uporabiš še za konkretno številsko vsoto.",
     "sum24": "Iščeš krajši zapis za dolgo vsoto potenc. Pred uporabo rezultata moraš ugotoviti, pri katerih x prvotna vrsta sploh daje končno število.",
     "mtest": "Graf funkcije želiš povsod približati z istim številom členov. Iščeš oceno za izpuščeni rep, ki drži na celotnem intervalu, tudi tam, kjer je napaka največja.",
-    "leg": "Rešitev enačbe iščeš med polinomi in želiš določiti njegove koeficiente. Tako dobiš osnovno obliko za razvoj funkcij na intervalu od −1 do 1.",
+    "leg": "Pri stopnji nič se Legendrova enačba poenostavi. Z dvema integracijama lahko poiščeš celotno družino rešitev.",
     "bessel": "Pri opisovanju nihanja krožne opne se pojavijo enačbe za odvisnost od razdalje do središča. V dani enačbi prepoznaš družino rešitev in poiščeš njeno obnašanje blizu ničle.",
     "ortho": "Pri razvoju funkcije želiš vedeti, ali merjenje ene komponente zazna tudi drugo. To preveriš tako, da izmeriš, koliko se izbrani osnovni funkciji prekrivata s predznakom."
   },

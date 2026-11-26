@@ -2,7 +2,6 @@
 import base64
 import json
 import re
-from urllib.parse import urlsplit
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from latex2mathml.converter import convert
@@ -142,28 +141,40 @@ for filename,day_range in [("worked123.json",range(1,4)),("worked456.json",range
     for item in exercises:
         if item["day"] in day_range:
             item["worked"]=exercise_steps(worked["exercises"][item["plot"]])
-# Append practice without moving saved indexes or the original exam references.
-practice_by_plot={item["plot"]:item for item in exercises}
+by_plot={item["plot"]:item for item in exercises}
 for pair in ("12","34","56"):
-    additions=json.loads(read(f"practice{pair}.json"))
+    additions=json.loads(read(f"izvirne{pair}.json"))
     for item in additions["exercises"]:
-        if item["plot"] in practice_by_plot or len(item["quiz"])!=4:
-            raise ValueError(f"Invalid practice entry: {item['title']}")
-        link=urlsplit(item["url"])
-        if link.scheme!="https" or not link.hostname:
-            raise ValueError(f"Missing online source for {item['title']}")
+        if item["plot"] in by_plot or len(item["quiz"])<3 or not item.get("source") or item.get("url"):
+            raise ValueError(f"Invalid exercise: {item['title']}")
         for key in ("prompt","cue","hint","symbols","purpose"):
             item[key]=math_text(item[key])
         item["quiz"]=list(map(math_text,item["quiz"]))
         item["worked"]=exercise_steps(item["worked"])
         item["rules"]=rule_rows(item["rules"])
         exercises.append(item)
-        practice_by_plot[item["plot"]]=item
-    for plot,guide in additions["guides"].items():
-        practice_by_plot[plot]["guide"]=dict(title=guide["title"],steps=worked_rows(guide["steps"]))
+        by_plot[item["plot"]]=item
+    for plot,guide in additions.get("guides",{}).items():
+        by_plot[plot]["guide"]=dict(title=guide["title"],steps=worked_rows(guide["steps"]))
         if "afterGraph" in guide:
             part=guide["afterGraph"]
-            practice_by_plot[plot]["afterGraph"]=dict(title=part["title"],steps=worked_rows(part["steps"]))
+            by_plot[plot]["afterGraph"]=dict(title=part["title"],steps=worked_rows(part["steps"]))
+
+# Every exercise opens the matching sheet from the offline workbook.
+for item in exercises:
+    references=[]
+    for paper,year in enumerate(("2022","2023","2024")):
+        if year in item["source"]:
+            theory="teor" in item["source"].lower()
+            references.append(dict(label="Kolokvij "+year,key=3 if theory else paper))
+    for filename in sorted(sources,key=len,reverse=True):
+        stem=Path(filename).stem
+        if re.search(re.escape(stem)+r"(?![\w(-])",item["source"]):
+            page=re.search(r"str\.\s*(\d+)",item["source"])
+            references.append(dict(label=stem,key=filename,page=int(page[1]) if page else 1))
+    if not references:
+        raise ValueError(f"Missing original PDF: {item['source']}")
+    item["references"]=references
 
 # Show the signs and the three geometrical contributions even when the rule wraps.
 def leibniz_line(lhs,terms):
@@ -189,10 +200,8 @@ for item,rows in zip(base_items,json.loads(read("workedBasics.json")),strict=Tru
 extra_items=[item for day in extras for item in day["items"]]
 for item,rows in zip(extra_items,json.loads(read("workedExtras.json")),strict=True):
     item.append(worked_rows(rows))
-# The model calculations are reference examples on the practice tab.
-examples=lessons
 theory={**json.loads(read("theory123.json")),**json.loads(read("theory456.json"))}
-lesson_topics=[{key:example[key] for key in ("day","plot","source")} for example in examples]
+lesson_topics=[{key:example[key] for key in ("day","plot","source")} for example in lessons]
 lesson_topics.append(dict(day=1,plot="gaussTheory",source="ITFR-01p, str. 11 · račun 2022, nal. 1"))
 if set(theory)!={item["plot"] for item in lesson_topics}:
     raise ValueError("Theory must cover every original topic")
@@ -215,7 +224,7 @@ for lesson in lesson_topics:
         lesson["steps"][-1][2]=leibniz["general"]
         lesson["cases"]=[[label,worked_formula(tex)] for label,tex in topic["cases"]]
     lessons.append(lesson)
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,examples=examples,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
 print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(cards)} cards")
