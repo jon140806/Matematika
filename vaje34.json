@@ -1,0 +1,375 @@
+[
+  {
+    "day": 3,
+    "title": "Vsota dveh eksponentov",
+    "source": "ITFR-02, str. 3 · naloga 1b",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj Laplaceovo transformiranko funkcije $g(t)=3e^{2t}+4e^{-3t}$.",
+    "cue": "Vsak člen je eksponent.",
+    "hint": "Transformiraj vsak člen posebej.",
+    "symbols": "$t$ je čas, $s$ je parameter transformacije.",
+    "purpose": "Iz iste tabele prebereš prispevek rasti in prispevek pojemanja.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac3{s-2}+\\frac4{s+3}$",
+      "$\\frac3{s+2}+\\frac4{s-3}$",
+      "$\\frac7{s+1}$"
+    ],
+    "worked": [
+      [
+        "Preveri skupno območje",
+        "Pri prvem eksponentu potrebuješ $s>2$, pri drugem $s>-3$. Izberi njun presek.",
+        "s>2",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Vstavi oba eksponenta",
+        "V prvem imenovalcu odšteješ 2. V drugem odšteješ negativno število.",
+        "s-2,\\qquad s-(-3)=s+3"
+      ],
+      [
+        "Seštej prispevka",
+        "Linearnost ohrani koeficient vsakega člena.",
+        "G(s)=3\\frac1{s-2}+4\\frac1{s+3}"
+      ]
+    ],
+    "rules": [
+      [
+        "Eksponent",
+        "\\mathcal L(e^{at})=\\frac1{s-a}",
+        "Najprej je $a=2$, nato $a=-3$.",
+        "G(s)=\\frac3{s-2}+\\frac4{s+3}"
+      ]
+    ],
+    "plot": "v34exp"
+  },
+  {
+    "day": 3,
+    "title": "Dušeni kosinus",
+    "source": "ITFR-02, str. 3 · naloga 1g",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj transformiranko $m(t)=e^{-t}\\cos(4t)$.",
+    "cue": "Eksponent množi kosinus.",
+    "hint": "Najprej zapiši transformiranko samega kosinusa.",
+    "symbols": "$4$ določa frekvenco, $-1$ je eksponentni koeficient.",
+    "purpose": "Eksponentno dušenje prevedeš v premik parametra.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{s+1}{(s+1)^2+16}$",
+      "$\\frac{s-1}{(s-1)^2+16}$",
+      "$\\frac4{(s+1)^2+16}$"
+    ],
+    "worked": [
+      [
+        "Poišči kosinus v tabeli",
+        "Pri frekvenci 4 je kvadrat v imenovalcu 16.",
+        "C(s)=\\frac{s}{s^2+16}"
+      ],
+      [
+        "Upoštevaj dušenje",
+        "V argument vstavi $s-(-1)=s+1$. Za kosinus mora biti ta argument pozitiven.",
+        "s+1>0\\ \\Longrightarrow\\ s>-1",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Zamenjaj vsak s",
+        "Premik velja tako v števcu kot v imenovalcu.",
+        "M(s)=C(s+1)=\\frac{s+1}{(s+1)^2+16}"
+      ]
+    ],
+    "rules": [
+      [
+        "Premik parametra",
+        "\\mathcal L(e^{at}f(t))=F(s-a)",
+        "Pri $a=-1$ se argument poveča za 1.",
+        "M(s)=C(s+1)"
+      ]
+    ],
+    "plot": "v34cos"
+  },
+  {
+    "day": 3,
+    "title": "Sinus in kosinus iz enega ulomka",
+    "source": "ITFR-02, str. 4 · naloga 2b",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj inverzno transformiranko $G(s)=(3s+4)/(s^2+4)$.",
+    "cue": "Imenovalec je vsota kvadratov.",
+    "hint": "V sinusnem paru mora biti v števcu frekvenca 2.",
+    "symbols": "$s$ je parameter, $g(t)$ je iskana časovna funkcija.",
+    "purpose": "Iz števca prepoznaš obe komponenti nihanja.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$3\\cos(2t)+2\\sin(2t)$",
+      "$3\\cos(2t)+4\\sin(2t)$",
+      "$3\\sin(2t)+2\\cos(2t)$"
+    ],
+    "worked": [
+      [
+        "Preberi frekvenco",
+        "V tabeli uporabi para za omejeni sinus in kosinus, ki veljata pri $s>0$.",
+        "s^2+4=s^2+2^2",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Pripravi števca",
+        "Razdeli vsoto. Za sinus zapiši 4 kot dvakrat 2.",
+        "G(s)=3\\frac{s}{s^2+2^2}+2\\frac2{s^2+2^2}"
+      ],
+      [
+        "Obrni oba člena",
+        "Prvi števec ustreza kosinusu, drugi sinusu.",
+        "g(t)=3\\cos(2t)+2\\sin(2t)"
+      ]
+    ],
+    "rules": [
+      [
+        "Nihajna para",
+        "\\cos(at)\\longleftrightarrow\\frac{s}{s^2+a^2},\\quad\\sin(at)\\longleftrightarrow\\frac a{s^2+a^2}",
+        "Frekvenca je $a=2$.",
+        "\\frac2{s^2+4}\\longleftrightarrow\\sin(2t)"
+      ]
+    ],
+    "plot": "v34inv"
+  },
+  {
+    "day": 3,
+    "title": "Čas krat kosinus",
+    "source": "ITFR-02, str. 5 · naloga 3b",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj $\\mathcal L(t\\cos(at))(s)$.",
+    "cue": "Faktor $t$ stoji pred kosinusom.",
+    "hint": "Odvajaj kosinusno transformiranko po $s$ in spremeni predznak.",
+    "symbols": "$a$ je stalna frekvenca, $s$ je spremenljivka odvoda.",
+    "purpose": "Množenje s časom prevedeš v odvajanje ulomka.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{s^2-a^2}{(s^2+a^2)^2}$",
+      "$\\frac{a^2-s^2}{(s^2+a^2)^2}$",
+      "$\\frac{2as}{(s^2+a^2)^2}$"
+    ],
+    "worked": [
+      [
+        "Zapiši osnovni par",
+        "Za realni $a$ in $s>0$ eksponentna utež zagotovi konvergenco tudi po množenju s časom.",
+        "C(s)=\\frac{s}{s^2+a^2}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj količnik",
+        "Odvod števca je 1, odvod imenovalca je $2s$.",
+        "C'(s)=\\frac{1\\cdot(s^2+a^2)-s\\cdot2s}{(s^2+a^2)^2}=\\frac{a^2-s^2}{(s^2+a^2)^2}"
+      ],
+      [
+        "Uporabi minus",
+        "Pravilo za množenje s časom zahteva nasprotni predznak.",
+        "\\mathcal L(t\\cos(at))=-C'(s)=\\frac{s^2-a^2}{(s^2+a^2)^2}"
+      ]
+    ],
+    "rules": [
+      [
+        "Faktor časa",
+        "\\mathcal L(tf(t))=-F'(s)",
+        "Odvajamo po $s$.",
+        "\\mathcal L(t\\cos(at))=-C'(s)"
+      ]
+    ],
+    "plot": "v34tcos"
+  },
+  {
+    "day": 4,
+    "plot": "v34sinconv",
+    "title": "Konvolucija dveh sinusov",
+    "source": "ITFR-03-vse, str. 2 · naloga 1",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj $(f*g)(t)$ za $f(u)=\\sin(2u)$ in $g(u)=\\sin(3u)$.",
+    "cue": "Zvezdica pomeni konvolucijo.",
+    "hint": "Zmnoži transformiranki in dobljeni ulomek razcepi.",
+    "symbols": "$u$ je čas v integralu, $t$ pa čas, pri katerem ovrednotiš rezultat.",
+    "purpose": "Združiš signala različnih frekvenc.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac35\\sin(2t)-\\frac25\\sin(3t)$",
+      "$\\frac25\\sin(2t)-\\frac35\\sin(3t)$",
+      "$\\sin(2t)\\sin(3t)$"
+    ],
+    "worked": [
+      [
+        "Pretvori v produkt",
+        "Oba signala vzameš od časa nič, obe transformiranki obstajata pri $s>0$.",
+        "FG=\\frac2{s^2+4}\\frac3{s^2+9}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Nastavi razcep",
+        "Išči števca pri dveh različnih imenovalcih. Nato pomnoži s skupnim imenovalcem.",
+        "FG=\\frac A{s^2+4}+\\frac B{s^2+9}\\quad\\Rightarrow\\quad6=A(s^2+9)+B(s^2+4)"
+      ],
+      [
+        "Primerjaj koeficiente",
+        "Leva stran nima kvadratnega člena. Iz prve enačbe vstavi $B=-A$ v drugo.",
+        "A+B=0,\\quad9A+4B=6\\quad\\Rightarrow\\quad5A=6,\\ A=\\tfrac65,\\ B=-\\tfrac65"
+      ],
+      [
+        "Obrni po tabeli",
+        "Pripravi števca 2 in 3, da lahko prebereš sinusa obeh frekvenc.",
+        "FG=\\tfrac35\\frac2{s^2+4}-\\tfrac25\\frac3{s^2+9}\\longleftrightarrow\\tfrac35\\sin(2t)-\\tfrac25\\sin(3t)"
+      ]
+    ],
+    "rules": [
+      [
+        "Konvolucija",
+        "\\mathcal L(f*g)=FG",
+        "Sinusna para imata frekvenci 2 in 3.",
+        "FG=\\frac6{(s^2+4)(s^2+9)}"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34three",
+    "title": "Konvolucija treh signalov",
+    "source": "ITFR-03-vse, str. 2 · naloga 2",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj $(t*e^t*e^{-t})(x)$.",
+    "cue": "Vsaka zvezdica je nova konvolucija.",
+    "hint": "Najprej združi faktorja s korenoma 1 in −1.",
+    "symbols": "$x$ je čas, pri katerem ovrednotiš rezultat.",
+    "purpose": "Tri signale pretvoriš v en ulomek.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$-x+\\tfrac12e^x-\\tfrac12e^{-x}$",
+      "$x+\\tfrac12e^x-\\tfrac12e^{-x}$",
+      "$-x+\\tfrac12e^x+\\tfrac12e^{-x}$"
+    ],
+    "worked": [
+      [
+        "Zmnoži transformiranke",
+        "Rastoči eksponent zahteva $s>1$. Na tem območju obstajata tudi preostali transformiranki.",
+        "K=\\frac1{s^2}\\frac1{s-1}\\frac1{s+1}=\\frac1{s^2(s^2-1)}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Razcepi produkt",
+        "Za ulomka z imenovalcema $s^2$ in $s^2-1$ uvedi števca. Pomnoži s skupnim imenovalcem in primerjaj koeficiente.",
+        "K=\\frac A{s^2}+\\frac B{s^2-1}\\quad\\Rightarrow\\quad1=(A+B)s^2-A\\quad\\Rightarrow\\quad A=-1,\\ B=1"
+      ],
+      [
+        "Obrni po tabeli",
+        "Prvi ulomek da čas z minusom, drugi hiperbolični sinus. Zapiši ga z eksponentoma.",
+        "K=-\\frac1{s^2}+\\frac1{s^2-1}\\longleftrightarrow -x+\\sinh x=-x+\\tfrac12 e^x-\\tfrac12e^{-x}"
+      ]
+    ],
+    "rules": [
+      [
+        "Tabelna para",
+        "t\\longleftrightarrow\\frac1{s^2},\\quad\\sinh t\\longleftrightarrow\\frac1{s^2-1}",
+        "Rezultat ovrednoti pri času $x$.",
+        "K\\longleftrightarrow\\sinh x-x"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34steps",
+    "title": "Trije skoki sile",
+    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija f",
+    "kind": "Izvirna vaja",
+    "prompt": "Signal ima od časa 0 zaporedoma vrednosti 2, 10, 5 in 1. Preklopi so ob časih 4, 6 in 8. Ob preklopu velja nova vrednost. Zapiši signal s stopnicami in izračunaj njegovo Laplaceovo transformiranko.",
+    "cue": "Vsaka veja je konstantna.",
+    "hint": "Velikost skoka je razlika nove in stare višine.",
+    "symbols": "$H(t-a)$ vklopi dodatek pri času $a$.",
+    "purpose": "Sestaviš silo iz predpisa po intervalih.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{2+8e^{-4s}-5e^{-6s}-4e^{-8s}}s$",
+      "$\\frac{2+10e^{-4s}+5e^{-6s}+e^{-8s}}s$",
+      "$\\frac{2+8e^{-4s}+5e^{-6s}+4e^{-8s}}s$"
+    ],
+    "worked": [
+      [
+        "Izračunaj tri skoke",
+        "Od vsake nove višine odštej prejšnjo.",
+        "10-2=8,\\quad5-10=-5,\\quad1-5=-4"
+      ],
+      [
+        "Zapiši signal",
+        "Začni z 2. Vsako spremembo vklopi ob njenem času.",
+        "f(t)=2+8H(t-4)-5H(t-6)-4H(t-8)"
+      ],
+      [
+        "Transformiraj stopnice",
+        "Signal je omejen in kosovno zvezen. Pri $s>0$ konstanta da $1/s$, zakasnitev za $a$ pa doda faktor $e^{-as}$.",
+        "F=\\frac2s+\\frac{8e^{-4s}}s-\\frac{5e^{-6s}}s-\\frac{4e^{-8s}}s",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Stopnica",
+        "H(t-a)\\longleftrightarrow\\frac{e^{-as}}s",
+        "Vstavi tri čase preklopa.",
+        "8H(t-4)\\longleftrightarrow8e^{-4s}/s"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34sineon",
+    "title": "Vklop sinusa pri 5",
+    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija h",
+    "kind": "Izvirna vaja",
+    "prompt": "Funkcija je $h(t)=t^3$ za $t<5$ in $h(t)=t^3+4\\sin((t-5)/10)$ za $t\\ge5$. Zapiši jo s stopnico in izračunaj njeno Laplaceovo transformiranko.",
+    "cue": "Po vklopu kubični del teče naprej.",
+    "hint": "Frekvenca zakasnjenega sinusa je $1/10$.",
+    "symbols": "$t-5$ je čas od vklopa, $s$ je parameter transformacije.",
+    "purpose": "Zakasnitev uporabiš pri členu, ki začne delovati pozneje.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac6{s^4}+\\frac{40e^{-5s}}{100s^2+1}$",
+      "$\\frac6{s^4}+\\frac{40}{100s^2+1}$",
+      "$\\frac6{s^4}+\\frac{4se^{-5s}}{s^2+100}$"
+    ],
+    "worked": [
+      [
+        "Vklopi sinus",
+        "Pred celotnim dodanim členom postavi stopnico.",
+        "h(t)=t^3+H(t-5)\\,4\\sin((t-5)/10)"
+      ],
+      [
+        "Uporabi tabelo",
+        "Za polinom in sinus zadošča $s>0$. Sinus najprej transformiraj v lokalnem času $u=t-5$.",
+        "t^3\\longleftrightarrow\\frac{3!}{s^4},\\qquad4\\sin(u/10)\\longleftrightarrow\\frac{4/10}{s^2+1/100}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Upoštevaj zakasnitev",
+        "Števec in imenovalec drugega ulomka pomnoži s 100. Zakasnitev doda faktor pred ta ulomek.",
+        "\\mathcal L(h)=\\frac6{s^4}+e^{-5s}\\frac{40}{100s^2+1}"
+      ]
+    ],
+    "rules": [
+      [
+        "Časovni premik",
+        "H(t-a)g(t-a)\\longleftrightarrow e^{-as}G(s)",
+        "Vklop je pri $a=5$.",
+        "g(u)=4\\sin(u/10)"
+      ]
+    ]
+  }
+]

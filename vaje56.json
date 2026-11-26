@@ -1,0 +1,378 @@
+[
+  {
+    "day": 5,
+    "title": "Faktor n + 1",
+    "source": "ITFR-04, str. 9 · naloga 6a",
+    "kind": "Izvirna vaja",
+    "plot": "v56plus",
+    "prompt": "Seštej $\\sum_{n=0}^\\infty(n+1)x^n$ in določi območje konvergence.",
+    "cue": "Faktor $n+1$ dobiš z odvajanjem potence.",
+    "hint": "Odvajaj vrsto, ki se začne z $x$.",
+    "symbols": "$n$ šteje člene, $x$ je argument.",
+    "purpose": "Iz geometrijske vrste dobiš vsoto s faktorjem $n+1$.",
+    "quiz": [
+      "Kolikšna je vsota znotraj polmera?",
+      "$1/(1-x)^2$",
+      "$x/(1-x)^2$",
+      "$1/(1-x)$"
+    ],
+    "worked": [
+      [
+        "Zapiši geometrijsko vsoto",
+        "Za $|x|<1$ vrsta konvergira in jo znotraj polmera smemo odvajati členoma.",
+        "H=x+x^2+\\cdots=x/(1-x)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj obe strani",
+        "Odvod člena $x^{n+1}$ da $(n+1)x^n$. Desno uporabi pravilo za količnik.",
+        "H^\\prime=\\sum_{n=0}^\\infty(n+1)x^n=\\frac{1-x+x}{(1-x)^2}=\\frac1{(1-x)^2}"
+      ],
+      [
+        "Preveri robova in zunanjost",
+        "Pri $|x|\\ge1$ velikosti členov rastejo. Vrsta tam divergira.",
+        "|(n+1)x^n|\\ge n+1",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Odvod potence",
+        "(x^{n+1})^\\prime=(n+1)x^n",
+        "Pri prvi potenci dobiš konstanto.",
+        "(x)^\\prime=1"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Kvadrat indeksa",
+    "source": "ITFR-04, str. 9 · naloga 6c",
+    "kind": "Izvirna vaja",
+    "plot": "v56square",
+    "prompt": "Seštej $\\sum_{n=1}^\\infty n^2x^n$ in določi območje konvergence.",
+    "cue": "Vsak odvod prispeva en faktor $n$.",
+    "hint": "Začni z vsoto naloge 6b in po odvajanju vrni potenco $x$.",
+    "symbols": "$x$ je argument, $n$ je indeks.",
+    "purpose": "Iz prejšnje vsote dobiš vrsto s kvadratnim koeficientom.",
+    "quiz": [
+      "Katera je vsota znotraj polmera?",
+      "$x(1+x)/(1-x)^3$",
+      "$x/(1-x)^2$",
+      "$(1+x)/(1-x)^3$"
+    ],
+    "worked": [
+      [
+        "Vzemi rezultat iz 6b",
+        "Za $|x|<1$ ga smemo odvajati členoma. Pri $|x|\\ge1$ členi nove vrste po velikosti dosežejo vsaj $n^2$, zato tam divergira.",
+        "G=\\sum_{n=1}^\\infty nx^n=x(1-x)^{-2}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj produkt",
+        "Odvajaj prvi faktor, nato drugega. Razširi na skupni imenovalec.",
+        "G^\\prime=(1-x)^{-2}+2x(1-x)^{-3}=(1-x+2x)/(1-x)^3"
+      ],
+      [
+        "Vrni potenco x",
+        "Odvod zniža eksponent za ena. Pomnoži ga z $x$.",
+        "xG^\\prime=\\sum_{n=1}^\\infty n^2x^n=\\frac{x(1+x)}{(1-x)^3}"
+      ]
+    ],
+    "rules": [
+      [
+        "Odvod člena",
+        "(nx^n)^\\prime=n^2x^{n-1}",
+        "Množenje z $x$ povrne eksponent.",
+        "x(nx^n)^\\prime=n^2x^n"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Logaritem iz geometrijske vrste",
+    "source": "ITFR-04, str. 9 · naloga 6d",
+    "kind": "Del naloge",
+    "plot": "v56log",
+    "prompt": "Za $|x|<1$ seštej $\\sum_{n=1}^\\infty x^n/n$.",
+    "cue": "Imenovalec $n$ nastane pri integriranju potence.",
+    "hint": "Začni pri geometrijski vrsti.",
+    "symbols": "$t$ teče od nič do $x$.",
+    "purpose": "Z logaritemskim razvojem lahko seštevaš tudi vrste s premaknjenim indeksom.",
+    "quiz": [
+      "Katero funkcijo dobiš?",
+      "$-\\ln(1-x)$",
+      "$\\ln(1-x)$",
+      "$\\ln(1+x)$"
+    ],
+    "worked": [
+      [
+        "Zapiši geometrijsko vsoto",
+        "Na odseku med 0 in $x$ je absolutna vrednost $t$ največ $|x|<1$. Geometrijska vrsta tam konvergira enakomerno, zato smemo integrirati členoma.",
+        "\\sum_{k=0}^\\infty t^k=1/(1-t)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Integriraj člene",
+        "Vsak člen da potenco, deljeno z njenim novim eksponentom. Zapiši $n=k+1$.",
+        "\\sum_{k=0}^\\infty\\int_0^x t^k\\,dt=\\sum_{k=0}^\\infty\\frac{x^{k+1}}{k+1}=\\sum_{n=1}^\\infty\\frac{x^n}{n}"
+      ],
+      [
+        "Ovrednoti desno stran",
+        "Minus nastane zaradi odvoda $1-t$. Pri spodnji meji je logaritem nič.",
+        "\\int_0^x\\frac{dt}{1-t}=[-\\ln(1-t)]_0^x=-\\ln(1-x)"
+      ]
+    ],
+    "rules": [
+      [
+        "Integracija potence",
+        "\\int_0^x t^k\\,dt=x^{k+1}/(k+1)",
+        "Pri $k=0,1,2$ dobiš prve tri člene.",
+        "x+x^2/2+x^3/3"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Vsota na desnem robu",
+    "source": "ITFR-04, str. 9 · naloga 6e",
+    "kind": "Del naloge",
+    "plot": "v56tel",
+    "prompt": "Pri $x=1$ seštej $\\sum_{n=1}^\\infty x^n/[n(n+1)]$.",
+    "cue": "Dva zaporedna faktorja namigujeta na teleskopsko vsoto.",
+    "hint": "Razširi $1/n-1/(n+1)$ na skupni imenovalec.",
+    "symbols": "$N$ označuje zadnji indeks delne vsote.",
+    "purpose": "Na robu lahko vrsto sešteješ neposredno.",
+    "quiz": [
+      "Kolikšna je vsota?",
+      "$1$",
+      "$1/2$",
+      "$2$"
+    ],
+    "worked": [
+      [
+        "Vstavi x = 1",
+        "Vsaka potenca je ena. Ker je $n\\ge1$, sta oba faktorja v imenovalcu neničelna.",
+        "\\frac{1^n}{n(n+1)}=\\frac{(n+1)-n}{n(n+1)}=\\frac1n-\\frac1{n+1}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Zapiši delno vsoto",
+        "Vsak notranji negativni člen se odšteje od naslednjega pozitivnega.",
+        "S_N=(1-1/2)+(1/2-1/3)+\\cdots+(1/N-1/(N+1))=1-1/(N+1)"
+      ],
+      [
+        "Pošlji indeks v neskončnost",
+        "Zadnji ulomek gre proti nič.",
+        "\\lim_{N\\to\\infty}S_N=1-0=1"
+      ]
+    ],
+    "rules": [
+      [
+        "Teleskopska vrsta",
+        "\\sum_{n=1}^N(b_n-b_{n+1})=b_1-b_{N+1}",
+        "Vstavi $b_n=1/n$.",
+        "S_N=1-1/(N+1)"
+      ]
+    ]
+  },
+  {
+    "day": 6,
+    "title": "Odvodi v vrsti za eksponentno rešitev",
+    "source": "ITFR-04, str. 11 · naloga 8.1",
+    "kind": "Izvirna vaja",
+    "plot": "v56exp",
+    "prompt": "Reši $y'=2xy$ s potenčno vrsto.",
+    "cue": "Naloga zahteva koeficiente potenčne vrste.",
+    "hint": "Vpiši potenčni nastavek na obe strani in primerjaj iste potence.",
+    "symbols": "$a_k$ je koeficient pri $x^k$.",
+    "purpose": "Rešitev zgradiš iz koeficientov, tudi če je vnaprej ne prepoznaš.",
+    "quiz": [
+      "Kaj dobiš za splošno rešitev?",
+      "$Ce^{x^2}$",
+      "$Ce^{2x}$",
+      "$Ce^{-x^2}$"
+    ],
+    "worked": [
+      [
+        "Vstavi nastavek",
+        "Koeficient $2x$ je analitičen okoli ničle. Po odvajanju ima levi člen za eno nižjo potenco.",
+        "y=\\sum_{k=0}^\\infty a_kx^k,\\quad \\sum_{k=0}^\\infty(k+1)a_{k+1}x^k=2\\sum_{k=1}^\\infty a_{k-1}x^k",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Primerjaj koeficiente",
+        "Desna stran nima konstante, zato je $a_1=0$. Pri vsaki višji potenci primerjaj oba koeficienta.",
+        "(k+1)a_{k+1}=2a_{k-1},\\quad k\\ge1"
+      ],
+      [
+        "Izračunaj sode člene",
+        "Liha veja ostane nič. Za sodo vstavimo zaporedoma $k=1,3,5$.",
+        "a_2=a_0,\\quad a_4=a_2/2,\\quad a_6=a_4/3,\\quad a_{2m}=a_0/m!"
+      ],
+      [
+        "Prepoznaj funkcijo",
+        "Eksponentna vrsta konvergira za vsak $x^2$. Začetnega pogoja ni, zato $a_0=C$ ostane poljuben.",
+        "y=a_0(1+x^2+x^4/2!+\\cdots)=Ce^{x^2}"
+      ]
+    ],
+    "rules": [
+      [
+        "Eksponentna vrsta",
+        "e^z=\\sum_{m=0}^\\infty z^m/m!",
+        "Za sode potence vstavi $z=x^2$.",
+        "e^{x^2}=1+x^2+x^4/2!+\\cdots"
+      ]
+    ]
+  },
+  {
+    "day": 6,
+    "title": "Liha veja pri stopnji ena",
+    "source": "ITFR-p78a, str. 6 · domača vaja, n = 1",
+    "kind": "Del naloge",
+    "plot": "v56odd",
+    "prompt": "Za $(1-x^2)y''-2xy'+2y=0$ na $(-1,1)$ poišči liho rešitev z $y'(0)=1$.",
+    "cue": "Legendrova rekurzija poveže koeficiente iste parnosti.",
+    "hint": "Za liho vejo začni pri $a_1$.",
+    "symbols": "$n=1$ je stopnja enačbe, $m$ je indeks koeficienta.",
+    "purpose": "Vidiš, kdaj se potenčna vrsta konča.",
+    "quiz": [
+      "Katera je iskana veja?",
+      "$x$",
+      "$1$",
+      "$x^3$"
+    ],
+    "worked": [
+      [
+        "Izberi začetna koeficienta",
+        "Na intervalu je $1-x^2>0$, zato so normalizirani koeficienti analitični okoli ničle. Liha funkcija ima $a_0=0$, njen začetni naklon je $a_1$.",
+        "a_0=0,\\quad a_1=y^\\prime(0)=1",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Uporabi Legendrovo rekurzijo",
+        "Vstavi $n=1$ in $m=1$. Faktor $n-m$ izniči naslednji lihi koeficient.",
+        "a_3=-\\frac{(1-1)(1+1+1)}{2\\cdot3}a_1=0"
+      ],
+      [
+        "Sestavi vejo",
+        "Vsak naslednji lihi koeficient je večkratnik prejšnjega, sodi pa izhajajo iz $a_0=0$. Ostane le linearni člen.",
+        "y=x,\\qquad (1-x^2)\\cdot0-2x\\cdot1+2x=0"
+      ]
+    ],
+    "rules": [
+      [
+        "Legendrova rekurzija",
+        "a_{m+2}=-\\frac{(n-m)(n+m+1)}{(m+1)(m+2)}a_m",
+        "Pri $m=n$ se veja konča.",
+        "a_3=0"
+      ]
+    ]
+  },
+  {
+    "day": 6,
+    "title": "Drugi polinom z Rodriguesovo formulo",
+    "source": "ITFR-p78a, str. 9 · Rodriguesova formula, n = 2",
+    "kind": "Različica",
+    "plot": "v56rod",
+    "prompt": "Z Rodriguesovo formulo izračunaj $P_2(x)$.",
+    "cue": "Indeks pove, kolikokrat moraš odvajati.",
+    "hint": "Pred odvajanjem razširi $(x^2-1)^2$.",
+    "symbols": "$n$ je stopnja polinoma.",
+    "purpose": "Iz iste formule lahko zgradiš polinom poljubne nenegativne cele stopnje.",
+    "quiz": [
+      "Kaj je $P_2(x)$?",
+      "$(3x^2-1)/2$",
+      "$(3x^2+1)/2$",
+      "$3x^2-1$"
+    ],
+    "worked": [
+      [
+        "Vstavi n = 2",
+        "Rodriguesova formula velja za nenegativni celoštevilski $n$. Za $n=2$ je faktor pred odvodom $1/8$.",
+        "P_2(x)=\\frac1{2^2\\,2!}\\frac{d^2}{dx^2}(x^2-1)^2",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj dvakrat",
+        "Po razširitvi uporabi potenčno pravilo za vsak člen.",
+        "x^4-2x^2+1\\ \\longrightarrow\\ 4x^3-4x\\ \\longrightarrow\\ 12x^2-4"
+      ],
+      [
+        "Upoštevaj faktor",
+        "Drugi odvod pomnoži z $1/8$.",
+        "P_2(x)=(12x^2-4)/8=(3x^2-1)/2"
+      ]
+    ],
+    "rules": [
+      [
+        "Rodriguesova formula",
+        "P_n=\\frac1{2^n n!}\\frac{d^n}{dx^n}(x^2-1)^n",
+        "Število odvodov je $n$.",
+        "n=2"
+      ]
+    ]
+  },
+  {
+    "day": 6,
+    "title": "Dolžina prvega polinoma",
+    "source": "ITFR-p78a, str. 10 · izrek (c), n = 1",
+    "kind": "Različica",
+    "plot": "v56norm",
+    "prompt": "Izračunaj normo $P_1(x)=x$ pri uteži 1 na $[-1,1]$.",
+    "cue": "Norma je koren skalarnega produkta funkcije s seboj.",
+    "hint": "Najprej integriraj kvadrat polinoma.",
+    "symbols": "$x$ je spremenljivka integriranja.",
+    "purpose": "Norma meri velikost funkcije po celotnem intervalu.",
+    "quiz": [
+      "Kolikšna je norma?",
+      "$\\sqrt{2/3}$",
+      "$2/3$",
+      "$0$"
+    ],
+    "worked": [
+      [
+        "Pripravi skalarni produkt",
+        "Utež 1 je pozitivna in $P_1$ je zvezen na celotnem intervalu. Integral kvadrata zato obstaja.",
+        "\\langle P_1,P_1\\rangle=\\int_{-1}^1 x^2\\,dx",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Vstavi obe meji",
+        "Pri odštevanju spodnje meje se predznak spremeni.",
+        "[x^3/3]_{-1}^1=1/3-(-1/3)=2/3"
+      ],
+      [
+        "Vzemi koren",
+        "Integral je kvadrat norme. Norma je njegov nenegativni koren.",
+        "\\|P_1\\|=\\sqrt{2/3}"
+      ]
+    ],
+    "rules": [
+      [
+        "Norma",
+        "\\|f\\|=\\sqrt{\\langle f,f\\rangle}",
+        "Vstavi $f=P_1$.",
+        "\\|P_1\\|^2=2/3"
+      ]
+    ]
+  }
+]

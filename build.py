@@ -144,18 +144,23 @@ for filename,day_range in [("worked123.json",range(1,4)),("worked456.json",range
         if item["day"] in day_range:
             item["worked"]=exercise_steps(worked["exercises"][item["plot"]])
 by_plot={item["plot"]:item for item in exercises}
+drills=[]
 for pair in ("12","34","56"):
     additions=json.loads(read(f"izvirne{pair}.json"))
-    for item in additions["exercises"]:
-        if item["plot"] in by_plot or len(item["quiz"])<3 or not item.get("source") or item.get("url"):
-            raise ValueError(f"Invalid exercise: {item['title']}")
-        for key in ("prompt","cue","hint","symbols","purpose"):
-            item[key]=math_text(item[key])
-        item["quiz"]=list(map(math_text,item["quiz"]))
-        item["worked"]=exercise_steps(item["worked"])
-        item["rules"]=rule_rows(item["rules"])
-        exercises.append(item)
-        by_plot[item["plot"]]=item
+    daily_drills=json.loads(read(f"vaje{pair}.json"))
+    for group,items in ((exercises,additions["exercises"]),(drills,daily_drills)):
+        for item in items:
+            if item["plot"] in by_plot or len(item["quiz"])<3 or not item.get("source") or item.get("url"):
+                raise ValueError(f"Invalid exercise: {item['title']}")
+            for key in ("prompt","cue","hint","symbols","purpose"):
+                item[key]=math_text(item[key])
+            item["quiz"]=list(map(math_text,item["quiz"]))
+            item["worked"]=exercise_steps(item["worked"])
+            item["rules"]=rule_rows(item["rules"])
+            if group is drills and not any(step.get("condition") for step in item["worked"]):
+                raise ValueError(f"Missing conditions: {item['title']}")
+            group.append(item)
+            by_plot[item["plot"]]=item
     for plot,guide in additions.get("guides",{}).items():
         by_plot[plot]["guide"]=dict(title=guide["title"],steps=worked_rows(guide["steps"]))
         if "afterGraph" in guide:
@@ -163,7 +168,7 @@ for pair in ("12","34","56"):
             by_plot[plot]["afterGraph"]=dict(title=part["title"],steps=worked_rows(part["steps"]))
 
 # Every exercise opens the matching sheet from the offline workbook.
-for item in exercises:
+for item in exercises+drills:
     references=[]
     for paper,year in enumerate(("2022","2023","2024")):
         if year in item["source"]:
@@ -226,7 +231,7 @@ for lesson in lesson_topics:
         lesson["steps"][-1][2]=leibniz["general"]
         lesson["cases"]=[[label,worked_formula(tex)] for label,tex in topic["cases"]]
     lessons.append(lesson)
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,drills=drills,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js","plots12.js","plots34.js","plots56.js","vaje12.js","vaje34.js","vaje56.js","mini12.js","mini34.js","mini56.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
-print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(cards)} cards")
+print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(drills)} drills, {len(cards)} cards")
