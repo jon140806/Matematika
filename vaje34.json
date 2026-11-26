@@ -1,6 +1,52 @@
 [
   {
     "day": 3,
+    "plot": "v34poly",
+    "title": "Polinom po členih",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-02, str. 3 · naloga 1a",
+    "prompt": "Izračunaj transformiranko funkcije $f(t)=3-2t^3+t^5$.",
+    "cue": "Vsi členi so potence časa.",
+    "hint": "V tabeli zamenjaj vsako potenco posebej.",
+    "symbols": "$n$ je stopnja potence, $s$ parameter transformacije.",
+    "purpose": "Polinomski vhod spremeniš v vsoto ulomkov.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac3s-\\frac{12}{s^4}+\\frac{120}{s^6}$",
+      "$\\frac3s-\\frac6{s^3}+\\frac{120}{s^5}$",
+      "$\\frac3s+\\frac{12}{s^4}+\\frac{120}{s^6}$"
+    ],
+    "worked": [
+      [
+        "Preberi stopnje",
+        "Konstanta je potenca stopnje 0. Pri vseh treh členih integral konvergira pri $s>0$.",
+        "n=0,3,5,\\qquad \\mathcal L(t^n)=n!/s^{n+1}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Vstavi stopnje",
+        "Fakulteta v števcu je produkt celih števil od 1 do stopnje.",
+        "3!=6,\\quad 5!=120,\\quad t^3\\longleftrightarrow6/s^4,\\quad t^5\\longleftrightarrow120/s^6"
+      ],
+      [
+        "Vrni koeficiente",
+        "Člen stopnje 3 pomnoži z −2, konstanto pa s 3.",
+        "F=3/s-2\\cdot6/s^4+120/s^6"
+      ]
+    ],
+    "rules": [
+      [
+        "Potenca",
+        "\\mathcal L(t^n)=n!/s^{n+1}",
+        "Za konstanto vzameš $n=0$.",
+        "\\mathcal L(1)=1/s"
+      ]
+    ]
+  },
+  {
+    "day": 3,
     "title": "Vsota dveh eksponentov",
     "source": "ITFR-02, str. 3 · naloga 1b",
     "kind": "Izvirna vaja",
@@ -47,49 +93,85 @@
   },
   {
     "day": 3,
-    "title": "Dušeni kosinus",
-    "source": "ITFR-02, str. 3 · naloga 1g",
+    "plot": "v34waves",
+    "title": "Sinus in kosinus po tabeli",
     "kind": "Izvirna vaja",
-    "prompt": "Izračunaj transformiranko $m(t)=e^{-t}\\cos(4t)$.",
-    "cue": "Eksponent množi kosinus.",
-    "hint": "Najprej zapiši transformiranko samega kosinusa.",
-    "symbols": "$4$ določa frekvenco, $-1$ je eksponentni koeficient.",
-    "purpose": "Eksponentno dušenje prevedeš v premik parametra.",
+    "source": "ITFR-02, str. 3 · naloga 1d",
+    "prompt": "Izračunaj transformiranko $j(t)=4\\sin(3t)-2\\cos(5t)$.",
+    "cue": "Frekvenci sta različni.",
+    "hint": "Pri sinusu gre v števec frekvenca, pri kosinusu parameter.",
+    "symbols": "$3$ in $5$ sta frekvenci, $4$ in $-2$ sta koeficienta.",
+    "purpose": "Nihanje razstaviš na dva tabelna para.",
     "quiz": [
       "Kateri izraz dobiš?",
-      "$\\frac{s+1}{(s+1)^2+16}$",
-      "$\\frac{s-1}{(s-1)^2+16}$",
-      "$\\frac4{(s+1)^2+16}$"
+      "$\\frac{12}{s^2+9}-\\frac{2s}{s^2+25}$",
+      "$\\frac{4s}{s^2+9}-\\frac{10}{s^2+25}$",
+      "$\\frac{12}{s^2+3}-\\frac{2s}{s^2+5}$"
     ],
     "worked": [
       [
-        "Poišči kosinus v tabeli",
-        "Pri frekvenci 4 je kvadrat v imenovalcu 16.",
-        "C(s)=\\frac{s}{s^2+16}"
-      ],
-      [
-        "Upoštevaj dušenje",
-        "V argument vstavi $s-(-1)=s+1$. Za kosinus mora biti ta argument pozitiven.",
-        "s+1>0\\ \\Longrightarrow\\ s>-1",
+        "Preberi oba para",
+        "Sinus in kosinus sta omejena. Eksponentna utež pri $s>0$ zagotovi obstoj obeh transformacij.",
+        "\\sin(3t)\\longleftrightarrow\\frac3{s^2+9},\\quad\\cos(5t)\\longleftrightarrow\\frac{s}{s^2+25}",
         {
           "condition": true
         }
       ],
       [
-        "Zamenjaj vsak s",
-        "Premik velja tako v števcu kot v imenovalcu.",
-        "M(s)=C(s+1)=\\frac{s+1}{(s+1)^2+16}"
+        "Upoštevaj koeficienta",
+        "Prvi števec pomnoži s 4, drugega z −2.",
+        "J=4\\frac3{s^2+9}-2\\frac{s}{s^2+25}=\\frac{12}{s^2+9}-\\frac{2s}{s^2+25}"
       ]
     ],
     "rules": [
       [
-        "Premik parametra",
-        "\\mathcal L(e^{at}f(t))=F(s-a)",
-        "Pri $a=-1$ se argument poveča za 1.",
-        "M(s)=C(s+1)"
+        "Sinus in kosinus",
+        "\\sin(at)\\longleftrightarrow\\frac a{s^2+a^2},\\quad\\cos(at)\\longleftrightarrow\\frac s{s^2+a^2}",
+        "Pri drugem členu je frekvenca 5.",
+        "\\cos(5t)\\longleftrightarrow s/(s^2+25)"
+      ]
+    ]
+  },
+  {
+    "day": 3,
+    "plot": "v34expinv",
+    "title": "Trije ulomki v čas",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-02, str. 4 · naloga 2a",
+    "prompt": "Izračunaj inverzno transformiranko $F(s)=3/s-1/(s-3)+2/(s+4)$.",
+    "cue": "Ulomki so že ločeni.",
+    "hint": "Vsak imenovalec zapiši v obliki $s-a$.",
+    "symbols": "$a$ je stopnja rasti v eksponentu $e^{at}$.",
+    "purpose": "Iz polov prebereš rast in pojemanje.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$3-e^{3t}+2e^{-4t}$",
+      "$3-e^{-3t}+2e^{4t}$",
+      "$3+e^{3t}-2e^{-4t}$"
+    ],
+    "worked": [
+      [
+        "Preberi tri vrednosti a",
+        "Pri časovnih funkcijah za $t\\ge0$ je skupno območje $s>3$, ker najhitreje raste $e^{3t}$.",
+        "s=s-0,\\quad s-3,\\quad s+4=s-(-4)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Obrni člen za členom",
+        "Koeficienti in znaki pred ulomki ostanejo isti.",
+        "f(t)=3e^{0t}-e^{3t}+2e^{-4t}=3-e^{3t}+2e^{-4t}"
       ]
     ],
-    "plot": "v34cos"
+    "rules": [
+      [
+        "Eksponent",
+        "1/(s-a)\\longleftrightarrow e^{at}",
+        "Pri zadnjem členu je $a=-4$.",
+        "1/(s+4)\\longleftrightarrow e^{-4t}"
+      ]
+    ]
   },
   {
     "day": 3,
@@ -139,6 +221,134 @@
   },
   {
     "day": 3,
+    "title": "Dušeni kosinus",
+    "source": "ITFR-02, str. 3 · naloga 1g",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj transformiranko $m(t)=e^{-t}\\cos(4t)$.",
+    "cue": "Eksponent množi kosinus.",
+    "hint": "Najprej zapiši transformiranko samega kosinusa.",
+    "symbols": "$4$ določa frekvenco, $-1$ je eksponentni koeficient.",
+    "purpose": "Eksponentno dušenje prevedeš v premik parametra.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{s+1}{(s+1)^2+16}$",
+      "$\\frac{s-1}{(s-1)^2+16}$",
+      "$\\frac4{(s+1)^2+16}$"
+    ],
+    "worked": [
+      [
+        "Poišči kosinus v tabeli",
+        "Pri frekvenci 4 je kvadrat v imenovalcu 16.",
+        "C(s)=\\frac{s}{s^2+16}"
+      ],
+      [
+        "Upoštevaj dušenje",
+        "V argument vstavi $s-(-1)=s+1$. Za kosinus mora biti ta argument pozitiven.",
+        "s+1>0\\ \\Longrightarrow\\ s>-1",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Zamenjaj vsak s",
+        "Premik velja tako v števcu kot v imenovalcu.",
+        "M(s)=C(s+1)=\\frac{s+1}{(s+1)^2+16}"
+      ]
+    ],
+    "rules": [
+      [
+        "Premik parametra",
+        "\\mathcal L(e^{at}f(t))=F(s-a)",
+        "Pri $a=-1$ se argument poveča za 1.",
+        "M(s)=C(s+1)"
+      ]
+    ],
+    "plot": "v34cos"
+  },
+  {
+    "day": 3,
+    "plot": "v34expsin",
+    "title": "Eksponent krat sinus",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-02, str. 3 · naloga 1h",
+    "prompt": "Izračunaj transformiranko $n(t)=e^{2t}\\sin(3t)$.",
+    "cue": "Eksponent množi že znani signal.",
+    "hint": "V sinusnem paru zamenjaj parameter $s$ s $s-2$.",
+    "symbols": "Število 2 določa rast, 3 določa frekvenco.",
+    "purpose": "Isti premik uporabljaš pri rastočih signalih.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac3{(s-2)^2+9}$",
+      "$\\frac3{(s+2)^2+9}$",
+      "$\\frac{s-2}{(s-2)^2+9}$"
+    ],
+    "worked": [
+      [
+        "Zapiši osnovni signal",
+        "Začni s sinusom brez eksponentnega faktorja.",
+        "\\sin(3t)\\longleftrightarrow S(s)=\\frac3{s^2+9}"
+      ],
+      [
+        "Premakni argument",
+        "Ker signal pomnožiš z $e^{2t}$, se v integralu pojavi utež $e^{-(s-2)t}$. Za konvergenco potrebuješ $s>2$.",
+        "e^{-st}e^{2t}=e^{-(s-2)t},\\quad N(s)=S(s-2)=\\frac3{(s-2)^2+9}",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Premik",
+        "\\mathcal L(e^{at}f(t))=F(s-a)",
+        "Vstavi $a=2$.",
+        "N(s)=S(s-2)"
+      ]
+    ]
+  },
+  {
+    "day": 3,
+    "plot": "v34exppow",
+    "title": "Premaknjena potenca",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-02, str. 3 · naloga 1i",
+    "prompt": "Izračunaj transformiranko $p(t)=t^2e^{3t}$.",
+    "cue": "Potenca je pomnožena z eksponentom.",
+    "hint": "Najprej poišči par za kvadrat časa.",
+    "symbols": "$t$ je čas, $s-3$ je premaknjeni parameter.",
+    "purpose": "Pravilo za potenco povežeš z eksponentnim premikom.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac2{(s-3)^3}$",
+      "$\\frac2{(s+3)^3}$",
+      "$\\frac3{(s-3)^2}$"
+    ],
+    "worked": [
+      [
+        "Uporabi par za potenco",
+        "Stopnja je 2, zato v števec vstavi 2!, v imenovalec tretjo potenco.",
+        "t^2\\longleftrightarrow T(s)=\\frac{2!}{s^{2+1}}=\\frac2{s^3}"
+      ],
+      [
+        "Upoštevaj faktor rasti",
+        "Utež po množenju z eksponentom je $e^{-(s-3)t}$. Da integral konvergira, mora veljati $s>3$.",
+        "P(s)=T(s-3)=\\frac2{(s-3)^3}",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Premik",
+        "\\mathcal L(e^{at}f(t))=F(s-a)",
+        "Tukaj je $a=3$.",
+        "P(s)=T(s-3)"
+      ]
+    ]
+  },
+  {
+    "day": 3,
     "title": "Čas krat kosinus",
     "source": "ITFR-02, str. 5 · naloga 3b",
     "kind": "Izvirna vaja",
@@ -182,6 +392,190 @@
       ]
     ],
     "plot": "v34tcos"
+  },
+  {
+    "day": 4,
+    "plot": "v34steps",
+    "title": "Trije skoki sile",
+    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija f",
+    "kind": "Izvirna vaja",
+    "prompt": "Signal ima od časa 0 zaporedoma vrednosti 2, 10, 5 in 1. Preklopi so ob časih 4, 6 in 8. Ob preklopu velja nova vrednost. Zapiši signal s stopnicami in izračunaj njegovo Laplaceovo transformiranko.",
+    "cue": "Vsaka veja je konstantna.",
+    "hint": "Velikost skoka je razlika nove in stare višine.",
+    "symbols": "$H(t-a)$ vklopi dodatek pri času $a$.",
+    "purpose": "Sestaviš silo iz predpisa po intervalih.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{2+8e^{-4s}-5e^{-6s}-4e^{-8s}}s$",
+      "$\\frac{2+10e^{-4s}+5e^{-6s}+e^{-8s}}s$",
+      "$\\frac{2+8e^{-4s}+5e^{-6s}+4e^{-8s}}s$"
+    ],
+    "worked": [
+      [
+        "Izračunaj tri skoke",
+        "Od vsake nove višine odštej prejšnjo.",
+        "10-2=8,\\quad5-10=-5,\\quad1-5=-4"
+      ],
+      [
+        "Zapiši signal",
+        "Začni z 2. Vsako spremembo vklopi ob njenem času.",
+        "f(t)=2+8H(t-4)-5H(t-6)-4H(t-8)"
+      ],
+      [
+        "Transformiraj stopnice",
+        "Signal je omejen in kosovno zvezen. Pri $s>0$ konstanta da $1/s$, zakasnitev za $a$ pa doda faktor $e^{-as}$.",
+        "F=\\frac2s+\\frac{8e^{-4s}}s-\\frac{5e^{-6s}}s-\\frac{4e^{-8s}}s",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Stopnica",
+        "H(t-a)\\longleftrightarrow\\frac{e^{-as}}s",
+        "Vstavi tri čase preklopa.",
+        "8H(t-4)\\longleftrightarrow8e^{-4s}/s"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34sineon",
+    "title": "Vklop sinusa pri 5",
+    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija h",
+    "kind": "Izvirna vaja",
+    "prompt": "Funkcija je $h(t)=t^3$ za $t<5$ in $h(t)=t^3+4\\sin((t-5)/10)$ za $t\\ge5$. Zapiši jo s stopnico in izračunaj njeno Laplaceovo transformiranko.",
+    "cue": "Po vklopu kubični del teče naprej.",
+    "hint": "Frekvenca zakasnjenega sinusa je $1/10$.",
+    "symbols": "$t-5$ je čas od vklopa, $s$ je parameter transformacije.",
+    "purpose": "Zakasnitev uporabiš pri členu, ki začne delovati pozneje.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac6{s^4}+\\frac{40e^{-5s}}{100s^2+1}$",
+      "$\\frac6{s^4}+\\frac{40}{100s^2+1}$",
+      "$\\frac6{s^4}+\\frac{4se^{-5s}}{s^2+100}$"
+    ],
+    "worked": [
+      [
+        "Vklopi sinus",
+        "Pred celotnim dodanim členom postavi stopnico.",
+        "h(t)=t^3+H(t-5)\\,4\\sin((t-5)/10)"
+      ],
+      [
+        "Uporabi tabelo",
+        "Za polinom in sinus zadošča $s>0$. Sinus najprej transformiraj v lokalnem času $u=t-5$.",
+        "t^3\\longleftrightarrow\\frac{3!}{s^4},\\qquad4\\sin(u/10)\\longleftrightarrow\\frac{4/10}{s^2+1/100}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Upoštevaj zakasnitev",
+        "Števec in imenovalec drugega ulomka pomnoži s 100. Zakasnitev doda faktor pred ta ulomek.",
+        "\\mathcal L(h)=\\frac6{s^4}+e^{-5s}\\frac{40}{100s^2+1}"
+      ]
+    ],
+    "rules": [
+      [
+        "Časovni premik",
+        "H(t-a)g(t-a)\\longleftrightarrow e^{-as}G(s)",
+        "Vklop je pri $a=5$.",
+        "g(u)=4\\sin(u/10)"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34ramponoff",
+    "title": "Dvakrat spremeni predpis",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija g",
+    "prompt": "Za $0\\le t<6$ velja $g(t)=3$, za $6\\le t<12$ velja $g(t)=t$, nato $g(t)=1$. Zapiši $g$ s stopnicami in izračunaj transformiranko.",
+    "cue": "Ob vsakem preklopu primerjaj novi in stari predpis.",
+    "hint": "Pri drugem preklopu se že aktivna rampa zaključi.",
+    "symbols": "$t-6$ in $t-12$ sta časa od obeh preklopov.",
+    "purpose": "Med dvema stalnima ravnema vklopiš linearen odsek.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac3s+e^{-6s}(\\frac1{s^2}+\\frac3s)-e^{-12s}(\\frac1{s^2}+\\frac{11}s)$",
+      "$\\frac3s+e^{-6s}(\\frac1{s^2}+\\frac3s)+e^{-12s}(\\frac1{s^2}+\\frac{11}s)$",
+      "$\\frac3s+e^{-6s}/s^2-e^{-12s}/s^2$"
+    ],
+    "worked": [
+      [
+        "Izračunaj spremembi",
+        "Pri času 6 od novega predpisa odštej 3. Pri času 12 od 1 odštej predpis $t$.",
+        "g(t)=3+(t-3)H(t-6)+(1-t)H(t-12)"
+      ],
+      [
+        "Izrazi lokalna časa",
+        "Pri prvem preklopu napiši $t=(t-6)+6$, pri drugem $t=(t-12)+12$.",
+        "t-3=(t-6)+3,\\quad1-t=-(t-12)-11"
+      ],
+      [
+        "Transformiraj",
+        "Na vsakem delu uporabi tabelna para za 1 in čas. Zamik velja za celoten popravek. Pri $s>0$ vsi trije členi konvergirajo.",
+        "G=\\frac3s+e^{-6s}\\left(\\frac1{s^2}+\\frac3s\\right)-e^{-12s}\\left(\\frac1{s^2}+\\frac{11}s\\right)",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Stopnica in zamik",
+        "H(t-a)q(t-a)\\longleftrightarrow e^{-as}Q(s)",
+        "Drugi popravek je $q(u)=-u-11$.",
+        "Q=-1/s^2-11/s"
+      ]
+    ]
+  },
+  {
+    "day": 4,
+    "plot": "v34betaconv",
+    "title": "Konvolucija dveh potenc",
+    "kind": "Izvirna vaja",
+    "source": "ITFR-03-vse, str. 2 · naloga 3",
+    "prompt": "Izračunaj $\\int_0^t u^m(t-u)^n\\,du$ za $t\\ge0$ in $m,n\\in\\mathbb N$.",
+    "cue": "Spoznaj funkciji časov $u$ in $t-u$.",
+    "hint": "Ko zmnožiš dva tabelna para, se potenci v imenovalcu seštejeta.",
+    "symbols": "$u$ je integracijska spremenljivka, $t$ je zgornja meja.",
+    "purpose": "Integral izračunaš z eno inverzno transformacijo.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac{m!n!}{(m+n+1)!}t^{m+n+1}$",
+      "$\\frac{m!n!}{(m+n)!}t^{m+n}$",
+      "$\\frac{(m+n+1)!}{m!n!}t^{m+n+1}$"
+    ],
+    "worked": [
+      [
+        "Prepoznaj konvolucijo",
+        "Obe funkciji sta potenci z nenegativnim celim eksponentom in sta za $t\\ge0$ zvezni. Za realni $s>0$ obstajata obe transformiranki.",
+        "f(u)=u^m,\\quad g(v)=v^n,\\quad I(t)=(f*g)(t)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Zmnoži para",
+        "Pri produktu se potencama prišteje po ena za vsak faktor transformacije.",
+        "\\mathcal L(I)=\\frac{m!}{s^{m+1}}\\frac{n!}{s^{n+1}}=\\frac{m!n!}{s^{m+n+2}}"
+      ],
+      [
+        "Vrni se k potenci časa",
+        "V paru za potenco je v imenovalcu $s^{k+1}$, zato je tu $k=m+n+1$. Pri obračanju transformacije deli s $k!$.",
+        "I(t)=\\frac{m!n!}{(m+n+1)!}t^{m+n+1}"
+      ]
+    ],
+    "rules": [
+      [
+        "Potenca časa",
+        "t^k\\longleftrightarrow\\frac{k!}{s^{k+1}}",
+        "Potenca časa je za ena manjša od potence v imenovalcu.",
+        "\\frac1{s^{k+1}}\\longleftrightarrow\\frac{t^k}{k!}"
+      ]
+    ]
   },
   {
     "day": 4,
@@ -277,98 +671,6 @@
         "t\\longleftrightarrow\\frac1{s^2},\\quad\\sinh t\\longleftrightarrow\\frac1{s^2-1}",
         "Rezultat ovrednoti pri času $x$.",
         "K\\longleftrightarrow\\sinh x-x"
-      ]
-    ]
-  },
-  {
-    "day": 4,
-    "plot": "v34steps",
-    "title": "Trije skoki sile",
-    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija f",
-    "kind": "Izvirna vaja",
-    "prompt": "Signal ima od časa 0 zaporedoma vrednosti 2, 10, 5 in 1. Preklopi so ob časih 4, 6 in 8. Ob preklopu velja nova vrednost. Zapiši signal s stopnicami in izračunaj njegovo Laplaceovo transformiranko.",
-    "cue": "Vsaka veja je konstantna.",
-    "hint": "Velikost skoka je razlika nove in stare višine.",
-    "symbols": "$H(t-a)$ vklopi dodatek pri času $a$.",
-    "purpose": "Sestaviš silo iz predpisa po intervalih.",
-    "quiz": [
-      "Kateri izraz dobiš?",
-      "$\\frac{2+8e^{-4s}-5e^{-6s}-4e^{-8s}}s$",
-      "$\\frac{2+10e^{-4s}+5e^{-6s}+e^{-8s}}s$",
-      "$\\frac{2+8e^{-4s}+5e^{-6s}+4e^{-8s}}s$"
-    ],
-    "worked": [
-      [
-        "Izračunaj tri skoke",
-        "Od vsake nove višine odštej prejšnjo.",
-        "10-2=8,\\quad5-10=-5,\\quad1-5=-4"
-      ],
-      [
-        "Zapiši signal",
-        "Začni z 2. Vsako spremembo vklopi ob njenem času.",
-        "f(t)=2+8H(t-4)-5H(t-6)-4H(t-8)"
-      ],
-      [
-        "Transformiraj stopnice",
-        "Signal je omejen in kosovno zvezen. Pri $s>0$ konstanta da $1/s$, zakasnitev za $a$ pa doda faktor $e^{-as}$.",
-        "F=\\frac2s+\\frac{8e^{-4s}}s-\\frac{5e^{-6s}}s-\\frac{4e^{-8s}}s",
-        {
-          "condition": true
-        }
-      ]
-    ],
-    "rules": [
-      [
-        "Stopnica",
-        "H(t-a)\\longleftrightarrow\\frac{e^{-as}}s",
-        "Vstavi tri čase preklopa.",
-        "8H(t-4)\\longleftrightarrow8e^{-4s}/s"
-      ]
-    ]
-  },
-  {
-    "day": 4,
-    "plot": "v34sineon",
-    "title": "Vklop sinusa pri 5",
-    "source": "ITFR-03-vse, str. 7 · naloga 8, funkcija h",
-    "kind": "Izvirna vaja",
-    "prompt": "Funkcija je $h(t)=t^3$ za $t<5$ in $h(t)=t^3+4\\sin((t-5)/10)$ za $t\\ge5$. Zapiši jo s stopnico in izračunaj njeno Laplaceovo transformiranko.",
-    "cue": "Po vklopu kubični del teče naprej.",
-    "hint": "Frekvenca zakasnjenega sinusa je $1/10$.",
-    "symbols": "$t-5$ je čas od vklopa, $s$ je parameter transformacije.",
-    "purpose": "Zakasnitev uporabiš pri členu, ki začne delovati pozneje.",
-    "quiz": [
-      "Kateri izraz dobiš?",
-      "$\\frac6{s^4}+\\frac{40e^{-5s}}{100s^2+1}$",
-      "$\\frac6{s^4}+\\frac{40}{100s^2+1}$",
-      "$\\frac6{s^4}+\\frac{4se^{-5s}}{s^2+100}$"
-    ],
-    "worked": [
-      [
-        "Vklopi sinus",
-        "Pred celotnim dodanim členom postavi stopnico.",
-        "h(t)=t^3+H(t-5)\\,4\\sin((t-5)/10)"
-      ],
-      [
-        "Uporabi tabelo",
-        "Za polinom in sinus zadošča $s>0$. Sinus najprej transformiraj v lokalnem času $u=t-5$.",
-        "t^3\\longleftrightarrow\\frac{3!}{s^4},\\qquad4\\sin(u/10)\\longleftrightarrow\\frac{4/10}{s^2+1/100}",
-        {
-          "condition": true
-        }
-      ],
-      [
-        "Upoštevaj zakasnitev",
-        "Števec in imenovalec drugega ulomka pomnoži s 100. Zakasnitev doda faktor pred ta ulomek.",
-        "\\mathcal L(h)=\\frac6{s^4}+e^{-5s}\\frac{40}{100s^2+1}"
-      ]
-    ],
-    "rules": [
-      [
-        "Časovni premik",
-        "H(t-a)g(t-a)\\longleftrightarrow e^{-as}G(s)",
-        "Vklop je pri $a=5$.",
-        "g(u)=4\\sin(u/10)"
       ]
     ]
   }

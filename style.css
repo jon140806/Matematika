@@ -65,6 +65,8 @@
 
 .exerciseProcedure li>p .conditionLabel,.exerciseProcedure .noteStep .conditionLabel{display:inline-block;padding:1px 6px;border-radius:4px;background:#dbefe9;color:#184e42}
 
-@media(max-width:540px){.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}.tabs button{justify-content:center;padding-inline:0;font-size:13px}.tabs button .icon{display:none}.tabs .tabcount{padding-inline:3px}}
+@media(max-width:540px){.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}.tabs button{justify-content:center;padding-inline:0;font-size:13px}.tabs button .icon{display:none}.tabs .tabcount{padding-inline:3px}}
 
 .options button{min-width:0;max-width:100%;overflow-x:auto}
+
+#drillLink{text-decoration:none}#drillLink[aria-current]{background:#41344e;color:white}.drillBank .progressPanel{display:none}.drillBank #tabs{display:flex;align-items:center;gap:12px;padding-bottom:14px}.drillBank #tabs select{max-width:85%}

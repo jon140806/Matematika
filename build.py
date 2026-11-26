@@ -147,8 +147,8 @@ by_plot={item["plot"]:item for item in exercises}
 drills=[]
 for pair in ("12","34","56"):
     additions=json.loads(read(f"izvirne{pair}.json"))
-    daily_drills=json.loads(read(f"vaje{pair}.json"))
-    for group,items in ((exercises,additions["exercises"]),(drills,daily_drills)):
+    topic_drills=json.loads(read(f"vaje{pair}.json"))
+    for group,items in ((exercises,additions["exercises"]),(drills,topic_drills)):
         for item in items:
             if item["plot"] in by_plot or len(item["quiz"])<3 or not item.get("source") or item.get("url"):
                 raise ValueError(f"Invalid exercise: {item['title']}")
@@ -157,6 +157,8 @@ for pair in ("12","34","56"):
             item["quiz"]=list(map(math_text,item["quiz"]))
             item["worked"]=exercise_steps(item["worked"])
             item["rules"]=rule_rows(item["rules"])
+            if group is drills and item.get("kind")!="Izvirna vaja":
+                raise ValueError(f"Expected an original PDF exercise: {item['title']}")
             if group is drills and not any(step.get("condition") for step in item["worked"]):
                 raise ValueError(f"Missing conditions: {item['title']}")
             group.append(item)

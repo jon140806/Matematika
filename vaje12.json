@@ -1,144 +1,6 @@
 [
   {
     "day": 1,
-    "title": "Sinus med stalnima mejama",
-    "plot": "vSin1",
-    "source": "ITFR-01 (2), str. 4 · naloga 1.2",
-    "kind": "Del naloge",
-    "prompt": "Za $y>0$ izračunaj $G'(y)$, če je $G(y)=\\int_1^2\\sin(xy)/x\\,dx$.",
-    "cue": "Stalni meji in parameter v sinusu.",
-    "hint": "Pri odvajanju sinusa se pojavi faktor $x$.",
-    "symbols": "$x$ je integracijska spremenljivka, $y$ frekvenca.",
-    "purpose": "Izračunaj vpliv frekvence na integral.",
-    "quiz": [
-      "Koliko je $G'(y)$?",
-      "$(\\sin(2y)-\\sin y)/y$",
-      "$\\cos(2y)-\\cos y$",
-      "$2\\sin(2y)-\\sin y$"
-    ],
-    "worked": [
-      [
-        "Preveri pogoje",
-        "Ker je $x$ med 1 in 2, imenovalec ni nič. Integrand in odvod po $y$ sta zvezna na vsakem lokalnem pravokotniku.",
-        "1\\le x\\le2",
-        {
-          "condition": true
-        }
-      ],
-      [
-        "Odvajaj po y",
-        "$x$ ostane fiksen. Odvod notranjega izraza $xy$ pokrajša imenovalec.",
-        "\\partial_y\\frac{\\sin(xy)}x=\\frac{x\\cos(xy)}x=\\cos(xy)"
-      ],
-      [
-        "Integriraj po x",
-        "Ker je $y>0$, lahko primitivno funkcijo deliš z $y$. Vstavi 2 in odštej vrednost pri 1.",
-        "G'(y)=\\left[\\frac{\\sin(xy)}y\\right]_1^2=\\frac{\\sin(2y)-\\sin y}y"
-      ]
-    ],
-    "rules": [
-      [
-        "Stalni meji",
-        "G'(y)=\\int_1^2 f_y(x,y)\\,dx",
-        "Odvajaj višino pri fiksnem položaju.",
-        "f_y=\\cos(xy)"
-      ]
-    ]
-  },
-  {
-    "day": 1,
-    "title": "Drugi odvod količnika",
-    "plot": "vSin2",
-    "source": "ITFR-01 (2), str. 4 · naloga 1.2",
-    "kind": "Del naloge",
-    "prompt": "Iz prvega odvoda $G'(y)=(\\sin(2y)-\\sin y)/y$ izračunaj $G''(y)$ za $y>0$.",
-    "cue": "Prvi odvod je že funkcija ene spremenljivke.",
-    "hint": "Odvajaj števec, nato uporabi pravilo za količnik.",
-    "symbols": "$y$ je parameter, $N$ označuje števec.",
-    "purpose": "Drugi odvod pove, kako se spreminja prvi.",
-    "quiz": [
-      "Kateri števec stoji nad $y^2$?",
-      "$y(2\\cos(2y)-\\cos y)-\\sin(2y)+\\sin y$",
-      "$y(\\cos(2y)-\\cos y)$",
-      "$2\\cos(2y)-\\cos y$"
-    ],
-    "worked": [
-      [
-        "Odvajaj števec",
-        "Odvod notranjega izraza $2y$ prispeva faktor 2.",
-        "N=\\sin(2y)-\\sin y,\\qquad N'=2\\cos(2y)-\\cos y"
-      ],
-      [
-        "Vstavi v pravilo za količnik",
-        "Imenovalec $y$ je po predpostavki pozitiven. Njegov odvod je 1. Pri odštevanju ohrani ves števec v oklepaju.",
-        "G''(y)=\\frac{yN'-N}{y^2}=\\frac{y(2\\cos(2y)-\\cos y)-\\sin(2y)+\\sin y}{y^2}",
-        {
-          "condition": true
-        }
-      ]
-    ],
-    "rules": [
-      [
-        "Odvod količnika",
-        "(N/D)'=(DN'-ND')/D^2",
-        "Uporabi $D=y$.",
-        "D'=1"
-      ]
-    ]
-  },
-  {
-    "day": 1,
-    "title": "Sinus med premičnima mejama",
-    "plot": "vSin3",
-    "source": "ITFR-01 (2), str. 4 · naloga 1.3",
-    "kind": "Del naloge",
-    "prompt": "Za $y>0$ izračunaj $H'(y)$, če je $H(y)=\\int_{2y}^{y^2}\\sin(xy)/x\\,dx$.",
-    "cue": "Parameter premika obe meji in spreminja integrand.",
-    "hint": "Zapiši notranji, zgornji in spodnji prispevek.",
-    "symbols": "$x$ je položaj, $y$ parameter.",
-    "purpose": "Seštej tri prispevke k odvodu.",
-    "quiz": [
-      "Koliko je $H'(y)$?",
-      "$(3\\sin(y^3)-2\\sin(2y^2))/y$",
-      "$(\\sin(y^3)-\\sin(2y^2))/y$",
-      "$3\\sin(y^3)/y$"
-    ],
-    "worked": [
-      [
-        "Preveri meji",
-        "Obe meji sta za $y>0$ pozitivni in odvedljivi. Med njima sta integrand in njegov parcialni odvod zvezna, saj $x$ ne doseže ničle.",
-        "u=2y,\\quad v=y^2,\\quad u^\\prime=2,\\quad v^\\prime=2y",
-        {
-          "condition": true
-        }
-      ],
-      [
-        "Izračunaj notranji prispevek",
-        "Odvod po $y$ je kosinus. Primitivno funkcijo ovrednoti pri obeh mejah.",
-        "A=\\int_{2y}^{y^2}\\cos(xy)dx=\\frac{\\sin(y^3)-\\sin(2y^2)}y"
-      ],
-      [
-        "Prištej zgornji in odštej spodnji rob",
-        "Višino na robu pomnoži z odvodom tiste meje.",
-        "D=2y\\frac{\\sin(y^3)}{y^2}-2\\frac{\\sin(2y^2)}{2y}=\\frac{2\\sin(y^3)-\\sin(2y^2)}y"
-      ],
-      [
-        "Seštej",
-        "Člena imata skupen imenovalec. Zberi iste sinuse.",
-        "H'=A+D=\\frac{3\\sin(y^3)-2\\sin(2y^2)}y"
-      ]
-    ],
-    "rules": [
-      [
-        "Leibnizovo pravilo",
-        "H'=\\int_u^v f_y\\,dx+v'f(v,y)-u'f(u,y)",
-        "Na robovih uporabi prvotni integrand.",
-        "f(x,y)=\\sin(xy)/x"
-      ]
-    ]
-  },
-  {
-    "day": 1,
     "title": "Integral racionalne funkcije",
     "plot": "vRational",
     "source": "ITFR-01 (2), str. 6 · naloga 3.1",
@@ -175,6 +37,326 @@
         "\\int du/(1+u^2)=\\arctan u+C",
         "Uporabi preslikani zgornji rob.",
         "u=z/\\sqrt y"
+      ]
+    ]
+  },
+  {
+    "day": 1,
+    "title": "Polovica polmera kot meja",
+    "plot": "vArcHalf",
+    "source": "ITFR-01 (2), str. 7 · naloga 4a",
+    "kind": "Izvirna vaja",
+    "prompt": "Za $t>0$ pokaži, da je $F(t)=\\int_0^{t/2} dx/\\sqrt{t^2-x^2}=\\pi/6$.",
+    "cue": "V korenu nastopata kvadrata parametra in položaja.",
+    "hint": "Postavi $u=x/t$.",
+    "symbols": "$x$ je položaj, $t$ določa mejo in obliko korena.",
+    "purpose": "Pretvori gibljivi interval v stalen interval.",
+    "quiz": [
+      "Kam se preslika zgornja meja?",
+      "$1/2$",
+      "$t/2$",
+      "$1/t$"
+    ],
+    "worked": [
+      [
+        "Izpostavi parameter",
+        "Ker je $t>0$, je $\\sqrt{t^2}=t$. Na danem intervalu je $x/t\\le1/2$, zato imenovalec ostane pozitiven.",
+        "\\sqrt{t^2-x^2}=t\\sqrt{1-(x/t)^2}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Preslikaj interval",
+        "Zamenjaj tudi diferencial, ki pokrajša faktor pred korenom.",
+        "u=x/t,\\quad dx=t\\,du,\\quad x=0,t/2\\Rightarrow u=0,1/2"
+      ],
+      [
+        "Integriraj",
+        "Odvod arkus sinusa je ravno dobljeni integrand.",
+        "F(t)=[\\arcsin u]_0^{1/2}=\\pi/6"
+      ]
+    ],
+    "rules": [
+      [
+        "Zamenjava spremenljivke",
+        "\\int du/\\sqrt{1-u^2}=\\arcsin u+C",
+        "Po menjavi meji ne vsebujeta parametra.",
+        "0\\le u\\le1/2"
+      ]
+    ]
+  },
+  {
+    "day": 1,
+    "title": "Prvi in drugi odvod pri stalnih mejah",
+    "plot": "vSin1",
+    "source": "ITFR-01 (2), str. 4 · naloga 1.2",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj prvi in drugi odvod funkcije $G(y)=\\int_1^2\\sin(xy)/x\\,dx$.",
+    "cue": "Stalni meji in parameter v sinusu.",
+    "hint": "Pri odvajanju sinusa se pojavi faktor $x$.",
+    "symbols": "$x$ je integracijska spremenljivka, $y$ frekvenca.",
+    "purpose": "Izračunaj vpliv frekvence na integral.",
+    "quiz": [
+      "Koliko je $G'(y)$ za $y\\ne0$?",
+      "$(\\sin(2y)-\\sin y)/y$",
+      "$\\cos(2y)-\\cos y$",
+      "$2\\sin(2y)-\\sin y$"
+    ],
+    "worked": [
+      [
+        "Preveri pogoje",
+        "Ker je $x$ med 1 in 2, imenovalec ni nič. Integrand in odvod po $y$ sta zvezna na vsakem lokalnem pravokotniku.",
+        "1\\le x\\le2",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj po y",
+        "$x$ ostane fiksen. Odvod notranjega izraza $xy$ pokrajša imenovalec.",
+        "\\partial_y\\frac{\\sin(xy)}x=\\frac{x\\cos(xy)}x=\\cos(xy)"
+      ],
+      [
+        "Integriraj po x",
+        "Za $y\\ne0$ primitivno funkcijo deliš z $y$. Odštej spodnjo vrednost od zgornje.",
+        "G'(y)=\\left[\\frac{\\sin(xy)}y\\right]_1^2=\\frac{\\sin(2y)-\\sin y}y"
+      ],
+      [
+        "Odvajaj števec",
+        "Odvod notranjega izraza $2y$ prispeva faktor 2.",
+        "N=\\sin(2y)-\\sin y,\\qquad N'=2\\cos(2y)-\\cos y"
+      ],
+      [
+        "Vstavi v pravilo za količnik",
+        "Za $y\\ne0$ je imenovalec neničeln. Njegov odvod je 1. Pri odštevanju ohrani celoten števec v oklepaju.",
+        "G''(y)=\\frac{yN'-N}{y^2}=\\frac{y(2\\cos(2y)-\\cos y)-\\sin(2y)+\\sin y}{y^2}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Vstavi še nič neposredno pod integral",
+        "Prvotna funkcija je definirana tudi pri ničli. Drugi parcialni odvod je zvezen, zato lahko odvajaš pod integralom tudi drugič.",
+        "G'(0)=\\int_1^2\\cos(0)\\,dx=1,\\quad G''(0)=\\int_1^2-x\\sin(0)\\,dx=0"
+      ]
+    ],
+    "rules": [
+      [
+        "Stalni meji",
+        "G'(y)=\\int_1^2 f_y(x,y)\\,dx",
+        "Odvajaj višino pri fiksnem položaju.",
+        "f_y=\\cos(xy)"
+      ],
+      [
+        "Odvod količnika",
+        "(N/D)'=(DN'-ND')/D^2",
+        "Uporabi $D=y$.",
+        "D'=1"
+      ]
+    ]
+  },
+  {
+    "day": 1,
+    "title": "Kvadrat v imenovalcu",
+    "plot": "vRatDiff",
+    "source": "ITFR-01 (2), str. 6 · naloga 3.2",
+    "kind": "Izvirna vaja",
+    "prompt": "Za $F(y)=\\int_0^z dx/(x^2+y)$, $y>0$, z odvajanjem na oba načina izračunaj $\\int_0^z dx/(x^2+1)^2$.",
+    "cue": "Prvi odvod integranda ustvari kvadrat v imenovalcu.",
+    "hint": "Najprej uporabi $F(y)=y^{-1/2}\\arctan(z/\\sqrt y)$.",
+    "symbols": "$z$ je pri odvajanju stalna meja.",
+    "purpose": "Poveži odvod znane funkcije z iskanim integralom.",
+    "quiz": [
+      "Kateri izraz dobiš?",
+      "$\\frac12\\arctan z+\\frac{z}{2(1+z^2)}$",
+      "$\\arctan z+z$",
+      "$\\frac12\\arctan z-\\frac{z}{2(1+z^2)}$"
+    ],
+    "worked": [
+      [
+        "Odvajaj pod integralom",
+        "Ker je $y>0$, je imenovalec povsod pozitiven. Integrand in njegov odvod sta zvezna na vsakem lokalnem pravokotniku, meji sta stalni.",
+        "F'(y)=-\\int_0^z\\frac{dx}{(x^2+y)^2}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odvajaj znani produkt pri y = 1",
+        "Pri $y=1$ ima $y^{-1/2}$ odvod $-1/2$. Notranji izraz $zy^{-1/2}$ ima odvod $-z/2$. Seštej prispevka po pravilu za produkt.",
+        "F'(1)=-\\tfrac12\\arctan z+1\\cdot\\frac{1}{1+z^2}\\left(-\\frac z2\\right)"
+      ],
+      [
+        "Primerjaj oba izraza",
+        "Prvi način je dal minus iskani integral. Spremeni predznak obeh členov.",
+        "\\int_0^z\\frac{dx}{(x^2+1)^2}=-F'(1)=\\tfrac12\\arctan z+\\frac{z}{2(1+z^2)}"
+      ]
+    ],
+    "rules": [
+      [
+        "Odvod integrala s stalnima mejama",
+        "F'=\\int_0^z f_y dx",
+        "Parameter nastopa v imenovalcu.",
+        "f_y=-(x^2+y)^{-2}"
+      ]
+    ]
+  },
+  {
+    "day": 1,
+    "title": "Isti integral odvajaj na dva načina",
+    "plot": "vArcDiff",
+    "source": "ITFR-01 (2), str. 7 · naloga 4b",
+    "kind": "Izvirna vaja",
+    "prompt": "Za $F(t)=\\int_0^{t/2}(t^2-x^2)^{-1/2}dx=\\pi/6$, $t>0$, z odvajanjem na dva načina izračunaj $\\int_0^{1/2}(1-x^2)^{-3/2}\\,dx$.",
+    "cue": "Odvod znane konstante je nič. Integral ima premično mejo.",
+    "hint": "Po Leibnizovem pravilu dobiš tudi prispevek zgornje meje.",
+    "symbols": "$t$ je parameter. Pri $t=1$ nastane iskani integral.",
+    "purpose": "Iz enačbe za odvod izrazi neznan integral.",
+    "quiz": [
+      "Koliko je iskani integral?",
+      "$1/\\sqrt3$",
+      "$\\sqrt3$",
+      "$\\pi/6$"
+    ],
+    "worked": [
+      [
+        "Odvajaj konstanto",
+        "Pri vsakem $t>0$ ima integral isto vrednost.",
+        "F'(t)=0"
+      ],
+      [
+        "Odvajaj integrand",
+        "Na intervalu je $t^2-x^2\\ge3t^2/4>0$. Integrand in odvod sta okoli vsakega takega intervala zvezna, meja je odvedljiva.",
+        "\\partial_t (t^2-x^2)^{-1/2}=-\\tfrac12(t^2-x^2)^{-3/2}2t",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Dodaj prispevek meje",
+        "Vrednost na robu pomnoži z odvodom meje, ki je $1/2$.",
+        "0=F'(t)=-t\\int_0^{t/2}(t^2-x^2)^{-3/2}dx+\\frac{1}{2\\sqrt{t^2-t^2/4}}"
+      ],
+      [
+        "Vstavi t = 1",
+        "Prenesi integral na nasprotno stran in poenostavi koren.",
+        "\\int_0^{1/2}\\frac{dx}{(1-x^2)^{3/2}}=\\frac1{2\\sqrt{3/4}}=\\frac1{\\sqrt3}"
+      ]
+    ],
+    "rules": [
+      [
+        "Leibnizovo pravilo",
+        "F'=\\int_0^v f_t dx+v'f(v,t)",
+        "Spodnja meja miruje.",
+        "v'=1/2"
+      ]
+    ]
+  },
+  {
+    "day": 1,
+    "title": "Dva odvoda s premičnima mejama",
+    "plot": "vSin3",
+    "source": "ITFR-01 (2), str. 4 · naloga 1.3",
+    "kind": "Izvirna vaja",
+    "prompt": "Za $y>0$ izračunaj prvi in drugi odvod funkcije $H(y)=\\int_{2y}^{y^2}\\sin(xy)/x\\,dx$.",
+    "cue": "Parameter premika obe meji in spreminja integrand.",
+    "hint": "Zapiši notranji, zgornji in spodnji prispevek.",
+    "symbols": "$x$ je položaj, $y$ parameter.",
+    "purpose": "Seštej tri prispevke k odvodu.",
+    "quiz": [
+      "Koliko je $H'(y)$?",
+      "$(3\\sin(y^3)-2\\sin(2y^2))/y$",
+      "$(\\sin(y^3)-\\sin(2y^2))/y$",
+      "$3\\sin(y^3)/y$"
+    ],
+    "worked": [
+      [
+        "Preveri meji",
+        "Obe meji sta za $y>0$ pozitivni in odvedljivi. Med njima sta integrand in njegov parcialni odvod zvezna, saj $x$ ne doseže ničle.",
+        "u=2y,\\quad v=y^2,\\quad u^\\prime=2,\\quad v^\\prime=2y",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Izračunaj notranji prispevek",
+        "Odvod po $y$ je kosinus. Primitivno funkcijo ovrednoti pri obeh mejah.",
+        "A=\\int_{2y}^{y^2}\\cos(xy)dx=\\frac{\\sin(y^3)-\\sin(2y^2)}y"
+      ],
+      [
+        "Prištej zgornji in odštej spodnji rob",
+        "Višino na robu pomnoži z odvodom tiste meje.",
+        "D=2y\\frac{\\sin(y^3)}{y^2}-2\\frac{\\sin(2y^2)}{2y}=\\frac{2\\sin(y^3)-\\sin(2y^2)}y"
+      ],
+      [
+        "Seštej",
+        "Člena imata skupen imenovalec. Zberi iste sinuse.",
+        "H'=A+D=\\frac{3\\sin(y^3)-2\\sin(2y^2)}y"
+      ],
+      [
+        "Odvajaj števec prvega odvoda",
+        "Pri $\\sin(y^3)$ notranji odvod prispeva $3y^2$, pri $\\sin(2y^2)$ pa $4y$.",
+        "N=3\\sin(y^3)-2\\sin(2y^2),\\quad N^\\prime=9y^2\\cos(y^3)-8y\\cos(2y^2)"
+      ],
+      [
+        "Odvajaj količnik",
+        "Imenovalec $y$ je pozitiven. Uporabi pravilo za odvod količnika in vstavi še prvotni števec.",
+        "H^{\\prime\\prime}=\\frac{yN^\\prime-N}{y^2}=\\frac{9y^3\\cos(y^3)-8y^2\\cos(2y^2)-3\\sin(y^3)+2\\sin(2y^2)}{y^2}"
+      ]
+    ],
+    "rules": [
+      [
+        "Leibnizovo pravilo",
+        "H'=\\int_u^v f_y\\,dx+v'f(v,y)-u'f(u,y)",
+        "Na robovih uporabi prvotni integrand.",
+        "f(x,y)=\\sin(xy)/x"
+      ]
+    ]
+  },
+  {
+    "day": 2,
+    "title": "Gama pri polovičnem argumentu",
+    "plot": "vHalfN",
+    "source": "ITFR-03-vse, str. 13 · naloga 12",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj $\\Gamma(n+\\tfrac12)$.",
+    "cue": "Argument se s celoštevilskimi koraki zniža do polovice.",
+    "hint": "Zapiši $\\Gamma(z+1)=z\\Gamma(z)$ in začni pri $z=n-1/2$.",
+    "symbols": "$n$ šteje število znižanj argumenta.",
+    "purpose": "Pretvori produkt lihih faktorjev v fakultete.",
+    "quiz": [
+      "Katera oblika velja pri nenegativnem celem n?",
+      "$\\frac{(2n)!}{4^n n!}\\sqrt\\pi$",
+      "$\\frac{(2n)!}{2^n n!}\\sqrt\\pi$",
+      "$n!\\sqrt\\pi$"
+    ],
+    "worked": [
+      [
+        "Znižuj do polovice",
+        "Za naravni $n$ uporabi rekurzijo $n$-krat. Vsi vmesni argumenti so pozitivni. Pri $n=0$ neposredno uporabi $\\Gamma(1/2)$.",
+        "\\Gamma(n+1/2)=(n-1/2)(n-3/2)\\cdots(1/2)\\sqrt\\pi",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Izpiši lihe faktorje",
+        "Vsaka polovička prispeva dvojko v imenovalec. Števci so zaporedna liha števila.",
+        "\\Gamma(n+1/2)=\\frac{1\\cdot3\\cdots(2n-1)}{2^n}\\sqrt\\pi"
+      ],
+      [
+        "Izrazi lihi produkt",
+        "V $(2n)!$ so poleg lihih tudi sodi faktorji. Njihov produkt je $2^n n!$. Z njim deli in pokrajšaj.",
+        "\\Gamma(n+1/2)=\\frac{(2n)!}{(2^n n!)2^n}\\sqrt\\pi=\\frac{(2n)!}{4^n n!}\\sqrt\\pi"
+      ]
+    ],
+    "rules": [
+      [
+        "Rekurzija gama",
+        "\\Gamma(z+1)=z\\Gamma(z)",
+        "Znižuj do znane vrednosti.",
+        "\\Gamma(1/2)=\\sqrt\\pi"
       ]
     ]
   },
@@ -225,13 +407,13 @@
     "plot": "vInt",
     "source": "ITFR-03-vse, str. 13 · naloga 13.2",
     "kind": "Izvirna vaja",
-    "prompt": "Izračunaj $B(m,n)$ za naravni števili $m,n\\ge1$.",
+    "prompt": "Izračunaj $B(m,n)$.",
     "cue": "Oba argumenta beta sta celi števili.",
     "hint": "Pri $\\Gamma(k)$ je v fakulteti eno število manj.",
     "symbols": "$m,n$ sta argumenta, $u$ teče od 0 do 1.",
     "purpose": "Pretvori beta v fakultete.",
     "quiz": [
-      "Kateri količnik dobiš?",
+      "Kateri rezultat velja za pozitivna cela m in n?",
       "$(m-1)!(n-1)!/(m+n-1)!$",
       "$m!n!/(m+n)!$",
       "$(m+n-1)!/(m!n!)$"
@@ -239,14 +421,14 @@
     "worked": [
       [
         "Zapiši zvezo z gama",
-        "Ker sta $m,n\\ge1$, sta oba pozitivna. V imenovalcu seštej argumenta.",
+        "Beta integral obstaja pri $m,n>0$. Za splošna pozitivna argumenta uporabi zvezo z gama. Pri naravnih argumentih jo lahko še poenostaviš.",
         "B(m,n)=\\frac{\\Gamma(m)\\Gamma(n)}{\\Gamma(m+n)}",
         {
           "condition": true
         }
       ],
       [
-        "Zamenjaj gama s fakulteto",
+        "Pri naravnih argumentih uporabi fakultete",
         "Pri pozitivnem celem $k$ je $\\Gamma(k)=(k-1)!$. Pravilo uporabi trikrat.",
         "B(m,n)=\\frac{(m-1)!(n-1)!}{(m+n-1)!}"
       ]
@@ -354,6 +536,57 @@
         "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}",
         "Oba argumenta morata biti pozitivna.",
         "\\Gamma(z+1)=z\\Gamma(z)"
+      ]
+    ]
+  },
+  {
+    "day": 2,
+    "title": "Soda in liha potenca kosinusa",
+    "plot": "vCosN",
+    "source": "ITFR-03-vse, str. 14 · naloga 15",
+    "kind": "Izvirna vaja",
+    "prompt": "Izračunaj $\\int_0^\\pi\\cos^n\\varphi\\,d\\varphi$.",
+    "cue": "Predznak po zrcaljenju o sredini je odvisen od parnosti n.",
+    "hint": "Razdeli integral pri $\\pi/2$.",
+    "symbols": "$\\varphi$ je kot, $n$ celoštevilska potenca.",
+    "purpose": "Pri lihem eksponentu se ploščini izničita, pri sodem seštejeta.",
+    "quiz": [
+      "Kaj dobiš pri lihem n?",
+      "$0$",
+      "$\\pi/2$",
+      "$1$"
+    ],
+    "worked": [
+      [
+        "Razdeli interval in preslikaj drugo polovico",
+        "Za nenegativen cel $n$ je potenca zvezna. Na drugem delu postavi $u=\\pi-\\varphi$. Velja $\\cos(\\pi-u)=-\\cos u$, zato je razlika le predznak.",
+        "I_n=(1+(-1)^n)\\int_0^{\\pi/2}\\cos^n u\\,du",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Loči primera",
+        "Pri lihem $n$ je faktor nič. Pri sodem $n=2k$ dvojka pretvori polovični integral v trigonometrično obliko beta.",
+        "I_{2k+1}=0,\\qquad I_{2k}=B(k+1/2,1/2)"
+      ],
+      [
+        "Vstavi gama vrednosti",
+        "Argumenta beta sta pozitivna. V imenovalcu je $\\Gamma(k+1)=k!$. V števcu uporabi formulo za polovični argument in $\\Gamma(1/2)=\\sqrt\\pi$.",
+        "I_{2k}=\\frac{(2k)!\\sqrt\\pi}{4^k k!}\\frac{\\sqrt\\pi}{k!}=\\frac{(2k)!\\pi}{4^k(k!)^2}"
+      ],
+      [
+        "Vrni prvotni eksponent",
+        "Za sod $n$ vstavi $k=n/2$. Tedaj je $4^k=2^n$.",
+        "I_n=\\frac{n!\\pi}{2^n((n/2)!)^2}\\qquad(n\\ \\mathrm{sod})"
+      ]
+    ],
+    "rules": [
+      [
+        "Trigonometrična oblika beta",
+        "B(p,q)=2\\int_0^{\\pi/2}\\cos^{2p-1}u\\sin^{2q-1}u\\,du",
+        "Potenca sinusa je nič.",
+        "p=k+1/2,\\quad q=1/2"
       ]
     ]
   }

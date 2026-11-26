@@ -1,6 +1,153 @@
 [
   {
     "day": 5,
+    "title": "Polmer pri eksponentnem imenovalcu",
+    "source": "ITFR-04, str. 8 · naloga 5a",
+    "kind": "Izvirna vaja",
+    "plot": "v56radA",
+    "prompt": "Določi območje konvergence vrste $\\sum_{n=1}^\\infty(-1)^nx^n/(3^n+n)$.",
+    "cue": "Pri potenci z indeksom uporabi kvocientni kriterij.",
+    "hint": "Pri $x=0$ vsi členi izginejo. Pri neničelnem $x$ pokrajšaj potence v kvocientu.",
+    "symbols": "$x$ je argument, $n$ indeks in $L$ limita kvocienta absolutnih vrednosti členov.",
+    "purpose": "Določiš, kje lahko vsoto vrste uporabljaš kot funkcijo.",
+    "quiz": [
+      "Kje vrsta konvergira?",
+      "$(-3,3)$",
+      "$[-3,3]$",
+      "$(-1/3,1/3)$"
+    ],
+    "worked": [
+      [
+        "Sestavi količnik",
+        "Pri $x=0$ vsi členi izginejo. Pri neničelnem $x$ pokrajšaj potence v kvocientu.",
+        "|a_{n+1}/a_n|=|x|(3^n+n)/(3^{n+1}+n+1)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Določi notranjost intervala",
+        "Deli s $3^n$. Ker $n/3^n$ teži k nič, v imenovalcu ostane 3.",
+        "L=|x|\\lim_{n\\to\\infty}\\frac{1+n/3^n}{3+(n+1)/3^n}=|x|/3"
+      ],
+      [
+        "Preveri obe krajišči",
+        "Pogoj $L<1$ da notranjost. Pri obeh krajiščih velikosti členov težijo k ena. Zunaj intervala je $L>1$.",
+        "|x|<3,\\qquad |a_n(\\pm3)|=\\frac1{1+n/3^n}\\to1",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Kvocientni kriterij",
+        "L=\\lim_{n\\to\\infty}|a_{n+1}/a_n|",
+        "Pri enakosti preveri krajišči posebej.",
+        "L<1\\Rightarrow\\sum|a_n|<\\infty"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Dve vključeni krajišči",
+    "source": "ITFR-04, str. 8 · naloga 5b",
+    "kind": "Izvirna vaja",
+    "plot": "v56radB",
+    "prompt": "Določi območje konvergence vrste $\\sum_{n=2}^\\infty 2^{n-1}x^n/(n^2-1)$.",
+    "cue": "Pri potenci z indeksom uporabi kvocientni kriterij.",
+    "hint": "Pri $x=0$ vsi členi izginejo. Sicer je naslednji člen dobil faktor $2x$ v števcu.",
+    "symbols": "$x$ je argument, $n$ indeks in $L$ limita kvocienta absolutnih vrednosti členov.",
+    "purpose": "Določiš, kje lahko vsoto vrste uporabljaš kot funkcijo.",
+    "quiz": [
+      "Kje vrsta konvergira?",
+      "$[-1/2,1/2]$",
+      "$(-1/2,1/2)$",
+      "$[-2,2]$"
+    ],
+    "worked": [
+      [
+        "Sestavi količnik",
+        "Pri $x=0$ vsi členi izginejo. Sicer je naslednji člen dobil faktor $2x$ v števcu.",
+        "|a_{n+1}/a_n|=2|x|\\frac{n^2-1}{(n+1)^2-1}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Določi notranjost intervala",
+        "Deli števec in imenovalec z $n^2$. Kvocientni kriterij zagotovi absolutno konvergenco za $L<1$, divergenco za $L>1$.",
+        "L=2|x|\\lim_{n\\to\\infty}\\frac{1-1/n^2}{1+2/n}=2|x|,\\quad L<1\\iff |x|<1/2"
+      ],
+      [
+        "Preveri obe krajišči",
+        "Pri obeh krajiščih se potence dvojke pokrajšajo. Primerjava s konvergentno vrsto $1/n^2$ pokaže absolutno konvergenco tudi tu.",
+        "|a_n(\\pm1/2)|=\\frac1{2(n^2-1)},\\quad\\lim_{n\\to\\infty}\\frac{|a_n|}{1/n^2}=\\tfrac12",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Kvocientni kriterij",
+        "L=\\lim_{n\\to\\infty}|a_{n+1}/a_n|",
+        "Pri enakosti preveri krajišči posebej.",
+        "L<1\\Rightarrow\\sum|a_n|<\\infty"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Območje pri sodih potencah",
+    "source": "ITFR-04, str. 8 · naloga 5c",
+    "kind": "Izvirna vaja",
+    "plot": "v56radC",
+    "prompt": "Določi območje konvergence vrste $\\sum_{n=2}^\\infty 2^nx^{2n}/(n^2+1)$.",
+    "cue": "Pri potenci z indeksom uporabi kvocientni kriterij.",
+    "hint": "Pri $x=0$ so vsi členi nič. Sicer pokrajšaj sosednja člena: zaradi skoka eksponenta za dve ostane $x^2$.",
+    "symbols": "$x$ je argument, $n$ indeks in $L$ limita kvocienta absolutnih vrednosti členov.",
+    "purpose": "Določiš, kje lahko vsoto vrste uporabljaš kot funkcijo.",
+    "quiz": [
+      "Kje vrsta konvergira?",
+      "$[-1/\\sqrt2,1/\\sqrt2]$",
+      "$(-1/\\sqrt2,1/\\sqrt2)$",
+      "$[-1/2,1/2]$"
+    ],
+    "worked": [
+      [
+        "Sestavi količnik",
+        "Pri $x=0$ so vsi členi nič. Sicer pokrajšaj sosednja člena: zaradi skoka eksponenta za dve ostane $x^2$.",
+        "|a_{n+1}/a_n|=2x^2\\frac{n^2+1}{(n+1)^2+1}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Določi notranjost intervala",
+        "Deli z $n^2$ in vzemi limito. Pri $L>1$ vrsta divergira.",
+        "L=2x^2\\lim_{n\\to\\infty}\\frac{1+1/n^2}{1+2/n+2/n^2}=2x^2,\\quad L<1\\iff |x|<1/\\sqrt2"
+      ],
+      [
+        "Preveri obe krajišči",
+        "Pri obeh krajiščih je $2x^2=1$, zato člene omejuje konvergentna p-vrsta.",
+        "a_n(\\pm1/\\sqrt2)=\\frac1{n^2+1}\\le\\frac1{n^2}",
+        {
+          "condition": true
+        }
+      ]
+    ],
+    "rules": [
+      [
+        "Kvocientni kriterij",
+        "L=\\lim_{n\\to\\infty}|a_{n+1}/a_n|",
+        "Pri enakosti preveri krajišči posebej.",
+        "L<1\\Rightarrow\\sum|a_n|<\\infty"
+      ]
+    ]
+  },
+  {
+    "day": 5,
     "title": "Faktor n + 1",
     "source": "ITFR-04, str. 9 · naloga 6a",
     "kind": "Izvirna vaja",
@@ -98,9 +245,9 @@
     "day": 5,
     "title": "Logaritem iz geometrijske vrste",
     "source": "ITFR-04, str. 9 · naloga 6d",
-    "kind": "Del naloge",
+    "kind": "Izvirna vaja",
     "plot": "v56log",
-    "prompt": "Za $|x|<1$ seštej $\\sum_{n=1}^\\infty x^n/n$.",
+    "prompt": "Izračunaj vsoto vrste $\\sum_{n=1}^\\infty x^n/n$.",
     "cue": "Imenovalec $n$ nastane pri integriranju potence.",
     "hint": "Začni pri geometrijski vrsti.",
     "symbols": "$t$ teče od nič do $x$.",
@@ -129,6 +276,14 @@
         "Ovrednoti desno stran",
         "Minus nastane zaradi odvoda $1-t$. Pri spodnji meji je logaritem nič.",
         "\\int_0^x\\frac{dt}{1-t}=[-\\ln(1-t)]_0^x=-\\ln(1-x)"
+      ],
+      [
+        "Preveri krajišči",
+        "Pri $x=1$ nastane harmonična vrsta. Pri $x=-1$ dobiš alternirajočo harmonično vrsto. Njen seštevek poda znani razvoj logaritma pri 1 (ITFR-04, str. 7). Zunaj polmera členi ne težijo k nič.",
+        "S(-1)=-\\ln(1+1)=-\\ln2,\\qquad S(x)=-\\ln(1-x),\\quad -1\\le x<1",
+        {
+          "condition": true
+        }
       ]
     ],
     "rules": [
@@ -142,33 +297,51 @@
   },
   {
     "day": 5,
-    "title": "Vsota na desnem robu",
+    "title": "Dva zaporedna faktorja",
     "source": "ITFR-04, str. 9 · naloga 6e",
-    "kind": "Del naloge",
+    "kind": "Izvirna vaja",
     "plot": "v56tel",
-    "prompt": "Pri $x=1$ seštej $\\sum_{n=1}^\\infty x^n/[n(n+1)]$.",
-    "cue": "Dva zaporedna faktorja namigujeta na teleskopsko vsoto.",
-    "hint": "Razširi $1/n-1/(n+1)$ na skupni imenovalec.",
+    "prompt": "Izračunaj vsoto vrste $\\sum_{n=1}^\\infty x^n/[n(n+1)]$.",
+    "cue": "Razcep imenovalca ustvari dve logaritemski vrsti.",
+    "hint": "Pri drugi vsoti zamenjaj indeks s $k=n+1$.",
     "symbols": "$N$ označuje zadnji indeks delne vsote.",
-    "purpose": "Na robu lahko vrsto sešteješ neposredno.",
+    "purpose": "Z istim razcepom sešteješ vrsto na intervalu in na desnem robu.",
     "quiz": [
-      "Kolikšna je vsota?",
+      "Kolikšna je vsota pri $x=1$?",
       "$1$",
       "$1/2$",
       "$2$"
     ],
     "worked": [
       [
-        "Vstavi x = 1",
-        "Vsaka potenca je ena. Ker je $n\\ge1$, sta oba faktorja v imenovalcu neničelna.",
-        "\\frac{1^n}{n(n+1)}=\\frac{(n+1)-n}{n(n+1)}=\\frac1n-\\frac1{n+1}",
+        "Določi območje",
+        "Za $|x|\\le1$ so absolutne vrednosti omejene s konvergentno vrsto $1/n^2$. To da tudi enakomerno konvergenco in zveznost vsote na zaprtem intervalu. Pri $|x|>1$ limita količnika sosednjih členov preseže 1.",
+        "\\left|\\frac{x^n}{n(n+1)}\\right|\\le\\frac1{n^2}\\quad(|x|\\le1),\\qquad L=\\lim_{n\\to\\infty}|x|\\frac n{n+2}=|x|",
         {
           "condition": true
         }
       ],
       [
+        "Razcepi imenovalec",
+        "Po pomnožitvi z $n(n+1)$ dobiš identiteto $1=(n+1)-n$.",
+        "S=\\sum_{n=1}^\\infty \\frac{x^n}n-\\sum_{n=1}^\\infty\\frac{x^n}{n+1}"
+      ],
+      [
+        "Zamakni drugo vsoto",
+        "Pri $0<|x|<1$ lahko deliš z $x$. Nova vrsta se začne pri $k=2$, zato od znanega logaritma odštej prvi člen $x$.",
+        "\\sum_{n=1}^\\infty\\frac{x^n}{n+1}=\\frac1x\\sum_{k=2}^\\infty\\frac{x^k}k=\\frac{-\\ln(1-x)-x}{x}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Odštej in vstavi posebni vrednosti",
+        "Pri ničli so vsi prvotni členi nič. V levi rob lahko zaradi zveznosti vstaviš $x=-1$.",
+        "S(x)=1+(1/x-1)\\ln(1-x),\\quad S(0)=0,\\quad S(-1)=1-2\\ln2"
+      ],
+      [
         "Zapiši delno vsoto",
-        "Vsak notranji negativni člen se odšteje od naslednjega pozitivnega.",
+        "Pri $x=1$ se v delni vsoti sosednja ulomka pokrajšata.",
         "S_N=(1-1/2)+(1/2-1/3)+\\cdots+(1/N-1/(N+1))=1-1/(N+1)"
       ],
       [
@@ -183,6 +356,144 @@
         "\\sum_{n=1}^N(b_n-b_{n+1})=b_1-b_{N+1}",
         "Vstavi $b_n=1/n$.",
         "S_N=1-1/(N+1)"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Potenca ene polovice",
+    "source": "ITFR-04, str. 10 · naloga 7c",
+    "kind": "Izvirna vaja",
+    "plot": "v56numC",
+    "prompt": "Če vrsta $\\sum_{n=1}^\\infty n2^{1-n}$ konvergira, izračunaj njeno vsoto.",
+    "cue": "Faktor $n$ prepoznaš v odvajani geometrijski vrsti.",
+    "hint": "Izpostavi faktor 2. Ostane vrsta iz naloge 6b pri $x=1/2$.",
+    "symbols": "$n$ je indeks člena, $N$ število seštetih členov na grafu.",
+    "purpose": "Številsko vsoto izračunaš z vrednostjo znane funkcije.",
+    "quiz": [
+      "Kolikšna je vsota?",
+      "$4$",
+      "$2$",
+      "$8$"
+    ],
+    "worked": [
+      [
+        "Preoblikuj člen",
+        "Izpostavi faktor 2. Ostane vrsta iz naloge 6b pri $x=1/2$.",
+        "n2^{1-n}=2n(1/2)^n"
+      ],
+      [
+        "Uporabi znano vrsto",
+        "Ker je $|1/2|<1$, vrsta iz 6b tu absolutno konvergira. Vstavi $x=1/2$.",
+        "\\sum_{n=1}^\\infty n(1/2)^n=\\frac{1/2}{(1-1/2)^2}=2",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Izračunaj vsoto",
+        "Prvotna vrsta ima še faktor 2 pred vsoto.",
+        "S=2\\cdot2=4"
+      ]
+    ],
+    "rules": [
+      [
+        "Odvajana geometrijska vrsta",
+        "\\sum_{n=1}^\\infty nx^n=x/(1-x)^2",
+        "Razvoj velja pri $|x|<1$.",
+        "x=1/2"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Razcepi linearni števec",
+    "source": "ITFR-04, str. 10 · naloga 7d",
+    "kind": "Izvirna vaja",
+    "plot": "v56numD",
+    "prompt": "Če vrsta $\\sum_{n=1}^\\infty (2n-1)/2^n$ konvergira, izračunaj njeno vsoto.",
+    "cue": "Faktor $n$ prepoznaš v odvajani geometrijski vrsti.",
+    "hint": "Razcepi števec. Obe vrsti na desni konvergirata absolutno pri $|1/2|<1$, zato ju smemo odšteti.",
+    "symbols": "$n$ je indeks člena, $N$ število seštetih členov na grafu.",
+    "purpose": "Številsko vsoto izračunaš z vrednostjo znane funkcije.",
+    "quiz": [
+      "Kolikšna je vsota?",
+      "$3$",
+      "$2$",
+      "$4$"
+    ],
+    "worked": [
+      [
+        "Preoblikuj člen",
+        "Razcepi števec. Obe vrsti na desni konvergirata absolutno pri $|1/2|<1$, zato ju smemo odšteti.",
+        "S=2\\sum_{n=1}^\\infty n(1/2)^n-\\sum_{n=1}^\\infty(1/2)^n",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Uporabi znano vrsto",
+        "V prvo vsoto iz 6b vstavi $x=1/2$. Druga je geometrijska in se začne pri $n=1$.",
+        "\\sum_{n=1}^\\infty n(1/2)^n=\\frac{1/2}{(1-1/2)^2}=2,\\quad\\sum_{n=1}^\\infty(1/2)^n=\\frac{1/2}{1-1/2}=1"
+      ],
+      [
+        "Izračunaj vsoto",
+        "Vrni uteži iz razcepa števca in odštej.",
+        "S=2\\cdot2-1=3"
+      ]
+    ],
+    "rules": [
+      [
+        "Odvajana geometrijska vrsta",
+        "\\sum_{n=1}^\\infty nx^n=x/(1-x)^2",
+        "Razvoj velja pri $|x|<1$.",
+        "x=1/2"
+      ]
+    ]
+  },
+  {
+    "day": 5,
+    "title": "Izmenični predznaki in lihe potence",
+    "source": "ITFR-04, str. 10 · naloga 7b",
+    "kind": "Izvirna vaja",
+    "plot": "v56numB",
+    "prompt": "Če vrsta $\\sum_{n=0}^\\infty\\frac{(-1)^n}{(2n+1)3^n}$ konvergira, izračunaj njeno vsoto.",
+    "cue": "Izmenični predznaki in imenovalec $2n+1$ so značilni za vrsto arkus tangensa.",
+    "hint": "Izberi $x=1/\\sqrt3$, da bo $x^{2n}=3^{-n}$. Ker je $|x|<1$, razvoj arkus tangensa absolutno konvergira.",
+    "symbols": "$n$ je indeks člena, $N$ število seštetih členov na grafu.",
+    "purpose": "Številsko vsoto izračunaš z vrednostjo znane funkcije.",
+    "quiz": [
+      "Kolikšna je vsota?",
+      "$\\sqrt3\\pi/6$",
+      "$\\pi/6$",
+      "$\\sqrt3\\pi/3$"
+    ],
+    "worked": [
+      [
+        "Preoblikuj člen",
+        "Izberi $x=1/\\sqrt3$, da bo $x^{2n}=3^{-n}$. Ker je $|x|<1$, razvoj arkus tangensa absolutno konvergira.",
+        "\\arctan x=\\sum_{n=0}^\\infty\\frac{(-1)^nx^{2n+1}}{2n+1}",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Uporabi znano vrsto",
+        "V razvoju imaš eno potenco preveč. Deli z neničelnim $x$.",
+        "\\frac{\\arctan x}{x}=\\sum_{n=0}^\\infty\\frac{(-1)^nx^{2n}}{2n+1}"
+      ],
+      [
+        "Izračunaj vsoto",
+        "Ker je tangens kota $\\pi/6$ enak $1/\\sqrt3$, lahko izračunaš obe vrednosti v ulomku.",
+        "S=\\frac{\\pi/6}{1/\\sqrt3}=\\frac{\\sqrt3\\pi}6"
+      ]
+    ],
+    "rules": [
+      [
+        "Vrsta za arkus tangens",
+        "\\arctan x=\\sum_{n=0}^\\infty(-1)^nx^{2n+1}/(2n+1)",
+        "Primerjaj predznake in imenovalec.",
+        "x=1/\\sqrt3"
       ]
     ]
   },
@@ -239,39 +550,52 @@
   },
   {
     "day": 6,
-    "title": "Liha veja pri stopnji ena",
+    "title": "Legendrova enačba pri n = 1",
     "source": "ITFR-p78a, str. 6 · domača vaja, n = 1",
-    "kind": "Del naloge",
+    "kind": "Izvirna vaja",
     "plot": "v56odd",
-    "prompt": "Za $(1-x^2)y''-2xy'+2y=0$ na $(-1,1)$ poišči liho rešitev z $y'(0)=1$.",
-    "cue": "Legendrova rekurzija poveže koeficiente iste parnosti.",
-    "hint": "Za liho vejo začni pri $a_1$.",
-    "symbols": "$n=1$ je stopnja enačbe, $m$ je indeks koeficienta.",
-    "purpose": "Vidiš, kdaj se potenčna vrsta konča.",
+    "prompt": "Poišči splošno rešitev $(1-x^2)y^{\\prime\\prime}-2xy^\\prime+2y=0$ na $(-1,1)$.",
+    "cue": "Vstavi stopnjo ena v rekurzijo za Legendrovo enačbo.",
+    "hint": "Izračunaj ločeno koeficiente pri sodih in lihih potencah.",
+    "symbols": "Stopnja je $n=1$. $A=a_0$ in $B=a_1$ sta začetna višina in naklon.",
+    "purpose": "Pri stopnji ena se liha veja konča, soda pa ima neskončno členov.",
     "quiz": [
-      "Katera je iskana veja?",
+      "Katera je liha osnovna rešitev?",
       "$x$",
       "$1$",
       "$x^3$"
     ],
     "worked": [
       [
-        "Izberi začetna koeficienta",
-        "Na intervalu je $1-x^2>0$, zato so normalizirani koeficienti analitični okoli ničle. Liha funkcija ima $a_0=0$, njen začetni naklon je $a_1$.",
-        "a_0=0,\\quad a_1=y^\\prime(0)=1",
+        "Začni pri prostih koeficientih",
+        "Koeficient $1-x^2$ je na $(-1,1)$ neničeln, normalizirana koeficienta sta analitična okoli ničle. Uporabi potenčni nastavek predavanj.",
+        "y=\\sum_{m=0}^\\infty a_mx^m,\\quad a_0=A,\\quad a_1=B",
         {
           "condition": true
         }
       ],
       [
-        "Uporabi Legendrovo rekurzijo",
-        "Vstavi $n=1$ in $m=1$. Faktor $n-m$ izniči naslednji lihi koeficient.",
-        "a_3=-\\frac{(1-1)(1+1+1)}{2\\cdot3}a_1=0"
+        "Vstavi stopnjo ena",
+        "V Legendrovi rekurziji se pri $n=1$ pokrajša faktor $m+2$. Pri $m=1$ zato dobiš $a_3=0$ in tudi vsi nadaljnji lihi koeficienti so nič.",
+        "a_{m+2}=-\\frac{(1-m)(m+2)}{(m+1)(m+2)}a_m=\\frac{m-1}{m+1}a_m"
       ],
       [
-        "Sestavi vejo",
-        "Vsak naslednji lihi koeficient je večkratnik prejšnjega, sodi pa izhajajo iz $a_0=0$. Ostane le linearni člen.",
-        "y=x,\\qquad (1-x^2)\\cdot0-2x\\cdot1+2x=0"
+        "Izračunaj sode člene",
+        "Vstavi $m=0,2,4$. Koeficient $-A/(2k-1)$ se po naslednjem koraku spremeni v $-A/(2k+1)$.",
+        "a_2=-A,\\quad a_4=a_2/3=-A/3,\\quad a_6=3a_4/5=-A/5"
+      ],
+      [
+        "Prepoznaj lihe potence v oklepaju",
+        "Iz sodih potenc po konstantnem členu izpostavi $x$. Razlika razvojev za oba logaritma vsebuje ravno lihe potence.",
+        "y=A[1-x(x+x^3/3+x^5/5+\\cdots)]+Bx,\\quad \\ln(1+x)-\\ln(1-x)=2(x+x^3/3+\\cdots)"
+      ],
+      [
+        "Vstavi logaritem",
+        "Oba razvoja veljata za $|x|<1$. Argumenta sta pozitivna, zato razliko logaritmov združiš.",
+        "y=A\\left(1-\\frac{x}{2}\\ln\\frac{1+x}{1-x}\\right)+Bx",
+        {
+          "condition": true
+        }
       ]
     ],
     "rules": [
@@ -280,98 +604,6 @@
         "a_{m+2}=-\\frac{(n-m)(n+m+1)}{(m+1)(m+2)}a_m",
         "Pri $m=n$ se veja konča.",
         "a_3=0"
-      ]
-    ]
-  },
-  {
-    "day": 6,
-    "title": "Drugi polinom z Rodriguesovo formulo",
-    "source": "ITFR-p78a, str. 9 · Rodriguesova formula, n = 2",
-    "kind": "Različica",
-    "plot": "v56rod",
-    "prompt": "Z Rodriguesovo formulo izračunaj $P_2(x)$.",
-    "cue": "Indeks pove, kolikokrat moraš odvajati.",
-    "hint": "Pred odvajanjem razširi $(x^2-1)^2$.",
-    "symbols": "$n$ je stopnja polinoma.",
-    "purpose": "Iz iste formule lahko zgradiš polinom poljubne nenegativne cele stopnje.",
-    "quiz": [
-      "Kaj je $P_2(x)$?",
-      "$(3x^2-1)/2$",
-      "$(3x^2+1)/2$",
-      "$3x^2-1$"
-    ],
-    "worked": [
-      [
-        "Vstavi n = 2",
-        "Rodriguesova formula velja za nenegativni celoštevilski $n$. Za $n=2$ je faktor pred odvodom $1/8$.",
-        "P_2(x)=\\frac1{2^2\\,2!}\\frac{d^2}{dx^2}(x^2-1)^2",
-        {
-          "condition": true
-        }
-      ],
-      [
-        "Odvajaj dvakrat",
-        "Po razširitvi uporabi potenčno pravilo za vsak člen.",
-        "x^4-2x^2+1\\ \\longrightarrow\\ 4x^3-4x\\ \\longrightarrow\\ 12x^2-4"
-      ],
-      [
-        "Upoštevaj faktor",
-        "Drugi odvod pomnoži z $1/8$.",
-        "P_2(x)=(12x^2-4)/8=(3x^2-1)/2"
-      ]
-    ],
-    "rules": [
-      [
-        "Rodriguesova formula",
-        "P_n=\\frac1{2^n n!}\\frac{d^n}{dx^n}(x^2-1)^n",
-        "Število odvodov je $n$.",
-        "n=2"
-      ]
-    ]
-  },
-  {
-    "day": 6,
-    "title": "Dolžina prvega polinoma",
-    "source": "ITFR-p78a, str. 10 · izrek (c), n = 1",
-    "kind": "Različica",
-    "plot": "v56norm",
-    "prompt": "Izračunaj normo $P_1(x)=x$ pri uteži 1 na $[-1,1]$.",
-    "cue": "Norma je koren skalarnega produkta funkcije s seboj.",
-    "hint": "Najprej integriraj kvadrat polinoma.",
-    "symbols": "$x$ je spremenljivka integriranja.",
-    "purpose": "Norma meri velikost funkcije po celotnem intervalu.",
-    "quiz": [
-      "Kolikšna je norma?",
-      "$\\sqrt{2/3}$",
-      "$2/3$",
-      "$0$"
-    ],
-    "worked": [
-      [
-        "Pripravi skalarni produkt",
-        "Utež 1 je pozitivna in $P_1$ je zvezen na celotnem intervalu. Integral kvadrata zato obstaja.",
-        "\\langle P_1,P_1\\rangle=\\int_{-1}^1 x^2\\,dx",
-        {
-          "condition": true
-        }
-      ],
-      [
-        "Vstavi obe meji",
-        "Pri odštevanju spodnje meje se predznak spremeni.",
-        "[x^3/3]_{-1}^1=1/3-(-1/3)=2/3"
-      ],
-      [
-        "Vzemi koren",
-        "Integral je kvadrat norme. Norma je njegov nenegativni koren.",
-        "\\|P_1\\|=\\sqrt{2/3}"
-      ]
-    ],
-    "rules": [
-      [
-        "Norma",
-        "\\|f\\|=\\sqrt{\\langle f,f\\rangle}",
-        "Vstavi $f=P_1$.",
-        "\\|P_1\\|^2=2/3"
       ]
     ]
   }

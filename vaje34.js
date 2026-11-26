@@ -9,6 +9,20 @@ function vaja34Curve({variable, name, domain, range, value, fn, at}) {
 }
 
 const vajePlots34={
+  v34poly:vaja34Curve({variable:'t · čas',name:'f(t)',domain:[0,2],range:[0,20],value:1,
+    fn:t=>3-2*t**3+t**5,at:'t'}),
+  v34waves:vaja34Curve({variable:'t · čas',name:'j(t)',domain:[0,5],range:[-6.3,6.3],value:1,
+    fn:t=>4*Math.sin(3*t)-2*Math.cos(5*t),at:'t'}),
+  v34expinv:vaja34Curve({variable:'t · čas',name:'f(t)',domain:[0,1],range:[-18,4.5],value:.5,
+    fn:t=>3-Math.exp(3*t)+2*Math.exp(-4*t),at:'t'}),
+  v34expsin:vaja34Curve({variable:'s · parameter',name:'N(s)',domain:[2.05,7],range:[0,.36],value:3,
+    fn:s=>3/((s-2)**2+9),at:'s'}),
+  v34exppow:vaja34Curve({variable:'s · parameter',name:'P(s)',domain:[3.5,7],range:[0,18],value:4,
+    fn:s=>2/(s-3)**3,at:'s'}),
+  v34ramponoff:vaja34Curve({variable:'t · čas',name:'g(t)',domain:[0,15],range:[0,13],value:7,
+    fn:t=>t<6?3:t<12?t:1,at:'t'}),
+  v34betaconv:vaja34Curve({variable:'t · čas',name:'I(t) pri m = n = 1',domain:[0,3],range:[0,5],value:1,
+    fn:t=>t**3/6,at:'t'}),
   v34exp:vaja34Curve({variable:'s · parameter',name:'G(s)',domain:[2.2,6],range:[0,17],value:3,
     fn:s=>3/(s-2)+4/(s+3),at:'s'}),
   v34cos:vaja34Curve({variable:'t · čas',name:'m(t)',domain:[0,5],range:[-.65,1.1],value:1,

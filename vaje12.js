@@ -6,14 +6,6 @@ const vajePlots12 = {
         caption:'Predznačena ploščina od 1 do 2 je G′(y) = '+fmt((Math.sin(2*y)-Math.sin(y))/y)+'.'});
     }
   },
-  vSin2: {
-    slider: ['Točka y', .2, 3, .05, 1],
-    make(v) {
-      const first = y=>(Math.sin(2*y)-Math.sin(y))/y;
-      const slope = (v*(2*Math.cos(2*v)-Math.cos(v))-Math.sin(2*v)+Math.sin(v))/(v*v);
-      return {x:[.1,3.1], y:[-2.2,2.1], fills:[],curves:[line('G′',first,mint),line('tangenta',y=>first(v)+slope*(y-v),gold)], marks:[v], points:[[v,first(v),gold]], keys:{x:'y',y:'G′(y)',curves:['G′','tangenta'],marks:['y']},caption:'Naklon tangente je drugi odvod G″(y) = '+fmt(slope)+'.'};
-    }
-  },
   vSin3: {
     slider: ['Parameter y', .4, 2.2, .05, 1.5],
     make(y) {
@@ -49,6 +41,38 @@ const vajePlots12 = {
     slider:['Zgornja meja x',0,1,.01,1],
     make(v) {
       return integralWindow12({x:[0,1],y:[0,.28],fn:x=>x**8*Math.sqrt(Math.max(0,1-x**3)),curve:'x⁸ √(1 − x³)',area:'prvotni integral do x',start:0,end:v,marks:[v],names:['x'],caption:'Pri meji x = '+fmt(v)+' je nova meja u = x³ = '+fmt(v**3)+'. Ko x doseže 1, ima celotna ploščina vrednost 16/315.'});
+    }
+  },
+  vArcHalf: {
+    slider:['Parameter t',.5,3,.05,1],
+    make(t) {
+      return integralWindow12({x:[0,t/2],y:[0,2.4],fn:x=>1/Math.sqrt(t*t-x*x),curve:'1/√(t²−x²)',area:'F(t)',start:0,end:t/2,caption:'Ko t naraste, postane interval širši, krivulja pa nižja. Ploščina je vedno π/6.'});
+    }
+  },
+  vArcDiff: {
+    slider:['Parameter t',.5,3,.05,1],
+    make(t) {
+      return integralWindow12({x:[0,t/2],y:[0,1.6/(t*t)],fn:x=>t/(t*t-x*x)**1.5,curve:'−∂f/∂t',area:'velikost notranjega prispevka',start:0,end:t/2,caption:'Notranji člen ima minus. Velikost ploščine '+fmt(1/(Math.sqrt(3)*t))+' je enaka pozitivnemu prispevku zgornjega roba.'});
+    }
+  },
+  vRatDiff: {
+    slider:['Zgornja meja z',0,4,.05,1],
+    make(z) {
+      return integralWindow12({x:[0,4],y:[0,1.1],fn:x=>1/(1+x*x)**2,curve:'1/(1+x²)²',area:'iskani integral',start:0,end:z,marks:[z],names:['z'],caption:'Do izbrane meje je ploščina '+fmt((Math.atan(z)+z/(1+z*z))/2)+'.'});
+    }
+  },
+  vHalfN: {
+    slider:['Število znižanj n',0,5,1,1],
+    make(n) {
+      const height=t=>2*t**(2*n)*Math.exp(-t*t);
+      const top=n===0?2:height(Math.sqrt(n));
+      return integralWindow12({x:[0,5],y:[0,top*1.1],fn:height,curve:'2t²ⁿ exp(−t²)',area:'del integrala gama',axis:'t',start:0,end:5,caption:'Po menjavi x = t² meri Γ(n + ½) celotno ploščino do neskončnosti. Graf kaže del do t = 5.'});
+    }
+  },
+  vCosN: {
+    slider:['Potenca n',0,8,1,3],
+    make(n) {
+      return integralWindow12({x:[0,Math.PI],y:[-1.1,1.1],fn:x=>Math.cos(x)**n,curve:'cosⁿ φ',area:'predznačena ploščina',axis:'φ (rad)',start:0,end:Math.PI,marks:[Math.PI/2],names:['π/2'],caption:n%2?'Lihi n: desna polovica ima nasprotni predznak. Vsota je nič.':'Sodi n: polovici imata enako pozitivno ploščino.'});
     }
   }
 };
