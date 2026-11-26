@@ -218,6 +218,11 @@ lessons=[]
 for lesson in lesson_topics:
     topic=theory[lesson["plot"]]
     lesson["title"]=topic["title"]
+    lesson["reading"]=topic["reading"]
+    if lesson["reading"] and lesson["reading"][0] not in sources:
+        raise ValueError(f"Missing lecture PDF: {lesson['reading'][0]}")
+    lesson["papers"]=topic["papers"]
+    lesson["focus"]=math_text(topic["focus"])
     for key in ("definition","conditions","symbols","use"):
         lesson[key]=math_text(topic[key])
     lesson["steps"]=[]

@@ -34,6 +34,24 @@
           ]
         ]
       ]
+    ],
+    "reading": [
+      "ITFR-02_03p.pdf",
+      19,
+      "19"
+    ],
+    "focus": "S stopnico zapiši spremembo sile; v zamaknjenem členu meri čas od preklopa.",
+    "papers": [
+      [
+        "Račun 2023 · 4",
+        1,
+        1
+      ],
+      [
+        "Račun 2024 · 3",
+        2,
+        1
+      ]
     ]
   },
   "conv": {
@@ -70,6 +88,19 @@
             "\\lim_{T\\to\\infty}K_T(s)=\\left(\\int_0^\\infty e^{-su}f(u)\\,du\\right)\\left(\\int_0^\\infty e^{-sv}g(v)\\,dv\\right)"
           ]
         ]
+      ]
+    ],
+    "reading": [
+      "ITFR-02_03p.pdf",
+      15,
+      "15–16"
+    ],
+    "focus": "Poznaj definicijo konvolucije. Pri treh faktorjih pretvori konvolucijo v produkt treh transformirank.",
+    "papers": [
+      [
+        "Račun 2023 · 3b",
+        1,
+        1
       ]
     ]
   },
@@ -122,7 +153,14 @@
           ]
         ]
       ]
-    ]
+    ],
+    "reading": [
+      "ITFR-02_03p.pdf",
+      20,
+      "20"
+    ],
+    "focus": "Na predavanju: kako impulz izbere vrednost funkcije v eni točki.",
+    "papers": []
   },
   "radius": {
     "title": "Konvergenčni polmer in krajišči",
@@ -158,6 +196,24 @@
         "N-ti koren absolutne vrednosti člena je $|x-c|\\sqrt[n]{|a_n|}$. Korenski kriterij zato določi polmer iz koeficientov. Pri limsup nič je polmer neskončen, pri neskončnem limsup pa nič.",
         "\\frac1R=\\limsup_{n\\to\\infty}\\sqrt[n]{|a_n|}",
         "Polna ali prazna krajna točka pove, ali pripada območju konvergence."
+      ]
+    ],
+    "reading": [
+      "ITFR-06p2627.pdf",
+      10,
+      "10–13"
+    ],
+    "focus": "Določi notranjost konvergenčnega območja. Vsako krajišče posebej vstavi v prvotno vrsto.",
+    "papers": [
+      [
+        "Račun 2022 · 4a",
+        0,
+        1
+      ],
+      [
+        "Račun 2024 · 4a",
+        2,
+        1
       ]
     ]
   },
@@ -206,6 +262,24 @@
           ]
         ]
       ]
+    ],
+    "reading": [
+      "ITFR-06p2627.pdf",
+      12,
+      "12–15"
+    ],
+    "focus": "Izberi znano vrsto in jo členoma integriraj ali odvajaj. Spremljaj prvi indeks in območje veljavnosti.",
+    "papers": [
+      [
+        "Račun 2022 · 4b–c",
+        0,
+        1
+      ],
+      [
+        "Račun 2024 · 4b",
+        2,
+        1
+      ]
     ]
   },
   "uniform": {
@@ -241,7 +315,26 @@
         "Zakaj vsota obstaja enakomerno",
         "Ista ocena velja že za vsako razliko dveh končnih delnih vsot. Zato je zaporedje delnih vsot enakomerno Cauchyjevo. Po kontrapoziciji pri odsotnosti enakomerne konvergence nobena veljavna majorantna vrsta ne more konvergirati.",
         "m>N\\ \\Longrightarrow\\ \\sup_{x\\in I}|S_m(x)-S_N(x)|\\leq\\sum_{n=N+1}^{m}M_n\\leq\\sum_{n>N}M_n",
-        "Graf končnega repa kaže primerjavo še pred prehodom v limito."
+        "Graf končnega repa kaže primerjavo še pred prehodom v limito.",
+        [
+          [
+            "Če bi majorantna vrsta konvergirala, bi M-test zagotovil enakomerno konvergenco prvotne vrste. Tako dobiš sklep s pole.",
+            "\\sum f_n\\ \\text{ne konvergira enakomerno},\\quad |f_n(x)|\\le M_n\\quad\\Longrightarrow\\quad \\sum M_n=\\infty"
+          ]
+        ]
+      ]
+    ],
+    "reading": [
+      "ITFR-06p2627.pdf",
+      4,
+      "4–6"
+    ],
+    "focus": "Znaj uporabiti kontrapozicijo M-testa: če vrsta ne konvergira enakomerno, nobena veljavna majorantna vrsta ne more konvergirati.",
+    "papers": [
+      [
+        "Teorija 2022 · 4",
+        3,
+        2
       ]
     ]
   },
@@ -270,7 +363,14 @@
         "a_{n+2}=a_{n+4}=\\cdots=0,\\qquad P_n(1)=1",
         "Krivulja je primer zaključene sode veje, umerjene pri desnem robu."
       ]
-    ]
+    ],
+    "reading": [
+      "ITFR-p78a.pdf",
+      1,
+      "1–10"
+    ],
+    "focus": "Sledi izpeljavi rekurzije: izenači koeficiente pri isti potenci in loči sode od lihih indeksov.",
+    "papers": []
   },
   "bessel": {
     "title": "Frobeniusova metoda in Besselova enačba",
@@ -307,6 +407,15 @@
         "y(x)=C_1J_\\nu(x)+C_2Y_\\nu(x),\\qquad x>0",
         "Graf prikazuje končno vejo $J_\\nu$; na območju s središčem jo izbere zahteva omejenosti."
       ]
+    ],
+    "reading": null,
+    "focus": "Zapiši Frobeniusov nastavek. Iz člena x² − 25 preberi red 5 in navedi obe neodvisni Besselovi rešitvi.",
+    "papers": [
+      [
+        "Teorija 2022 · 8, 10",
+        3,
+        2
+      ]
     ]
   },
   "ortho": {
@@ -340,33 +449,53 @@
           ]
         ]
       ]
+    ],
+    "reading": [
+      "ITFR-p78a.pdf",
+      9,
+      "9–10"
+    ],
+    "focus": "Na poli so zahtevali definicijo z utežjo r. Legendrovi polinomi na predavanju ponazorijo primer z utežjo 1.",
+    "papers": [
+      [
+        "Teorija 2022 · 9",
+        3,
+        2
+      ]
     ]
   },
   "pde": {
     "title": "Parcialni odvodi in družina prerezov",
     "definition": "Parcialna diferencialna enačba povezuje funkcijo več spremenljivk z njenimi parcialnimi odvodi. Če nastopajo samo odvodi po eni spremenljivki, vsaka fiksna vrednost druge določi svojo navadno diferencialno enačbo.",
-    "conditions": "Za prikazani tip $u_{xx}=\\lambda^2u$ je $\\lambda>0$ konstanta. Vsak prerez je dvakrat odvedljiv po $x$. Za enolično določitev prereza potrebujemo dve neodvisni informaciji o njem.",
-    "symbols": "$x,y$ sta koordinati, $u(x,y)$ vrednost polja, $u_x$ njegov naklon in $u_{xx}$ drugi odvod v smeri $x$. Funkciji $A(y),B(y)$ opisujeta odvisnost koeficientov od prereza.",
+    "conditions": "Pri zgledu iz predavanja velja $u_{xx}=u$. Za vsak fiksen $y$ naj bo prerez dvakrat odvedljiv po $x$.",
+    "symbols": "$x$ je smer odvajanja, $y$ izbira prerez. $A(y)$ in $B(y)$ sta integracijski konstanti posameznega prereza.",
     "use": "Metoda prerezov pojasni, kako lahko podatki vzdolž črte določijo polje v njeni okolici.",
     "steps": [
       [
         "Enačba pri fiksnem parametru",
         "V prerezu pri $y=\\eta$ so eksponentne rešitve določene s karakteristično enačbo. Različna korena dajeta dva neodvisna načina spreminjanja v smeri $x$.",
-        "U_\\eta(x)=u(x,\\eta),\\qquad U_\\eta''=\\lambda^2 U_\\eta,\\qquad r^2-\\lambda^2=0",
+        "U_\\eta(x)=u(x,\\eta),\\quad U_\\eta^{\\prime\\prime}=U_\\eta,\\quad r^2-1=0",
         "Vsaka narisana krivulja je en prerez istega polja."
       ],
       [
         "Funkciji začetnih podatkov",
         "Koeficienta dveh rešitev sta konstantna vzdolž posameznega prereza, med prerezi pa se lahko spreminjata. Višina in naklon na črti $x=0$ določita njuno vsoto in razliko.",
-        "u=A(y)e^{\\lambda x}+B(y)e^{-\\lambda x},\\qquad u(0,y)=A+B,\\quad u_x(0,y)=\\lambda(A-B)",
+        "u=A(y)e^x+B(y)e^{-x},\\quad u(0,y)=A+B,\\quad u_x(0,y)=A-B",
         "Različni prerezi ponazarjajo, da se začetna višina lahko spreminja z $y$."
       ],
       [
         "Od začetnih podatkov do polja",
-        "Naj bosta $g(y)=u(0,y)$ in $h(y)=u_x(0,y)$. Iz $A+B=g$ in $A-B=h/\\lambda$ s seštevanjem dobimo $A=(g+h/\\lambda)/2$, z odštevanjem pa $B=(g-h/\\lambda)/2$. Po vstavitvi združimo eksponente v hiperbolični funkciji.",
-        "u(x,y)=g(y)\\cosh(\\lambda x)+\\frac{h(y)}{\\lambda}\\sinh(\\lambda x)",
+        "Če poznaš višino $g(y)$ in naklon $h(y)$ pri $x=0$, ju vstavi v obe enačbi. Seštevanje da $2A=g+h$, odštevanje pa $2B=g-h$.",
+        "u(x,y)=\\tfrac12(g+h)e^x+\\tfrac12(g-h)e^{-x}",
         "Graf drugega odvoda pokaže povezanost višine in ukrivljenosti istega prereza."
       ]
-    ]
+    ],
+    "reading": [
+      "ITFR-04p5a.pdf",
+      8,
+      "8"
+    ],
+    "focus": "Pri odvajanju po x je y fiksen. Po integriranju po x je konstanta lahko funkcija y.",
+    "papers": []
   }
 }

@@ -138,7 +138,12 @@ function drawPlot(panel){
  }
 
 }
-const source=obj=>'<div class="reference">'+icon('file')+obj.source+'</div>';
+function lessonEvidence(o){
+ const reading=o.reading;
+ const lecture=reading?'<a href="'+pdfLink(reading[0])+'#page='+reading[1]+'" target="_blank" rel="noopener">Predavanje · '+escapeGraph(reading[0].replace('.pdf',''))+', str. '+reading[2]+'</a>':'Vir za to lekcijo je teoretična pola. V priloženih povzetkih ni izpeljave Frobeniusove metode.';
+ const references=o.papers.map(([name,paper,page])=>'<a href="'+pdfLink(paper)+'#page='+page+'" target="_blank" rel="noopener">'+escapeGraph(name)+'</a>').join(' · ');
+ return '<div class="reference">'+icon('file')+lecture+'</div><aside class="lessonFocus"><strong>'+(references?'Poudarek s kolokvija':'Dopolnilno iz predavanj')+'</strong><p>'+o.focus+'</p>'+references+'</aside>';
+}
 function extraMaterial(){
  const ex=course.extras[state.day-1];
  return '<details class="base"><summary>Dopolnilna snov in izvirno gradivo</summary>'+ex.items.map(([q,a,rows])=>'<details class="baseEntry"><summary>'+q+'</summary><p>'+a+'</p>'+calculation(rows,'Zgled po vrsticah')+'</details>').join('')+'<div class="sourceFiles">'+ex.files.map(name=>'<button class="secondary" data-do="sourcePDF" data-val="'+name+'">'+icon('file')+name+'</button>').join('')+'</div></details>';
@@ -188,14 +193,16 @@ function lesson(){
  const scenes=o.steps.map(([heading,reason,formula,,rows],i)=>{
   const result='<div class="formula calcLine">'+formula+'</div>';
   const boundaries=o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'';
-  const details=rows?'<div class="derivationRows">'+calculation(rows,'Izpeljava po vrsticah')+result+'</div>':'';
-  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p>'+(rows?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
+  const given=o.plot==='gaussTheory'&&i===0;
+  const derivation=rows?calculation(rows,'Izpeljava po vrsticah'):'';
+  const details=rows?'<div class="derivationRows">'+(given?'<details><summary>Od kod pride začetna vrednost?</summary>'+derivation+'</details>':derivation+result)+'</div>':'';
+  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p>'+(rows&&!given?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
  }).join('');
  const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
  let practice='';
  if(o.plot==='leib')practice=unitLink('exercises','atan','Kolokvij 2023 · premična zgornja meja');
  if(o.plot==='gaussTheory')practice=unitLink('exercises','gauss','Gaussova naloga s kolokvija');
- return '<div class="lessonName"><h2>'+o.title+'</h2>'+source(o)+'</div>'+intro+cases+scenes+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
+ return '<div class="lessonName"><h2>'+o.title+'</h2></div>'+lessonEvidence(o)+intro+cases+scenes+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
 function unitLink(kind,plot,label){
  const index=data(kind).findIndex(item=>item.plot===plot);
