@@ -1,0 +1,173 @@
+{
+  "area": {
+    "question": "Koliko več pločevine potrebuješ za 2 m dolgo ploščo, če njen zgornji rob bolj ukriviš navzgor?",
+    "use": "Na razdalji x od levega roba je plošča visoka $1+ax^2$ metrov. Če nastavitev a povečaš za 0,3, potrebuješ še 0,8 m² pločevine.",
+    "steps": [
+      "Za prvo nastavitev sešteješ površine ozkih navpičnih trakov vzdolž cele plošče.",
+      "Pas med robovoma je kos pločevine, ki ga moraš dodati staremu izrezu.",
+      "Količina dodatne pločevine na enoto spremembe nastavitve ti omogoči preračun za poljuben premik drsnika."
+    ]
+  },
+  "leib": {
+    "question": "Kako se spremeni površina izreza, če hkrati dvigneš njegov zgornji rob in premakneš oba stranska reza?",
+    "use": "Leibnizovo pravilo sešteje tri učinke v eno spremembo površine. Uporabiš ga, ko parameter v nalogi nastopa tudi v mejah integrala.",
+    "steps": [
+      "Najprej določiš, kateri del pod premico sploh pripada izrezu.",
+      "Loči dvig višine od premika mej.",
+      "Ko skrčiš premik nastavitve proti nič, dobiš trenutno hitrost spreminjanja površine."
+    ]
+  },
+  "tail": {
+    "question": "Kako daleč moraš računati, da je napaka pri oceni vpliva frekvence na integral dovolj majhna?",
+    "use": "Pri rezu $R=2$ izpuščeni del odvoda prispeva po absolutni vrednosti največ $e^{-4}/2$, približno 0,0092, pri katerikoli frekvenci a.",
+    "steps": [
+      "Na končnem odseku lahko izračunaš spremembo brez težave z neskončno mejo.",
+      "Ena ovojnica obda vsa nihanja odvoda, tudi če frekvenco spremeniš.",
+      "Ploščina pod repom ovojnice ti pove, ali lahko za izbrano natančnost že končaš račun."
+    ]
+  },
+  "gamma": {
+    "question": "Kako izračunaš ploščino pod krivuljo $x^2e^{-x}$ na vsem pozitivnem poltraku?",
+    "use": "Integral je $\\Gamma(3)$. Rekurzija ga skrči na $2\\cdot1\\cdot\\Gamma(1)=2$ in enako deluje pri višjih celih potencah.",
+    "steps": [
+      "Eksponent pri x ti pove, katero vrednost funkcije gama iščeš.",
+      "Integracija po delih zniža potenco in ustvari povezavo s preprostejšim integralom.",
+      "S ponavljanjem prideš do že znane začetne vrednosti."
+    ]
+  },
+  "beta": {
+    "question": "Kako izračunaš ploščino pod profilom, ki ga oblikujeta razdalji do levega in desnega roba?",
+    "use": "Na enotskem intervalu ima na primer profil $u(1-u)$ ploščino $B(2,2)=1/6$. Povezava z gama pomaga tudi pri ulomljenih eksponentih.",
+    "steps": [
+      "Po potencah obeh razdalj prebereš, kateri par argumentov potrebuješ.",
+      "Dva neodvisna pozitivna prispevka opišeš z njuno vsoto in deležem prvega.",
+      "Ko se integral razcepi, deliš s faktorjem gama za vsoto in ostane iskana beta."
+    ]
+  },
+  "betasub": {
+    "question": "Kako izmeriš integral, v katerem se pojavita četrtina krožnice in utež $x^2$?",
+    "use": "Na vsaki razdalji x vzameš višino krožnega loka in jo utežiš z $x^2$. Tak integral nastopi pri računanju drugega momenta površine četrtine kroga glede na navpično os.",
+    "steps": [
+      "Z novo koordinato pretvoriš krožni koren v znano obliko z enim krajiščem pri 1.",
+      "Preračun širine trakov zagotovi, da vsak uteženi prispevek ohrani vrednost.",
+      "Sedaj lahko rezultat prebereš iz znanih vrednosti beta in gama."
+    ]
+  },
+  "lap": {
+    "question": "Kako bi naraščajoči časovni signal opisal s končnim številom pri vsaki izbrani jakosti dušenja?",
+    "use": "Pri signalu $e^t$ dobiš za $s=2$ število 1, za $s=3$ pa 1/2. Celoten predpis v s lahko uporabiš pri algebrajskem reševanju diferencialnih enačb.",
+    "steps": [
+      "Z dušenjem zmanjšaš vpliv oddaljenih trenutkov dovolj močno, da vsota prispevkov ostane končna.",
+      "Z integriranjem ugotoviš, katero število pripada vsaki izbiri dušenja.",
+      "Isti par prebereš v obratni smeri, ko želiš iz rešenega izraza spet dobiti signal v času."
+    ]
+  },
+  "deriv": {
+    "question": "Kako v računu obdržiš začetni položaj in hitrost telesa, ko enačbo gibanja pretvoriš v Laplaceovo obliko?",
+    "use": "Pri enačbi s pospeškom potrebuješ oba začetna podatka. Pravilo za drugi odvod pokaže natančno, kam ju vstaviti.",
+    "steps": [
+      "Z integracijo po delih izločiš robni člen, v katerem je zapisan začetek gibanja.",
+      "Ob drugi uporabi pravila se poleg začetnega položaja pojavi še začetna hitrost.",
+      "Če je hitrost ali drug signal pomnožen s časom, ga pretvoriš z odvodom transformiranke po s."
+    ]
+  },
+  "system": {
+    "question": "Kako napoveš položaj in hitrost, če je v poenostavljenem modelu pospešek enak položaju?",
+    "use": "Položaj označiš z y in hitrost z z. Iz začetnega položaja 1 in mirovanja dobiš obe časovni krivulji ter lahko odčitaš obe vrednosti pri istem času.",
+    "steps": [
+      "Oba zakona gibanja z začetnima podatkoma prevedeš v dve algebrajski enačbi.",
+      "Z izločanjem dobiš izraz za vsak signal posebej.",
+      "Po vrnitvi v čas preveriš, ali se gibanje začne na predpisanem mestu in v mirovanju."
+    ]
+  },
+  "shift": {
+    "question": "Kako z enim izrazom opišeš pogon, ki najprej deluje s stalno silo, nato pa silo povečuje linearno?",
+    "use": "Čas a pove, kdaj preklopiš režim. Pri preklopu ob času 2 se sila spremeni z 1 na 2 in nato naprej raste.",
+    "steps": [
+      "Zapišeš stalno silo in posebej popravek, ki ga dodaš šele ob preklopu.",
+      "Ura, ki začne teči s preklopom, pokaže velikost popravka takoj po vklopu.",
+      "V domeni s zamik postane preprost faktor, zato lahko znano obliko signala uporabiš pri drugem času vklopa."
+    ]
+  },
+  "conv": {
+    "question": "Koliko vode je v sprva praznem zbiralniku ob času t, če dotok raste sorazmerno s časom in nič ne odteka?",
+    "use": "Če je po u sekundah dotok u litrov na sekundo, je po dveh sekundah v zbiralniku 2 litra. Konvolucija sešteva pretekle dotoke glede na to, koliko jih ob opazovanju še prispeva.",
+    "steps": [
+      "Izbereš trenutek opazovanja in zajameš vse dotedanje dotoke.",
+      "Ker se vsaka kaplja ohrani, količino prebereš kot ploščino trikotnika pod dotokom.",
+      "Pri zahtevnejšem odzivu lahko isti seštevek prispevkov izračunaš z množenjem transformirank."
+    ]
+  },
+  "impulse": {
+    "question": "Kako v model nihanja vneseš kratek udarec kladiva ob drugi sekundi?",
+    "use": "Integral sile po času pove spremembo gibalne količine telesa. Pri udarcu s sunkom 1 N·s je ta sprememba 1 kg·m/s, tudi če natančne oblike kratkega vrha sile ne poznaš.",
+    "steps": [
+      "Udarec stisneš v krajši čas in sorazmerno zvišaš silo, da ohraniš njen impulz.",
+      "Izračunaš, koliko k transformiranki prispeva tako kratek pravokotnik sile.",
+      "V limiti ostane podatek o trenutku udarca, iz katerega določiš zamik odziva."
+    ]
+  },
+  "radius": {
+    "question": "Za katere vhode lahko z izrazom $x+x^2/2+x^3/3+\\cdots$ sploh izračunaš končno vsoto?",
+    "use": "Pri $x=-1$ dobiš končno vsoto, pri $x=1$ pa vsota raste brez meje. Kljub enaki oddaljenosti od nič potrebuješ za oba roba ločen odgovor.",
+    "steps": [
+      "Kvocient zaporednih členov hitro loči notranjost območja od zunanjosti.",
+      "Na robovih kvocient ne odloči, zato preveriš obnašanje vsake od obeh novih številskih vrst.",
+      "Z intervalom poveš, katere vhode smeš uporabiti v izračunu vsote."
+    ]
+  },
+  "series": {
+    "question": "Kako brez neskončnega seštevanja določiš vsoto $1/2+1/8+1/24+\\cdots$, kjer je n-ti člen $(1/2)^n/n$?",
+    "use": "Geometrijsko vrsto spremeniš v formulo za vse take vsote. Pri vhodu $x=1/2$ tako dobiš $\\ln 2$.",
+    "steps": [
+      "Zamikanje končne vsote odstrani notranje člene in razkrije natančen ostanek.",
+      "Preveriš, pri katerih vhodih ostanek izgine, ko dodajaš člene.",
+      "Z integriranjem ustvariš ravno imenovalce, ki jih ima iskana vrsta."
+    ]
+  },
+  "uniform": {
+    "question": "Koliko členov moraš obdržati, da bo približek geometrijske vrste dovolj dober pri vseh vhodih med −0,8 in 0,8?",
+    "use": "Iščeš eno nastavitev za ves interval. Če končaš pri $N=20$, je napaka povsod manjša od 0,05.",
+    "steps": [
+      "Vsak člen omejiš z enim številom, ki velja tudi pri najslabši izbiri x.",
+      "Seštevek mej izpuščenih členov primerjaš z dovoljeno napako.",
+      "Enak postopek lahko uporabiš za druge funkcijske vrste, če najdeš seštevne meje njihovih členov."
+    ]
+  },
+  "leg": {
+    "question": "Kako iz diferencialne enačbe izračunaš obliko krivulje, če njenega predpisa še ne poznaš?",
+    "use": "Pri stopnji 2 iščeš sodo rešitev, ki ima pri $x=1$ vrednost 1. Iz enačbe dobiš kvadratni polinom in lahko napoveš tudi njegovo vrednost v sredini.",
+    "steps": [
+      "Koeficiente neznane oblike za zdaj pustiš proste, da jih lahko določi enačba.",
+      "Primerjava enakih potenc ti pove, kako naj iz enega koeficienta izračunaš naslednjega.",
+      "Ko se soda veja konča, njeno višino umeriš z znano vrednostjo pri desnem robu."
+    ]
+  },
+  "bessel": {
+    "question": "Kako opišeš nihanje krožne membrane v bližini središča, kjer ima radialna enačba navidezno težavo z deljenjem z nič?",
+    "use": "Po primerni izbiri dolžinske enote ima radialni del nihanja Besselovo enačbo. Pri redu 5 je veja $J_5$ v središču končna, veja $Y_5$ pa tam raste po absolutni vrednosti brez meje.",
+    "steps": [
+      "Pregled koeficientov pokaže, kdaj lahko rešitev iščeš kot potenčno vrsto s posebej izbrano začetno potenco.",
+      "Najnižja potenca določi možna vodilna eksponenta rešitve pri središču.",
+      "Na območju s središčem zahteva po končni vrednosti izloči singularno vejo, na obroču pa odločaš po robnih pogojih."
+    ]
+  },
+  "ortho": {
+    "question": "Ali stalna meritev na intervalu od −1 do 1 vsebuje kaj oblike, ki jo opisuje polinom $P_2$?",
+    "use": "S skalarnim produktom izmeriš ujemanje dveh oblik. Če je rezultat nič, stalna meritev pri razvoju po Legendrovih polinomih ne prispeva h koeficientu pri $P_2$.",
+    "steps": [
+      "Z množenjem vrednosti v isti točki določiš lokalni prispevek k ujemanju.",
+      "Med pomikanjem meje vidiš, kateri deli ujemanje povečujejo in kateri ga zmanjšujejo.",
+      "Po celotnem intervalu se pozitivni in negativni prispevki natančno izravnajo."
+    ]
+  },
+  "pde": {
+    "question": "Kako iz podatkov vzdolž ene črte rekonstruiraš površino, če njen drugi odvod v smeri x povsod ustreza njeni višini?",
+    "use": "Višina pri $x=0$ je v vsakem prerezu enaka y, začetni naklon pa nič. Iz teh dveh podatkov lahko določiš višino površine tudi stran od začetne črte.",
+    "steps": [
+      "Izbereš en prerez in v njem rešuješ enačbo samo po x.",
+      "Iz znane višine in naklona izračunaš uteži rastočega in padajočega eksponenta.",
+      "Ko spreminjaš y, ista formula poveže vse posamezne prereze v površino."
+    ]
+  }
+}

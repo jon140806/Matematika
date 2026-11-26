@@ -1,0 +1,774 @@
+{
+  "lessons": {
+    "shift": [
+      [
+        [
+          "Začnemo s staro silo in izračunamo, koliko ji moramo po preklopu prišteti.",
+          "f_{\\rm nova}(t)-f_{\\rm stara}(t)=t-1"
+        ],
+        [
+          "Razliko pomnožimo s stopnico in preverimo obe obdobji.",
+          "1+H(t-a)(t-1)=\\begin{cases}1+0=1,&t<a,\\\\1+(t-1)=t,&t>a.\\end{cases}"
+        ]
+      ],
+      [
+        [
+          "Ob preklopu zaženemo novo uro, da se popravek začne pri ničelnem lokalnem času.",
+          "u=t-a\\quad\\Rightarrow\\quad t=u+a"
+        ],
+        [
+          "Stari čas zamenjamo v popravku sile.",
+          "g(u)=(u+a)-1=u+(a-1)"
+        ],
+        [
+          "Pri preklopu ob času 2 preverimo začetno višino popravka.",
+          "a=2:\\quad g(u)=u+1,\\quad g(0)=1"
+        ]
+      ],
+      [
+        [
+          "Stopnica izbriše del integrala pred vklopom.",
+          "\\mathcal L\\{H(t-a)g(t-a)\\}=\\int_a^\\infty e^{-st}g(t-a)\\,dt"
+        ],
+        [
+          "Zamenjamo spremenljivko in obe meji.",
+          "t=u+a,\\quad dt=du,\\quad t=a\\Rightarrow u=0,\\quad t\\to\\infty\\Rightarrow u\\to\\infty"
+        ],
+        [
+          "Razcepimo eksponent in konstantni faktor izvlečemo pred integral.",
+          "\\int_0^\\infty e^{-s(u+a)}g(u)\\,du=e^{-as}\\int_0^\\infty e^{-su}g(u)\\,du=e^{-as}G(s)"
+        ]
+      ]
+    ],
+    "conv": [
+      [
+        [
+          "Za prvi signal preverimo, na kateri strani izhodišča je aktiven.",
+          "f(u)=u\\ (u\\ge0),\\qquad f(u)=0\\ (u<0)"
+        ],
+        [
+          "Drugi signal prispeva, ko je njegov argument nenegativen. Pogoja združimo.",
+          "t-u\\ge0\\ \\Rightarrow\\ u\\le t,\\qquad u\\ge0\\ \\Rightarrow\\ 0\\le u\\le t"
+        ],
+        [
+          "Na preseku intervalov vstavimo vrednosti obeh signalov.",
+          "f(u)g(t-u)=u\\cdot1=u\\quad(0\\le u\\le t)"
+        ]
+      ],
+      [
+        [
+          "V definicijo konvolucije vstavimo produkt. Med integriranjem je čas opazovanja stalen.",
+          "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du=\\int_0^t u\\,du"
+        ],
+        [
+          "Po potenčnem pravilu povečamo eksponent za 1 in delimo z novim eksponentom.",
+          "\\int u^1\\,du=\\frac{u^{1+1}}{1+1}+C=\\frac{u^2}{2}+C"
+        ],
+        [
+          "Vstavimo zgornjo in odštejemo spodnjo mejo.",
+          "\\left[\\frac{u^2}{2}\\right]_0^t=\\frac{t^2}{2}-\\frac{0^2}{2}=\\frac{t^2}{2}"
+        ]
+      ],
+      [
+        [
+          "V Laplaceov integral vstavimo definicijo konvolucije.",
+          "\\mathcal L(f*g)=\\int_0^\\infty\\int_0^t e^{-st}f(u)g(t-u)\\,du\\,dt"
+        ],
+        [
+          "Pri absolutni konvergenci smemo zamenjati vrstni red. Za izbrani u se čas t začne pri u.",
+          "\\int_0^\\infty f(u)\\int_u^\\infty e^{-st}g(t-u)\\,dt\\,du"
+        ],
+        [
+          "Zamenjamo notranjo spremenljivko. Nova spodnja meja je nič.",
+          "v=t-u,\\quad e^{-st}=e^{-su}e^{-sv},\\quad dt=dv"
+        ],
+        [
+          "Vsak faktor vsebuje le svojo spremenljivko, zato dobimo produkt transformirank.",
+          "\\left(\\int_0^\\infty e^{-su}f(u)\\,du\\right)\\left(\\int_0^\\infty e^{-sv}g(v)\\,dv\\right)=F(s)G(s)"
+        ]
+      ]
+    ],
+    "impulse": [
+      [
+        [
+          "Za pravokotnik z enotsko ploščino delimo ploščino s trajanjem, da dobimo višino.",
+          "1=hA\\quad\\Rightarrow\\quad A=\\frac1h,\\qquad h>0"
+        ],
+        [
+          "Omejimo signal na kratko obdobje po času 2 in preverimo ploščino.",
+          "\\int_2^{2+h}\\frac1h\\,dt=\\frac{(2+h)-2}{h}=1"
+        ]
+      ],
+      [
+        [
+          "V definicijo transformiranke vstavimo impulzni približek. Zunaj pravokotnika je signal nič.",
+          "\\mathcal L(p_h)(s)=\\frac1h\\int_2^{2+h}e^{-st}\\,dt"
+        ],
+        [
+          "Pri pozitivnem s integriramo po t in vstavimo meji.",
+          "\\frac1h\\left[-\\frac{e^{-st}}s\\right]_2^{2+h}=\\frac{e^{-2s}-e^{-s(2+h)}}{sh}"
+        ],
+        [
+          "Iz obeh členov izpostavimo faktor zaradi zakasnitve.",
+          "\\mathcal L(p_h)(s)=e^{-2s}\\frac{1-e^{-sh}}{sh}"
+        ]
+      ],
+      [
+        [
+          "Uvedemo z in uporabimo odvod eksponentne funkcije pri ničli.",
+          "z=sh,\\qquad \\lim_{z\\to0}\\frac{1-e^{-z}}z=-\\left.\\frac{d}{dz}e^{-z}\\right|_{z=0}=1"
+        ],
+        [
+          "Vstavimo limito in nato prestavimo sunek s časa 2 na čas a.",
+          "\\lim_{h\\to0^+}\\mathcal L(p_h)(s)=e^{-2s},\\qquad \\mathcal L\\{\\delta(t-a)\\}=e^{-as}"
+        ],
+        [
+          "Za sistem s transformiranko impulznega odziva K pomnožimo z vhodom in uporabimo časovni zamik.",
+          "\\mathcal L^{-1}\\{K(s)e^{-as}\\}=H(t-a)k(t-a)"
+        ]
+      ]
+    ],
+    "radius": [
+      [
+        [
+          "Zapišemo dva zaporedna člena, ker želimo uporabiti kvocientni kriterij.",
+          "a_n=\\frac{x^n}{n},\\qquad a_{n+1}=\\frac{x^{n+1}}{n+1}"
+        ],
+        [
+          "Pri neničelnem x deljenje z ulomkom nadomestimo z množenjem z obratno vrednostjo.",
+          "\\left|\\frac{a_{n+1}}{a_n}\\right|=\\left|\\frac{x^{n+1}}{n+1}\\frac{n}{x^n}\\right|=|x|\\frac{n}{n+1}"
+        ],
+        [
+          "Izračunamo limito kvocienta. V središču preverimo člene neposredno.",
+          "\\lim_{n\\to\\infty}\\frac{|x|}{1+1/n}=|x|,\\qquad a_n(0)=0"
+        ]
+      ],
+      [
+        [
+          "Vstavimo desni rob in prepoznamo divergentno harmonično vrsto.",
+          "x=1:\\quad \\sum_{n=1}^\\infty\\frac{1^n}{n}=\\sum_{n=1}^\\infty\\frac1n=\\infty"
+        ],
+        [
+          "Na levem robu zapišemo prve člene in preverimo pogoj za alternirajočo vrsto.",
+          "x=-1:\\quad -1+\\frac12-\\frac13+\\cdots,\\qquad \\frac1{n+1}<\\frac1n\\to0"
+        ],
+        [
+          "Leibnizov kriterij da konvergenco, vsota absolutnih vrednosti pa je spet harmonična.",
+          "\\sum_{n=1}^\\infty\\left|\\frac{(-1)^n}{n}\\right|=\\sum_{n=1}^\\infty\\frac1n=\\infty"
+        ]
+      ],
+      [
+        [
+          "Iz stroge kvocientne neenačbe dobimo vse notranje točke.",
+          "|x|<1\\quad\\Longleftrightarrow\\quad -1<x<1"
+        ],
+        [
+          "Dodamo le rob, na katerem je vrsta konvergirala.",
+          "(-1,1)\\cup\\{-1\\}=[-1,1),\\qquad R=1"
+        ]
+      ]
+    ],
+    "series": [
+      [
+        [
+          "Končno vsoto pomnožimo z x, zato se vsaka potenca premakne za eno mesto.",
+          "S_N=1+x+\\cdots+x^N,\\qquad xS_N=x+x^2+\\cdots+x^{N+1}"
+        ],
+        [
+          "Odštejemo izraza. Vse potence od prve do N-te se pokrajšajo.",
+          "S_N-xS_N=1-x^{N+1}"
+        ],
+        [
+          "Izpostavimo S in delimo z neničelnim faktorjem.",
+          "(1-x)S_N=1-x^{N+1}\\quad\\Rightarrow\\quad S_N=\\frac{1-x^{N+1}}{1-x}\\quad(x\\ne1)"
+        ]
+      ],
+      [
+        [
+          "Ko je absolutna vrednost osnove manjša od 1, visoka potenca izgine.",
+          "|x|<1\\quad\\Rightarrow\\quad\\lim_{N\\to\\infty}x^{N+1}=0"
+        ],
+        [
+          "Limito vstavimo v izraz za končno vsoto.",
+          "\\lim_{N\\to\\infty}S_N(x)=\\frac{1-0}{1-x}=\\frac1{1-x}"
+        ],
+        [
+          "Na zaprtem notranjem intervalu dobimo skupno oceno napake, kar dovoli integriranje členoma.",
+          "\\left|\\frac1{1-x}-S_N(x)\\right|=\\frac{|x|^{N+1}}{|1-x|}\\le\\frac{r^{N+1}}{1-r}\\to0\\quad(|x|\\le r<1)"
+        ]
+      ],
+      [
+        [
+          "Na levi integriramo vsak člen po u med istima mejama.",
+          "\\int_0^x u^k\\,du=\\left[\\frac{u^{k+1}}{k+1}\\right]_0^x=\\frac{x^{k+1}}{k+1}"
+        ],
+        [
+          "Na desni integriramo geometrijsko vsoto. Minus izvira iz odvoda izraza 1−u.",
+          "\\int_0^x\\frac{du}{1-u}=[-\\ln(1-u)]_0^x=-\\ln(1-x)"
+        ],
+        [
+          "Preimenujemo indeks in vstavimo primer x = 1/2.",
+          "n=k+1:\\quad \\sum_{n=1}^\\infty\\frac{x^n}{n}=-\\ln(1-x),\\qquad -\\ln(1-1/2)=\\ln2"
+        ]
+      ]
+    ],
+    "uniform": [
+      [
+        [
+          "Zapišemo celotno vsoto in njen približek. Po odštevanju ostane prvi izpuščeni člen in vse za njim.",
+          "S(x)-S_N(x)=\\sum_{n=0}^\\infty x^n-\\sum_{n=0}^N x^n=\\sum_{n=N+1}^\\infty x^n"
+        ],
+        [
+          "S trikotniško neenakostjo in pogojem na x dobimo skupno zgornjo mejo.",
+          "\\left|\\sum_{n=N+1}^\\infty x^n\\right|\\le\\sum_{n=N+1}^\\infty |x|^n\\le\\sum_{n=N+1}^\\infty r^n"
+        ]
+      ],
+      [
+        [
+          "Izpostavimo prvi člen repa in uporabimo geometrijsko vsoto.",
+          "\\sum_{n=N+1}^\\infty r^n=r^{N+1}(1+r+r^2+\\cdots)=\\frac{r^{N+1}}{1-r}"
+        ],
+        [
+          "Za krajišče 0,8 in zadnji indeks 20 izračunamo mejo napake za vse x hkrati.",
+          "\\sup_{|x|\\le0{,}8}|S-S_{20}|\\le\\frac{0{,}8^{21}}{1-0{,}8}\\approx 0{,}04612<0{,}05"
+        ]
+      ],
+      [
+        [
+          "Pri splošni vrsti nadomestimo vsak člen z njegovo številsko mejo.",
+          "\\left|\\sum_{n=N+1}^m f_n(x)\\right|\\le\\sum_{n=N+1}^m |f_n(x)|\\le\\sum_{n=N+1}^m M_n"
+        ],
+        [
+          "Če majorantna vrsta konvergira, izberemo en indeks za vse x. To je enakomerni Cauchyjev kriterij.",
+          "\\sum_{n=N+1}^m M_n\\le\\sum_{n=N+1}^\\infty M_n<\\varepsilon\\qquad(m>N)"
+        ],
+        [
+          "Če prvotna vrsta ni enakomerno konvergentna, nobena veljavna majorantna vrsta ne more izpolniti prejšnjega pogoja.",
+          "\\sum f_n\\ \\text{ni enakomerno konvergentna}\\quad\\Rightarrow\\quad\\sum M_n=\\infty"
+        ]
+      ]
+    ],
+    "leg": [
+      [
+        [
+          "Neznano funkcijo zapišemo kot vsoto potenc in vsako potenco odvajamo posebej.",
+          "y=\\sum_{j=0}^\\infty a_jx^j,\\qquad y'=\\sum_{j=1}^\\infty ja_jx^{j-1}"
+        ],
+        [
+          "Še enkrat odvajamo. Prva dva člena prvotne vrste odpadeta.",
+          "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}"
+        ],
+        [
+          "Razmnožimo oklepaj v enačbi, da lahko v vsakem členu posebej poiščemo koeficient iste potence.",
+          "y''-x^2y''-2xy'+n(n+1)y=0"
+        ]
+      ],
+      [
+        [
+          "V prvem členu nas zanima potenca k, zato vzamemo j = k + 2.",
+          "[x^k]\\,y''=(k+2)(k+1)a_{k+2}"
+        ],
+        [
+          "Pri preostalih treh členih se odvajanje in množenje s potenco x izravnata. Seštejemo koeficiente.",
+          "(k+2)(k+1)a_{k+2}+[-k(k-1)-2k+n(n+1)]a_k=0"
+        ],
+        [
+          "Člen z znanim koeficientom prestavimo desno in razstavimo razliko produktov.",
+          "k(k-1)+2k-n(n+1)=k(k+1)-n(n+1)=(k-n)(k+n+1)"
+        ],
+        [
+          "Delimo s faktorjem pred novim koeficientom.",
+          "a_{k+2}=\\frac{(k-n)(k+n+1)}{(k+2)(k+1)}a_k"
+        ]
+      ],
+      [
+        [
+          "Izberemo sodo vejo pri n = 2. V rekurzijo vstavimo najprej k = 0 in nato k = 2.",
+          "a_2=\\frac{(-2)\\cdot3}{2\\cdot1}a_0=-3a_0,\\qquad a_4=\\frac{0\\cdot5}{4\\cdot3}a_2=0"
+        ],
+        [
+          "Vsi nadaljnji sodi členi so zato nič. Z normalizacijo pri 1 določimo še konstanto.",
+          "1=P_2(1)=a_0+a_2=a_0-3a_0=-2a_0"
+        ],
+        [
+          "Vstavimo oba koeficienta v polinom.",
+          "a_0=-\\tfrac12,\\quad a_2=\\tfrac32,\\quad P_2(x)=-\\tfrac12+\\tfrac32x^2"
+        ]
+      ]
+    ],
+    "bessel": [
+      [
+        [
+          "Za pozitivni x enačbo delimo z vodilnim koeficientom, da preberemo P in Q.",
+          "y''+\\frac1x y'+\\left(1-\\frac{\\nu^2}{x^2}\\right)y=0"
+        ],
+        [
+          "Opravimo test za šibko singularno točko. Oba produkta imata pri ničli potenčni razvoj.",
+          "xP=x\\frac1x=1,\\qquad x^2Q=x^2\\left(1-\\frac{\\nu^2}{x^2}\\right)=x^2-\\nu^2"
+        ],
+        [
+          "Zato lahko iščemo rešitev z nedoločeno začetno potenco.",
+          "y=x^r(a_0+a_1x+a_2x^2+\\cdots),\\qquad a_0\\ne0"
+        ]
+      ],
+      [
+        [
+          "Odvajamo vodilni člen in oba odvoda pomnožimo s faktorjema iz enačbe.",
+          "xy'=ra_0x^r+\\cdots,\\qquad x^2y''=r(r-1)a_0x^r+\\cdots"
+        ],
+        [
+          "Člen z dodatnim faktorjem x² se začne dve potenci pozneje, zato ne prispeva pri najnižji potenci.",
+          "x^2y=a_0x^{r+2}+\\cdots,\\qquad -\\nu^2 y=-\\nu^2a_0x^r+\\cdots"
+        ],
+        [
+          "Koeficient najnižje potence mora izginiti. Ker je prvi koeficient neničeln, ostane enačba za eksponent.",
+          "[r(r-1)+r-\\nu^2]a_0=(r^2-\\nu^2)a_0=0\\quad\\Rightarrow\\quad r^2=\\nu^2"
+        ]
+      ],
+      [
+        [
+          "Vstavimo red 5 in razliko kvadratov razcepimo.",
+          "r^2-25=(r-5)(r+5)=0\\quad\\Rightarrow\\quad r=5\\ \\text{ali}\\ r=-5"
+        ],
+        [
+          "Za pozitivni x vzamemo standardni neodvisni rešitvi Besselove enačbe. Cela razlika indeksov zahteva previdnost pri gradnji druge vrste.",
+          "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0"
+        ],
+        [
+          "Če dodamo pogoj omejenosti v središču, odstranimo singularno vejo.",
+          "|Y_5(x)|\\to\\infty,\\quad J_5(x)\\to0\\ (x\\to0^+)\\quad\\Rightarrow\\quad C_2=0"
+        ]
+      ]
+    ],
+    "ortho": [
+      [
+        [
+          "V obrazec za skalarni produkt vstavimo prvo funkcijo, drugo funkcijo in utež.",
+          "\\langle P_0,P_2\\rangle=\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx"
+        ],
+        [
+          "Najdemo ničli integranda, da razločimo pozitivna in negativna območja grafa.",
+          "3x^2-1=0\\quad\\Rightarrow\\quad x=\\pm1/\\sqrt3"
+        ]
+      ],
+      [
+        [
+          "Zgornjo mejo začasno označimo z b in členoma poiščemo primitivno funkcijo.",
+          "\\int\\frac{3x^2-1}{2}\\,dx=\\frac12\\left(3\\frac{x^3}{3}-x\\right)+C=\\frac{x^3-x}{2}+C"
+        ],
+        [
+          "Primitivno funkcijo ovrednotimo pri b in pri −1 ter odštejemo.",
+          "\\left[\\frac{x^3-x}{2}\\right]_{-1}^b=\\frac{b^3-b}{2}-\\frac{-1+1}{2}=\\frac{b^3-b}{2}"
+        ]
+      ],
+      [
+        [
+          "Za celoten interval vstavimo b = 1.",
+          "\\frac{1^3-1}{2}=0"
+        ],
+        [
+          "Sklepamo po definiciji pravokotnosti pri uteži 1.",
+          "\\langle P_0,P_2\\rangle=0\\quad\\Longrightarrow\\quad P_0\\perp P_2"
+        ]
+      ]
+    ],
+    "pde": [
+      [
+        [
+          "Pri stalnem y iščemo posamezen eksponenten člen. Dvakrat ga odvajamo po x.",
+          "u=e^{\\lambda x}\\quad\\Rightarrow\\quad u_{xx}=\\lambda^2e^{\\lambda x}"
+        ],
+        [
+          "Vstavimo v enačbo in delimo z eksponentom, ki ne izgine.",
+          "\\lambda^2e^{\\lambda x}=e^{\\lambda x}\\quad\\Rightarrow\\quad\\lambda^2=1\\quad\\Rightarrow\\quad\\lambda=\\pm1"
+        ],
+        [
+          "V vsakem prerezu smemo obe rešitvi sešteti z utežema, ki sta pri odvajanju po x konstantni.",
+          "u(x,y)=A(y)e^x+B(y)e^{-x}"
+        ]
+      ],
+      [
+        [
+          "Pri x = 0 oba eksponenta postaneta 1. Vstavimo podano višino prereza.",
+          "u(0,y)=Ae^0+Be^0=A+B=y"
+        ],
+        [
+          "Za pogoj o naklonu najprej odvajamo po x. Drugi eksponent da minus.",
+          "u_x=Ae^x-Be^{-x}\\quad\\Rightarrow\\quad u_x(0,y)=A-B=0"
+        ],
+        [
+          "Seštejemo obe enačbi, da odpravimo B. Nato iz druge enačbe preberemo B.",
+          "2A=y,\\qquad A=B=y/2"
+        ]
+      ],
+      [
+        [
+          "Uteži vstavimo v rešitev in prepoznamo hiperbolični kosinus.",
+          "u=\\tfrac y2e^x+\\tfrac y2e^{-x}=y\\frac{e^x+e^{-x}}2=y\\cosh x"
+        ],
+        [
+          "Z dvakratnim odvajanjem pri stalnem y preverimo enačbo.",
+          "u_x=y\\sinh x,\\qquad u_{xx}=y\\cosh x=u"
+        ]
+      ]
+    ]
+  },
+  "exercises": {
+    "triple": [
+      [
+        "Za prvi del vzamemo znano transformiranko sinusa in pravilo za časovni faktor.",
+        "\\mathcal L\\{\\sin(2t)\\}=\\frac{2}{s^2+4},\\qquad \\mathcal L\\{tf(t)\\}=-F'(s)"
+      ],
+      [
+        "Odvajamo po s. Pri negativni potenci uporabimo verižno pravilo.",
+        "\\frac{d}{ds}\\big[2(s^2+4)^{-1}\\big]=-2(s^2+4)^{-2}(2s)"
+      ],
+      [
+        "Minus iz pravila spremeni predznak.",
+        "\\mathcal L\\{t\\sin(2t)\\}=\\frac{4s}{(s^2+4)^2}"
+      ],
+      [
+        "Za trojno konvolucijo transformiramo vsakega od treh signalov.",
+        "\\mathcal L\\{2t\\}=\\frac2{s^2},\\quad \\mathcal L\\{\\sin(2t)\\}=\\frac2{s^2+4},\\quad \\mathcal L\\{\\cos(2t)\\}=\\frac{s}{s^2+4}"
+      ],
+      [
+        "Konvolucija se spremeni v produkt. Pokrajšamo en faktor s.",
+        "K(s)=\\frac{2}{s^2}\\frac{2}{s^2+4}\\frac{s}{s^2+4}=\\frac{4}{s(s^2+4)^2}"
+      ],
+      [
+        "Uporabimo podani nastavek za parcialne ulomke.",
+        "K(s)=\\frac{A}{s}+\\frac{Bs}{s^2+4}+\\frac{Cs}{(s^2+4)^2}"
+      ],
+      [
+        "Pomnožimo s skupnim imenovalcem in pri s = 0 preberemo A.",
+        "4=A(s^2+4)^2+Bs^2(s^2+4)+Cs^2\\quad\\Rightarrow\\quad 4=16A"
+      ],
+      [
+        "Primerjamo koeficienta pri četrti in drugi potenci.",
+        "A+B=0,\\quad 8A+4B+C=0\\quad\\Rightarrow\\quad A=\\tfrac14,\\ B=-\\tfrac14,\\ C=-1"
+      ],
+      [
+        "Zadnji člen zapišemo kot četrtino transformiranke iz prvega dela.",
+        "K(s)=\\frac1{4s}-\\frac14\\frac{s}{s^2+4}-\\frac14\\frac{4s}{(s^2+4)^2}"
+      ],
+      [
+        "Obrnemo vsak par iz tabele in izpostavimo četrtino.",
+        "(2t*\\sin(2t)*\\cos(2t))(x)=\\frac{1-\\cos(2x)-x\\sin(2x)}4"
+      ]
+    ],
+    "force24": [
+      [
+        "Od nove sile odštejemo staro. Za uporabo zamika razliko izrazimo s časom od preklopa.",
+        "u=t-2,\\quad t-1=u+1,\\quad f(t)=1+H(t-2)(u+1)"
+      ],
+      [
+        "Po pravilu za časovni zamik dobimo transformiranko sile.",
+        "F(s)=\\frac1s+e^{-2s}\\left(\\frac1{s^2}+\\frac1s\\right)"
+      ],
+      [
+        "V obrazca za odvoda vstavimo začetni položaj 1 in hitrost 0.",
+        "\\mathcal L(y')=sY-1,\\qquad \\mathcal L(y'')=s^2Y-s"
+      ],
+      [
+        "Vstavimo izraze v diferencialno enačbo in zberemo člene z Y.",
+        "s^2Y-s+2(sY-1)+Y=F\\quad\\Rightarrow\\quad(s+1)^2Y=s+2+F"
+      ],
+      [
+        "Po deljenju se pri osnovni sili pojavi popolni kvadrat v števcu.",
+        "\\frac{s+2+1/s}{(s+1)^2}=\\frac{s^2+2s+1}{s(s+1)^2}=\\frac1s"
+      ],
+      [
+        "Pri popravku združimo števec in pokrajšamo en faktor.",
+        "\\frac{1/s^2+1/s}{(s+1)^2}=\\frac{1+s}{s^2(s+1)^2}=\\frac1{s^2(s+1)}"
+      ],
+      [
+        "Postavimo delne ulomke za dvojni pol pri ničli in enostavni pol pri −1.",
+        "\\frac1{s^2(s+1)}=\\frac{A}{s^2}+\\frac{B}{s}+\\frac{C}{s+1}"
+      ],
+      [
+        "Pomnožimo z imenovalcem. Pri s = 0 dobimo A, pri s = −1 dobimo C, vodilni koeficient določi B.",
+        "1=A(s+1)+Bs(s+1)+Cs^2\\quad\\Rightarrow\\quad A=C=1,\\ B+C=0"
+      ],
+      [
+        "Obrnemo popravek v lokalnem času.",
+        "\\mathcal L^{-1}\\left\\{\\frac1{s^2}-\\frac1s+\\frac1{s+1}\\right\\}(u)=u-1+e^{-u}"
+      ],
+      [
+        "Prištejemo osnovni odziv in popravek vklopimo šele po času 2.",
+        "y(t)=1+H(t-2)\\big[(t-2)-1+e^{-(t-2)}\\big]"
+      ],
+      [
+        "Preverimo, da se ob vklopu popravek začne brez skoka v položaju in hitrosti.",
+        "g(0)=0-1+1=0,\\qquad g'(0)=1-e^0=0"
+      ]
+    ],
+    "force23": [
+      [
+        "Sprememba sile je minus prej prisotni kosinus. Pri zamiku uporabimo adicijsko formulo.",
+        "a=\\pi/2,\\quad u=t-a,\\quad -3\\cos(u+\\pi/2)=3\\sin u"
+      ],
+      [
+        "Zapišemo osnovno silo in zamaknjeni popravek ter ju transformiramo.",
+        "f=3\\sin t+3\\cos t+H(t-a)3\\sin(t-a),\\qquad F=\\frac{3+3s}{s^2+1}+e^{-as}\\frac3{s^2+1}"
+      ],
+      [
+        "Vstavimo začetna pogoja v transformiranko drugega odvoda in rešimo enačbo za Y.",
+        "s^2Y-s-2+4Y=F\\quad\\Rightarrow\\quad Y=\\frac{s+2+F}{s^2+4}"
+      ],
+      [
+        "Ločimo osnovni in zamaknjeni del, da bo zamik vplival le na popravek.",
+        "Y=\\frac{s+2}{s^2+4}+(s+1)D+e^{-as}D,\\qquad D=\\frac3{(s^2+1)(s^2+4)}"
+      ],
+      [
+        "Za D nastavimo dva ulomka in odpravimo imenovalec.",
+        "D=\\frac A{s^2+1}+\\frac B{s^2+4}\\quad\\Rightarrow\\quad 3=(A+B)s^2+4A+B"
+      ],
+      [
+        "Primerjamo koeficiente in rešimo sistem. Prištejemo še člen iz začetnih pogojev.",
+        "A+B=0,\\quad 4A+B=3\\quad\\Rightarrow\\quad 3A=3,\\quad A=1,\\ B=-1"
+      ],
+      [
+        "Osnovni del uredimo tako, da združimo ulomka z imenovalcem s² + 4.",
+        "Y_0=\\frac{s+1}{s^2+1}+\\frac{(s+2)-(s+1)}{s^2+4}=\\frac{s+1}{s^2+1}+\\frac1{s^2+4}"
+      ],
+      [
+        "Inverz zadnjega člena zahteva faktor ena polovica, ker ima sinus frekvenco 2.",
+        "\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+4}\\right\\}=\\tfrac12\\sin(2t),\\qquad y_0=\\cos t+\\sin t+\\tfrac12\\sin(2t)"
+      ],
+      [
+        "V lokalnem času posebej obrnemo D.",
+        "\\mathcal L^{-1}\\{D\\}(u)=\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+1}-\\frac1{s^2+4}\\right\\}(u)=\\sin u-\\tfrac12\\sin(2u)"
+      ],
+      [
+        "Sestavimo rešitev. V koraku po vklopu povsod uporabimo isto lokalno uro.",
+        "y(t)=\\cos t+\\sin t+\\tfrac12\\sin(2t)+H(t-a)\\big[\\sin u-\\tfrac12\\sin(2u)\\big],\\quad u=t-\\pi/2"
+      ]
+    ],
+    "volterra": [
+      [
+        "V integralu prepoznamo konvolucijo neznanega signala z jedrom.",
+        "\\int_0^t y(u)\\cos(t-u)\\,du=(y*\\cos)(t)"
+      ],
+      [
+        "Transformiramo obe strani. Produkt razrešimo za Y.",
+        "Y(s)\\frac{s}{s^2+1}=\\frac2{s^2+4}\\quad\\Rightarrow\\quad Y=\\frac{2(s^2+1)}{s(s^2+4)}"
+      ],
+      [
+        "Postavimo parcialne ulomke in izraz pomnožimo s skupnim imenovalcem.",
+        "Y=\\frac A s+\\frac{Bs+C}{s^2+4}\\quad\\Rightarrow\\quad 2s^2+2=(A+B)s^2+Cs+4A"
+      ],
+      [
+        "Primerjamo konstantni, linearni in kvadratni člen.",
+        "4A=2,\\quad C=0,\\quad A+B=2\\quad\\Rightarrow\\quad A=\\tfrac12,\\ B=\\tfrac32"
+      ],
+      [
+        "Uporabimo osnovna para za konstanto in kosinus ter preverimo vrednost na začetku.",
+        "y(t)=\\tfrac12+\\tfrac32\\cos(2t),\\qquad y(0)=\\tfrac12+\\tfrac32=2"
+      ]
+    ],
+    "sum22": [
+      [
+        "Za neničelni x izračunamo limito kvocienta zaporednih absolutnih členov; pri ničli so vsi členi nič.",
+        "\\left|\\frac{x^{n+1}}{(n+1)^2-1}\\frac{n^2-1}{x^n}\\right|=|x|\\frac{n^2-1}{n^2+2n}\\to |x|"
+      ],
+      [
+        "Kvocientni kriterij da polmer 1. Na robovih s primerjavo s kvadratno p-vrsto dobimo absolutno konvergenco.",
+        "x=\\pm1:\\quad\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac{n^2}{n^2-1}=1"
+      ],
+      [
+        "Zato sta vključeni obe krajišči, zunaj polmera pa vrsta divergira.",
+        "R=1,\\qquad x\\in[-1,1]"
+      ],
+      [
+        "Za račun vsote razstavimo imenovalec in poiščemo koeficienta.",
+        "1=A(n+1)+B(n-1)\\quad\\Rightarrow\\quad A+B=0,\\ A-B=1"
+      ],
+      [
+        "V prvotni vsoti tako nastaneta dve enostavnejši vsoti.",
+        "\\frac1{n^2-1}=\\frac12\\left(\\frac1{n-1}-\\frac1{n+1}\\right)"
+      ],
+      [
+        "V prvi vsoti postavimo k = n−1. Za neničelni x znotraj polmera uporabimo logaritemsko vrsto.",
+        "\\sum_{n=2}^\\infty\\frac{x^n}{n-1}=x\\sum_{k=1}^\\infty\\frac{x^k}{k}=-x\\ln(1-x)"
+      ],
+      [
+        "V drugi postavimo k = n+1. Prva dva člena znane vrste odštejemo, ker vsota začne pri k = 3.",
+        "\\sum_{n=2}^\\infty\\frac{x^n}{n+1}=\\frac1x\\sum_{k=3}^\\infty\\frac{x^k}{k}=\\frac{-\\ln(1-x)-x-x^2/2}{x}"
+      ],
+      [
+        "Od prve vsote odštejemo drugo in pomnožimo s polovico.",
+        "S(x)=\\tfrac12\\left[-x\\ln(1-x)+\\frac{\\ln(1-x)+x+x^2/2}{x}\\right]"
+      ],
+      [
+        "Zberemo oba člena z logaritmom, preostala pa delimo z x.",
+        "S(x)=\\tfrac12\\left[(1/x-x)\\ln(1-x)+1+x/2\\right],\\quad 0<|x|<1"
+      ],
+      [
+        "Pri ničli uporabimo izvirno vsoto. Pri −1 se logaritemski člen v limiti izniči. Zveznost na zaprtem intervalu sledi iz majorante 1/(n²−1).",
+        "S(0)=0,\\qquad S(-1)=\\tfrac12[0\\cdot\\ln2+1-1/2]=\\tfrac14"
+      ],
+      [
+        "Pri x → 1 izločimo faktor 1−x. Produkt tega faktorja in njegovega logaritma teži k nič.",
+        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}(1-x)\\ln(1-x)\\to0,\\qquad S(1)=\\tfrac12(1+\\tfrac12)=\\tfrac34"
+      ],
+      [
+        "Za številsko vsoto zapišemo potenco kot 4 krat potenco ene četrtine in vstavimo x = 1/4.",
+        "4^{1-n}=4(1/4)^n,\\qquad 4S(1/4)=2\\left[(4-\\tfrac14)\\ln(\\tfrac34)+1+\\tfrac18\\right]"
+      ],
+      [
+        "Pomnožimo konstanti in koeficient logaritma.",
+        "4S(1/4)=\\frac94+\\frac{15}2\\ln\\!\\left(\\frac34\\right)"
+      ]
+    ],
+    "sum24": [
+      [
+        "Najprej napišemo prvi člen, ker lahko izključi središče.",
+        "n=0:\\quad \\frac{x^{-1}}1=\\frac1x\\quad\\Rightarrow\\quad x\\ne0"
+      ],
+      [
+        "Pri neničelnem x uporabimo kvocientni kriterij.",
+        "\\left|\\frac{x^{4n+3}}{4n+5}\\frac{4n+1}{x^{4n-1}}\\right|=|x|^4\\frac{4n+1}{4n+5}\\to |x|^4"
+      ],
+      [
+        "Pri obeh robovih so vsi členi istega predznaka. Njihove velikosti primerjamo s harmonično vrsto.",
+        "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\quad \\frac{1/(4n+1)}{1/n}\\to\\tfrac14"
+      ],
+      [
+        "Oba robova izločimo. Znotraj polmera množimo z x², da eksponent postane enak imenovalcu.",
+        "x\\in(-1,0)\\cup(0,1),\\quad T(x)=x^2S(x)=\\sum_{n=0}^\\infty\\frac{x^{4n+1}}{4n+1}"
+      ],
+      [
+        "Pomožna vrsta je definirana tudi pri ničli. Znotraj polmera jo odvajamo členoma.",
+        "T(0)=0,\\qquad T'(x)=\\sum_{n=0}^\\infty\\frac{(4n+1)x^{4n}}{4n+1}=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4}"
+      ],
+      [
+        "Imenovalec razstavimo in seštevek dveh enostavnejših ulomkov preverimo s skupnim imenovalcem.",
+        "\\frac12\\left(\\frac1{1-x^2}+\\frac1{1+x^2}\\right)=\\frac{(1+x^2)+(1-x^2)}{2(1-x^4)}=\\frac1{1-x^4}"
+      ],
+      [
+        "Prvi ulomek razstavimo še enkrat, da pri integriranju dobimo logaritma.",
+        "\\frac1{1-u^2}=\\tfrac12\\left(\\frac1{1-u}+\\frac1{1+u}\\right)"
+      ],
+      [
+        "Integriramo od nič do x. Pri prvem imenovalcu je zaradi odvoda −1 v primitivni funkciji minus.",
+        "\\int_0^x\\frac{du}{1-u^2}=\\tfrac12[-\\ln(1-u)+\\ln(1+u)]_0^x=\\tfrac12\\ln\\frac{1+x}{1-x}"
+      ],
+      [
+        "Drugi integral je znana primitivna funkcija za arkus tangens.",
+        "\\int_0^x\\frac{du}{1+u^2}=[\\arctan u]_0^x=\\arctan x"
+      ],
+      [
+        "Vrnemo polovična faktorja, upoštevamo T(0) = 0 in delimo z x².",
+        "S(x)=\\frac{T(x)}{x^2}=\\frac{\\tfrac14\\ln\\!\\frac{1+x}{1-x}+\\tfrac12\\arctan x}{x^2}"
+      ]
+    ],
+    "mtest": [
+      [
+        "Za vse realne x vzamemo absolutno vrednost in omejimo sinus.",
+        "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n"
+      ],
+      [
+        "Majorantna vrsta je p-vrsta z eksponentom 2. Za n ≥ N + 1 lahko njen rep celo omejimo z integralom.",
+        "\\sum_{n=N+1}^\\infty\\frac1{n^2}\\le\\int_N^\\infty\\frac{du}{u^2}=\\left[-\\frac1u\\right]_N^\\infty=\\frac1N\\quad(N\\ge1)"
+      ],
+      [
+        "Za želeno napako izberemo isti indeks za vse x. To zagotovi enakomerno in absolutno konvergenco.",
+        "N>1/\\varepsilon\\quad\\Rightarrow\\quad \\sum_{n>N}\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le1/N<\\varepsilon"
+      ],
+      [
+        "Za drugo vrsto naj bo M veljavna majoranta. Po M-testu bi konvergenca njene številske vsote dala enakomerno konvergenco funkcijske vrste.",
+        "|f_n(x)|\\le M_n,\\quad\\sum M_n<\\infty\\quad\\Rightarrow\\quad\\sum f_n\\ \\text{konvergira enakomerno}"
+      ],
+      [
+        "Ker je tokrat dano ravno nasprotno o funkcijski vrsti, uporabimo kontrapozicijo.",
+        "\\sum f_n\\ \\text{ne konvergira enakomerno}\\quad\\Rightarrow\\quad\\sum M_n=\\infty"
+      ]
+    ],
+    "leg": [
+      [
+        "Pri stopnji 2 vstavimo n = 2 v Legendrovo enačbo in za iskani sodi polinom postavimo dva neznana koeficienta.",
+        "(1-x^2)y''-2xy'+2(2+1)y=0,\\quad y=a+bx^2"
+      ],
+      [
+        "Odvajamo po x. Konstantni člen pri prvem odvajanju izgine.",
+        "y'=0+b\\cdot 2x=2bx,\\qquad y''=2b"
+      ],
+      [
+        "V isti vrstni red enačbe vstavimo polinom in njegova odvoda.",
+        "(1-x^2)2b-2x(2bx)+6(a+bx^2)=0"
+      ],
+      [
+        "Razmnožimo oklepaje in zberemo koeficiente ob enakih potencah.",
+        "(2b+6a)+(-2b-4b+6b)x^2=0"
+      ],
+      [
+        "Kvadratni členi se pokrajšajo. Konstantni koeficient mora biti nič.",
+        "2b+6a=0\\quad\\Rightarrow\\quad b=-3a"
+      ],
+      [
+        "V normalizacijski pogoj vstavimo x = 1 in zamenjamo b z −3a.",
+        "P_2(1)=a+b=1\\quad\\Rightarrow\\quad a-3a=1\\quad\\Rightarrow\\quad a=-\\tfrac12"
+      ],
+      [
+        "Izračunamo drugi koeficient, zapišemo polinom in ga ovrednotimo še pri ničli.",
+        "b=-3(-\\tfrac12)=\\tfrac32,\\qquad P_2(x)=\\frac{3x^2-1}{2},\\quad P_2(0)=-\\tfrac12"
+      ]
+    ],
+    "bessel": [
+      [
+        "Za pozitivni x enačbo delimo z x², da preberemo koeficienta v normalizirani obliki.",
+        "y''+\\frac1x y'+\\left(1-\\frac{25}{x^2}\\right)y=0"
+      ],
+      [
+        "Preverimo Frobeniusov pogoj. Oba produkta sta polinoma in zato analitična pri ničli.",
+        "xP(x)=x\\frac1x=1,\\qquad x^2Q(x)=x^2-25"
+      ],
+      [
+        "Uporabimo nastavek z neznanim začetnim eksponentom. Prvi koeficient mora biti neničeln.",
+        "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0"
+      ],
+      [
+        "Za najnižjo potenco potrebujemo le odvoda prvega člena.",
+        "(a_0x^r)'=ra_0x^{r-1},\\qquad (a_0x^r)''=r(r-1)a_0x^{r-2}"
+      ],
+      [
+        "Odvoda pomnožimo z x oziroma x². Člen x²y prispeva šele dve potenci pozneje.",
+        "r(r-1)a_0x^r+ra_0x^r-25a_0x^r=[r(r-1)+r-25]a_0x^r"
+      ],
+      [
+        "Koeficient postavimo na nič, delimo z neničelnim a₀ in razcepimo razliko kvadratov.",
+        "r(r-1)+r-25=r^2-25=(r-5)(r+5)=0\\quad\\Rightarrow\\quad r=\\pm5"
+      ],
+      [
+        "Obliko enačbe primerjamo s standardno Besselovo. Red je nenegativni koren iz 25.",
+        "x^2-\\nu^2=x^2-25\\quad\\Rightarrow\\quad\\nu=5"
+      ],
+      [
+        "Na pozitivni polosi vzamemo linearno kombinacijo standardnih neodvisnih rešitev tega reda.",
+        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0"
+      ]
+    ],
+    "ortho": [
+      [
+        "Najprej zapišemo definicijo za dve funkciji na intervalu s pozitivno zvezno utežjo.",
+        "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx"
+      ],
+      [
+        "Vstavimo konkretni funkciji, utež 1 ter meji −1 in 1.",
+        "\\langle 1,P_2\\rangle_1=\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx"
+      ],
+      [
+        "Faktor eno polovico izpostavimo. Za x² potenco povečamo na 3 in delimo s 3.",
+        "\\frac12\\int_{-1}^1(3x^2-1)\\,dx=\\frac12\\left[3\\frac{x^3}{3}-x\\right]_{-1}^{1}"
+      ],
+      [
+        "Najprej vstavimo 1 in nato odštejemo vrednost pri −1.",
+        "\\frac12\\big[(1^3-1)-((-1)^3-(-1))\\big]=\\frac12[0-0]=0"
+      ],
+      [
+        "Ničelni skalarni produkt pomeni, da sta funkciji na tem intervalu z dano utežjo pravokotni.",
+        "\\langle 1,P_2\\rangle_1=0\\quad\\Rightarrow\\quad 1\\perp P_2"
+      ]
+    ]
+  }
+}

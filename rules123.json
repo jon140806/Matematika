@@ -1,0 +1,192 @@
+{
+  "lessons": {
+    "area": [
+      [
+        "Odvajanje integrala s stalnima mejama",
+        "F(y)=\\int_A^B f(x,y)dx,\\quad F'(y)=\\int_A^B\\partial_y f(x,y)dx",
+        "$y=a$ je parameter. Meji $A=0$ in $B=2$ sta stalni. Funkcija $f=1+ax^2$ in njen parcialni odvod sta zvezna.",
+        "F'(a)=\\int_0^2\\partial_a(1+ax^2)dx=\\int_0^2x^2dx=\\tfrac83"
+      ]
+    ],
+    "leib": [
+      [
+        "Leibnizovo pravilo s premikajočima se mejama",
+        "F'(y)=\\frac{d}{dy}\\int_{u(y)}^{v(y)}f(x,y)dx=\\int_{u(y)}^{v(y)}f_y(x,y)dx+v'(y)f(v(y),y)-u'(y)f(u(y),y)",
+        "$f_y=\\partial f/\\partial y$: odvajaj po $y$, $x$ miruje. Tukaj je $y=a$, $f=x+a$, zato $f_a=1$. Leva meja $u=a/2$ da $u'=1/2$, desna $v=1+a$ da $v'=1$.",
+        "F'(a)=\\int_{a/2}^{1+a}1\\,dx+1\\cdot(1+2a)-\\tfrac12\\cdot\\tfrac{3a}{2}=2+\\tfrac{7a}{4}"
+      ]
+    ],
+    "tail": [
+      [
+        "Odvajanje nepravega integrala z integrabilno majoranto",
+        "|\\partial_y f(x,y)|\\le g(x),\\quad \\int_A^\\infty g(x)dx<\\infty,\\quad F'(y)=\\int_A^\\infty\\partial_y f(x,y)dx",
+        "Prvotni integral obstaja in integrand ter parcialni odvod sta zvezna. Meja $g$ velja neodvisno od parametra $y=a$. Tu izberemo $g(x)=xe^{-x^2}$.",
+        "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx,\\quad \\int_R^\\infty g(x)dx=\\tfrac12 e^{-R^2}"
+      ]
+    ],
+    "gamma": [
+      [
+        "Integracija po delih",
+        "\\int_A^B u\\,dv=[uv]_A^B-\\int_A^B v\\,du",
+        "Zaradi znižanja potence vzemi $u=x^p$, $dv=e^{-x}dx$, zato $du=px^{p-1}dx$, $v=-e^{-x}$. Pri $p>0$ na obeh robovih produkt izgine.",
+        "\\Gamma(p+1)=[-x^pe^{-x}]_0^\\infty+p\\int_0^\\infty x^{p-1}e^{-x}dx=p\\Gamma(p)"
+      ]
+    ],
+    "beta": [
+      [
+        "Menjava dveh spremenljivk v dvojnem integralu",
+        "\\iint_D h(x,y)dx\\,dy=\\iint_E h(x(r,u),y(r,u))\\left|\\frac{\\partial(x,y)}{\\partial(r,u)}\\right|dr\\,du",
+        "$h=x^{p-1}y^{q-1}e^{-x-y}$ za $p,q>0$. V prvi četrtini uporabi $x=ru$, $y=r(1-u)$, torej $r>0$, $0<u<1$. Absolutna vrednost determinante je $r$.",
+        "\\Gamma(p)\\Gamma(q)=\\int_0^\\infty r^{p+q-1}e^{-r}dr\\int_0^1u^{p-1}(1-u)^{q-1}du=\\Gamma(p+q)B(p,q)"
+      ]
+    ],
+    "betasub": [
+      [
+        "Substitucija v določenem integralu",
+        "\\int_A^B f(x)dx=\\int_\\alpha^\\beta f(\\phi(u))\\phi'(u)du,\\quad \\phi(\\alpha)=A,\\quad\\phi(\\beta)=B",
+        "Za $u=x^2/4$ je $\\phi(u)=2\\sqrt u$, $\\phi'(u)=1/\\sqrt u$ v odprtem intervalu. Mejama 0 in 2 ustrezata 0 in 1.",
+        "I=\\int_0^1 4u\\cdot2\\sqrt{1-u}\\cdot\\frac{du}{\\sqrt u}=8B(3/2,3/2)=\\pi"
+      ]
+    ],
+    "lap": [
+      [
+        "Definicija Laplaceove transformacije",
+        "F(s)=\\mathcal L\\{f\\}(s)=\\int_0^\\infty e^{-st}f(t)dt",
+        "$t$ je čas in $s$ določa dušenje. Vstavi $f(t)=e^t$. Integral konvergira za $s>1$.",
+        "F(s)=\\int_0^\\infty e^{-st}e^tdt=\\int_0^\\infty e^{-(s-1)t}dt=\\frac1{s-1}"
+      ]
+    ],
+    "deriv": [
+      [
+        "Časovna odvoda v Laplaceovi domeni",
+        "\\mathcal L(f')=sF-f(0),\\qquad\\mathcal L(f'')=s^2F-sf(0)-f'(0)",
+        "V grafičnem zgledu je $f(t)=1+t$, zato sta $f(0)=1$, $f'(0)=1$, transformiranka pa $F(s)=1/s+1/s^2$ za $s>0$.",
+        "\\mathcal L(f'')=s^2(1/s+1/s^2)-s-1=0"
+      ],
+      [
+        "Odvod transformiranke po s",
+        "\\mathcal L(tf(t))=-F'(s)",
+        "Vstavi isti $F(s)$ in odvajaj oba člena po $s$. Pri dovolj velikem $s$ to sledi iz odvajanja eksponentnega jedra pod integralom.",
+        "\\mathcal L(t(1+t))=-\\frac{d}{ds}(s^{-1}+s^{-2})=s^{-2}+2s^{-3}"
+      ]
+    ],
+    "system": [
+      [
+        "Pretvorba začetnih pogojev za prvi odvod",
+        "\\mathcal L(f')=s\\mathcal L(f)-f(0)",
+        "Pravilo uporabi najprej za $f=y$, nato za $f=z$. V prvi enačbi je $y(0)=1$, v drugi $z(0)=0$.",
+        "y'=z,\\ z'=y\\quad\\Longrightarrow\\quad sY-1=Z,\\quad sZ-0=Y"
+      ]
+    ]
+  },
+  "exercises": {
+    "area": [
+      [
+        "Leibnizovo pravilo pri stalnih mejah",
+        "\\frac{d}{dy}\\int_A^B f(x,y)dx=\\int_A^B\\frac{\\partial f}{\\partial y}(x,y)dx",
+        "$y=a$, $A=0$, $B=2$, $f(x,a)=1+ax^2$. Pri odvajanju po $a$ je $x$ stalnica. Zveznost integranda in parcialnega odvoda dovoljuje menjavo.",
+        "F'(a)=\\int_0^2(0+x^2\\cdot1)dx=\\left[\\frac{x^3}{3}\\right]_0^2=\\frac83"
+      ]
+    ],
+    "gauss": [
+      [
+        "Odvajanje po parametru na neskončnem intervalu",
+        "I'(a)=\\int_0^\\infty\\partial_a f(x,a)dx",
+        "Poleg zveznosti potrebuješ obstoj izhodiščnega integrala in primerno integrabilno mejo odvoda. Tu je $f=e^{-x^2}\\cos(ax)$ in odvod omeji $g(x)=xe^{-x^2}$.",
+        "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx,\\qquad \\int_0^\\infty g(x)dx=\\tfrac12"
+      ],
+      [
+        "Integracija po delih",
+        "\\int u\\,dv=uv-\\int v\\,du",
+        "Izberi $u=\\sin(ax)$ in $dv=(e^{-x^2})'dx$. Faktor $1/2$ ostane pred integralom.",
+        "I'(a)=\\tfrac12[e^{-x^2}\\sin(ax)]_0^\\infty-\\tfrac a2 I(a)=-\\tfrac a2I(a)"
+      ]
+    ],
+    "atan": [
+      [
+        "Leibnizovo pravilo s spremenljivo zgornjo mejo",
+        "\\frac{d}{dt}\\int_A^{v(t)} f(x,t)dx=\\int_A^{v(t)}\\partial_t f(x,t)dx+v'(t)f(v(t),t)",
+        "$A=0$, $v(t)=t^2$ in $v'(t)=2t$. Pri $x=0$ uporabi zvezno razširitev $f(0,t)=t-1$. Spodnji rob miruje.",
+        "I'(t)=\\int_0^{t^2}\\frac{dx}{1+t^2x^2}+2t f(t^2,t)"
+      ]
+    ],
+    "root": [
+      [
+        "Verižno pravilo za logaritem in koren",
+        "(\\ln g)'=\\frac{g'}g,\\qquad (\\sqrt w)'=\\frac{w'}{2\\sqrt w}",
+        "Odvajaj po $t$ pri stalnem $y$. Za $t>2$ je $w=t^2-y^2>0$, $g=t+\\sqrt w$. Ker sta meji integrala stalni, integriraj dobljeni odvod.",
+        "\\partial_t\\ln g=\\frac{1+t/\\sqrt{w}}{t+\\sqrt w}=\\frac1{\\sqrt w},\\quad F'(t)=[\\arcsin(y/t)]_0^2=\\arcsin(2/t)"
+      ]
+    ],
+    "betasub": [
+      [
+        "Definicija beta in povezava z gama",
+        "B(p,q)=\\int_0^1u^{p-1}(1-u)^{q-1}du=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}",
+        "Pri $u=x^2/4$ je $dx=du/\\sqrt u$. Dobljena eksponenta sta $1/2$, zato sta oba argumenta $3/2$.",
+        "I=8B(3/2,3/2)=8\\frac{(\\sqrt{\\pi}/2)^2}{2}=\\pi"
+      ]
+    ],
+    "cubeta": [
+      [
+        "Eulerjev integral beta",
+        "\\int_0^1u^{p-1}(1-u)^{q-1}du=B(p,q),\\qquad p,q>0",
+        "$u=4x^2$ spremeni meji v 0 in 1. Po preračunu diferenciala je $p-1=-1/4$, $q-1=1/2$.",
+        "I=\\frac1{4\\sqrt2}\\int_0^1u^{-1/4}(1-u)^{1/2}du=\\frac{B(3/4,3/2)}{4\\sqrt2}"
+      ]
+    ],
+    "loggamma": [
+      [
+        "Eulerjev integral gama in rekurzija",
+        "\\Gamma(p)=\\int_0^\\infty u^{p-1}e^{-u}du,\\quad\\Gamma(p+1)=p\\Gamma(p),\\quad p>0",
+        "Substitucija $u=\\ln x$ da eksponent $1/2$, torej argument $3/2$. V rekurziji uporabi $p=1/2$.",
+        "I=\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac12\\sqrt{\\pi}"
+      ]
+    ],
+    "betarec": [
+      [
+        "Zveza beta z gama",
+        "B(x,y)=\\frac{\\Gamma(x)\\Gamma(y)}{\\Gamma(x+y)},\\quad \\Gamma(x+1)=x\\Gamma(x)",
+        "Najprej vstavi $(x,y)=(p,q+1)$, nato $(p+1,q)$. Vsota argumentov je obakrat $p+q+1$. Z rekurzijo spusti povišani argument.",
+        "\\frac{B(p,q+1)}{B(p+1,q)}=\\frac{\\Gamma(p)\\Gamma(q+1)}{\\Gamma(p+1)\\Gamma(q)}=\\frac qp"
+      ]
+    ],
+    "inverse": [
+      [
+        "Razcep ulomka in inverz enostavnega pola",
+        "\\frac K{(s-a)(s-b)}=\\frac A{s-a}+\\frac B{s-b},\\quad a\\ne b,\\qquad\\mathcal L^{-1}\\left(\\frac1{s-a}\\right)=e^{at}",
+        "$K=1$, $a=1$, $b=-1$. Po odpravi imenovalca vstavi $s=1$ in $s=-1$, da dobiš $A=1/2$, $B=-1/2$.",
+        "F(s)=\\frac{1/2}{s-1}-\\frac{1/2}{s+1}\\quad\\Longrightarrow\\quad f(t)=\\tfrac12(e^t-e^{-t})"
+      ]
+    ],
+    "sys22": [
+      [
+        "Transformiranje odvodov v sistemu",
+        "\\mathcal L(f')=sF(s)-f(0),\\qquad \\mathcal L(e^{at})=\\frac1{s-a}",
+        "Za $y$ je začetna vrednost 2, za $z$ je 1. Desni strani imata $a=1$ in $a=-1$.",
+        "(s+1)(Y-2Z)=\\frac1{s-1},\\qquad sY+(1-s)Z=1+\\frac1{s+1}"
+      ],
+      [
+        "Inverz dvojnega pola",
+        "\\mathcal L^{-1}\\left(\\frac1{(s-a)^2}\\right)=te^{at}",
+        "Pri členu z imenovalcem $(s+1)^2$ je $a=-1$. Ta člen pojasni faktor $t$ v časovni rešitvi.",
+        "Y=\\frac2{s+1}+\\frac1{(s+1)^2}\\quad\\Longrightarrow\\quad y=(2+t)e^{-t}"
+      ]
+    ],
+    "sys23": [
+      [
+        "Drugi odvod z začetnima pogojema",
+        "\\mathcal L(f'')=s^2F-sf(0)-f'(0),\\qquad\\mathcal L(f')=sF-f(0)",
+        "Za $f=z$ uporabi $z(0)=2$ in $z'(0)=3$. Pri prvem odvodu funkcije $y$ vstavi $y(0)=1$.",
+        "\\mathcal L(z'')=s^2Z-2s-3,\\quad\\mathcal L(z')=sZ-2,\\quad\\mathcal L(y')=sY-1"
+      ]
+    ],
+    "devar": [
+      [
+        "Množenje s časom in odvod po s",
+        "\\mathcal L(tg(t))=-\\frac{d}{ds}G(s),\\qquad G=\\mathcal L(g)",
+        "Za $g=y''$ vzemi $G=s^2Y-sy(0)-y'(0)$. Za $g=y$ vzemi $G=Y$. Pri odvajanju po $s$ so začetni podatki stalnice.",
+        "\\mathcal L(ty'')=-2sY-s^2Y'+y(0),\\quad \\mathcal L(ty)=-Y'"
+      ]
+    ]
+  }
+}

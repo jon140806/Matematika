@@ -3,6 +3,7 @@ import base64
 import json
 import re
 from pathlib import Path
+from xml.etree import ElementTree as ET
 from latex2mathml.converter import convert
 
 root = Path(__file__).resolve().parent
@@ -19,6 +20,33 @@ def parts(line,maximum=100):
     return re.split(r"\|(?=(?:[^$]*\$[^$]*\$)*[^$]*$)",line,maxsplit=maximum)
 def literal(data):
     return json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("</script","<\\/script")
+
+
+def worked_formula(tex):
+    # Keep fractions together, but allow a chain of equalities to wrap on a phone.
+    math=ET.fromstring(convert(tex))
+    ns="{http://www.w3.org/1998/Math/MathML}"
+    ET.register_namespace("",ns[1:-1])
+    math.set("displaystyle","true")
+    if len(math)!=1 or math[0].tag!=ns+"mrow":
+        return ET.tostring(math,encoding="unicode")
+    groups=[[]]
+    for node in math[0]:
+        if groups[-1] and node.tag==ns+"mo" and node.text in {"=","⇒","⇔","≤","≥","≈","→"}:
+            groups.append([])
+        groups[-1].append(node)
+    fragments=[]
+    for group in groups:
+        fragment=ET.Element(math.tag,math.attrib)
+        ET.SubElement(fragment,ns+"mrow").extend(group)
+        fragments.append(ET.tostring(fragment,encoding="unicode"))
+    return "<wbr>".join(fragments)
+
+
+def worked_rows(rows):
+    if len(rows)<2:
+        raise ValueError("A worked example needs successive calculation lines")
+    return [[math_text(reason),worked_formula(tex)] for reason,tex in rows]
 
 lessons=[]
 for item,subtitle,body in sections("lessons.txt"):
@@ -49,7 +77,70 @@ for extra in extras:
     for name in extra["files"]:
         if name not in sources:
             sources[name]=base64.b64encode((root.parent/name).read_bytes()).decode("ascii")
-html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/",read("plots.js")).replace("/*APP*/",read("app.js"))
+symbols=json.loads(read("lessonSymbols.json"))
+lesson_purpose=json.loads(read("lessonPurpose.json"))
+for item in lessons:
+    item["symbols"]=list(map(math_text,symbols[item["plot"]]))
+    assert len(item["symbols"])==len(item["steps"])
+    purpose=lesson_purpose[item["plot"]]
+    assert len(purpose["steps"])==len(item["steps"])
+    item["purpose"]={
+        "question":math_text(purpose["question"]),
+        "use":math_text(purpose["use"]),
+        "steps":list(map(math_text,purpose["steps"])),
+    }
+symbols=json.loads(read("exerciseSymbols.json"))
+practice_purpose=json.loads(read("practicePurpose.json"))
+for item in exercises:
+    item["symbols"]=math_text(symbols[item["plot"]])
+    item["purpose"]=math_text(practice_purpose["exercises"][item["plot"]])
+for item,explanation,purpose in zip(cards,json.loads(read("cardSymbols.json")),practice_purpose["cards"],strict=True):
+    item["symbols"]=math_text(explanation)
+    item["purpose"]=math_text(purpose)
+for filename,day_range in [("worked123.json",range(1,4)),("worked456.json",range(4,7))]:
+    worked=json.loads(read(filename))
+    rules=json.loads(read(filename.replace("worked","rules")))
+    for kind,items in [("lessons",lessons),("exercises",exercises)]:
+        for item in items:
+            if item["day"] in day_range:
+                item["rules"]=[
+                    dict(name=name,general=worked_formula(general),mapping=math_text(mapping),
+                         example=worked_formula(example))
+                    for name,general,mapping,example in rules[kind][item["plot"]]
+                ]
+    for item in lessons:
+        if item["day"] in day_range:
+            scenes=worked["lessons"][item["plot"]]
+            assert len(scenes)==len(item["steps"])
+            item["worked"]=[worked_rows(rows) for rows in scenes]
+    for item in exercises:
+        if item["day"] in day_range:
+            item["worked"]=worked_rows(worked["exercises"][item["plot"]])
+# Show the signs and the three geometrical contributions even when the rule wraps.
+def leibniz_line(lhs,terms):
+    start='<span class="ruleLhs">'+worked_formula(lhs)+'</span>'
+    blocks=[]
+    for i,(label,tex) in enumerate(terms):
+        blocks.append(f'<span class="term term{i}"><small>{label}</small>{worked_formula(tex)}</span>')
+    return start+"".join(blocks)
+
+leibniz=next(item for item in lessons if item["plot"]=="leib")["rules"][0]
+leibniz["general"]=leibniz_line(
+    r"F'(y)=\frac{d}{dy}\int_{u(y)}^{v(y)} f(x,y)\,dx=",
+    [("sprememba višine",r"\int_{u(y)}^{v(y)} f_y(x,y)\,dx"),
+     ("desni rob",r"+\,v'(y)\cdot f(v(y),y)"),("levi rob",r"-\,u'(y)\cdot f(u(y),y)")])
+leibniz["example"]=leibniz_line(r"F'(a)=",
+    [("sprememba višine",r"\int_{a/2}^{1+a}1\,dx"),
+     ("desni rob",r"+\,1\cdot(1+2a)"),("levi rob",r"-\,\tfrac12\cdot\tfrac{3a}{2}")])+worked_formula(r"=2+\tfrac74a")
+for card,rows in zip(cards,json.loads(read("workedCards.json")),strict=True):
+    card["worked"]=worked_rows(rows)
+base_items=[item for day in days for item in day["base"]]
+for item,rows in zip(base_items,json.loads(read("workedBasics.json")),strict=True):
+    item.append(worked_rows(rows))
+extra_items=[item for day in extras for item in day["items"]]
+for item,rows in zip(extra_items,json.loads(read("workedExtras.json")),strict=True):
+    item.append(worked_rows(rows))
+html=read("shell.html").replace("/*STYLE*/",read("style.css")).replace("/*DATA*/","const course="+literal(dict(lessons=lessons,exercises=exercises,cards=cards,days=days,papers=papers,extras=extras,sources=sources))+";").replace("/*PLOTS*/","\n".join(read(f) for f in ["graphKeys123.js","graphKeys456.js","plots.js"])).replace("/*APP*/",read("app.js"))
 (root/"dist").mkdir(exist_ok=True)
 (root/"dist/index.html").write_text(html,encoding="utf-8")
 print(f"{len(lessons)} lessons, {len(exercises)} exercises, {len(cards)} cards")

@@ -1,0 +1,256 @@
+{
+  "lessons": {
+    "shift": [
+      [
+        "Preklop med dvema predpisoma",
+        "f(t)=f_1(t)+H(t-a)[f_2(t)-f_1(t)]",
+        "Pred preklopom velja $f_1(t)=1$, po njem $f_2(t)=t$. Razlika obeh predpisov je zato $t-1$.",
+        "f(t)=1+H(t-a)(t-1)"
+      ],
+      [
+        "Časovni zamik",
+        "\\mathcal L\\{H(t-a)g(t-a)\\}=e^{-as}G(s)",
+        "Pri preklopu ob $a=2$ je lokalni čas $u=t-2$. Zakasnjeni popravek ima obliko $g(u)=u+1$.",
+        "\\mathcal L\\{H(t-2)[(t-2)+1]\\}=e^{-2s}(1/s^2+1/s)"
+      ]
+    ],
+    "conv": [
+      [
+        "Definicija vzročne konvolucije",
+        "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du",
+        "Prvi signal je $f(u)=u$. Drugi je na celotnem območju $0\\le u\\le t$ enak $g(t-u)=1$.",
+        "(f*g)(t)=\\int_0^t u\\cdot1\\,du=\\frac{t^2}{2}"
+      ],
+      [
+        "Konvolucijski izrek",
+        "\\mathcal L(f*g)(s)=F(s)G(s)",
+        "Transformiranka časa je $F(s)=1/s^2$, transformiranka enice pa $G(s)=1/s$ za $s>0$.",
+        "F(s)G(s)=\\frac1{s^2}\\frac1s=\\frac1{s^3}=\\mathcal L\\{t^2/2\\}"
+      ]
+    ],
+    "impulse": [
+      [
+        "Sunek kot integral sile",
+        "J=\\int_{a}^{a+h}p(t)\\,dt",
+        "Začetek je $a=2$, trajanje $h>0$, konstantna višina pravokotnika $p(t)=1/h$.",
+        "J=\\int_2^{2+h}\\frac1h\\,dt=\\frac{(2+h)-2}{h}=1"
+      ],
+      [
+        "Zamik enotskega impulza",
+        "\\mathcal L\\{\\delta(t-a)\\}=e^{-as}\\quad(a>0)",
+        "Dogodek pri drugi sekundi pomeni $a=2$. V eksponentu zato čas pomnožiš s spremenljivko $s$.",
+        "\\mathcal L\\{\\delta(t-2)\\}=e^{-2s}"
+      ]
+    ],
+    "radius": [
+      [
+        "Kvocientni kriterij",
+        "q=\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|",
+        "Tukaj je $a_n=x^n/n$. Za $x\\ne0$ je količnik določen. Pri $q<1$ vrsta absolutno konvergira, pri $q>1$ divergira, pri $q=1$ preveriš vsak rob.",
+        "q=\\lim_{n\\to\\infty}\\left|\\frac{x^{n+1}}{n+1}\\frac n{x^n}\\right|=|x|"
+      ],
+      [
+        "Leibnizov kriterij za levi rob",
+        "b_n\\ge0,\\quad b_n\\searrow0\\quad\\Rightarrow\\quad\\sum_{n=1}^{\\infty}(-1)^nb_n\\ \\text{konvergira}",
+        "Pri $x=-1$ dobiš izmenični predznak. Velikost člena je $b_n=1/n$.",
+        "b_{n+1}=\\frac1{n+1}<\\frac1n=b_n,\\qquad\\lim_{n\\to\\infty}b_n=0"
+      ]
+    ],
+    "series": [
+      [
+        "Vsota geometrijske vrste",
+        "\\sum_{n=0}^\\infty bq^n=\\frac b{1-q}\\qquad(|q|<1)",
+        "Prvi člen je $b=1$. Med integriranjem označiš skupno razmerje z $q=u$, nato integriraš od 0 do $x$, kjer je $|x|<1$.",
+        "\\sum_{n=0}^\\infty u^n=\\frac1{1-u}"
+      ],
+      [
+        "Členoma integrirana potenčna vrsta",
+        "\\int_0^x\\sum_{n=0}^\\infty c_nu^n\\,du=\\sum_{n=0}^\\infty c_n\\frac{x^{n+1}}{n+1}",
+        "Znotraj konvergenčnega polmera smeš integrirati členoma. Tu je vsak $c_n=1$. Novi indeks $k=n+1$ začne pri 1.",
+        "\\sum_{k=1}^\\infty\\frac{x^k}{k}=\\int_0^x\\frac{du}{1-u}=-\\ln(1-x)"
+      ]
+    ],
+    "uniform": [
+      [
+        "Ocena repa z majoranto",
+        "|f_n(x)|\\le M_n\\quad\\Rightarrow\\quad |S(x)-S_N(x)|\\le\\sum_{n=N+1}^\\infty M_n",
+        "Na intervalu $|x|\\le0{,}8$ je člen $f_n(x)=x^n$ in njegova skupna meja $M_n=0{,}8^n$. Majorantna vrsta je konvergentna.",
+        "|S(x)-S_{20}(x)|\\le\\sum_{n=21}^\\infty0{,}8^n=\\frac{0{,}8^{21}}{1-0{,}8}<0{,}05"
+      ]
+    ],
+    "leg": [
+      [
+        "Rekurzija koeficientov Legendrove enačbe",
+        "a_{k+2}=\\frac{(k-n)(k+n+1)}{(k+1)(k+2)}a_k",
+        "Stopnja polinoma je $n=2$. Za sodo vejo začni pri $k=0$, nato postavi $k=2$.",
+        "a_2=\\frac{(0-2)(0+2+1)}{1\\cdot2}a_0=-3a_0,\\qquad a_4=\\frac{(2-2)(2+2+1)}{3\\cdot4}a_2=0"
+      ],
+      [
+        "Normalizacija Legendrovega polinoma",
+        "P_n(1)=1",
+        "Ker je v sodi veji ostal le $P_2(x)=a_0+a_2x^2$, v ta predpis vstaviš $x=1$ in $a_2=-3a_0$.",
+        "1=a_0+(-3a_0)1^2=-2a_0\\quad\\Rightarrow\\quad a_0=-\\frac12"
+      ]
+    ],
+    "bessel": [
+      [
+        "Frobeniusova indicialna enačba",
+        "r(r-1)+p_0r+q_0=0",
+        "V normalizirani enačbi sta $P=1/x$ in $Q=1-\\nu^2/x^2$. Zato sta mejni vrednosti $p_0=\\lim_{x\\to0}xP=1$ in $q_0=\\lim_{x\\to0}x^2Q=-\\nu^2$.",
+        "r(r-1)+r-\\nu^2=0\\quad\\Rightarrow\\quad r^2=\\nu^2"
+      ],
+      [
+        "Standardna Besselova rešitev",
+        "x^2y''+xy'+(x^2-\\nu^2)y=0\\quad\\Rightarrow\\quad y=C_1J_\\nu(x)+C_2Y_\\nu(x)\\quad(x>0)",
+        "Število 25 v enačbi je kvadrat reda, torej je $\\nu=5$. Koeficienta $C_1,C_2$ ostaneta prosta.",
+        "x^2-\\nu^2=x^2-25\\quad\\Rightarrow\\quad y=C_1J_5(x)+C_2Y_5(x)"
+      ]
+    ],
+    "ortho": [
+      [
+        "Uteženi skalarni produkt",
+        "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx",
+        "Tukaj je $a=-1$, $b=1$, utež $w=1$, prvi faktor $f=P_0=1$ in drugi $g=P_2=(3x^2-1)/2$.",
+        "\\langle P_0,P_2\\rangle_1=\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx"
+      ]
+    ],
+    "pde": [
+      [
+        "Karakteristična enačba pri stalnih koeficientih",
+        "Av''+Bv'+Cv=0\\quad\\Rightarrow\\quad A\\lambda^2+B\\lambda+C=0",
+        "Pri stalnem $y$ je $v(x)=u(x,y)$. Enačba $v''-v=0$ ima koeficiente $A=1$, $B=0$, $C=-1$.",
+        "1\\lambda^2+0\\lambda-1=0\\quad\\Rightarrow\\quad\\lambda_1=1,\\quad\\lambda_2=-1"
+      ],
+      [
+        "Rešitev za dva različna realna korena",
+        "v(x)=C_1e^{\\lambda_1x}+C_2e^{\\lambda_2x}",
+        "Vsak prerez ima svoji konstanti, zato zapišemo $C_1=A(y)$ in $C_2=B(y)$. Pri $x=0$ ju določita predpisani višina in naklon.",
+        "u=A(y)e^x+B(y)e^{-x},\\qquad A+B=y,\\quad A-B=0"
+      ]
+    ]
+  },
+  "exercises": {
+    "triple": [
+      [
+        "Časovni faktor kot odvod transformiranke",
+        "\\mathcal L\\{tf(t)\\}(s)=-\\frac{d}{ds}F(s)",
+        "Izberi $f(t)=\\sin(2t)$, torej $F(s)=2/(s^2+4)$. Odvajaj po $s$, ker množiš signal s časom.",
+        "\\mathcal L\\{t\\sin(2t)\\}=-\\frac{d}{ds}\\frac2{s^2+4}=\\frac{4s}{(s^2+4)^2}"
+      ],
+      [
+        "Konvolucija treh signalov",
+        "\\mathcal L(f*g*h)=F(s)G(s)H(s)",
+        "Vstavi transformiranke signalov $f(t)=2t$, $g(t)=\\sin(2t)$ in $h(t)=\\cos(2t)$ v istem vrstnem redu.",
+        "F(s)G(s)H(s)=\\frac2{s^2}\\frac2{s^2+4}\\frac{s}{s^2+4}=\\frac4{s(s^2+4)^2}"
+      ]
+    ],
+    "force24": [
+      [
+        "Zamik popravka sile",
+        "\\mathcal L\\{H(t-a)g(t-a)\\}=e^{-as}\\mathcal L\\{g\\}(s)",
+        "Preklop je pri $a=2$. V lokalnem času $u=t-2$ je nova sila minus stara $g(u)=(u+2)-1=u+1$. Osnovna sila je 1.",
+        "F(s)=\\frac1s+e^{-2s}\\left(\\frac1{s^2}+\\frac1s\\right)"
+      ],
+      [
+        "Transformiranje začetnih pogojev",
+        "\\mathcal L(y')=sY-y(0),\\qquad\\mathcal L(y'')=s^2Y-sy(0)-y'(0)",
+        "V enačbi $y''+2y'+y=f$ zamenjaš oba odvoda in vstaviš $y(0)=1$, $y'(0)=0$.",
+        "(s^2Y-s\\cdot1-0)+2(sY-1)+Y=F(s)"
+      ]
+    ],
+    "force23": [
+      [
+        "Zamik pri kosovni sili",
+        "\\mathcal L\\{H(t-a)g(t-a)\\}=e^{-as}G(s)",
+        "Tukaj je $a=\\pi/2$, $u=t-a$. Od prvotne sile odstraniš $3\\cos t$, zato je $g(u)=-3\\cos(u+\\pi/2)=3\\sin u$.",
+        "F(s)=\\frac{3+3s}{s^2+1}+e^{-\\pi s/2}\\frac3{s^2+1}"
+      ],
+      [
+        "Laplaceova transformacija drugega odvoda",
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)",
+        "V $y''+4y=f$ vstaviš začetni položaj $y(0)=1$ in hitrost $y'(0)=2$.",
+        "(s^2Y-s\\cdot1-2)+4Y=F(s)\\quad\\Rightarrow\\quad Y=\\frac{s+2+F(s)}{s^2+4}"
+      ]
+    ],
+    "volterra": [
+      [
+        "Reševanje integralne enačbe s konvolucijo",
+        "y*k=b\\quad\\Rightarrow\\quad Y(s)K(s)=B(s)",
+        "Jedro je $k(t)=\\cos t$, zato je $K=s/(s^2+1)$. Desna stran je $b(t)=\\sin(2t)$, zato je $B=2/(s^2+4)$. Izoliraš neznani $Y$.",
+        "Y=\\frac BK=\\frac2{s^2+4}\\frac{s^2+1}{s}"
+      ]
+    ],
+    "sum22": [
+      [
+        "Kvocientni kriterij za notranjost območja",
+        "q=\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|",
+        "Za $a_n=x^n/(n^2-1)$ je naslednji imenovalec $(n+1)^2-1$. Pri $x\\ne0$ izračunaj kvocient. Pogoj $q<1$ da absolutno konvergenco.",
+        "q=\\lim_{n\\to\\infty}|x|\\frac{n^2-1}{(n+1)^2-1}=|x|"
+      ],
+      [
+        "Logaritemska vrsta",
+        "\\sum_{k=1}^\\infty\\frac{z^k}{k}=-\\ln(1-z)\\quad(|z|<1)",
+        "Po delnih ulomkih nastaneta imenovalca $n-1$ in $n+1$. Za prvega vzameš $k=n-1$, za drugega $k=n+1$, v obeh je $z=x$.",
+        "\\sum_{n=2}^\\infty\\frac{x^n}{n-1}=-x\\ln(1-x),\\qquad\\sum_{n=2}^\\infty\\frac{x^n}{n+1}=\\frac{-\\ln(1-x)-x-x^2/2}{x}\\quad(x\\ne0)"
+      ]
+    ],
+    "sum24": [
+      [
+        "Členoma odvajanje potenčne vrste",
+        "\\frac{d}{dx}\\sum_{k=1}^\\infty c_kx^k=\\sum_{k=1}^\\infty kc_kx^{k-1}",
+        "Znotraj polmera najprej sestaviš $T=x^2S$. Pri potenci $k=4n+1$ je koeficient $c_k=1/(4n+1)$, vsi drugi koeficienti so nič.",
+        "T'=\\sum_{n=0}^\\infty(4n+1)\\frac{x^{4n}}{4n+1}=\\sum_{n=0}^\\infty(x^4)^n"
+      ],
+      [
+        "Geometrijska vsota",
+        "\\sum_{n=0}^\\infty q^n=\\frac1{1-q}\\quad(|q|<1)",
+        "Skupno razmerje je $q=x^4$. Vstaviš ga v geometrijsko vsoto, nato z $T(0)=0$ obnoviš pomožno funkcijo.",
+        "T'(x)=\\frac1{1-x^4},\\qquad T(x)=\\int_0^x\\frac{du}{1-u^4}"
+      ]
+    ],
+    "mtest": [
+      [
+        "Weierstrassov kriterij",
+        "|f_n(x)|\\le M_n,\\quad \\sum_{n=1}^\\infty M_n<\\infty\\quad\\Rightarrow\\quad\\sum_{n=1}^\\infty f_n\\ \\text{konvergira enakomerno}",
+        "Tu je $f_n(x)=\\sin(nx)/n^2$. Ker je $|\\sin(nx)|\\le1$, izbereš $M_n=1/n^2$ za vse realne $x$ hkrati.",
+        "\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le\\frac1{n^2},\\qquad\\sum_{n=1}^{\\infty}\\frac1{n^2}<\\infty"
+      ]
+    ],
+    "leg": [
+      [
+        "Legendrova diferencialna enačba",
+        "(1-x^2)y''-2xy'+n(n+1)y=0",
+        "Pri stopnji $n=2$ je $n(n+1)=6$. Za sodi polinom $y=a+bx^2$ dobiš $y'=2bx$, $y''=2b$.",
+        "(1-x^2)\\,2b-2x(2bx)+6(a+bx^2)=0"
+      ],
+      [
+        "Normalizacija Legendrovega polinoma",
+        "P_n(1)=1",
+        "V $P_2(x)=a+bx^2$ vstaviš $x=1$. Drugo povezavo $b=-3a$ dobiš s primerjavo prostih členov v enačbi.",
+        "a+b=1,\\qquad a-3a=1\\quad\\Rightarrow\\quad a=-1/2,\\quad b=3/2"
+      ]
+    ],
+    "bessel": [
+      [
+        "Frobeniusov nastavek in indicialna enačba",
+        "y=x^r\\sum_{k=0}^\\infty a_kx^k,\\quad a_0\\ne0,\\qquad r(r-1)+p_0r+q_0=0",
+        "Po deljenju z $x^2$ sta $P=1/x$ in $Q=1-25/x^2$. Vstaviš $p_0=\\lim_{x\\to0}xP=1$ ter $q_0=\\lim_{x\\to0}x^2Q=-25$.",
+        "r(r-1)+1\\cdot r-25=0\\quad\\Rightarrow\\quad r=\\pm5"
+      ],
+      [
+        "Besselova enačba reda ν",
+        "x^2y''+xy'+(x^2-\\nu^2)y=0,\\qquad y=C_1J_\\nu(x)+C_2Y_\\nu(x)\\quad(x>0)",
+        "Člen $x^2-25$ primerjaš s $x^2-\\nu^2$. Nenegativni red je $\\nu=\\sqrt{25}=5$.",
+        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0"
+      ]
+    ],
+    "ortho": [
+      [
+        "Preizkus pravokotnosti z utežjo",
+        "f\\perp_w g\\quad\\Longleftrightarrow\\quad\\int_a^b f(x)g(x)w(x)\\,dx=0",
+        "Iz naloge vzameš $f(x)=1$, $g(x)=(3x^2-1)/2$, $w=1$, spodnjo mejo $a=-1$ in zgornjo $b=1$.",
+        "\\int_{-1}^1 1\\cdot\\frac{3x^2-1}{2}\\cdot1\\,dx=\\left[\\frac{x^3-x}{2}\\right]_{-1}^1=0"
+      ]
+    ]
+  }
+}

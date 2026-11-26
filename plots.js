@@ -21,6 +21,8 @@ function plotSettings(id,k=0){
  sum22:['Zadnji indeks N',2,36,1,5],sum24:['Zadnji indeks N',0,20,1,3],mtest:['Zadnji indeks N',1,20,1,3]};
  return settings[id];
 }
+const graphKeys={...graphKeys123,...graphKeys456};
+const escapeGraph=value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 function chartModel(id,k,v){
  let x=[0,4],y=[0,4],curves=[],fills=[],marks=[],bars=[],label='x',caption='',points=[];
  const graph=(name,fn,color)=>{curves.push(line(name,fn,color));return fn};
@@ -28,12 +30,12 @@ function chartModel(id,k,v){
  const mark=(a,fn,color=mint)=>{marks.push(a);points.push([a,fn(a),color])};
  const twoSignals=(f,g,end,lo,hi)=>{x=[0,end];y=[lo,hi];label='t';graph('y(t)',f);graph('z(t)',g,lilac);mark(v,f);points.push([v,g(v),lilac]);caption='Pri t = '+fmt(v)+' je y = '+fmt(f(v))+' in z = '+fmt(g(v))+'.'};
  if(id==='area'){
-  x=[0,2.35];y=[0,8];const f=a=>u=>1+a*u*u;
-  if(k<2){graph('f(x, a)',f(v));area(f(v),0,2);marks=[2];
+  x=[0,2.35];y=[0,8];label='x (m)';const f=a=>u=>1+a*u*u;
+  if(k<2){graph('Višina plošče (m)',f(v));area(f(v),0,2);marks=[2];
    if(k===1){graph('f(x, a + h)',f(v+.3),lilac);area(f(v+.3),0,2,lilac,f(v))}
    else{graph('a = 0,2',f(.2),lilac);graph('a = 1,4',f(1.4),gold)}
-   caption=k===0?'Ploščina med 0 in 2 je F(a) = '+fmt(2+8*v/3)+'.':'Vijolični pas ima pri h = 0,3 ploščino 0,8.'}
-  else {const h=.3;graph('Δf / h',u=>(f(v+h)(u)-f(v)(u))/h);area(u=>u*u,0,2);y=[0,5];caption='Ne glede na a ima krivulja x² na [0, 2] ploščino 8/3.'}
+   caption=k===0?'Ploščina pri a = '+fmt(v)+': F(a) = 2 + 8 × '+fmt(v)+' / 3 ≈ '+fmt(2+8*v/3)+' m². To je '+fmt(8*(v-.2)/3)+' m² več kot pri a = 0,2.':'Če a povečaš za 0,3, vijolični pas pokaže dodatnih 0,8 m² pločevine.'}
+  else {const h=.3;graph('Δf / h',u=>(f(v+h)(u)-f(v)(u))/h);area(u=>u*u,0,2);y=[0,5];caption='Za vsak dodaten 0,1 pri a potrebuješ približno 0,27 m² več pločevine.'}
  }else if(id==='leib'){
   x=[0,2.8];y=[0,5];const u=v/2,b=1+v,h=.24,f=t=>t+v,g=t=>t+v+h;graph('Stara višina',f);marks=[u,b];area(f,u,b);
   if(k>0){graph('Nova višina',g,lilac);area(g,u,b,lilac,f);area(g,b,b+h,gold);area(g,u,u+h/2,rose);marks.push(b+h,u+h/2)}
@@ -115,7 +117,12 @@ function chartModel(id,k,v){
  if(id==='impulse'&&k===2){fresh();x=[0,1];y=[.05,.155];label='h';const f=h=>h===0?exp(-2):exp(-2)*(-Math.expm1(-h))/h;graph('Transformiranka sunka pri s = 1',f);graph('Limita exp(−2)',()=>exp(-2),lilac);mark(v,f);caption='Ko širino zmanjšaš na '+fmt(v)+', je utežena ploščina '+fmt(f(v))+'.'}
  if(id==='series'&&k===0){fresh();y=[-.05,2.1];const f=x=>sum(v,i=>x**i);graph('Sᴺ',f);graph('x · Sᴺ',x=>x*f(x),lilac);area(f,0,.7,mint,x=>x*f(x));caption='Navpična razlika Sᴺ − xSᴺ je 1 − x⁽ᴺ⁺¹⁾. Z drsnikom izbereš zadnji indeks.';y=[-1.1,Math.min(v+2,10)]}
  if(id==='pde'&&k===2){fresh();x=[-2,2];y=[-8,8];const f=t=>v*Math.cosh(t);graph('uₓ',t=>v*Math.sinh(t),lilac);graph('uₓₓ = u',f);points=[[0,v,mint]];caption='Po drugem odvodu se vrne prvotni prerez z začetno višino '+fmt(v)+'.'}
- return {x,y,curves,fills,marks,points,bars,label,caption};
+ const model={x,y,curves,fills,marks,points,bars,label,caption};
+ model.keys=graphKeys[id](k,v,model);
+ model.markColors=id==='leib'?[mint,lilac,gold,rose]:[gold,rose,lilac,mint];
+ model.barColors=[lilac,gold,rose];
+ model.showBands=id==='leib'&&k===1;
+ return model;
 }
 function tickValues([a,b],n){
  const rough=(b-a)/n,base=10**Math.floor(Math.log10(rough)),step=base*([1,2,2.5,5,10].find(t=>t>=rough/base)||10),ticks=[];
@@ -123,18 +130,33 @@ function tickValues([a,b],n){
  return ticks;
 }
 function svgChart(m){
- const W=540,H=252,L=42,R=30,T=12,B=32,w=W-L-R,h=H-T-B;
+ const W=540,H=290,L=42,R=23,T=m.marks.length?58:32,B=47,w=W-L-R,h=H-T-B;
  const X=t=>L+(t-m.x[0])/(m.x[1]-m.x[0])*w,Y=t=>T+(m.y[1]-t)/(m.y[1]-m.y[0])*h;
  const num=t=>Number.isFinite(t)?Math.max(-2000,Math.min(2000,t)).toFixed(2):'0';
  const pt=(t,y)=>num(X(t))+' '+num(Y(y));
  let grid='',art='',axis='';const z=Math.max(T,Math.min(H-B,Y(0)));
  for(const y of tickValues(m.y,4)){grid+='<path d="M'+L+' '+Y(y)+'h'+w+'"/><text x="'+(L-8)+'" y="'+(Y(y)+4)+'" text-anchor="end">'+fmt(y)+'</text>'}
- for(const t of tickValues(m.x,5)){grid+='<path d="M'+X(t)+' '+T+'v'+h+'"/><text x="'+X(t)+'" y="'+(H-12)+'" text-anchor="middle">'+fmt(t)+'</text>'}
+ for(const t of tickValues(m.x,5)){grid+='<path d="M'+X(t)+' '+T+'v'+h+'"/><text x="'+X(t)+'" y="'+(H-27)+'" text-anchor="middle">'+fmt(t)+'</text>'}
  axis='<path d="M'+L+' '+z+'h'+w+' M'+X(Math.max(m.x[0],0))+' '+T+'v'+h+'" stroke="#a79dbd" opacity=".55"/>';
- for(const f of m.fills){let coords=[],bottom=[];for(let i=0;i<=200;i++){let t=f.a+(f.b-f.a)*i/200,v=f.fn(t),u=f.low(t);if(Number.isFinite(v)&&Number.isFinite(u)){coords.push(pt(t,v));bottom.unshift(pt(t,u))}}if(coords.length)art+='<path d="M'+coords.concat(bottom).join(' L')+'Z" fill="'+f.color+'" opacity=".22"/>'}
- for(const t of m.marks)art+='<path d="M'+X(t)+' '+T+'v'+h+'" stroke="#e3d6f5" stroke-dasharray="4 5" opacity=".62"/>';
+ for(const [fi,f] of m.fills.entries()){let coords=[],bottom=[];for(let i=0;i<=200;i++){let t=f.a+(f.b-f.a)*i/200,v=f.fn(t),u=f.low(t);if(Number.isFinite(v)&&Number.isFinite(u)){coords.push(pt(t,v));bottom.unshift(pt(t,u))}}if(coords.length)art+='<path d="M'+coords.concat(bottom).join(' L')+'Z" fill="'+f.color+'" opacity="'+(m.showBands&&fi>0?.52:.24)+'"/>'}
+ // Place close boundaries in separate boxes, with leaders back to the true coordinates.
+ const flags=m.marks.map((value,i)=>({actual:X(value),color:m.markColors[i],name:m.keys.marks[i]?.split(' · ')[0]||fmt(value)})).sort((a,b)=>a.actual-b.actual);
+ let right=L-7;
+ for(const flag of flags){
+  flag.width=Math.max(25,flag.name.length*8+12);
+  flag.center=Math.max(right+5+flag.width/2,Math.min(W-R-flag.width/2,flag.actual));
+  right=flag.center+flag.width/2;
+ }
+ right=W-R;
+ for(const flag of [...flags].reverse()){flag.center=Math.min(flag.center,right-flag.width/2);right=flag.center-flag.width/2-5}
+ let labels='';
+ for(const f of flags){
+  art+='<path d="M'+f.actual+' '+T+'v'+h+'" stroke="'+f.color+'" stroke-width="1.8" stroke-dasharray="5 4"/>';
+  labels+='<path d="M'+f.center+' '+(T-11)+' L'+f.actual+' '+T+'" stroke="'+f.color+'"/><rect x="'+(f.center-f.width/2)+'" y="'+(T-32)+'" width="'+f.width+'" height="21" rx="4" fill="'+f.color+'"/><text class="flagText" x="'+f.center+'" y="'+(T-16)+'" text-anchor="middle">'+escapeGraph(f.name)+'</text>';
+ }
  for(const c of m.curves){let d='',on=false;for(let i=0;i<=380;i++){let t=m.x[0]+i*(m.x[1]-m.x[0])/380,v=c.fn(t);if(!Number.isFinite(v)){on=false;continue}d+=(on?' L':' M')+pt(t,v);on=true}art+='<path d="'+d+'" fill="none" stroke="'+c.color+'" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>'}
- for(const [t,value] of m.bars)art+='<path d="M'+pt(t,0)+' L'+pt(t,value)+'" stroke="'+mint+'" stroke-width="5"/>';
+ for(const [i,[t,value]] of m.bars.entries())art+='<path d="M'+pt(t,0)+' L'+pt(t,value)+'" stroke="'+m.barColors[i]+'" stroke-width="8"/>';
  for(const [t,value,col] of m.points)if(Number.isFinite(value))art+='<circle cx="'+X(t)+'" cy="'+Y(value)+'" r="4.5" fill="'+col+'" stroke="'+(col==='#30253f'?mint:'#39304e')+'" stroke-width="2"/>';
- return '<svg role="img" aria-label="'+m.caption+'" viewBox="0 0 '+W+' '+H+'"><defs><clipPath id="graph-clip"><rect x="'+L+'" y="'+T+'" width="'+w+'" height="'+h+'"/></clipPath></defs><g class="grid">'+grid+'</g>'+axis+'<g clip-path="url(#graph-clip)">'+art+'</g><text x="'+(W-3)+'" y="'+(H-13)+'" text-anchor="end" fill="#e5dcef">'+m.label+'</text></svg>';
+ const axisNames='<text class="axisName" x="'+L+'" y="16">'+escapeGraph(m.keys.y)+'</text><text class="axisName" x="'+(W-R)+'" y="'+(H-3)+'" text-anchor="end">'+escapeGraph(m.keys.x)+'</text>';
+ return '<svg role="img" aria-label="'+m.caption+'" viewBox="0 0 '+W+' '+H+'"><defs><clipPath id="graph-clip"><rect x="'+L+'" y="'+T+'" width="'+w+'" height="'+h+'"/></clipPath></defs><g class="grid">'+grid+'</g>'+axis+'<g clip-path="url(#graph-clip)">'+art+'</g>'+labels+axisNames+'</svg>';
 }

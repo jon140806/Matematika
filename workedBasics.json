@@ -1,0 +1,152 @@
+[
+  [
+    [
+      "Ker odvajamo po a, izpostavi faktor, ki je odvisen samo od x.",
+      "f(x,a)=ax^2,\\qquad \\partial_a(ax^2)=x^2\\partial_a a"
+    ],
+    [
+      "Odvod spremenljivke po sami sebi je ena, zato ostane faktor x².",
+      "x^2\\partial_a a=x^2\\cdot1=x^2"
+    ]
+  ],
+  [
+    [
+      "Za površino pod x² od 1 do 2 uporabi potenčno pravilo.",
+      "\\int x^2dx=\\frac{x^{2+1}}{2+1}+C=\\frac{x^3}{3}+C"
+    ],
+    [
+      "Od zgornje vrednosti odštej spodnjo; konstanta se pokrajša.",
+      "\\int_1^2x^2dx=\\frac{2^3}{3}-\\frac{1^3}{3}=\\frac{8-1}{3}=\\frac73"
+    ]
+  ],
+  [
+    [
+      "Za primer x krat eksponent izberi x za odvajanje, saj njegov odvod postane 1.",
+      "u=x,\\quad dv=e^xdx,\\quad du=dx,\\quad v=e^x"
+    ],
+    [
+      "Vstavi v obrazec in izračunaj preostali integral.",
+      "\\int xe^xdx=uv-\\int v\\,du=xe^x-\\int e^xdx=xe^x-e^x+C"
+    ]
+  ],
+  [
+    [
+      "Naj bo u = x² v integralu od 0 do 2. Izračunaj obe novi meji in diferencial.",
+      "u(0)=0,\\quad u(2)=4,\\qquad du=2x\\,dx"
+    ],
+    [
+      "Zamenjaj produkt in obe meji hkrati, nato integriraj.",
+      "\\int_0^2 2xe^{x^2}dx=\\int_0^4 e^udu=\\left[e^u\\right]_0^4=e^4-1"
+    ]
+  ],
+  [
+    [
+      "Zapiši koren in recipročno vrednost korena kot potenco.",
+      "\\sqrt{u}=u^{1/2},\\qquad \\frac1{\\sqrt{u}}=u^{-1/2},\\quad u>0"
+    ],
+    [
+      "Pri produktu z isto osnovo seštej eksponenta.",
+      "\\sqrt{u}\\cdot u^{-1/4}=u^{1/2-1/4}=u^{2/4-1/4}=u^{1/4}"
+    ]
+  ],
+  [
+    [
+      "Po odpravi skupnega imenovalca vstavi s = 1. Izgine člen z B.",
+      "1=A(s+1)+B(s-1)\\quad\\Longrightarrow\\quad1=2A\\quad\\Longrightarrow\\quad A=\\tfrac12"
+    ],
+    [
+      "Zdaj vstavi s = −1, da izgine člen z A. Zapiši oba ulomka.",
+      "1=-2B\\quad\\Longrightarrow\\quad B=-\\tfrac12,\\qquad \\frac1{s^2-1}=\\frac{1}{2(s-1)}-\\frac{1}{2(s+1)}"
+    ]
+  ],
+  [
+    [
+      "Za primer z vsoto 5 in razliko 1 izrazi prvo neznanko iz druge enačbe.",
+      "Y+Z=5,\\quad Y-Z=1\\quad\\Longrightarrow\\quad Y=1+Z"
+    ],
+    [
+      "Vstavi v prvo enačbo. Po izračunu Z se vrni v izraz za Y.",
+      "(1+Z)+Z=5\\quad\\Longrightarrow\\quad 2Z=4\\quad\\Longrightarrow\\quad Z=2,\\quad Y=1+2=3"
+    ]
+  ],
+  [
+    [
+      "Če je začetna višina 2 in začetna hitrost −1, vstavi obe vrednosti v obrazec za drugi odvod.",
+      "\\mathcal L(y'')=s^2Y-sy(0)-y'(0)=s^2Y-s\\cdot2-(-1)"
+    ],
+    [
+      "Minus pred negativno hitrostjo postane plus.",
+      "\\mathcal L(y'')=s^2Y-2s+1"
+    ]
+  ],
+  [
+    [
+      "Preveri izraz za silo pred trenutkom 2; pri času 1 je stopnica še nič.",
+      "f(t)=1+H(t-2)(t-1),\\qquad f(1)=1+0(1-1)=1"
+    ],
+    [
+      "Pri času 3 je stopnica ena, zato se prišteje popravek.",
+      "f(3)=1+1(3-1)=1+2=3"
+    ]
+  ],
+  [
+    [
+      "Za preklop pri 2 preveri lokalni čas ob vklopu in trenutek pozneje.",
+      "u=t-2,\\qquad u(2)=2-2=0,\\quad u(3)=3-2=1"
+    ],
+    [
+      "Kadar želiš popraviti silo t−1, zamenjaj t z u+2 in zberi konstanti.",
+      "t=u+2\\quad\\Longrightarrow\\quad t-1=(u+2)-1=u+1"
+    ]
+  ],
+  [
+    [
+      "Za primer s členom n/(n+1) deli števec in imenovalec z n.",
+      "a_n=\\frac{n}{n+1}=\\frac{1}{1+1/n}"
+    ],
+    [
+      "Ker limita ni nič, je kršen nujni pogoj za konvergenco vrste.",
+      "\\lim_{n\\to\\infty}a_n=\\frac{1}{1+0}=1\\ne0\\quad\\Longrightarrow\\quad \\sum_{n=1}^\\infty a_n\\ \\text{divergira}"
+    ]
+  ],
+  [
+    [
+      "Razstavi člen na razliko in izpiši začetek ter konec delne vsote.",
+      "\\frac1{n(n+1)}=\\frac1n-\\frac1{n+1},\\quad S_N=(1-\\tfrac12)+(\\tfrac12-\\tfrac13)+\\cdots+(\\tfrac1N-\\tfrac1{N+1})"
+    ],
+    [
+      "Pokrajšaj sosednje člene, nato pošlji N v neskončnost.",
+      "S_N=1-\\frac1{N+1}\\quad\\Longrightarrow\\quad S=\\lim_{N\\to\\infty}S_N=1"
+    ]
+  ],
+  [
+    [
+      "Za vrsto xⁿ/n vstavi levi rob x = −1. Predznaki se izmenjujejo in velikosti padajo proti nič.",
+      "a_n=\\frac{(-1)^n}{n},\\qquad |a_{n+1}|=\\frac1{n+1}<\\frac1n\\longrightarrow0"
+    ],
+    [
+      "Na desnem robu x = 1 dobiš harmonično vrsto. Njene delne vsote rastejo vsaj kot logaritem.",
+      "\\sum_{n=1}^N\\frac1n\\ge\\int_1^{N+1}\\frac{du}{u}=\\ln(N+1)\\longrightarrow\\infty"
+    ]
+  ],
+  [
+    [
+      "Dvakrat odvajaj po x. Konstantni in linearni člen izgineta.",
+      "y=\\sum_{n=0}^\\infty a_nx^n,\\qquad y''=\\sum_{n=2}^\\infty n(n-1)a_nx^{n-2}"
+    ],
+    [
+      "Da ostane potenca x na k, nastavi k = n − 2. Nadomesti indeks v vseh faktorjih in spodnji meji.",
+      "n=k+2,\\quad n=2\\Rightarrow k=0,\\qquad y''=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k"
+    ]
+  ],
+  [
+    [
+      "Za primer u(x,y) = x²y pri odvajanju po x drži y pri miru.",
+      "u_x=y\\frac{d}{dx}x^2=2xy,\\qquad u_{xx}=2y"
+    ],
+    [
+      "Pri odvajanju po y drži x pri miru. Druga izbira spremenljivke da drug rezultat.",
+      "u_y=x^2\\frac{d}{dy}y=x^2"
+    ]
+  ]
+]

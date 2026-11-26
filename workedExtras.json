@@ -1,0 +1,116 @@
+[
+  [
+    [
+      "Na primer obravnavaj parametre med pozitivnima c in d. Za eksponentno jedro vzemi najpočasnejše dušenje.",
+      "0<c\\le a\\le d,\\quad x\\ge0\\quad\\Longrightarrow\\quad e^{-ax}\\le e^{-cx}"
+    ],
+    [
+      "Integriraj to ovojnico od mesta reza naprej. Ocena repa gre proti nič za vse a iz izbranega intervala.",
+      "\\int_R^\\infty e^{-ax}dx\\le\\left[-\\frac{e^{-cx}}{c}\\right]_R^\\infty=\\frac{e^{-cR}}{c}\\longrightarrow0"
+    ]
+  ],
+  [
+    [
+      "V podvojitveno formulo vstavi x = 1/2. Izračunaj oba argumenta na levi in eksponent na desni.",
+      "\\Gamma(1/2)\\Gamma(1/2+1/2)=2^{1-2(1/2)}\\sqrt\\pi\\,\\Gamma(2\\cdot1/2)"
+    ],
+    [
+      "Nadomesti znani vrednosti in preveri obe strani.",
+      "\\Gamma(1/2)\\Gamma(1)=2^0\\sqrt\\pi\\,\\Gamma(1)=\\sqrt\\pi"
+    ]
+  ],
+  [
+    [
+      "Za približek 10! v formuli nastavi n = 10.",
+      "\\sqrt{2\\pi n}(n/e)^n=\\sqrt{20\\pi}(10/e)^{10}\\approx3598696"
+    ],
+    [
+      "Primerjaj s točno fakulteto in razliko deli s točno vrednostjo.",
+      "\\frac{3628800-3598696}{3628800}\\approx0{,}0083"
+    ]
+  ],
+  [
+    [
+      "Za signal exp(2t) združi rast signala z utežjo integrala.",
+      "e^{-st}e^{2t}=e^{-(s-2)t}"
+    ],
+    [
+      "Da rob v neskončnosti izgine, zahtevaj s večji od 2. Ovrednoti primitivno funkcijo.",
+      "F(s)=\\left[-\\frac{e^{-(s-2)t}}{s-2}\\right]_0^\\infty=\\frac{1}{s-2},\\quad s>2"
+    ]
+  ],
+  [
+    [
+      "Na primeru F(s) = 1/s zaporedno odvajaj. Vsak odvod zniža eksponent in prinese faktor.",
+      "F'=-s^{-2},\\quad F''=2s^{-3},\\quad F^{(m)}=(-1)^m m! s^{-m-1}"
+    ],
+    [
+      "Vstavi s = m/t in pokrajšaj potence, faktorieli ter predznaka. Za vsak t > 0 dobiš prvotni konstantni signal.",
+      "f(t)=\\lim_{m\\to\\infty}\\frac{(-1)^m}{m!}(m/t)^{m+1}(-1)^m m!(m/t)^{-m-1}=1"
+    ]
+  ],
+  [
+    [
+      "Za vezje postavi L = R = 1, stalno napetost U = 1 ter začetni tok nič. Transformiraj odvod in konstanto.",
+      "i'+i=1\\quad\\Longrightarrow\\quad sI-0+I=1/s"
+    ],
+    [
+      "Izpostavi I, deli z njegovim faktorjem in razstavi ulomek.",
+      "I=\\frac1{s(s+1)}=\\frac1s-\\frac1{s+1}"
+    ],
+    [
+      "Vsak ulomek prevedi nazaj v čas in preveri začetni tok.",
+      "i(t)=1-e^{-t},\\quad i(0)=1-1=0"
+    ]
+  ],
+  [
+    [
+      "Za enotsko stopnico kot vhod in eksponentno padajoče jedro vstavi obe funkciji v konvolucijo.",
+      "f(t)=1,\\quad k(t)=e^{-t},\\quad y(t)=\\int_0^t e^{-(t-u)}\\cdot1\\,du"
+    ],
+    [
+      "Izpostavi del, ki je pri integriranju po u konstanten, ter ovrednoti meji.",
+      "y(t)=e^{-t}\\left[e^u\\right]_0^t=e^{-t}(e^t-1)=1-e^{-t}"
+    ]
+  ],
+  [
+    [
+      "Pri geometrijski vrsti s količnikom 1/2 omeji končni rep z neskončnim.",
+      "0\\le\\sum_{k=n+1}^{m}2^{-k}\\le\\frac{(1/2)^{n+1}}{1-1/2}=2^{-n}"
+    ],
+    [
+      "Za n vsaj 7 primerjaj dobljeno mejo z zahtevano napako 0,01. Ocena velja za vsak m večji od n.",
+      "2^{-n}\\le2^{-7}=\\frac1{128}<0{,}01"
+    ]
+  ],
+  [
+    [
+      "Pri eksponentni funkciji so vsi odvodi pri nič enaki 1. Vstavi jih v Taylorjev polinom druge stopnje.",
+      "T_2(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2=1+x+\\frac{x^2}{2}"
+    ],
+    [
+      "Vstavi majhno vrednost x in izračunaj vsak člen posebej.",
+      "e^{0{,}1}\\approx T_2(0{,}1)=1+0{,}1+\\frac{0{,}01}{2}=1{,}105"
+    ]
+  ],
+  [
+    [
+      "Za n = 2 najprej kvadriraj izraz in ga nato dvakrat odvajaj.",
+      "(x^2-1)^2=x^4-2x^2+1,\\quad \\frac{d}{dx}(x^4-2x^2+1)=4x^3-4x"
+    ],
+    [
+      "Še enkrat odvajaj ter deli s faktorjem iz Rodriguesove formule.",
+      "P_2(x)=\\frac{12x^2-4}{2^2\\cdot2!}=\\frac{12x^2-4}{8}=\\frac{3x^2-1}{2}"
+    ]
+  ],
+  [
+    [
+      "Preveri normo pri n = 1, kjer je polinom x. Kvadriraj funkcijo pod integralom.",
+      "\\int_{-1}^1 P_1(x)^2dx=\\int_{-1}^1x^2dx"
+    ],
+    [
+      "Vstavi obe meji in primerjaj z obrazcem pri tej stopnji.",
+      "\\left[\\frac{x^3}{3}\\right]_{-1}^1=\\frac13-\\frac{-1}{3}=\\frac23=\\frac{2}{2\\cdot1+1}"
+    ]
+  ]
+]

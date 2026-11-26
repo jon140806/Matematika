@@ -1,0 +1,97 @@
+{
+  "area": [
+    "$x$ je položaj na vodoravni osi. $a$ izbereš z drsnikom. $1+ax^2$ je višina krivulje pri $x$, $dx$ pa pove, da seštevaš po $x$. $F(a)$ je tako dobljena ploščina.",
+    "$h$ je povečanje parametra, zato $a+h$ izbere novo parabolo. Razlika $F(a+h)-F(a)$ meri pas med staro in novo krivuljo.",
+    "$F'(a)$ pove, kako hitro se ploščina spreminja z $a$. Oznaka $\\partial_a f$ pomeni odvod višine po $a$ pri istem $x$."
+  ],
+  "leib": [
+    "$a$ nastaviš z drsnikom. Pri $a=0{,}7$ gre $x$ od leve meje $u(a)=0{,}35$ do desne $v(a)=1{,}7$. $f(x,a)$ je višina pri $x$, $dx$ pomeni seštevanje po $x$, $F(a)$ pa osenčeno ploščino.",
+    "$u_+=u(a+h)$, $v_+=v(a+h)$. Znak + v indeksu pomeni »po premiku«. Na grafu je $h=0{,}24$. $\\Delta f$ je sprememba višine, $\\Delta F$ sprememba ploščine.",
+    "$\\partial_a f$ meri spremembo višine pri mirujočem $x$. $v'$ in $u'$ sta hitrosti desne in leve meje glede na $a$. Višini ob robovih sta $f(v,a)$ in $f(u,a)$. $F'$ združi vse tri prispevke."
+  ],
+  "tail": [
+    "$x$ teče vzdolž krivulje. $a$ nastavlja hitrost nihanja kosinusa. $R$ je mesto reza na osi $x$, $I_R(a)$ pa predznačena ploščina do tega reza.",
+    "$\\partial_a f$ je sprememba integranda ob spreminjanju $a$. Navpični črti označujeta absolutno vrednost. $xe^{-x^2}$ poda zgornjo mejo velikosti odvoda pri vsakem $x$.",
+    "$R$ je začetek izpuščenega dela. $\\infty$ pomeni, da ocena zajame ves preostali interval. $e^{-R^2}/2$ je zgornja meja napake po rezu."
+  ],
+  "gamma": [
+    "$x$ teče od nič v neskončnost. $p$ izbereš enkrat za vso krivuljo. $x^{p-1}$ določa potenčni del višine, $e^{-x}$ jo duši. $\\Gamma(p)$ je njena celotna ploščina.",
+    "$u$ označuje del, ki ga odvajaš, $dv$ del, ki ga integriraš. Oglati oklepaj pomeni vrednost na zgornji meji (kot limito) minus vrednost na spodnji.",
+    "$p$ je pozitiven argument funkcije gama. $n$ je nenegativno celo število. $n!$ pomeni zmnožek števil od 1 do $n$, pri $n=0$ pa ima vrednost 1."
+  ],
+  "beta": [
+    "$u$ je položaj med 0 in 1, $1-u$ je razdalja do desnega roba. $p$ in $q$ določata eksponenta. $B(p,q)$ je ploščina pod nastalo krivuljo.",
+    "$x$ in $y$ sta pozitivni koordinati dveh prvotnih integralov. $r$ meri njuno vsoto, $u$ delež prve koordinate v tej vsoti. Faktor $r$ pretvori ploščinski element iz starih koordinat v novi.",
+    "$r$ preteče vse pozitivne vsote, zato prvi integral da $\\Gamma(p+q)$. $u$ teče po deležih od 0 do 1, kar da drugi faktor $B(p,q)$."
+  ],
+  "betasub": [
+    "$I$ označuje iskani integral. $x$ je prvotni položaj, $u=x^2/4$ pa nova oznaka istega položaja. Ko je $x=2$, doseže $u=1$.",
+    "$dx$ pomeni majhno širino v stari koordinati, $du$ pa v novi. Faktor $1/\\sqrt u$ upošteva, da enako široka koraka v obeh koordinatah pokrijeta različna dela osi.",
+    "Števili $3/2$ sta argumenta funkcije beta. Obe potenci v njenem integrandu sta $1/2$. Faktor 8 pred $B$ je ostal pri spremembi koordinat."
+  ],
+  "lap": [
+    "$t$ je čas, $f(t)$ vrednost signala v tem trenutku. $s$ je izbrana jakost dušenja. $F(s)$ je ploščina pod uteženim signalom pri tej izbiri $s$.",
+    "$(s-1)t$ združi dušenje in rast. Na primer pri $s=2$ dobiš višino $e^{-t}$ in ploščino 1. $dt$ pomeni, da seštevaš po času.",
+    "$a$ je stalna hitrost eksponentne rasti ali upadanja. $\\mathcal L^{-1}$ iz izraza v $s$ obnovi signal v času $t$. Prejšnji zgled ima $a=1$."
+  ],
+  "deriv": [
+    "$f'(t)$ je časovni naklon signala. $\\mathcal L$ označuje Laplaceovo transformacijo, $s$ določa dušenje. Oglati oklepaj ovrednotiš na obeh robovih časovne osi.",
+    "$F=F(s)$ je transformiranka prvotnega signala. $f''$ je drugi časovni odvod. $f(0)$ je začetna višina in $f'(0)$ začetni naklon.",
+    "$F'(s)$ meri spremembo transformiranke pri spreminjanju dušenja. $tf$ pomeni čas $t$ krat vrednost signala $f(t)$."
+  ],
+  "system": [
+    "$y(t)$ in $z(t)$ sta iskana signala. $Y(s)$ in $Z(s)$ sta njuni transformiranki. Enica v $sY-1$ je začetna vrednost prvega signala.",
+    "$s$ je skupna spremenljivka obeh transformirank. Ničli imenovalca, $1$ in $-1$, določita izraza $e^t$ in $e^{-t}$ v času.",
+    "$t$ je izbrani čas. $y(t)$ je polovična vsota rastoče in padajoče eksponentne krivulje, $z(t)$ pa njuna polovična razlika."
+  ],
+  "shift": [
+    "$t$ je čas, $a$ trenutek preklopa. $H(t-a)$ je stikalo z vrednostjo 0 pred preklopom in 1 po njem. $f(t)$ je skupna sila.",
+    "$u$ kaže čas od vklopa. Pri $t=a$ je $u=0$. Člen $u+a-1$ meri, za koliko se nova sila razlikuje od prvotne.",
+    "$g$ opiše obliko popravka od vklopa naprej, $G(s)$ je njegova transformiranka brez zamika. Faktor $e^{-as}$ predstavlja čakanje dolžine $a$."
+  ],
+  "conv": [
+    "$t$ izbereš kot trenutek opazovanja, $u$ teče od 0 do $t$. $f(u)$ vzame prvi signal pri $u$, $g(t-u)$ drugega pri preostanku časa. Zvezdica označuje konvolucijo.",
+    "$u$ na tem grafu meri položaj in višino produkta. Desni rob $t$ določi osnovnico in višino trikotnika. $t^2/2$ je njegova ploščina.",
+    "$v=t-u$ je čas drugega signala. $s$ določa Laplaceovo utež. $F$ in $G$ sta transformiranki signalov $f$ in $g$, $FG$ je njun produkt."
+  ],
+  "impulse": [
+    "$t$ je čas, $a=2$ začetek sunka. $h$ je trajanje, $1/h$ višina pravokotnika. $p_h(t)$ označuje ta kratki signal, ki je zunaj označenega intervala nič.",
+    "$s$ določa dušenje. $e^{-2s}$ predstavlja zamik do začetka sunka, ulomek pa vpliv njegove končne širine $h$.",
+    "$\\delta(t-a)$ je idealiziran sunek z enotsko ploščino pri času $a$. $k(t)$ označuje odziv sistema na sunek pri času 0."
+  ],
+  "radius": [
+    "$x$ je izbrano število, $n$ zaporedna številka člena. $a_n=x^n/n$ je ta člen, $a_{n+1}$ naslednji. Količnik primerja njuni velikosti.",
+    "$(-1)^n$ menja predznak, $1/n$ določa velikost člena. $N$ na grafu je zadnji vključeni indeks, zato prikazani točki merita dve delni vsoti.",
+    "$x$ je vrednost, ki jo preizkušaš. Oglati oklepaj pri $-1$ točko vključi, okrogli pri $1$ jo izključi. Polmer $R=1$ meri razdaljo od središča 0 do roba."
+  ],
+  "series": [
+    "$S_N$ vsebuje potence od $x^0$ do $x^N$. $N$ je zadnji eksponent. Množenje z $x$ vsako potenco poveča za eno.",
+    "$n$ oštevilči potence, $x$ je njihova skupna osnova. $r$ določa, kako daleč od nič seže interval, na katerem želiš hkrati oceniti napako.",
+    "$u$ je pomožna spremenljivka integriranja, $x$ izbrana zgornja meja. $n$ je indeks člena. Znak $\\ln$ označuje naravni logaritem."
+  ],
+  "uniform": [
+    "$S(x)$ je vsota celotne vrste v točki $x$, $S_N(x)$ vsota do indeksa $N$. Njuna razlika je rep. $r$ omeji oddaljenost vseh obravnavanih $x$ od nič.",
+    "$\\sup$ označuje najmanjšo zgornjo mejo vseh napak na intervalu. $N$ izbiraš z drsnikom. Večji $N$ zmanjša oceno za ves interval hkrati.",
+    "$f_n(x)$ je posamezni funkcijski člen. $M_n$ je meja njegove velikosti, ki velja za vsak $x$. Indeksa $N+1$ in $m$ omejujeta izbrani kos repa."
+  ],
+  "leg": [
+    "$x$ je neodvisna spremenljivka, $y(x)$ iskana rešitev. $y'$ in $y''$ sta prvi in drugi odvod po $x$. $n$ izbere stopnjo Legendrovega polinoma.",
+    "$k$ oštevilči potence. $a_k$ je število pred $x^k$. Iz njega dobiš $a_{k+2}$, zato sode in lihe koeficiente računaš ločeno.",
+    "$P_2$ označuje Legendrov polinom stopnje 2. $a_0$ je stalni člen, $a_2$ faktor pred $x^2$. Pogoj $P_2(1)=1$ določi njuni vrednosti."
+  ],
+  "bessel": [
+    "$P$ in $Q$ sta koeficienta pri $y'$ in $y$. $r$ je iskani začetni eksponent, $a_0$ prvi neničelni koeficient, $k$ indeks nadaljnjih potenc $x^{r+k}$.",
+    "$\\nu$ je dani red enačbe, tu 5. Ker je $a_0$ neničeln, mora veljati $r^2=\\nu^2$. Tako najdeš mogoči začetni potenci.",
+    "$J_5$ in $Y_5$ sta neodvisni Besselovi funkciji reda 5. $C_1$ in $C_2$ določata delež vsake v rešitvi. Graf kaže približke funkcije $J_5$."
+  ],
+  "ortho": [
+    "$f$ in $g$ sta funkciji, ki ju primerjaš. $w(x)$ določa težo vsakega položaja $x$. Meji $a$ in $b$ določata interval primerjave. Kotna oklepaja označujeta skalarni produkt.",
+    "Leva meja je stalno $-1$, desno mejo $b$ premikaš. Ker sta $P_0$ in utež enaka 1, je višina produkta kar $P_2(x)$.",
+    "$P_0$ in $P_2$ imata stopnji 0 in 2. Nič na desni pomeni, da se pozitivni in negativni prispevki njunega produkta na celotnem intervalu izravnajo."
+  ],
+  "pde": [
+    "$u(x,y)$ je iskana vrednost pri dveh koordinatah. $u_{xx}$ pomeni dvakrat odvajati po $x$ pri stalnem $y$. $A(y)$ in $B(y)$ sta uteži obeh eksponentov v tem prerezu.",
+    "$u(0,y)$ je višina prereza na levi strani enačbe pri $x=0$. $u_x(0,y)$ je tamkajšnji naklon v smeri $x$. $A$ in $B$ sta vrednosti uteži pri izbranem $y$.",
+    "$\\cosh x=(e^x+e^{-x})/2$ določa obliko prereza, $y$ določa njegovo merilo in predznak. Navpična os na grafu kaže $u$, vodoravna $x$."
+  ]
+}

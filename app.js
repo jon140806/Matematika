@@ -7,7 +7,7 @@ const empty={day:1,tabs:{},indices:{},marks:{},steps:{},timer:null};
 let state,canSave=true;
 try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');state={...empty,...saved}}
 catch{state={...empty};canSave=false}
-let step=0,help='',choice=null,flipped=false,revealed=1,sliderValue,archiveIndex=0,notice='',timerTick,graphStage=0;
+let choice=null,flipped=false,sliderValue,archiveIndex=0,notice='',timerTick,graphStage=0;
 const data=type=>course[type].filter(obj=>obj.day===state.day);
 const tab=()=>kinds.includes(state.tabs[state.day])?state.tabs[state.day]:'lessons';
 const idx=(type=tab())=>Math.max(0,Math.min(data(type).length-1,Number(state.indices[state.day+type])||0));
@@ -17,7 +17,7 @@ const current=()=>data(tab())[idx()];
 const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));canSave=true}catch{canSave=false}if(!canSave)$('saveState').textContent='Shranjevanje ni na voljo'}
 function counts(day){let total=0,done=0;for(const type of kinds){let items=course[type].filter(o=>!day||o.day===day);total+=items.length;let seen={};for(const item of items){let n=seen[item.day]||0;seen[item.day]=n+1;if(state.marks[idAt(type,n,item.day)])done++}}return {total,done,pct:Math.round(100*done/total)}}
-function resetView(){graphStage=0;step=Math.min(2,Number(state.steps[currentId()])||0);help='';choice=null;flipped=false;revealed=1;notice='';sliderValue=undefined}
+function resetView(){graphStage=0;choice=null;flipped=false;notice='';sliderValue=undefined}
 function setDone(value=true){const id=currentId();if(value){state.marks[id]??=today()}else delete state.marks[id];save()}
 function dashboard(){
  let all=counts(),day=counts(state.day);$('pctAll').textContent=all.pct+' %';$('barAll').value=all.pct;$('pctDay').textContent=day.pct+' %';$('barDay').value=day.pct;$('dayMetricLabel').textContent='Napredek za '+state.day+'. dan';
@@ -32,58 +32,99 @@ function layout(){
 function setDay(d){state.day=d;resetView();save();layout();$('side').classList.remove('open');$('menu').setAttribute('aria-expanded','false');window.scrollTo({top:0})}
 function changeTab(t){state.tabs[state.day]=t;resetView();save();layout()}
 function selectItem(n){state.indices[state.day+tab()]=n;resetView();save();render()}
+function showUnitStart(){const start=$('content').querySelector('h2');if(!$('dialog').open&&start){start.tabIndex=-1;start.focus({preventScroll:true});$('tabs').scrollIntoView({block:'start'})}}
+// Each lesson is followed by its application and a short recall check.
+const routeGroups=[
+ [[[0],[0]],[[2],[1]],[[1,3],[2,3,4]]],
+ [[[2],[0,1,2]],[[3],[3,4]],[[0,1],[5]]],
+ [[[0],[0,1,4,5]],[[3],[2,3]],[[1,2],[]]],
+ [[[1,2],[0,1]],[[0,3],[2,3]],[[],[4]]],
+ [[[],[0,1]],[[0,1],[4]],[[2],[2,3,5]]],
+ [[[0],[4]],[[1],[0,1,2]],[[2],[3]],[[],[]]]
+];
+function nextUnit(){
+ const route=routeGroups[state.day-1].flatMap(([tasks,cards],i)=>[['lessons',i],...tasks.map(j=>['exercises',j]),...cards.map(j=>['cards',j])]);
+ const pos=route.findIndex(([t,j])=>t===tab()&&j===idx());
+ for(let k=1;k<route.length;k++){const unit=route[(pos+k)%route.length];if(!state.marks[idAt(...unit)])return unit}
+ return null;
+}
+function nextName(){
+ const unit=nextUnit();if(!unit)return state.day<6?'Sledi '+(state.day+1)+'. učni dan.':'Sledi preizkus s staro polo.';
+ const [t,j]=unit,o=data(t)[j];return 'Sledi '+({lessons:'izpeljava',exercises:'naloga',cards:'kartica'}[t])+' »'+(o.title||o.q)+'«.';
+}
 function advance(){
- const type=tab(),items=data(type);
- for(let off=1;off<=items.length;off++){let j=(idx()+off)%items.length;if(!state.marks[idAt(type,j)]){selectItem(j);return}}
- const next=kinds.indexOf(type)+1;
- if(next<3){changeTab(kinds[next]);return}
- for(const t of kinds){const j=data(t).findIndex((_,i)=>!state.marks[idAt(t,i)]);if(j>=0){state.tabs[state.day]=t;selectItem(j);layout();return}}
- if(state.day<6){setDay(state.day+1);return}openArchive();
+ const unit=nextUnit();if(unit){const [t,j]=unit;state.tabs[state.day]=t;state.indices[state.day+t]=j;resetView();save();layout();return}
+ if(state.day<6)setDay(state.day+1);else openArchive();
 }
 const btn=(act,t,cls='secondary',extra='')=>'<button class="'+cls+'" data-do="'+act+'" '+extra+'>'+t+'</button>';
 function toolbar(){
  let type=tab(),items=data(type),label=type==='lessons'?'Lekcija':type==='exercises'?'Naloga':'Kartica';
  return '<div class="toolbar"><div class="pick"><label for="item">'+label+'</label><select id="item">'+items.map((o,i)=>'<option value="'+i+'" '+(idx()===i?' selected':'')+'>'+ (state.marks[idAt(type,i)]?'✓ ':'')+(i+1)+' / '+items.length+'　'+(o.subtitle||o.title||o.q)+'</option>').join('')+'</select></div><span class="chip">'+icon('pin')+course.days[state.day-1].focus+'</span></div>'
 }
-function plotPanel(id){
- const phase=tab()==='lessons'?step:graphStage,cfg=plotSettings(id,phase);sliderValue??=cfg[4];
+function plotPanel(id,phase=graphStage){
+ const cfg=plotSettings(id,phase), value=tab()==='lessons'?cfg[4]:(sliderValue??cfg[4]);
  const views={area:['Ploščina','Prirastek','Odvod'],gauss:['Integral','Odvod in majoranta'],atan:['Ploščina','Notranji odvod'],betasub:['Prvotni integral','Nova spremenljivka','Vrednost integrala'],cubeta:['Prvotni integral','Nova spremenljivka'],loggamma:['Prvotni integral','Jedro gama'],leg:['Začetni člen','Koeficient','Polinom'],ortho:['Faktorja','Predznačena ploščina','Tekoči integral'],bessel:['Vodilni člen','Naslednja potenca','Regularna veja']};
  const chooser=tab()==='exercises'&&views[id]?'<div class="viewSelect"><label for="graphView">Pogled</label> <select id="graphView">'+views[id].map((name,i)=>'<option value="'+i+'" '+(i===graphStage?'selected':'')+'>'+name+'</option>').join('')+'</select></div>':'';
- return '<section class="plot" aria-label="Interaktivni graf"><div class="plotHead">'+icon('wave')+' Grafični prikaz</div><h3 class="plotTitle">'+(tab()==='lessons'?current().title: 'Prikaz naloge')+'</h3>'+chooser+'<div id="drawing" class="drawing"></div><div class="legend" id="legend"></div><div class="sliderbox"><label for="slide">'+cfg[0]+'<output id="val" for="slide"></output></label><input id="slide" type="range" min="'+cfg[1]+'" max="'+cfg[2]+'" step="'+cfg[3]+'" value="'+sliderValue+'"></div><p class="caption" id="caption"></p></section>';
+ return '<section class="plot" data-phase="'+phase+'" aria-label="Interaktivni graf"><div class="plotHead">'+icon('wave')+(tab()==='lessons'?current().steps[phase][0]:'Graf naloge')+'</div>'+chooser+'<div class="drawing"></div><div class="legend"></div><div class="sliderbox"><label for="slide-'+phase+'">'+cfg[0]+'<output for="slide-'+phase+'"></output></label><input id="slide-'+phase+'" type="range" min="'+cfg[1]+'" max="'+cfg[2]+'" step="'+cfg[3]+'" value="'+value+'"></div><p class="caption"></p></section>';
 }
-function draw(){
- const el=$('slide');if(!el)return;
- const m=chartModel(current().plot,tab()==='lessons'?step:graphStage,+el.value);$('drawing').innerHTML=svgChart(m);
- $('val').textContent=fmt(+el.value);$('caption').textContent=m.caption;
- $('legend').innerHTML=m.curves.filter((c,i,a)=>i===a.findIndex(z=>z.color===c.color)).map(c=>'<span><i style="background:'+c.color+'"></i>'+c.name+'</span>').join('')||(m.bars.length?'<span><i style="background:'+mint+'"></i>Prispevki k odvodu</span>':'');
+function drawPlot(panel){
+ const value=+panel.querySelector('input').value,phase=+panel.dataset.phase;
+ const m=chartModel(current().plot,phase,value);
+ panel.querySelector('.drawing').innerHTML=svgChart(m).replaceAll('graph-clip','graph-clip-'+phase);
+ panel.querySelector('output').textContent=fmt(value);
+ panel.querySelector('.caption').textContent=current().plot==='leib'&&phase===0?'Pri a = '+fmt(value)+' teče x od leve meje u = '+fmt(value/2)+' do desne meje v = '+fmt(1+value)+'. Višina premice je x + '+fmt(value)+'.':m.caption;
+ const legend=(kind,color,text)=>'<span class="graphKey '+kind+'" style="--key:'+color+'"><i></i>'+escapeGraph(text)+'</span>';
+ panel.querySelector('.legend').innerHTML=[
+   ...m.curves.map((c,i)=>legend('curveKey',c.color,m.keys.curves[i]||c.name)),
+   ...m.fills.map((f,i)=>legend('areaKey',f.color,m.keys.areas[i])),
+   ...m.bars.map((bar,i)=>legend('areaKey',m.barColors[i],m.keys.bars[i]+' = '+fmt(bar[1])))
+ ].join('');
+ if(current().plot==='leib'&&phase<2){
+  const scene=panel.closest('.scene'),u=value/2,b=1+value,h=.24;
+  const pair=(symbol,meaning,n,index)=>'<span class="boundary b'+index+'"><b>'+symbol+'</b> '+meaning+' <strong>'+fmt(n)+'</strong></span>';
+  scene.querySelector('.boundaryKeys').innerHTML=pair('u','leva',u,0)+(phase?pair('u₊','nova leva',u+h/2,3):'')+pair('v','desna',b,1)+(phase?pair('v₊','nova desna',b+h,2):'');
+  scene.querySelectorAll('.formula mi,.formula msub,.calcLine mi,.calcLine msub').forEach(node=>{
+    if(node.parentElement.tagName.toLowerCase()==='msub')return;
+    const role={'u':0,'v':1,'v+':2,'u+':3}[node.textContent.trim()];
+    if(role!==undefined)node.setAttribute('mathcolor',['#006353','#613398','#835000','#a32a59'][role]);
+  });
+ }
+
 }
 const source=obj=>'<div class="reference">'+icon('file')+obj.source+'</div>';
 function extraMaterial(){
  const ex=course.extras[state.day-1];
- return '<details class="base"><summary>Dopolnilna snov in izvirno gradivo</summary>'+ex.items.map(([q,a])=>'<details class="baseEntry"><summary>'+q+'</summary><p>'+a+'</p></details>').join('')+'<div class="sourceFiles">'+ex.files.map(name=>'<button class="secondary" data-do="sourcePDF" data-val="'+name+'">'+icon('file')+name+'</button>').join('')+'</div></details>';
+ return '<details class="base"><summary>Dopolnilna snov in izvirno gradivo</summary>'+ex.items.map(([q,a,rows])=>'<details class="baseEntry"><summary>'+q+'</summary><p>'+a+'</p>'+calculation(rows,'Zgled po vrsticah')+'</details>').join('')+'<div class="sourceFiles">'+ex.files.map(name=>'<button class="secondary" data-do="sourcePDF" data-val="'+name+'">'+icon('file')+name+'</button>').join('')+'</div></details>';
 }
-function basics(){return '<details class="base"><summary>Kaj moram že znati?</summary>'+course.days[state.day-1].base.map(([q,a])=>'<details class="baseEntry"><summary>'+q+'</summary><p>'+a+'</p></details>').join('')+'</details>'}
+function basics(){return '<details class="base"><summary>Kaj moram že znati?</summary>'+course.days[state.day-1].base.map(([q,a,rows])=>'<details class="baseEntry"><summary>'+q+'</summary><p>'+a+'</p>'+calculation(rows,'Zgled po vrsticah')+'</details>').join('')+'</details>'}
+function reading(text){return '<div class="reading"><b>Kako prebereš zapis</b><p>'+text+'</p></div>'}
+function application(label,text){return '<div class="application"><b>'+label+'</b><p>'+text+'</p></div>'}
+function ruleBridge(rules){
+ return '<section class="ruleBridge" aria-label="Povezava med pravilom in zgledom">'+rules.map(rule=>'<div class="rulePair"><h3>'+rule.name+'</h3><div class="rulePart"><b>Splošno</b><div class="calcLine">'+rule.general+'</div></div><p class="ruleMap">'+rule.mapping+'</p><div class="rulePart instance"><b>V tej nalogi</b><div class="calcLine">'+rule.example+'</div></div></div>').join('')+'</section>';
+}
+function calculation(rows,label){
+ return '<div class="calculation"><h3>'+label+'</h3><ol>'+rows.map(([instruction,equation])=>'<li><p>'+instruction+'</p><div class="calcLine">'+equation+'</div></li>').join('')+'</ol></div>';
+}
 function lesson(){
- const o=current(),s=o.steps[step],done=!!state.marks[currentId()];
- return '<article class="lesson">'+plotPanel(o.plot)+'<div class="explain"><div class="stepLabel"><span>Izpeljava · '+(step+1)+'. korak od '+o.steps.length+'</span><span class="dots" aria-hidden="true">'+o.steps.map((_,i)=>'<i class="'+(i<=step?'on':'')+'"></i>').join('')+'</span></div><h2>'+s[0]+'</h2><p class="stepText">'+s[1]+'</p><div class="formula">'+s[2]+'</div><div class="actrow">'+(step?btn('prevstep','Nazaj'):'')+(step===o.steps.length-1?btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati','action'):btn('nextstep','Naslednji korak','action'))+'</div></div></article><div class="under">'+source(o)+(done?btn('unlearn','✓ Naučeno · ponovi','quiet'):'')+'</div>';
+ const o=current(),done=!!state.marks[currentId()];
+ const [baseQuestion,baseAnswer]=course.days[state.day-1].base[0];
+ const opening=idx()===0?'<div class="foundation"><b>'+baseQuestion+'</b><p>'+baseAnswer+'</p></div>':'';
+ const sections=o.steps.map(([title,prose,formula],i)=>'<section class="lesson scene"><div class="explain"><div class="stepLabel">Korak '+(i+1)+' od '+o.steps.length+'</div><h2>'+title+'</h2><p class="reason">'+o.purpose.steps[i]+'</p><p>'+prose+'</p><div class="formula">'+formula+'</div>'+(o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'')+reading(o.symbols[i])+'</div>'+plotPanel(o.plot,i)+calculation(o.worked[i],'Račun po vrsticah')+'</section>').join('');
+ return '<div class="lessonName"><h2>'+o.title+'</h2>'+source(o)+'</div><div class="lessonCase"><h3>'+o.purpose.question+'</h3><p>'+o.purpose.use+'</p></div>'+opening+ruleBridge(o.rules)+sections+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj učenje':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
-const helpNames={cue:'Kako prepoznam metodo?',hint:'Namig',graph:'Graf',solution:'Postopek'};
 function exercise(){
  const o=current(),done=!!state.marks[currentId()],answers=o.quiz.slice(1),order=[[1,0,2],[2,1,0],[0,2,1]][(idx()+state.day)%3];
- let panel='';
- if(help==='graph')panel=plotPanel(o.plot);
- else if(help==='solution')panel='<div class="helpText"><ol>'+o.solution.slice(0,revealed).map(t=>'<li>'+t+'</li>').join('')+'</ol>'+(revealed<o.solution.length?btn('reveal','Razkrij naslednji korak','quiet'):'')+'</div>';
- else if(help) panel='<div class="helpText">'+o[help]+'</div>';
- return '<article class="practice"><div class="taskmeta">'+icon('pen')+o.source+'</div><h2>'+o.title+'</h2><p class="question">'+o.prompt+'</p><div class="helps">'+Object.entries(helpNames).map(([id,t])=>btn('help',t,help===id?'active':'','aria-pressed="'+(help===id)+'" data-val="'+id+'"')).join('')+'</div>'+panel+'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. Odpri namig ali primerjaj prvi korak.':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
+ const hint='<p class="helpText"><b>Namig</b> '+o.hint+'</p>';
+ return '<article class="practice"><div class="taskmeta">'+icon('pen')+o.source+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p></div>'+plotPanel(o.plot)+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
 }
 function flash(){
  const c=current(),done=!!state.marks[currentId()];
- return '<article class="flash"><div class="taskmeta">'+icon('cards')+' Kartica '+(idx()+1)+' od '+data('cards').length+(done?' · Naučeno':'')+'</div><h2>'+c.q+'</h2>'+(flipped?'<div class="back">'+c.a+'</div>':'')+'<div class="actrow">'+(flipped?btn('again','Še ponavljam')+btn('known','Znam','action'):btn('flip','Pokaži odgovor','action'))+'</div><div class="feedback" role="status">'+notice+'</div></article>';
+ return '<article class="flash"><div class="taskmeta">'+icon('cards')+' Kartica '+(idx()+1)+' od '+data('cards').length+(done?' · Naučeno':'')+'</div><h2>'+c.q+'</h2>'+application('Kdaj to potrebuješ',c.purpose)+(flipped?'<div class="back">'+c.a+'</div>'+reading(c.symbols)+calculation(c.worked,'Uporabi pravilo na primeru'):'')+'<div class="actrow">'+(flipped?btn('again','Še ponavljam')+btn('known','Znam','action'):btn('flip','Pokaži odgovor','action'))+'</div><div class="feedback" role="status">'+notice+'</div></article>';
 }
 function render(){
  const active=document.activeElement,within=$('content').contains(active),oldAct=active?.dataset.do,oldVal=active?.dataset.val;
  const fin=state.day===6?'<div class="dayfinish"><div><h2>Preizkus s staro polo</h2><p>Računska pola traja 90 minut, teoretična 30 minut.</p></div>'+btn('archive','Izberi kolokvij')+'</div>':'';
- $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise():flash())+basics()+extraMaterial()+fin;draw();
+ $('content').innerHTML=toolbar()+(tab()==='lessons'?lesson():tab()==='exercises'?exercise():flash())+fin;document.querySelectorAll('#content .plot').forEach(drawPlot);
  if(within){let match=oldAct&&Array.from($('content').querySelectorAll('[data-do]')).find(b=>b.dataset.do===oldAct&&b.dataset.val===oldVal);let next=match||$('content').querySelector('.explain h2,.practice h2,.flash h2');if(next){if(next.tagName==='H2')next.tabIndex=-1;next.focus({preventScroll:true})}}
 }
 function modal(title,html){
@@ -109,29 +150,26 @@ function showProgress(){const all=counts(),d=counts(state.day),n=Object.values(s
  modal('Kako se meri napredek?','<p><b>Skupaj</b> si potrdil '+all.done+' od '+all.total+' učnih enot. Vsaka izpeljava, samostojno rešena naloga in naučena kartica šteje enkrat.</p><p><b>Za '+state.day+'. dan</b> je dokončanih '+d.done+' od '+d.total+' enot tega dneva načrta.</p><p><b>Danes</b> si potrdil '+n+' novih enot. Odstotek pove, kolikšen del celotne snovi si osvojil na današnji koledarski dan.</p><p class="sourceNote">Napredek se shrani v tem brskalniku. Oznako lahko umakneš, ko želiš enoto še ponoviti.</p>')}
 $('menu').onclick=()=>{const open=$('side').classList.toggle('open');$('menu').setAttribute('aria-expanded',open)};
 document.addEventListener('change',e=>{if(e.target.id==='item'){selectItem(+e.target.value);$('item').focus({preventScroll:true})}if(e.target.id==='graphView'){graphStage=+e.target.value;sliderValue=undefined;render();$('graphView').focus({preventScroll:true})}});
-document.addEventListener('input',e=>{if(e.target.id==='slide'){sliderValue=+e.target.value;draw()}});
+document.addEventListener('input',e=>{if(e.target.matches('.plot input[type=range]')){if(tab()==='exercises')sliderValue=+e.target.value;drawPlot(e.target.closest('.plot'))}});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-do]');if(!b)return;const act=b.dataset.do,val=b.dataset.val;
  if(act==='day'){setDay(+val);return}if(act==='tab'){changeTab(val);return}
- if(act==='archive'){openArchive();return}if(act==='paper'){archiveIndex=+val;openArchive();return}
+ if(act==='materials'){modal('Gradivo za '+state.day+'. dan',basics()+extraMaterial());return}if(act==='archive'){openArchive();return}if(act==='paper'){archiveIndex=+val;openArchive();return}
  if(act==='sourcePDF'){modal(val,'<p>Izvirno gradivo za '+state.day+'. učni dan.</p><div class="paperActions"><a class="action" href="'+pdfLink(val)+'" target="_blank" rel="noopener">Odpri PDF</a></div>');return}
  if(act==='close'){$('dialog').close();return}if(act==='progress'){showProgress();return}
  if(act==='goto'){const [type,d,i]=val.split(',');$('dialog').close();state.tabs[d]=type;state.indices[d+type]=+i;setDay(+d);return}
  if(act==='starttimer'){state.timer={i:archiveIndex,end:Date.now()+(archiveIndex===3?30:90)*60000};save();openArchive();return}
  if(act==='stoptimer'){state.timer=null;save();openArchive();return}
- if(act==='nextstep'||act==='prevstep'){const oldConfig=plotSettings(current().plot,step);step+=act==='nextstep'?1:-1;if(oldConfig[0]!==plotSettings(current().plot,step)[0])sliderValue=undefined;state.steps[currentId()]=step;save()}
- if(act==='help'){help=help===val?'':val}
- if(act==='reveal')revealed=Math.min(revealed+1,current().solution.length);
  if(act==='answer')choice=+val;
  if(act==='unlearn'){setDone(false);resetView();dashboard()}
- if(act==='learn'){setDone();dashboard();advance();return}
- if(act==='advance'){advance();return}
+ if(act==='learn'){setDone();dashboard();advance();showUnitStart();return}
+ if(act==='advance'){advance();showUnitStart();return}
  if(act==='flip')flipped=true;
  if(act==='again'){
   setDone(false);let items=data('cards'),next=idx();for(let n=1;n<items.length;n++){let j=(idx()+n)%items.length;if(!state.marks[idAt('cards',j)]){next=j;break}}
   selectItem(next);notice='Kartica ostaja za ponovitev.';dashboard();
  }
- if(act==='known'){setDone();dashboard();advance();return}
+ if(act==='known'){setDone();dashboard();advance();showUnitStart();return}
  render();
 });
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){dashboard();timerUpdate()}});

@@ -1,0 +1,340 @@
+[
+  [
+    [
+      "V primeru s stalnima mejama odvajaj po a. Spremenljivka x med odvajanjem miruje.",
+      "f(x,a)=ax^2,\\qquad \\partial_a f=1\\cdot x^2=x^2"
+    ],
+    [
+      "Obe funkciji sta polinoma, zato vstavi odvod pod integral in ovrednoti meji.",
+      "F'(a)=\\int_0^2 x^2dx=\\left[\\frac{x^3}{3}\\right]_0^2=\\frac{8-0}{3}"
+    ]
+  ],
+  [
+    [
+      "Za primer vzemi višino x ter premikajoči se meji a in 2a. Višina se pri istem x ne spreminja.",
+      "F(a)=\\int_a^{2a}x\\,dx,\\qquad \\partial_a x=0"
+    ],
+    [
+      "Zgornji rob prispeva višino krat hitrost zgornje meje, spodnjega odštej.",
+      "F'(a)=(2a)\\cdot2-a\\cdot1=4a-a=3a"
+    ]
+  ],
+  [
+    [
+      "Za primer z argumenti a med 1 in 2 nadomesti eksponent z največjo možno vrednostjo.",
+      "1\\le a\\le2,\\quad x\\ge0\\quad\\Longrightarrow\\quad e^{-ax}\\le e^{-x}"
+    ],
+    [
+      "Oceni rep od b naprej. Za napako pod 0,01 izberi na primer b vsaj 5, ne glede na a.",
+      "\\int_b^\\infty e^{-ax}dx\\le\\int_b^\\infty e^{-x}dx=e^{-b}\\le e^{-5}<0{,}01\\quad(b\\ge5)"
+    ]
+  ],
+  [
+    [
+      "Odvajaj kosinus po a. Iz notranje funkcije ax nastane faktor x.",
+      "\\partial_a[e^{-x^2}\\cos(ax)]=-xe^{-x^2}\\sin(ax)"
+    ],
+    [
+      "Sinus po velikosti omeji z 1. Preveri, da ima dobljena ovojnica končen integral.",
+      "g(x)=xe^{-x^2},\\quad\\int_0^\\infty g(x)dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^\\infty=\\tfrac12"
+    ]
+  ],
+  [
+    [
+      "Prepoznaj odvod Gaussovega faktorja, da pripraviš integracijo po delih.",
+      "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx=\\tfrac12\\int_0^\\infty(e^{-x^2})'\\sin(ax)dx"
+    ],
+    [
+      "Odvajaj sinus po x. Robni člen izgine pri ničli zaradi sinusa in v neskončnosti zaradi dušenja.",
+      "I'(a)=\\left[\\tfrac12e^{-x^2}\\sin(ax)\\right]_0^\\infty-\\tfrac a2\\int_0^\\infty e^{-x^2}\\cos(ax)dx=-\\tfrac a2 I(a)"
+    ]
+  ],
+  [
+    [
+      "Pri integralu s kvadratom primerjaj potenco s p − 1.",
+      "t^2=t^{p-1}\\quad\\Longrightarrow\\quad p-1=2\\quad\\Longrightarrow\\quad p=3"
+    ],
+    [
+      "Vstavi argument v gama in z rekurzijo spusti do znane vrednosti.",
+      "\\int_0^\\infty t^2e^{-t}dt=\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
+    ]
+  ],
+  [
+    [
+      "Za polovični argument uporabi rekurzijo in nato znano izhodišče.",
+      "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac{\\sqrt\\pi}{2}"
+    ],
+    [
+      "Za celi argument spusti za eno enoto do fakultete.",
+      "\\Gamma(4)=3!=3\\cdot2\\cdot1=6"
+    ]
+  ],
+  [
+    [
+      "Pri negativnem argumentu prestavi argument na pozitivno stran.",
+      "\\Gamma(x)=\\frac{\\Gamma(x+1)}x,\\quad x=-\\tfrac12"
+    ],
+    [
+      "Seštej v števcu in deljenje z ulomkom zamenjaj z množenjem.",
+      "\\Gamma(-1/2)=\\frac{\\Gamma(-1/2+1)}{-1/2}=\\frac{\\sqrt\\pi}{-1/2}=-2\\sqrt\\pi"
+    ]
+  ],
+  [
+    [
+      "Preberemo eksponenta na primeru u(1−u). Obema prištejemo ena.",
+      "\\int_0^1u(1-u)du=B(1+1,1+1)=B(2,2)"
+    ],
+    [
+      "Vstavi funkcije gama, nato pretvori cele argumente v fakultete.",
+      "B(2,2)=\\frac{\\Gamma(2)\\Gamma(2)}{\\Gamma(4)}=\\frac{1!\\,1!}{3!}=\\frac16"
+    ]
+  ],
+  [
+    [
+      "Vstavi oba argumenta v zvezo med beta in gama. V imenovalcu ju seštej.",
+      "B(3,\\tfrac12)=\\frac{\\Gamma(3)\\Gamma(1/2)}{\\Gamma(3+1/2)}=\\frac{2!\\sqrt\\pi}{\\Gamma(7/2)}"
+    ],
+    [
+      "V imenovalcu trikrat uporabi rekurzijo za gama.",
+      "\\Gamma(7/2)=\\tfrac52\\cdot\\tfrac32\\cdot\\tfrac12\\Gamma(1/2)=\\tfrac{15}{8}\\sqrt\\pi"
+    ],
+    [
+      "Pokrajšaj koren in obrni ulomek v imenovalcu.",
+      "B(3,\\tfrac12)=\\frac{2\\sqrt\\pi}{(15/8)\\sqrt\\pi}=2\\cdot\\frac8{15}=\\frac{16}{15}"
+    ]
+  ],
+  [
+    [
+      "Za konkreten primer vzemi sinus krat kosinus. Zapiši diferencial in novi meji.",
+      "u=\\sin^2t,\\quad du=2\\sin t\\cos t\\,dt,\\quad u(0)=0,\\quad u(\\pi/2)=1"
+    ],
+    [
+      "Nadomesti celoten produkt z du/2. Obe potenci v beta integralu sta nič.",
+      "\\int_0^{\\pi/2}\\sin t\\cos t\\,dt=\\tfrac12\\int_0^1u^0(1-u)^0du=\\tfrac12 B(1,1)=\\tfrac12"
+    ]
+  ],
+  [
+    [
+      "Pri sinusu s frekvenco 2 vstavi a = 2 na obe mesti v formuli.",
+      "\\mathcal L(\\sin 2t)=\\frac{a}{s^2+a^2}\\bigg|_{a=2}=\\frac{2}{s^2+4}"
+    ],
+    [
+      "Pri kosinusu se spremeni števec, imenovalec pri isti frekvenci ostane enak.",
+      "\\mathcal L(\\cos 2t)=\\frac{s}{s^2+2^2}=\\frac{s}{s^2+4},\\quad s>0"
+    ]
+  ],
+  [
+    [
+      "Preberi položaj pola in primerjaj potenco imenovalca z n + 1.",
+      "\\frac{1}{(s+2)^3}=\\frac{1}{(s-(-2))^{2+1}},\\quad a=-2,\\quad n=2"
+    ],
+    [
+      "V časovnem izrazu deli z 2!, ker je v števcu prvotnega ulomka ena.",
+      "\\mathcal L^{-1}\\left\\{\\frac{1}{(s+2)^3}\\right\\}=\\frac{t^2e^{-2t}}{2!}=\\tfrac12t^2e^{-2t}"
+    ]
+  ],
+  [
+    [
+      "Začni s tretjim odvodom, ki ga dobiš s ponavljanjem pravila za prvi odvod.",
+      "\\mathcal L(f''')=s^3F-s^2f(0)-sf'(0)-f''(0)"
+    ],
+    [
+      "Uporabi pravilo še enkrat. Pomnoži vsak člen s s in odštej tretji odvod pri ničli.",
+      "\\mathcal L(f^{(4)})=s\\mathcal L(f''')-f'''(0)=s^4F-s^3f(0)-s^2f'(0)-sf''(0)-f'''(0)"
+    ]
+  ],
+  [
+    [
+      "Za primer izberi sinus frekvence 2 in transformiranko zapiši kot negativno potenco.",
+      "F(s)=\\frac{2}{s^2+4}=2(s^2+4)^{-1}"
+    ],
+    [
+      "Odvajaj po s in upoštevaj zunanji minus v pravilu za množenje s časom.",
+      "\\mathcal L(t\\sin 2t)=-F'(s)=-2(-1)(s^2+4)^{-2}(2s)=\\frac{4s}{(s^2+4)^2}"
+    ]
+  ],
+  [
+    [
+      "Najprej zapiši par za neuteženi sinus. Za dušenje z eksponentom določi a.",
+      "F(s)=\\mathcal L(\\sin 2t)=\\frac{2}{s^2+4},\\qquad e^{-3t}=e^{at},\\quad a=-3"
+    ],
+    [
+      "Nadomesti s s premaknjenim argumentom na vseh mestih v F.",
+      "\\mathcal L(e^{-3t}\\sin 2t)=F(s-(-3))=F(s+3)=\\frac{2}{(s+3)^2+4}"
+    ]
+  ],
+  [
+    [
+      "Za primer f(t) = t izberi dvojno hitrost in v formulo vstavi a = 2.",
+      "F(s)=\\frac1{s^2},\\qquad \\mathcal L(f(2t))=\\tfrac12 F(s/2)"
+    ],
+    [
+      "Pri kvadriranju ulomka kvadriraj tudi dvojko in poenostavi.",
+      "\\tfrac12 F(s/2)=\\frac{1}{2(s/2)^2}=\\frac{1}{2(s^2/4)}=\\frac{2}{s^2}"
+    ]
+  ],
+  [
+    [
+      "Za linearno rast od časa 3 naprej prepoznaj lokalni signal in njegovo transformiranko.",
+      "g(u)=u,\\quad G(s)=1/s^2,\\quad a=3"
+    ],
+    [
+      "V pravilo za zakasnitev vstavi čas 3 in dobljeni G.",
+      "\\mathcal L(H(t-3)(t-3))=e^{-3s}G(s)=\\frac{e^{-3s}}{s^2}"
+    ]
+  ],
+  [
+    [
+      "Pri preklopu z 1 na t ob času 2 izračunaj razliko med novo in staro silo.",
+      "\\Delta f=t-1,\\qquad f(t)=1+H(t-2)(t-1)"
+    ],
+    [
+      "Zapiši popravek v lokalnem času, da bo pripravljen za zamik transformiranke.",
+      "u=t-2\\quad\\Longrightarrow\\quad t=u+2\\quad\\Longrightarrow\\quad t-1=(u+2)-1=u+1"
+    ]
+  ],
+  [
+    [
+      "V definicijo vstavi f(u) = u in g(t−u) = 1 na intervalu prekrivanja.",
+      "(f*g)(t)=\\int_0^t f(u)g(t-u)du=\\int_0^t u\\cdot1\\,du"
+    ],
+    [
+      "Poišči primitivno funkcijo, vstavi zgornjo in spodnjo mejo ter odštej.",
+      "\\int_0^t u\\,du=\\left[\\tfrac12 u^2\\right]_0^t=\\tfrac12t^2-\\tfrac120^2=\\tfrac12t^2"
+    ]
+  ],
+  [
+    [
+      "Za tri vzročne enotske stopnice najprej pomnoži transformiranke prvih dveh.",
+      "F(s)G(s)=\\frac1s\\cdot\\frac1s=\\frac1{s^2}"
+    ],
+    [
+      "Dodaj tretjo in uporabi par za kvadrat časa. Faktor 2! moraš deliti.",
+      "FGH=\\frac1{s^3}\\quad\\Longrightarrow\\quad(f*g*h)(t)=\\frac{t^2}{2!}=\\tfrac12t^2"
+    ]
+  ],
+  [
+    [
+      "V definicijo transformacije vstavi impulz pri času 3.",
+      "\\mathcal L(\\delta(t-3))=\\int_0^\\infty e^{-st}\\delta(t-3)dt"
+    ],
+    [
+      "Impulz vzame vrednost zvezne uteži v točki udarca.",
+      "\\int_0^\\infty e^{-st}\\delta(t-3)dt=\\left.e^{-st}\\right|_{t=3}=e^{-3s}"
+    ]
+  ],
+  [
+    [
+      "Pri členu xⁿ/n deli naslednji člen s trenutnim. Za x različen od nič pokrajšaj enake potence.",
+      "\\left|\\frac{x^{n+1}}{n+1}\\frac{n}{x^n}\\right|=|x|\\frac{n}{n+1}"
+    ],
+    [
+      "Deli števec in imenovalec z n. Za konvergenco po kvocientnem kriteriju zahtevaj limito pod 1.",
+      "\\lim_{n\\to\\infty}\\frac{|x|}{1+1/n}=|x|<1\\quad\\Longleftrightarrow\\quad-1<x<1"
+    ]
+  ],
+  [
+    [
+      "Pri x = 1 prepoznaj harmonično vrsto; krajše skupine členov pokažejo divergenco.",
+      "\\sum_{n=1}^\\infty\\frac1n\\ge1+\\tfrac12+\\left(\\tfrac14+\\tfrac14\\right)+4\\cdot\\tfrac18+\\cdots"
+    ],
+    [
+      "Pri x = −1 preveri oba pogoja za Leibnizov kriterij. Izmenični predznaki in vse manjše velikosti dajo konvergenco.",
+      "a_n=\\frac1n,\\qquad a_{n+1}=\\frac1{n+1}<a_n,\\qquad \\lim_{n\\to\\infty}a_n=0"
+    ]
+  ],
+  [
+    [
+      "Za vrsto s sinusom poišči majoranto, ki deluje pri vsakem x.",
+      "\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le\\frac1{n^2}=M_n"
+    ],
+    [
+      "Veljavna majoranta je seštevna, ker je eksponent večji od 1. Zato je tudi rep prvotne vrste enakomerno majhen.",
+      "\\sup_x\\left|\\sum_{n>N}\\frac{\\sin(nx)}{n^2}\\right|\\le\\sum_{n>N}\\frac1{n^2}\\longrightarrow0"
+    ]
+  ],
+  [
+    [
+      "Na zaprtem intervalu od 0 do 1/2 omeji geometrijsko vrsto s konvergentno številsko vrsto, da smeš integrirati členoma.",
+      "0\\le u\\le\\tfrac12\\quad\\Longrightarrow\\quad |u^n|\\le (1/2)^n,\\qquad \\sum_{n=0}^\\infty(1/2)^n=2"
+    ],
+    [
+      "Integriraj vsak člen posebej s potenčnim pravilom in vstavi meji.",
+      "\\int_0^x\\sum_{n=0}^\\infty u^n du=\\sum_{n=0}^\\infty\\left[\\frac{u^{n+1}}{n+1}\\right]_0^x=\\sum_{n=0}^\\infty\\frac{x^{n+1}}{n+1}"
+    ]
+  ],
+  [
+    [
+      "Za konkretno vsoto z imenovalcem n vstavi x = 1/2 v logaritemski razvoj.",
+      "\\sum_{n=1}^\\infty\\frac{1}{n2^n}=-\\ln(1-\\tfrac12)=-\\ln(\\tfrac12)=\\ln2"
+    ],
+    [
+      "Za lihe imenovalce in izmenične predznake vstavi isto vrednost v razvoj arkus tangensa.",
+      "\\arctan(\\tfrac12)=\\tfrac12-\\frac{(1/2)^3}{3}+\\frac{(1/2)^5}{5}-\\cdots=\\tfrac12-\\tfrac1{24}+\\tfrac1{160}-\\cdots"
+    ]
+  ],
+  [
+    [
+      "Na intervalu od 0 do 0,8 z enako zgornjo mejo oceni vsak rep geometrijske vrste.",
+      "0\\le x\\le0{,}8\\quad\\Longrightarrow\\quad \\sum_{j=N+1}^\\infty x^j\\le\\frac{0{,}8^{N+1}}{1-0{,}8}"
+    ],
+    [
+      "Za zahtevano napako 0,05 preizkusi N = 20. Ena izbira zadošča za ves interval.",
+      "\\frac{0{,}8^{21}}{0{,}2}\\approx0{,}0461<0{,}05"
+    ]
+  ],
+  [
+    [
+      "Pri regularni točki vstavi navadno vrsto v primer y′ = y in izenači koeficiente enakih potenc.",
+      "(n+1)a_{n+1}=a_n\\quad\\Longrightarrow\\quad a_{n+1}=\\frac{a_n}{n+1}"
+    ],
+    [
+      "Pri enačbi s singularno točko poskusi vodilno potenco. Za prikazano Eulerjevo enačbo tako najdeš začetna eksponenta.",
+      "x^2y''+xy'-4y=0,\\quad y=x^r\\quad\\Longrightarrow\\quad [r(r-1)+r-4]x^r=0\\quad\\Longrightarrow\\quad r=\\pm2"
+    ]
+  ],
+  [
+    [
+      "Pri Besselovi enačbi najprej deli z x², da dobiš koeficienta P in Q.",
+      "y''+\\frac1xy'+\\frac{x^2-25}{x^2}y=0,\\quad P=\\frac1x,\\quad Q=\\frac{x^2-25}{x^2}"
+    ],
+    [
+      "Vsakega pomnoži s predpisano potenco. Oba rezultata se analitično razširita v nič, zato je točka šibko singularna.",
+      "xP=x\\frac1x=1,\\qquad x^2Q=x^2\\frac{x^2-25}{x^2}=x^2-25"
+    ]
+  ],
+  [
+    [
+      "Primerjaj konstantni člen v oklepaju s standardnim zapisom. Za običajni nenegativni red vzemi pozitivni koren.",
+      "x^2-25=x^2-\\nu^2\\quad\\Longrightarrow\\quad \\nu^2=25\\quad\\Longrightarrow\\quad \\nu=5"
+    ],
+    [
+      "Vstavi ta red v obe neodvisni rešitvi na pozitivni polosi.",
+      "y=C_1J_\\nu(x)+C_2Y_\\nu(x)=C_1J_5(x)+C_2Y_5(x),\\quad x>0"
+    ]
+  ],
+  [
+    [
+      "Za primer na [0,1] vzemi f(x) = 1, g(x) = x in utež w(x) = 2. Pomnoži vse tri vrednosti.",
+      "\\langle f,g\\rangle_w=\\int_0^1 1\\cdot x\\cdot2\\,dx=2\\int_0^1 x\\,dx"
+    ],
+    [
+      "Integriraj x, nato odštej vrednost pri spodnji meji od vrednosti pri zgornji.",
+      "2\\left[\\frac{x^2}{2}\\right]_0^1=2\\left(\\frac{1^2}{2}-\\frac{0^2}{2}\\right)=1"
+    ]
+  ],
+  [
+    [
+      "Za liho linearno rešitev nastavi P₁ = ax. Vstavljanje x = 1 določi koeficient.",
+      "P_1(1)=a\\cdot1=1\\quad\\Longrightarrow\\quad P_1(x)=x"
+    ],
+    [
+      "Za sodo rešitev druge stopnje rekurzija da b = −3a. Ta pogoj vstavi v normalizacijo.",
+      "P_2(x)=a+bx^2,\\quad a+b=1,\\quad a-3a=1\\quad\\Longrightarrow\\quad a=-\\tfrac12,\\quad b=\\tfrac32"
+    ],
+    [
+      "Vstavi koeficienta in izpostavi skupni faktor.",
+      "P_2(x)=-\\tfrac12+\\tfrac32x^2=\\tfrac12(3x^2-1)"
+    ]
+  ]
+]
