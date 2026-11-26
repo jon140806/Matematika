@@ -7,6 +7,7 @@ from xml.etree import ElementTree as ET
 from latex2mathml.converter import convert
 
 root = Path(__file__).resolve().parent
+gradivo = root / "gradivo"
 def read(file):
     return (root/file).read_text(encoding="utf-8").strip()
 def math_text(value):
@@ -68,7 +69,7 @@ for row in read("cards.txt").splitlines():
 days=json.loads(read("days.json"))
 for day in days:
     day["base"]=[[q,math_text(a)] for q,a in day["base"]]
-papers=[base64.b64encode((root.parent/p).read_bytes()).decode("ascii") for p in
+papers=[base64.b64encode((gradivo/p).read_bytes()).decode("ascii") for p in
         ["1kol-ITFR-301122.pdf","1kol-ITFR-301123.pdf","1kol-ITFR-271124.pdf","1kolokvijITRF_T_301122.pdf"]]
 extras=json.loads(read("extras.json"))
 sources={}
@@ -76,7 +77,7 @@ for extra in extras:
     extra["items"]=[[q,math_text(a)] for q,a in extra["items"]]
     for name in extra["files"]:
         if name not in sources:
-            sources[name]=base64.b64encode((root.parent/name).read_bytes()).decode("ascii")
+            sources[name]=base64.b64encode((gradivo/name).read_bytes()).decode("ascii")
 symbols=json.loads(read("lessonSymbols.json"))
 lesson_purpose=json.loads(read("lessonPurpose.json"))
 for item in lessons:
