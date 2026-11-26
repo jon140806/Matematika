@@ -224,6 +224,9 @@ for lesson in lesson_topics:
         raise ValueError(f"Missing lecture PDF: {lesson['reading'][0]}")
     lesson["papers"]=topic["papers"]
     lesson["focus"]=math_text(topic["focus"])
+    lesson["pattern"]=worked_formula(topic["pattern"])
+    lesson["recognition"]=math_text(topic["recognition"])
+    lesson["computeRules"]=[[math_text(when),worked_formula(rule)] for when,rule in topic["computeRules"]]
     if "calculation" in topic:
         lesson["quickCalc"]=math_text(topic["calculation"])
     for key in ("definition","conditions","symbols","use"):

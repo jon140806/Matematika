@@ -82,7 +82,19 @@
       "Kako zapišeš silo, ki se vključi šele pozneje?",
       "Trenutek $a$ je pritisk na stikalo. Pred njim dodani učinek miruje, po njem pa nova ura kaže $t-a$. Tako isti predpis deluje ne glede na čas vklopa."
     ],
-    "calculation": "Če se sila velikosti 3 N vklopi pri $t=2$, jo zapišeš $3H(t-2)$. Pred vklopom je sila 0, po njem 3 N; transformiranka je $3e^{-2s}/s$ pri $s>0$."
+    "calculation": "Če se sila velikosti 3 N vklopi pri $t=2$, jo zapišeš $3H(t-2)$. Pred vklopom je sila 0, po njem 3 N; transformiranka je $3e^{-2s}/s$ pri $s>0$.",
+    "pattern": "\\mathcal L\\!\\left(H(t-a)g(t-a)\\right)=e^{-as}G(s)",
+    "recognition": "Išči čas vklopa $a$. Poglej, kaj se po tem času doda prvotnemu signalu, nato dodani del izrazi s časom od vklopa $t-a$.",
+    "computeRules": [
+      [
+        "Kosovni signal zapiši kot prvotni signal in dodani popravek od preklopa naprej.",
+        "f(t)=f_1(t)+H(t-a)[f_2(t)-f_1(t)]"
+      ],
+      [
+        "Pri $a>0$ zamik v času doda faktor v domeni $s$. Funkcija za stopnico mora biti zapisana v času od vklopa.",
+        "H(t-a)g(t-a)\\ \\longleftrightarrow\\ e^{-as}G(s)"
+      ]
+    ]
   },
   "conv": {
     "title": "Konvolucija in konvolucijski izrek",
@@ -162,7 +174,19 @@
       "Kako iz pretekle sile izračunaš odziv zdaj?",
       "Vsak pretekli sunek pusti nekaj učinka. Njegovo velikost pomnožiš z odzivom, ki je ostal do časa $t$. Ploščina prekrivanja sešteje vse te prispevke."
     ],
-    "calculation": "Za $f(u)=u$ in $g=1$ po vklopu je pri $t=2$ prekrivanje trikotnik: $(f*g)(2)=\\int_0^2u\\,du=2$. Graf pokaže njegovo osnovnico in višino."
+    "calculation": "Za $f(u)=u$ in $g=1$ po vklopu je pri $t=2$ prekrivanje trikotnik: $(f*g)(2)=\\int_0^2u\\,du=2$. Graf pokaže njegovo osnovnico in višino.",
+    "pattern": "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du",
+    "recognition": "Dva signala sta pod istim integralom. Prvega bereš pri $u$, drugega pri času, ki še ostane do $t$. Zvezdica naroča to integriranje.",
+    "computeRules": [
+      [
+        "Konvolucijo spremeni v navaden produkt transformirank. V nasprotni smeri produkt pomeni konvolucijo.",
+        "\\mathcal L(f*g)=F(s)G(s)"
+      ],
+      [
+        "Pri treh signalih lahko najprej združiš poljuben sosednji par.",
+        " (f*g)*h=f*(g*h)"
+      ]
+    ]
   },
   "impulse": {
     "title": "Diracov impulz in njegova transformacija",
@@ -240,7 +264,19 @@
       "Kako v računu opišeš kratek udarec kladiva?",
       "Ozek pravokotnik predstavlja silo v kratkem času. Ploščina je sunek sile. Ob enaki ploščini mora biti krajši udarec višji; to pokaže drsnik za širino."
     ],
-    "calculation": "Za enotski sunek pri $a=2$ izračunaš transformiranko tako, da v utež vstaviš čas udarca: $e^{-st}|_{t=2}=e^{-2s}$."
+    "calculation": "Za enotski sunek pri $a=2$ izračunaš transformiranko tako, da v utež vstaviš čas udarca: $e^{-st}|_{t=2}=e^{-2s}$.",
+    "pattern": "\\int_0^\\infty \\varphi(t)\\delta(t-a)\\,dt=\\varphi(a),\\qquad a>0",
+    "recognition": "Poišči točko, kjer je argument delte nič. Če leži znotraj intervala, jo vstavi v funkcijo, ki množi delto.",
+    "computeRules": [
+      [
+        "Pred delto je zvezna utež. Če $a$ leži v notranjosti intervala, vstavi $a$ v utež.",
+        "\\int_b^c f(t)\\delta(t-a)\\,dt=f(a),\\qquad b<a<c"
+      ],
+      [
+        "Čas sunka vstavi v Laplaceovo eksponentno utež.",
+        "\\mathcal L(\\delta(t-a))=e^{-as},\\qquad a>0"
+      ]
+    ]
   },
   "radius": {
     "title": "Konvergenčni polmer in krajišči",
@@ -325,7 +361,19 @@
       "Za katere vrednosti lahko računaš z neskončno vrsto?",
       "Polmer je dovoljena razdalja od središča razvoja do roba notranjosti konvergence. Pri obeh krajiščih vstaviš dejansko vrednost posebej. Graf pokaže, zakaj je izid na levi in desni lahko različen."
     ],
-    "calculation": "Za $\\sum_{n=1}^\\infty x^n/n$ teži absolutni količnik k $|x|$. Pri $x=0,5$ je manjši od 1, zato vrsta konvergira. Na robu $x=1$ dobiš divergentno harmonično vrsto."
+    "calculation": "Za $\\sum_{n=1}^\\infty x^n/n$ teži absolutni količnik k $|x|$. Pri $x=0,5$ je manjši od 1, zato vrsta konvergira. Na robu $x=1$ dobiš divergentno harmonično vrsto.",
+    "pattern": "\\sum_{n=0}^\\infty a_n(x-c)^n",
+    "recognition": "Poišči osnovo potence: iz $x-c$ prebereš središče $c$. Za polmer obravnavaj člene po absolutni vrednosti, krajišči pa preveri v prvotni vrsti.",
+    "computeRules": [
+      [
+        "Če limita količnika absolutnih vrednosti koeficientov obstaja in je pozitivna ter končna, jo obrni.",
+        "L=\\lim_{n\\to\\infty}|a_{n+1}/a_n|,\\quad R=1/L"
+      ],
+      [
+        "Pri končnem pozitivnem polmeru za desni in levi rob naredi ločena preizkusa.",
+        "x=c+R,\\qquad x=c-R"
+      ]
+    ]
   },
   "series": {
     "title": "Geometrijska vrsta in členoma integrirana vrsta",
@@ -410,7 +458,19 @@
       "Kako izračunaš približek logaritma samo s potencami?",
       "Začneš z geometrijsko vsoto, katere vzorec že poznaš. Z integriranjem dobi vsak člen svoj imenovalec. Z dodajanjem členov opazuješ, kako se približek približuje logaritmu."
     ],
-    "calculation": "Pri $x=1/2$ iz vrste za $-\\ln(1-x)$ dobiš približek za $\\ln 2$. Prvi trije členi dajo $1/2+(1/2)^2/2+(1/2)^3/3=2/3$. Z več členi se približuješ 0,6931."
+    "calculation": "Pri $x=1/2$ iz vrste za $-\\ln(1-x)$ dobiš približek za $\\ln 2$. Prvi trije členi dajo $1/2+(1/2)^2/2+(1/2)^3/3=2/3$. Z več členi se približuješ 0,6931.",
+    "pattern": "\\sum_{n=0}^\\infty x^n=\\frac1{1-x},\\qquad |x|<1",
+    "recognition": "Zaporedni členi geometrijske vrste se množijo z istim $x$. Če v iskani vrsti vidiš še deljenje z indeksom, poskusi znano vrsto integrirati členoma.",
+    "computeRules": [
+      [
+        "Začni z vsoto geometrijske vrste znotraj konvergenčnega polmera.",
+        "\\sum_{n=0}^\\infty x^n=\\frac1{1-x},\\qquad |x|<1"
+      ],
+      [
+        "Če želiš imenovalec $n$, integriraj od 0 do $x$ in popravi začetni indeks.",
+        " \\sum_{n=1}^\\infty\\frac{x^n}{n}=-\\ln(1-x),\\qquad |x|<1"
+      ]
+    ]
   },
   "uniform": {
     "title": "Enakomerna konvergenca in Weierstrassov kriterij",
@@ -494,7 +554,19 @@
       "Kako izbereš eno število členov za celo krivuljo?",
       "Če rišeš približek na celotnem intervalu, hočeš obvladati napako tudi na najslabšem mestu. Meja, ki velja za vse $x$, pove, koliko členov je dovolj povsod."
     ],
-    "calculation": "Pri $|x|\\le0,8$ velja $|x^n|\\le0,8^n$. Če obdržiš člene od 0 do 20, je napaka največ $0,8^{21}/(1-0,8)<0,047$ povsod na tem intervalu."
+    "calculation": "Pri $|x|\\le0,8$ velja $|x^n|\\le0,8^n$. Če obdržiš člene od 0 do 20, je napaka največ $0,8^{21}/(1-0,8)<0,047$ povsod na tem intervalu.",
+    "pattern": "|f_n(x)|\\le M_n,\\qquad\\sum M_n<\\infty",
+    "recognition": "Iščeš eno oceno za vse $x$. V posameznem členu omeji del, ki je odvisen od $x$, in preveri, ali je vsota preostalih števil končna.",
+    "computeRules": [
+      [
+        "Omeji absolutno vrednost vsakega člena z istim številom za vse $x$. Če številska vrsta majorant konvergira, funkcijska konvergira enakomerno.",
+        "\\sup_{x\\in I}|f_n(x)|\\le M_n,\\qquad \\sum_n M_n<\\infty"
+      ],
+      [
+        "Po $N$-tem členu napako omeji z vsoto izpuščenih majorant.",
+        "\\sup_{x\\in I}|S(x)-S_N(x)|\\le\\sum_{n>N}M_n"
+      ]
+    ]
   },
   "leg": {
     "title": "Potenčna metoda in Legendrovi polinomi",
@@ -572,7 +644,19 @@
       "Kako iz enačbe dobiš krivuljo, ko ne poznaš njene formule?",
       "Začneš s potenčno vrsto. Enačba pove, kateri koeficient sledi prejšnjemu. Pri Legendrovih polinomih se ustrezna veriga ustavi; na grafu vidiš, kako nov člen spremeni obliko."
     ],
-    "calculation": "Za $n=2$ da rekurzija $a_2=-3a_0$. Z izbiro $a_0=-1/2$, $a_1=0$ dobiš $P_2(x)=(3x^2-1)/2$. V sredini je višina $-1/2$, pri $x=1$ pa 1."
+    "calculation": "Za $n=2$ da rekurzija $a_2=-3a_0$. Z izbiro $a_0=-1/2$, $a_1=0$ dobiš $P_2(x)=(3x^2-1)/2$. V sredini je višina $-1/2$, pri $x=1$ pa 1.",
+    "pattern": "(1-x^2)y''-2xy'+n(n+1)y=0",
+    "recognition": "Primerjaj vse tri koeficiente. Če ob $y$ stoji na primer 6, reši $n(n+1)=6$; nenegativna stopnja je $n=2$.",
+    "computeRules": [
+      [
+        "Iz $a_0$ računaj sode, iz $a_1$ lihe koeficiente. Pri $k=n$ se veja iste parnosti konča.",
+        "a_{k+2}=\\frac{(k-n)(k+n+1)}{(k+1)(k+2)}a_k"
+      ],
+      [
+        "Za standardni Legendrov polinom izberi polinomsko vejo in nastavi njeno vrednost pri 1 na ena.",
+        "P_n(1)=1"
+      ]
+    ]
   },
   "bessel": {
     "title": "Frobeniusova metoda in Besselova enačba",
@@ -648,7 +732,19 @@
       "Kako opišeš krožno simetrično nihanje, denimo na okrogli opni?",
       "Odmik opazuješ vzdolž polmera. V preprostem modelu krožne opne radialni del zadošča Besselovi enačbi. Red določi obliko rešitve; če model vključuje središče, mora fizično dopustni odmik tam ostati končen."
     ],
-    "calculation": "Pri členu $(x^2-25)y$ primerjaš $25=\\nu^2$, torej $\\nu=5$. Za $x>0$ prebereš $y=C_1J_5(x)+C_2Y_5(x)$. Če mora rešitev ostati omejena pri ničli, izbereš $C_2=0$."
+    "calculation": "Pri členu $(x^2-25)y$ primerjaš $25=\\nu^2$, torej $\\nu=5$. Za $x>0$ prebereš $y=C_1J_5(x)+C_2Y_5(x)$. Če mora rešitev ostati omejena pri ničli, izbereš $C_2=0$.",
+    "pattern": "x^2y''+xy'+(x^2-\\nu^2)y=0",
+    "recognition": "Preveri faktorja pri obeh odvodih in nato člen ob $y$. Za red $\\nu$ vzameš kvadratni koren števila, ki se odšteje od $x^2$.",
+    "computeRules": [
+      [
+        "Pri šibko singularni točki najprej zapiši nastavek s prosto začetno potenco. Najnižja potenca v enačbi določi $r$.",
+        "y=x^r\\sum_{k=0}^\\infty a_k x^k,\\quad a_0\\ne0"
+      ],
+      [
+        "Za standardno Besselovo enačbo reda $\\nu$ na $x>0$ uporabi par neodvisnih rešitev. Konstanti določijo dodatni pogoji.",
+        "y=C_1J_\\nu(x)+C_2Y_\\nu(x)"
+      ]
+    ]
   },
   "ortho": {
     "title": "Uteženi skalarni produkt in ortogonalnost",
@@ -736,7 +832,19 @@
       "Kako preveriš, ali se dve obliki med seboj izničita?",
       "Na vsakem mestu pomnoži višini obeh profilov. Kjer imata isti predznak, prištevaš, pri nasprotnem odštevaš. Če se prispevki z izbrano utežjo izravnajo, je skalarni produkt nič."
     ],
-    "calculation": "Pri $f(x)=1$, $g(x)=x$ in uteži 1 na $[-1,1]$ dobiš $\\int_{-1}^1x\\,dx=-1/2+1/2=0$. Levi in desni del se natančno izničita."
+    "calculation": "Pri $f(x)=1$, $g(x)=x$ in uteži 1 na $[-1,1]$ dobiš $\\int_{-1}^1x\\,dx=-1/2+1/2=0$. Levi in desni del se natančno izničita.",
+    "pattern": "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx",
+    "recognition": "Poišči obe funkciji, utež in meji. Pomnoži tri vrednosti pri istem $x$ in integriraj. Rezultat nič pomeni ortogonalnost.",
+    "computeRules": [
+      [
+        "Izračunaj en integral. Če je enak nič, sta funkciji ortogonalni glede na izbrano utež.",
+        "f\\perp_w g\\ \\Longleftrightarrow\\ \\langle f,g\\rangle_w=0"
+      ],
+      [
+        "Za dolžino funkcijo pomnoži samo s seboj, upoštevaj utež in na koncu vzemi koren.",
+        "\\|f\\|_w=\\sqrt{\\int_a^b f(x)^2w(x)\\,dx}"
+      ]
+    ]
   },
   "pde": {
     "title": "Parcialni odvodi in družina prerezov",
@@ -810,6 +918,18 @@
       "Kako spremljaš spremembo površine samo v eni smeri?",
       "Zamisli si višinski zemljevid. Pri izbranem $y$ vzameš en prerez in po njem hodiš v smeri $x$. Premik drsnika izbere drug prerez; tako vidiš, zakaj je začetna višina lahko odvisna od $y$."
     ],
-    "calculation": "Za prikazano površino $u(x,y)=y\\cosh x$ izberi $y=2$. Prerez je $2\\cosh x$; po dveh odvodih po $x$ spet dobiš $2\\cosh x$. Tako preveriš $u_{xx}=u$."
+    "calculation": "Za prikazano površino $u(x,y)=y\\cosh x$ izberi $y=2$. Prerez je $2\\cosh x$; po dveh odvodih po $x$ spet dobiš $2\\cosh x$. Tako preveriš $u_{xx}=u$.",
+    "pattern": "u_{xx}=u",
+    "recognition": "Oba odvoda sta po $x$. Drugo koordinato $y$ začasno drži pri miru, zato lahko vsak prerez obravnavaš kot navadno diferencialno enačbo.",
+    "computeRules": [
+      [
+        "Pri parcialnem odvajanju po $x$ izraze, odvisne samo od $y$, obravnavaj kot konstante.",
+        "\\partial_x[A(y)e^x]=A(y)e^x"
+      ],
+      [
+        "Pri integriranju po $x$ se lahko konstanta spreminja med prerezi.",
+        "\\int u_x(x,y)\\,dx=u(x,y)+C(y)"
+      ]
+    ]
   }
 }

@@ -76,3 +76,5 @@
 .sceneCondition{border-left:3px solid #699f8d;padding:7px 10px;background:#eff6f3}.sceneCondition b{color:#235749}
 
 .intuitionLab{margin:12px 0 20px}.intuitionLab .explain{justify-content:center}.intuitionLab h3,.firstLook h3{font:600 1.18rem/1.35 var(--sans);margin:0 0 6px}.intuitionLab h3:not(:first-child){margin-top:18px}.labEquation,.quickCalc{background:#f1eef7;border-left:3px solid #9775b2;padding:10px 14px;line-height:1.65}.labCalculation p,.firstLook p{margin:6px 0 10px}.firstLook{margin-bottom:16px}.quickCalc{overflow-x:auto}.quickCalc b{display:block;font-size:.85rem;color:var(--plum)}.areaLab .drawing{margin:8px 0}.labResult{margin:8px 0 0}.areaLab .sliderbox{padding-top:5px}
+
+.computeRules>div{padding:9px 0;border-top:1px solid var(--border)}.computeRules p{margin:0 0 5px}.labCalculation .matching{color:#184e42;font-weight:600}.concept>.labEquation{margin:10px 0}.labCalculation .labEquation math{vertical-align:middle}

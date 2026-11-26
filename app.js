@@ -190,9 +190,10 @@ function lesson(){
  const o=current(),done=!!state.marks[currentId()];
  const lab=['gamma','beta'].includes(o.plot);
  const intuition='<h3>'+o.intuition[0]+'</h3><p>'+o.intuition[1]+'</p>';
- const start=lab?'<section class="intuitionLab lesson"><div class="explain">'+intuition+'<h3>Kako izračunaš vrednost?</h3><div class="labCalculation"></div></div>'+areaLab(o.plot)+'</section>':'';
+ const start=lab?'<section class="intuitionLab lesson"><div class="explain"><h3>Prepoznaj zapis na primeru</h3><div class="labCalculation"></div>'+intuition+'</div>'+areaLab(o.plot)+'</section>':'';
  const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols]];
- const intro='<section class="concept"><h3>Definicija</h3><p>'+o.definition+'</p><dl>'+facts.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl></section>';
+ const intro='<section class="concept"><h3>Definicija</h3><p>'+o.definition+'</p><div class="labEquation calcLine">'+o.pattern+'</div><dl>'+facts.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl><h3>Kako prepoznaš obliko?</h3><p>'+o.recognition+'</p></section>';
+ const rules='<section class="concept computeRules"><h3>Pravila računanja</h3>'+o.computeRules.map(([when,formula])=>'<div><p>'+when+'</p><div class="calcLine">'+formula+'</div></div>').join('')+'</section>';
  const scenes=o.steps.map(([heading,reason,formula,,rows],i)=>{
   const result='<div class="formula calcLine">'+formula+'</div>';
   const boundaries=o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'';
@@ -205,7 +206,7 @@ function lesson(){
  let practice='';
  if(o.plot==='leib')practice=unitLink('exercises','atan','Kolokvij 2023 · premična zgornja meja');
  if(o.plot==='gaussTheory')practice=unitLink('exercises','gauss','Gaussova naloga s kolokvija');
- return '<div class="lessonName"><h2>'+o.title+'</h2></div>'+lessonEvidence(o)+start+(lab?intro+cases+scenes.join(''):scenes[0]+intro+cases+scenes.slice(1).join(''))+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
+ return '<div class="lessonName"><h2>'+o.title+'</h2></div>'+lessonEvidence(o)+intro+start+rules+cases+scenes.join('')+practice+'<div class="finish"><span>'+nextName()+'</span>'+btn(done?'advance':'learn',done?'Nadaljuj':'Znam izpeljati · nadaljuj','action')+(done?btn('unlearn','Ponovno v učenje','quiet'):'')+'</div>';
 }
 function unitLink(kind,plot,label){
  const index=data(kind).findIndex(item=>item.plot===plot);

@@ -9,9 +9,9 @@ function areaLab(id){
  const gamma=id==='gamma';
  const control=(key,label,min,max,step,value)=>'<div class="sliderbox"><label for="lab-'+key+'">'+label+'<output for="lab-'+key+'"></output></label><input id="lab-'+key+'" data-key="'+key+'" type="range" min="'+min+'" max="'+max+'" step="'+step+'" value="'+value+'"></div>';
  return '<div class="areaLab plot" data-lab="'+id+'"><div class="plotHead">'+(gamma?'Gama · ploščina na poltraku':'Beta · ploščina med dvema robovoma')+'</div><div class="drawing"></div><div class="legend"></div>'+
-  control('p',gamma?'p · oblika krivulje':'p · potenca pri levem robu',1,4,.5,gamma?3:2)+
-  (gamma?'':control('q','q · potenca pri desnem robu',1,4,.5,3))+
-  control('cut',gamma?'R · do kod seštevaš':'z · do kod seštevaš',0,gamma?10:1,gamma?.1:.01,gamma?3:.5)+
+  control('p',gamma?'p · oblika krivulje':'p · prvi argument',1,4,.5,3)+
+  (gamma?'':control('q','q · drugi argument',1,6,.5,6))+
+  control('cut',gamma?'R · do kod seštevaš':'z · do kod seštevaš',0,gamma?10:1,gamma?.1:.01,gamma?3:1)+
   '<p class="labResult"></p></div>';
 }
 
@@ -37,15 +37,18 @@ function drawAreaLab(panel){
  const symbol=gamma?'Γ('+fmt(p)+')':'B('+fmt(p)+', '+fmt(q)+')';
  const format=n=>n.toLocaleString('sl-SI',{maximumFractionDigits:4});
  const result='Do oznake: '+format(partial)+' od '+format(total)+' ('+fmt(100*partial/total)+' %).';
- const model={x:[0,end],y:[0,peak*1.15],curves:[line('višina',kernel)],fills:[fill(kernel,0,cut,mint),fill(kernel,cut,end,lilac)],marks:[cut],points:[[cut,kernel(cut),gold]],bars:[],markColors:[gold],keys:{x:gamma?'x · položaj na poltraku':'u · lega med robovoma',y:'višina podintegralske funkcije',marks:[gamma?'R':'z']},caption:result};
+ const model={x:[0,end],y:[0,peak*1.15],curves:[line('višina',kernel)],fills:[fill(kernel,0,cut,mint),fill(kernel,cut,end,lilac)],marks:[cut],points:[[cut,kernel(cut),gold]],bars:[],markColors:[gold],keys:{x:gamma?'x · položaj na poltraku':'x · lega med robovoma',y:'višina podintegralske funkcije',marks:[gamma?'R':'z']},caption:result};
  panel.querySelector('.drawing').innerHTML=svgChart(model).replaceAll('graph-clip','area-lab-clip');
  panel.querySelector('.legend').innerHTML='<span class="graphKey areaKey" style="--key:'+mint+'"><i></i>sešteta ploščina</span><span class="graphKey areaKey" style="--key:'+lilac+'"><i></i>'+(gamma?'vidni del preostanka':'preostanek do 1')+'</span>';
  panel.querySelector('.labResult').textContent=result+(gamma?' Krivulja se nadaljuje čez x = 10.':'');
- const kernelText=gamma?'xᵖ⁻¹ · e⁻ˣ':'uᵖ⁻¹ · (1−u)ᑫ⁻¹';
- const pow=(base,power)=>power===0?'1':power===1?base:base+'<sup>'+fmt(power)+'</sup>';
+ const power=(base,n)=>n===0?'1':n===1?base:base+'<sup>'+fmt(n)+'</sup>';
+ const integrand=gamma?power('x',p-1)+' · e<sup>−x</sup>':power('x',p-1)+' · '+power('(1 − x)',q-1);
+ const integral='<math><mrow><msubsup><mo>∫</mo><mn>0</mn>'+(gamma?'<mo>∞</mo>':'<mn>1</mn>')+'</msubsup></mrow></math> '+integrand+' dx';
  const formula=panel.closest('.intuitionLab').querySelector('.labCalculation');
- const read=gamma?'Pri '+pow('x',p-1)+' · e<sup>−x</sup> je eksponent pri x enak '+fmt(p-1)+'. Prištej 1 in dobiš p = '+fmt(p)+'.':
-  'Pri '+pow('u',p-1)+' · '+pow('(1 − u)',q-1)+' sta eksponenta '+fmt(p-1)+' in '+fmt(q-1)+'. Vsakemu prištej 1: p = '+fmt(p)+', q = '+fmt(q)+'.';
+ const first='p − 1 = '+fmt(p-1)+'　⇒　p = '+fmt(p);
+ const second='q − 1 = '+fmt(q-1)+'　⇒　q = '+fmt(q);
+ const matching='<p>Primerjaj eksponent pri <i>x</i> s prvim eksponentom v definiciji.</p><div class="matching">'+first+'</div>'+
+  (gamma?'':'<p>Primerjaj še eksponent pri celem oklepaju (1 − x).</p><div class="matching">'+second+'</div>');
  const chain=[];
  if(gamma){
   const factors=[];
@@ -53,5 +56,14 @@ function drawAreaLab(panel){
  }
  const calculation=gamma?symbol+(chain.length?' = '+chain.join(' = '):'')+(p%1?' = '+(p>1?format(halfIntegerGamma(p)/Math.sqrt(Math.PI))+' · ':'')+'√π':'') :
   symbol+' = Γ('+fmt(p)+') · Γ('+fmt(q)+') / Γ('+fmt(p+q)+')'+(Number.isInteger(p)&&Number.isInteger(q)?' = ':' ≈ ')+format(halfIntegerGamma(p))+' · '+format(halfIntegerGamma(q))+' / '+format(halfIntegerGamma(p+q));
- formula.innerHTML='<p class="kernelLabel">Višina traku: '+kernelText+'</p><p>'+read+'</p><div class="labEquation">'+calculation+(gamma&&p%1===0?' = ':' ≈ ') +format(total)+'</div><p>'+(gamma?'Začni pri Γ(1) = 1 ali Γ(½) = √π. Dobljeno število meri celotno ploščino od 0 do ∞.':'Vstavi vrednosti gama v števec in imenovalec. Dobljeno število meri celotno ploščino od 0 do 1.')+'</p>';
+ let exact='';
+ if(!gamma&&Number.isInteger(p)&&Number.isInteger(q)){
+  const numerator=halfIntegerGamma(p)*halfIntegerGamma(q),denominator=halfIntegerGamma(p+q);
+  let a=numerator,b=denominator;
+  while(b){const remainder=a%b;a=b;b=remainder}
+  exact=' = '+(numerator/a)+(denominator===a?'':'/'+(denominator/a));
+ }
+ formula.innerHTML='<div class="labEquation">'+integral+'</div>'+matching+
+  '<p>V definicijo vpiši dobljen'+(gamma?'i argument.':'a argumenta.')+'</p><div class="labEquation">'+integral+' = '+symbol+'</div>'+
+  '<h3>Izračunaj vrednost</h3><p>'+(gamma?'Zmanjšuj argument do Γ(1) = 1 ali Γ(½) = √π.':'Uporabi zvezo z gamo. Za pozitivno celo število n velja Γ(n) = (n − 1)!.')+'</p><div class="labEquation">'+calculation+exact+(gamma&&p%1===0?' = ':' ≈ ')+format(total)+'</div>';
 }

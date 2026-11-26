@@ -77,7 +77,15 @@
       "Koliko materiala potrebuješ za ploščo z ukrivljenim robom?",
       "Na vsakem mestu $x$ izmeriš višino. Seštevek ozkih trakov da ploščino. Parameter $a$ izbere obliko roba; ko ga premakneš, vidiš, koliko materiala se prišteje."
     ],
-    "calculation": "Če plošča sega od 0 do 2 in je visoka $1+ax^2$, je $F(a)=2+8a/3$. Pri $a=0$ dobiš 2; povečanje $a$ za 0,3 doda $0,3\\cdot8/3=0,8$ enote ploščine."
+    "calculation": "Če plošča sega od 0 do 2 in je visoka $1+ax^2$, je $F(a)=2+8a/3$. Pri $a=0$ dobiš 2; povečanje $a$ za 0,3 doda $0,3\\cdot8/3=0,8$ enote ploščine.",
+    "pattern": "F(a)=\\int_A^B f(x,a)\\,dx,\\qquad F'(a)=\\int_A^B f_a(x,a)\\,dx",
+    "recognition": "Meji sta števili. Če želiš odvod po $a$, poišči vse pojavitve $a$ v integrandu in med odvajanjem obravnavaj $x$ kot konstanto.",
+    "computeRules": [
+      [
+        "Stalni meji, parameter v integrandu. Če sta $f$ in $f_a$ zvezna na pravokotniku, odvajaj samo integrand.",
+        "F'(a)=\\int_A^B f_a(x,a)\\,dx"
+      ]
+    ]
   },
   "leib": {
     "title": "Leibnizovo pravilo z mejama u(y) in v(y)",
@@ -188,7 +196,19 @@
       "Koliko se spremeni količina, ko premakneš tudi začetek in konec merjenja?",
       "Predstavljaj si pretok vode skozi cev. Integral pretoka čez čas je količina vode. Če merjenje končaš pozneje, pridobiš desni pas; če ga začneš pozneje, izgubiš levi pas."
     ],
-    "calculation": "Na grafu je $f(x,a)=x+a$, leva meja $a/2$, desna $1+a$. Pri $a=1$ notranjost prispeva $2-0,5=1,5$, desni rob $3\\cdot1=3$, levi pa $-1,5\\cdot0,5=-0,75$. Skupni odvod je $3,75$."
+    "calculation": "Na grafu je $f(x,a)=x+a$, leva meja $a/2$, desna $1+a$. Pri $a=1$ notranjost prispeva $2-0,5=1,5$, desni rob $3\\cdot1=3$, levi pa $-1,5\\cdot0,5=-0,75$. Skupni odvod je $3,75$.",
+    "pattern": "F'(y)=\\int_{u(y)}^{v(y)}f_y(x,y)\\,dx+f(v(y),y)v'(y)-f(u(y),y)u'(y)",
+    "recognition": "Poišči parameter na treh mestih: v integrandu, v zgornji meji in v spodnji meji. Za stalno mejo je njen odvod nič, zato njen robni člen odpade.",
+    "computeRules": [
+      [
+        "Desni rob: prvotno višino pri zgornji meji pomnoži s hitrostjo meje in prištej.",
+        "+f(v(y),y)v'(y)"
+      ],
+      [
+        "Levi rob: enak račun pri spodnji meji odštej. Pri stalni meji je hitrost nič.",
+        "-f(u(y),y)u'(y)"
+      ]
+    ]
   },
   "tail": {
     "title": "Enakomerna konvergenca nepravega integrala",
@@ -277,11 +297,23 @@
       "Kdaj lahko zaključiš meritev signala, ki še ni povsem ugasnil?",
       "Navpična črta $R$ je čas, ko nehaš meriti. Desno od nje ostane rep. Zgornja meja za njegovo velikost ti pove, kolikšno napako največ narediš."
     ],
-    "calculation": "Če je velikost odvoda omejena z $xe^{-x^2}$, je napaka po rezu $R$ največ $e^{-R^2}/2$. Pri $R=2$ je to približno 0,0092 za vse obravnavane parametre."
+    "calculation": "Če je velikost odvoda omejena z $xe^{-x^2}$, je napaka po rezu $R$ največ $e^{-R^2}/2$. Pri $R=2$ je to približno 0,0092 za vse obravnavane parametre.",
+    "pattern": "I(a)=\\lim_{R\\to\\infty}I_R(a),\\qquad I_R(a)=\\int_A^R f(x,a)\\,dx",
+    "recognition": "Meja je neskončna. Če želiš enako natančnost za vse parametre, omeji še manjkajoči integral od $R$ naprej z oceno, ki velja za vsak $a$.",
+    "computeRules": [
+      [
+        "Zgornjo mejo najprej nadomesti s končnim rezom. Integral obstaja, če dobiš končno limito.",
+        "I(a)=\\lim_{R\\to\\infty}\\int_A^R f(x,a)\\,dx"
+      ],
+      [
+        "Če $|f(x,a)|\\le g(x)$ za vse parametre in je $g$ integrabilna, isti rep omeji napako za vsak $a$.",
+        "\\left|I(a)-I_R(a)\\right|\\le\\int_R^\\infty g(x)\\,dx"
+      ]
+    ]
   },
   "gamma": {
     "title": "Funkcija gama in njena rekurzija",
-    "definition": "Gama je funkcija, definirana z nepravim integralom potence z eksponentno utežjo. Za pozitivne cele argumente je povezana s fakulteto.",
+    "definition": "Gama izbranemu pozitivnemu številu $p$ priredi ploščino pod krivuljo $x^{p-1}e^{-x}$ na pozitivni polosi. Pri naravnih argumentih jo lahko izračunaš s fakulteto.",
     "conditions": "V integralski definiciji velja $p>0$. To zagotovi integrabilnost pri ničli, eksponentni faktor pa konvergenco v neskončnosti.",
     "symbols": "$p$ je argument funkcije, $x$ spremenljivka integriranja. $\\Gamma(p)$ označuje ploščino pod jedrom.",
     "use": "Rekurzija poveže vrednosti gama pri sosednjih argumentih in omogoča razširitev zunaj pozitivne polosi.",
@@ -405,13 +437,29 @@
     "intuition": [
       "Koliko se nabere, če dotok najprej raste in nato usiha?",
       "Če je dotok ob času $x$ enak $x^2e^{-x}$, vsak ozek trak pomeni količino, ki je pritekla v kratkem času. Vse trakove od 0 do neskončnosti sešteje $\\Gamma(3)$. Potenca $x^2$ določa začetno rast, $e^{-x}$ pa dotok sčasoma zaduši."
+    ],
+    "pattern": "\\Gamma(p)=\\int_0^\\infty x^{p-1}e^{-x}\\,dx,\\qquad p>0",
+    "recognition": "Išči potenco $x$ in faktor $e^{-x}$ na intervalu od 0 do neskončnosti. Eksponent pri $x$ je $p-1$, zato mu prišteješ 1.",
+    "computeRules": [
+      [
+        "Naravni argument: od argumenta odštej 1 in vzemi fakulteto.",
+        " \\Gamma(n)=(n-1)!,\\quad n=1,2,\\ldots"
+      ],
+      [
+        "Polovični argument: zmanjšuj ga po ena, dokler ne prideš do znane vrednosti.",
+        "\\Gamma(p+1)=p\\Gamma(p),\\quad \\Gamma(1/2)=\\sqrt{\\pi}"
+      ],
+      [
+        "Negativen necel argument: rekurzijo obrni in argument povečaj za 1. Ponavljaj, dokler ne prideš do pozitivnega.",
+        "\\Gamma(p)=\\Gamma(p+1)/p"
+      ]
     ]
   },
   "beta": {
     "title": "Funkcija beta in zveza z gama",
-    "definition": "Beta meri integral produkta dveh potenc na enotskem intervalu. Vsaka potenca predstavlja vedenje ob enem od obeh krajišč.",
+    "definition": "Izberi dve pozitivni števili $p$ in $q$. Izraz $x^{p-1}(1-x)^{q-1}$ pove višino krivulje pri posameznem $x$. Zapis $B(p,q)$ pomeni celotno ploščino od 0 do 1: ko izbereš oba argumenta, je rezultat eno število.",
     "conditions": "Argumenta $p$ in $q$ sta pozitivna. Tako je jedro integrabilno ob obeh krajiščih.",
-    "symbols": "$u$ je delež med nič in ena, $1-u$ preostali delež. $p$ in $q$ določata eksponenta.",
+    "symbols": "$x$ teče od 0 do 1. $p$ in $q$ med integriranjem mirujeta. Faktor $x^{p-1}$ meri prvo potenco, $(1-x)^{q-1}$ drugo. V izpeljavi spodaj isto integracijsko spremenljivko označimo tudi z $u$.",
     "use": "Zveza z gama izrazi integral z dvema argumentoma s funkcijami enega argumenta.",
     "steps": [
       [
@@ -495,8 +543,28 @@
       "Pri $p,q>0$ sta obe gami končni. Nenegativnost jedra dovoljuje zaporedno integriranje, pozitivnost $\\Gamma(p+q)$ pa deljenje."
     ],
     "intuition": [
-      "Kolikšna je ploščina profila med dvema robovoma?",
-      "Vzemi profil širine 1 z višino $u(1-u)^2$. Tu je $u$ razdalja od levega roba in $1-u$ razdalja do desnega. Višina je med robovoma pozitivna, na obeh robovih pa nič. Beta sešteje ozke trakove po celotni širini."
+      "Kaj predstavlja na grafu?",
+      "Krivulja prikazuje višino izdelka na mestu $x$ vzdolž profila širine 1. Njegov presek dobiš tako, da sešteješ ploščine ozkih trakov. Premakni samo desno mejo senčenja: spreminjaš sešteti del, krivulja pa ostane ista."
+    ],
+    "pattern": "B(p,q)=\\int_0^1 x^{p-1}(1-x)^{q-1}\\,dx,\\qquad p,q>0",
+    "recognition": "Za neposredno uporabo preveri meji 0 in 1. Nato preberi obe potenci: eksponent pri $x$ določi $p-1$, eksponent pri celotnem oklepaju $(1-x)$ pa $q-1$.",
+    "computeRules": [
+      [
+        "Za izračun z gamo vstavi oba argumenta v števec in njuno vsoto v imenovalec.",
+        "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)}"
+      ],
+      [
+        "Pri naravnih argumentih uporabi fakultete. V imenovalcu najprej seštej argumenta in šele nato odštej 1.",
+        "B(m,n)=\\frac{(m-1)!(n-1)!}{(m+n-1)!}"
+      ],
+      [
+        "Argumenta lahko zamenjaš. V integralu to ustreza zamenjavi $x$ z $1-x$.",
+        "B(p,q)=B(q,p)"
+      ],
+      [
+        "Če povečaš drugi argument za ena, uporabi rekurzijo gama v števcu in imenovalcu.",
+        "B(p,q+1)=\\frac{q}{p+q}B(p,q)"
+      ]
     ]
   },
   "betasub": {
@@ -582,7 +650,15 @@
       "Kako isto ploščino izmeriš z drugo lestvico?",
       "Ko izbereš novo koordinato $u$, se spremenita širina traku in višina v računu. Faktor pri $du$ ohrani ploščino. To uporabiš, da se zapleten koren spremeni v potenco, ki jo prepoznaš v beti."
     ],
-    "calculation": "Pri $u=x^2/4$ se meja $x=2$ spremeni v $u=1$. Iz $x=2\\sqrt u$ dobiš $dx=du/\\sqrt u$; z obema zamenjavama lahko prebereš integral beta."
+    "calculation": "Pri $u=x^2/4$ se meja $x=2$ spremeni v $u=1$. Iz $x=2\\sqrt u$ dobiš $dx=du/\\sqrt u$; z obema zamenjavama lahko prebereš integral beta.",
+    "pattern": "x=\\varphi(u),\\qquad dx=\\varphi'(u)\\,du",
+    "recognition": "Pod korenom ali v potenci se ponavlja isti izraz. Poskusi ga poimenovati $u$ in preveri, ali dobiš preprostejši integrand ter prepoznavni meji.",
+    "computeRules": [
+      [
+        "Po menjavi prepiši tudi diferencial in obe meji. Pri nepravem robu vzemi limito na koncu.",
+        "\\int_a^b f(x)\\,dx=\\int_\\alpha^\\beta f(\\varphi(u))\\varphi'(u)\\,du"
+      ]
+    ]
   },
   "lap": {
     "title": "Laplaceova transformacija in njen inverz",
@@ -671,7 +747,23 @@
       "Kako poenostaviš račun gibanja vzmeti?",
       "Iz časovne krivulje narediš vrednost $F(s)$: pozne višine pomnožiš z manjšo utežjo in sešteješ ploščino. Enačbo za vzmet lahko nato rešiš z računanjem z ulomki, na koncu pa se vrneš k odmiku skozi čas."
     ],
-    "calculation": "Za $f(t)=e^t$ izberi $s=2$. Najprej pomnoži: $e^{-2t}e^t=e^{-t}$. Nato integriraj: $F(2)=\\int_0^\\infty e^{-t}\\,dt=1$."
+    "calculation": "Za $f(t)=e^t$ izberi $s=2$. Najprej pomnoži: $e^{-2t}e^t=e^{-t}$. Nato integriraj: $F(2)=\\int_0^\\infty e^{-t}\\,dt=1$.",
+    "pattern": "F(s)=\\int_0^\\infty e^{-st}f(t)\\,dt",
+    "recognition": "Preberi časovni signal $f(t)$. Faktor $e^{-st}$ je utež, ki jo dodaš pri transformaciji. Integriraš po $t$; v odgovoru ostane parameter $s$.",
+    "computeRules": [
+      [
+        "Vsoto in konstantna faktorja prenesi skozi transformacijo. Isto velja za inverz.",
+        " \\mathcal L(af+bg)=aF+bG"
+      ],
+      [
+        "Tabela pri $s>0$: po puščici v desno transformiraš, v levo poiščeš izvirni signal. Dosledno loči števec pri sinusu od števca pri kosinusu.",
+        "1\\ \\longleftrightarrow\\ \\frac1s,\\qquad\\sin(at)\\ \\longleftrightarrow\\ \\frac{a}{s^2+a^2},\\qquad\\cos(at)\\ \\longleftrightarrow\\ \\frac{s}{s^2+a^2}"
+      ],
+      [
+        "Faktor $e^{at}$ prestavi argument transformiranke. Izberi $s$, pri katerem $F(s-a)$ obstaja.",
+        " \\mathcal L(e^{at}f(t))(s)=F(s-a)"
+      ]
+    ]
   },
   "deriv": {
     "title": "Odvodi pri Laplaceovi transformaciji",
@@ -768,7 +860,19 @@
       "Kako v računu ohraniš začetno lego ali hitrost?",
       "Odvod lege je hitrost. Pri prehodu v Laplaceov zapis se poleg faktorja $s$ pojavi začetna lega; pri drugem odvodu še začetna hitrost. Tako ločiš dve enaki vzmeti, ki ju spustiš iz različnih položajev."
     ],
-    "calculation": "Za $f(t)=1+t$ je $F(s)=1/s+1/s^2$ pri $s>0$. Vstavi $f(0)=1$: $\\mathcal L(f')=sF(s)-1=1/s$. To je transformiranka konstante 1."
+    "calculation": "Za $f(t)=1+t$ je $F(s)=1/s+1/s^2$ pri $s>0$. Vstavi $f(0)=1$: $\\mathcal L(f')=sF(s)-1=1/s$. To je transformiranka konstante 1.",
+    "pattern": "\\mathcal L(f')=sF-f(0),\\qquad\\mathcal L(tf)=-F'(s)",
+    "recognition": "Poglej, kje je odvod. Časovni odvod $f'$ zahteva začetno vrednost. Faktor $t$ pred signalom pa prepoznaš kot navodilo za odvajanje transformiranke po $s$.",
+    "computeRules": [
+      [
+        "Za vsak časovni odvod pomnoži prejšnjo transformiranko s $s$ in odštej ustrezni začetni podatek.",
+        "\\mathcal L(f')=sF-f(0),\\qquad\\mathcal L(f'')=s^2F-sf(0)-f'(0)"
+      ],
+      [
+        "Če signal množiš s $t$, odvajaš po $s$ in spremeniš predznak.",
+        "\\mathcal L(tf)=-F'(s)"
+      ]
+    ]
   },
   "system": {
     "title": "Laplaceova transformacija linearnega sistema",
@@ -853,7 +957,19 @@
       "Kako spremljaš dve povezani masi?",
       "Vsaka krivulja pripada eni masi. Gibanje ene vpliva na drugo, zato imaš dve enačbi. Transformiraj obe, odpravi eno neznanko in nato izračunaj še drugo."
     ],
-    "calculation": "Pri $y'=z$, $z'=y$, $y(0)=1$, $z(0)=0$ dobiš $sY-1=Z$ in $sZ=Y$. Vstavi $Y=sZ$ v prvo enačbo: $(s^2-1)Z=1$. Tako začneš izračun obeh krivulj."
+    "calculation": "Pri $y'=z$, $z'=y$, $y(0)=1$, $z(0)=0$ dobiš $sY-1=Z$ in $sZ=Y$. Vstavi $Y=sZ$ v prvo enačbo: $(s^2-1)Z=1$. Tako začneš izračun obeh krivulj.",
+    "pattern": "Y=\\mathcal L(y),\\qquad Z=\\mathcal L(z)",
+    "recognition": "V dveh enačbah nastopata isti neznani funkciji. Označi njuni transformiranki, prepiši vsak odvod z njegovim začetnim podatkom in nato reši sistem za $Y,Z$.",
+    "computeRules": [
+      [
+        "Vsako vrstico transformiraj posebej. Za vsak odvod uporabi začetni podatek iste funkcije.",
+        "\\mathcal L(y')=sY-y(0),\\qquad\\mathcal L(z')=sZ-z(0)"
+      ],
+      [
+        "Ko izločiš neznanko in razcepiš ulomke, vsako funkcijo posebej vrni v čas.",
+        " y=\\mathcal L^{-1}(Y),\\qquad z=\\mathcal L^{-1}(Z)"
+      ]
+    ]
   },
   "gaussTheory": {
     "title": "Gaussov integral in kosinusna utež",
@@ -969,6 +1085,18 @@
       "Koliko ostane od zvonastega signala, če ga pomnožiš z nihanjem?",
       "Pri ničelni frekvenci seštevaš sam pozitivni zvon. Ko kosinus niha, deli ploščine pod osjo odštejejo dele nad njo. Zato je končna vrednost odvisna od frekvence."
     ],
-    "calculation": "Pri $a=2$ v dobljeno funkcijo vstaviš frekvenco: $I(2)=(\\sqrt\\pi/2)e^{-2^2/4}=\\sqrt\\pi/(2e)$. To je preostala predznačena ploščina."
+    "calculation": "Pri $a=2$ v dobljeno funkcijo vstaviš frekvenco: $I(2)=(\\sqrt\\pi/2)e^{-2^2/4}=\\sqrt\\pi/(2e)$. To je preostala predznačena ploščina.",
+    "pattern": "I(a)=\\int_0^\\infty e^{-x^2}\\cos(ax)\\,dx",
+    "recognition": "Poišči zvon $e^{-x^2}$ in parameter $a$ v kosinusu. Odvajanje po $a$ ustvari faktor $x$; ta se ujema z odvodom zvona po $x$.",
+    "computeRules": [
+      [
+        "Pri frekvenci nič je kosinus povsod enak 1. To določi začetno vrednost.",
+        "I(0)=\\sqrt{\\pi}/2"
+      ],
+      [
+        "Za druge frekvence vstavi $a$ v izpeljano rešitev. Rezultat je predznačena ploščina.",
+        "I(a)=I(0)e^{-a^2/4}"
+      ]
+    ]
   }
 }
