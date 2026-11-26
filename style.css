@@ -56,3 +56,9 @@
 .stepNote summary{padding:4px 0;color:var(--plum);font:600 14px/1.5 var(--sans)}
 .noteStep{margin:10px 0 6px}.exerciseProcedure .noteStep h3{font-size:15px;margin:0}.noteStep p{margin:4px 0;font-size:15px}
 .noteStep .calcLine{width:fit-content;max-width:100%}
+
+.stepFlow{grid-column:2;display:flex;flex-wrap:wrap;gap:5px 7px;align-items:center;margin:4px 0;min-width:0}
+.stepFlow [role=listitem]{display:flex;align-items:center;gap:7px;min-width:0;max-width:100%}
+.flowPart{max-width:100%;box-sizing:border-box;padding:4px 8px;border:1px solid var(--border);border-radius:5px;color:var(--ink);background:white;font:500 14px/1.5 var(--sans);overflow-x:auto}
+.flowArrow{color:var(--plum);flex:none}.flowArrow::before{content:'→'}
+@media(max-width:540px){.stepFlow{align-items:flex-start;flex-direction:column;gap:1px}.stepFlow [role=listitem]{flex-direction:column;align-items:flex-start;gap:0}.flowArrow{margin-left:12px;line-height:1.15}.flowArrow::before{content:'↓'}}

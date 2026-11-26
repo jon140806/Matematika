@@ -56,9 +56,15 @@ def exercise_steps(rows):
     for action,reason,tex,*options in rows:
         step=dict(action=math_text(action),reason=math_text(reason),equation=worked_formula(tex))
         if options and isinstance(options[-1],dict):
-            step["detail"]=math_text(options.pop()["detail"])
-            if not steps:
-                raise ValueError("An optional explanation must follow a calculation step")
+            note=options.pop()
+            if "detail" in note:
+                if not steps:
+                    raise ValueError("An optional explanation must follow a calculation step")
+                step["detail"]=math_text(note["detail"])
+            if "flow" in note:
+                if len(note["flow"])<2:
+                    raise ValueError(f"Missing transition in {action}")
+                step["flow"]=list(map(math_text,note["flow"]))
         if options:
             step["visual"],=options
         steps.append(step)

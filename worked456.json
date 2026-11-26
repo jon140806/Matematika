@@ -504,7 +504,14 @@
       [
         "Pripravi inverzne pare",
         "V zadnjem ulomku ustvari števec $4s$, da lahko uporabiš prvi del naloge.",
-        "K(s)=\\frac1{4s}-\\frac14\\frac{s}{s^2+4}-\\frac14\\frac{4s}{(s^2+4)^2}"
+        "K(s)=\\frac1{4s}-\\frac14\\frac{s}{s^2+4}-\\frac14\\frac{4s}{(s^2+4)^2}",
+        {
+          "flow": [
+            "$-\\frac{s}{(s^2+4)^2}$",
+            "$-\\frac14\\cdot\\frac{4s}{(s^2+4)^2}$",
+            "$-\\frac14 x\\sin(2x)$"
+          ]
+        }
       ],
       [
         "Zapiši rezultat v času",
@@ -540,6 +547,11 @@
         "s^2Y-s+2(sY-1)+Y=F\\quad\\Rightarrow\\quad(s+1)^2Y=s+2+F"
       ],
       [
+        "Vstavi celotno silo v Y",
+        "V prejšnji vrstici deli z $(s+1)^2$. Sila vsebuje začetno konstanto in zakasnjeni popravek. Odziva izračunaš posebej, zakasnitev pa vrneš na koncu.",
+        "Y=\\frac{s+2+1/s}{(s+1)^2}+e^{-2s}\\frac{1/s^2+1/s}{(s+1)^2}"
+      ],
+      [
         "Izračunaj osnovni odziv",
         "Pri delu brez zamika razširi števec s $s$ in prepoznaj popolni kvadrat.",
         "\\frac{s+2+1/s}{(s+1)^2}=\\frac{s^2+2s+1}{s(s+1)^2}=\\frac1s"
@@ -547,7 +559,15 @@
       [
         "Poenostavi zamaknjeni del",
         "Ta člen ima skupni faktor $s+1$, zato ostane manjši imenovalec.",
-        "\\frac{1/s^2+1/s}{(s+1)^2}=\\frac{1+s}{s^2(s+1)^2}=\\frac1{s^2(s+1)}"
+        "\\frac{1/s^2+1/s}{(s+1)^2}=\\frac{1+s}{s^2(s+1)^2}=\\frac1{s^2(s+1)}",
+        {
+          "flow": [
+            "iz $F$ izberi člen z $e^{-2s}$",
+            "deli s faktorjem sistema $(s+1)^2$",
+            "razcepi ulomek brez $e^{-2s}$",
+            "ob koncu premakni odziv za 2"
+          ]
+        }
       ],
       [
         "Nastavi parcialne ulomke",
@@ -610,9 +630,21 @@
         "s^2Y-s-2+4Y=F\\ \\Rightarrow\\ (s^2+4)Y=F+s+2"
       ],
       [
+        "Vstavi silo in deli s faktorjem sistema",
+        "Vsak člen na desni deli s $s^2+4$. V drugem in tretjem ulomku se pojavi isti imenovalec, zato bo en razcep zadoščal za oba.",
+        "Y=\\frac{s+2}{s^2+4}+\\frac{3(s+1)}{(s^2+1)(s^2+4)}+\\frac{3e^{-as}}{(s^2+1)(s^2+4)}"
+      ],
+      [
         "Loči zamaknjeni člen",
         "V obeh delih prepoznaj isti ulomek $D$. Tako njegov inverz izračunaš enkrat.",
-        "Y=\\frac{s+2}{s^2+4}+(s+1)D+e^{-as}D,\\qquad D=\\frac3{(s^2+1)(s^2+4)}"
+        "Y=\\frac{s+2}{s^2+4}+(s+1)D+e^{-as}D,\\qquad D=\\frac3{(s^2+1)(s^2+4)}",
+        {
+          "flow": [
+            "izoliraj $Y$",
+            "zberi člen s faktorjem $e^{-as}$",
+            "preostanek je osnovni odziv $Y_0$"
+          ]
+        }
       ],
       [
         "Odpravi imenovalec D",
@@ -659,7 +691,14 @@
       [
         "Osami Y",
         "Obe strani deli s transformiranko kosinusa.",
-        "Y=\\frac2{s^2+4}\\cdot\\frac{s^2+1}{s}"
+        "Y=\\frac2{s^2+4}\\cdot\\frac{s^2+1}{s}",
+        {
+          "flow": [
+            "$Y\\cdot\\frac{s}{s^2+1}=\\frac2{s^2+4}$",
+            "pomnoži z $\\frac{s^2+1}{s}$",
+            "dobljeni $Y$ razstavi na znana para"
+          ]
+        }
       ],
       [
         "Razcepi ulomek",
@@ -675,6 +714,11 @@
         "Primerjaj kvadratni člen",
         "V njegovo enačbo vstavi že izračunani $A$.",
         "A+B=2\\ \\Rightarrow\\ B=2-\\tfrac12=\\tfrac32"
+      ],
+      [
+        "Vstavi števce v oba ulomka",
+        "V členu z imenovalcem $s^2+4$ vstavimo $B=3/2$ in $C=0$. Njegov števec vsebuje $s$, zato bo pri inverzu nastal kosinus.",
+        "Y=\\frac{1/2}{s}+\\frac{(3/2)s+0}{s^2+4}"
       ],
       [
         "Obrni konstanto in kosinus",
@@ -735,8 +779,15 @@
       ],
       [
         "Premakni indeks druge vsote",
-        "V drugi postavimo k = n+1. Prva dva člena znane vrste odštejemo, ker vsota začne pri k = 3.",
-        "\\sum_{n=2}^\\infty\\frac{x^n}{n+1}=\\frac1x\\sum_{k=3}^\\infty\\frac{x^k}{k}=\\frac{-\\ln(1-x)-x-x^2/2}{x}"
+        "Cilj je dobiti znano vsoto s členom $x^k/k$. Ker je $n=k-1$, manjka ena potenca $x$. Faktor $1/x$ zato stoji pred vsoto. Računamo pri $x\\ne0$.",
+        "\\sum_{n=2}^\\infty\\frac{x^n}{n+1}=\\frac1x\\sum_{k=3}^\\infty\\frac{x^k}{k}=\\frac{-\\ln(1-x)-x-x^2/2}{x}",
+        {
+          "flow": [
+            "$k=n+1$",
+            "$x^n=x^k/x$",
+            "Od cele vrste odštej $x+x^2/2$."
+          ]
+        }
       ],
       [
         "Odštej vsoti",
@@ -837,8 +888,15 @@
       ],
       [
         "Uvedi pomožno vsoto",
-        "Oba robova izločimo. Znotraj polmera množimo z x², da eksponent postane enak imenovalcu.",
-        "x\\in(-1,0)\\cup(0,1),\\quad T(x)=x^2S(x)=\\sum_{n=0}^\\infty\\frac{x^{4n+1}}{4n+1}"
+        "Želimo odvajati tako, da imenovalec izgine. Potenci zato dodamo dve z množenjem z $x^2$. Po seštevanju bomo to množenje razveljavili.",
+        "x\\in(-1,0)\\cup(0,1),\\quad T(x)=x^2S(x)=\\sum_{n=0}^\\infty\\frac{x^{4n+1}}{4n+1}",
+        {
+          "flow": [
+            "$x^{4n-1}\\cdot x^2=x^{4n+1}$",
+            "Odvod prinese faktor $4n+1$.",
+            "Ostane $(x^4)^n$."
+          ]
+        }
       ],
       [
         "Določi vrednost pomožne vrste v ničli",
@@ -963,7 +1021,7 @@
       ],
       [
         "Obrni smer sklepanja",
-        "Ker je tokrat dano ravno nasprotno o funkcijski vrsti, uporabimo kontrapozicijo.",
+        "Če bi našli meje $M_n$ s končno vsoto, bi M-test zagotovil enakomerno konvergenco. V nalogi je ta izključena. Zato vsaka izbira nenegativnih mej, ki omejujejo člene na celotnem intervalu, da divergentno vsoto.",
         "\\sum f_n\\ \\text{ne konvergira enakomerno}\\quad\\Rightarrow\\quad\\sum M_n=\\infty"
       ]
     ],
@@ -1033,8 +1091,15 @@
       ],
       [
         "Izlušči najnižjo potenco",
-        "Odvoda pomnožimo z x oziroma x². Člen x²y prispeva šele dve potenci pozneje.",
-        "r(r-1)a_0x^r+ra_0x^r-25a_0x^r=[r(r-1)+r-25]a_0x^r"
+        "V enačbi združi člene pri isti potenci. Pri najnižji potenci nastopajo samo trije prispevki. Njihova vsota mora biti nič, kar določi možna eksponenta $r$.",
+        "r(r-1)a_0x^r+ra_0x^r-25a_0x^r=[r(r-1)+r-25]a_0x^r",
+        {
+          "flow": [
+            "$x^2y^{\\prime\\prime},\\ xy^\\prime,\\ -25y$ prispevajo pri $x^r$.",
+            "$x^2y$ se začne pri $x^{r+2}$.",
+            "Pri $x^r$ ostane faktor $r(r-1)+r-25$."
+          ]
+        }
       ],
       [
         "Reši indicialno enačbo",

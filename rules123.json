@@ -118,10 +118,10 @@
     ],
     "root": [
       [
-        "Verižno pravilo za logaritem in koren",
-        "(\\ln g)'=\\frac{g'}g,\\qquad (\\sqrt w)'=\\frac{w'}{2\\sqrt w}",
-        "Odvajaj po $t$ pri stalnem $y$. Za $t>2$ je $w=t^2-y^2>0$, $g=t+\\sqrt w$. Ker sta meji integrala stalni, integriraj dobljeni odvod.",
-        "\\partial_t\\ln g=\\frac{1+t/\\sqrt{w}}{t+\\sqrt w}=\\frac1{\\sqrt w},\\quad F'(t)=[\\arcsin(y/t)]_0^2=\\arcsin(2/t)"
+        "Verižno pravilo pri odvajanju po parametru",
+        "\\partial_t\\ln g=\\frac{\\partial_t g}{g},\\qquad \\partial_t\\sqrt{w}=\\frac{\\partial_t w}{2\\sqrt w}",
+        "V pravilu za logaritem je $g$ vse, kar stoji v oklepaju. V pravilu za koren je $w$ izraz pod korenom. Obakrat odvajaš po $t$ in držiš $y$ pri miru.",
+        "\\partial_t\\ln\\!\\left(t+\\sqrt{t^2-y^2}\\right)=\\frac{1+t/\\sqrt{t^2-y^2}}{t+\\sqrt{t^2-y^2}}=\\frac{1}{\\sqrt{t^2-y^2}}"
       ]
     ],
     "betasub": [

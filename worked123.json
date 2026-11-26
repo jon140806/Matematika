@@ -461,7 +461,14 @@
       [
         "Določi konstanto",
         "V splošno rešitev vstavi a=0 in dobljeno ploščino. Enačba določi C.",
-        "2=F(0)=\\frac83\\cdot0+C\\quad\\Longrightarrow\\quad C=2"
+        "2=F(0)=\\frac83\\cdot0+C\\quad\\Longrightarrow\\quad C=2",
+        {
+          "flow": [
+            "$a=0$",
+            "vstavi v $F(a)$",
+            "izenači s $F(0)$"
+          ]
+        }
       ],
       [
         "Zapiši rezultat",
@@ -519,7 +526,14 @@
       [
         "Prepoznaj prvotni integral",
         "Preostali integral gre po definiciji proti prvotnemu $I(a)$.",
-        "I'(a)=\\tfrac12\\cdot0-\\tfrac a2 I(a)=-\\tfrac a2 I(a)"
+        "I'(a)=\\tfrac12\\cdot0-\\tfrac a2 I(a)=-\\tfrac a2 I(a)",
+        {
+          "flow": [
+            "odvajaj kosinus",
+            "integriraj po delih",
+            "znova dobiš $I(a)$"
+          ]
+        }
       ],
       [
         "Pripravi odvod produkta",
@@ -653,7 +667,14 @@
       [
         "Izračunaj robni člen",
         "V prvotni funkciji povsod nadomesti $x$ s $t^2$. Argument $tx$ tako postane $t^3$.",
-        "D=2t\\frac{\\arctan(t^3)-\\arctan(t^2)}{t^2}=\\frac{2\\arctan(t^3)-2\\arctan(t^2)}t"
+        "D=2t\\frac{\\arctan(t^3)-\\arctan(t^2)}{t^2}=\\frac{2\\arctan(t^3)-2\\arctan(t^2)}t",
+        {
+          "flow": [
+            "$x=t^2$",
+            "$tx=t^3$",
+            "$\\arctan(tx)-\\arctan x=\\arctan(t^3)-\\arctan(t^2)$"
+          ]
+        }
       ],
       [
         "Seštej oba prispevka",
@@ -668,39 +689,70 @@
     ],
     "root": [
       [
-        "Označi integrand",
-        "Odvajamo po $t$ pri fiksnem $y$. Najprej računamo v notranjosti območja, kjer je koren pozitiven.",
-        "f(y,t)=\\ln(t+\\sqrt{t^2-y^2}),\\qquad 0\\le y\\le2,\\quad t>2"
+        "Kaj moraš odvajati?",
+        "Iščemo spremembo integrala pri spremembi $t$. Meji sta stalni. Najprej odvajaj samo višino $f(y,t)$ po $t$ in pri tem drži $y$ pri miru.",
+        "f(y,t)=\\ln(t+\\sqrt{t^2-y^2}),\\qquad F(t)=\\int_0^2 f(y,t)\\,dy,\\quad t>2",
+        {
+          "flow": [
+            "izraz pod korenom",
+            "koren",
+            "vsota",
+            "logaritem"
+          ]
+        }
       ],
       [
-        "Odvajaj koren",
-        "Da vidiš oba koraka verižnega pravila, označi koren s k in odvajaj po t.",
-        "k=\\sqrt{t^2-y^2},\\quad \\partial_t k=\\frac{2t}{2\\sqrt{t^2-y^2}}=\\frac tk"
+        "Odvajaj izraz pod korenom",
+        "Začneš najgloblje v oklepaju. Ker je $y$ pri odvajanju po $t$ konstanta, njegov kvadrat prispeva nič.",
+        "\\partial_t(t^2-y^2)=2t-0=2t"
       ],
       [
-        "Odvajaj logaritem",
-        "Odvajaj logaritem kot odvod notranjosti deljeno z notranjostjo.",
-        "\\partial_t\\ln(t+k)=\\frac{1+t/k}{t+k}=\\frac{k+t}{k(t+k)}=\\frac1k"
+        "Uporabi pravilo za koren",
+        "Odvod izraza pod korenom vpiši v števec. V imenovalec napiši dvakrat prvotni koren.",
+        "\\partial_t\\sqrt{t^2-y^2}=\\frac{\\partial_t(t^2-y^2)}{2\\sqrt{t^2-y^2}}=\\frac{2t}{2\\sqrt{t^2-y^2}}=\\frac{t}{\\sqrt{t^2-y^2}}"
       ],
       [
-        "Preveri območje parametra",
-        "Za t>2 je izraz pod korenom na celem intervalu pozitiven. V okolici takega t sta integrand in parcialni odvod zvezna.",
-        "0\\le y\\le2,\\quad t^2-y^2\\ge t^2-4>0"
+        "Dodaj odvod prvega člena",
+        "Logaritem objema vsoto. Odvod prvega člena je $1$, odvod drugega si pravkar izračunal.",
+        "\\partial_t(t+\\sqrt{t^2-y^2})=1+\\frac{t}{\\sqrt{t^2-y^2}}"
       ],
       [
-        "Zamenjaj y s tu",
-        "Vstavi odvod pod integral in uvedi u=y/t, da dobiš standardni integral za arkus sinus.",
-        "F'(t)=\\int_0^2\\frac{dy}{\\sqrt{t^2-y^2}}=\\int_0^{2/t}\\frac{t\\,du}{t\\sqrt{1-u^2}}"
+        "Odvajaj še zunanji logaritem",
+        "Pri logaritmu deliš odvod celotne vsebine oklepaja z njegovo prvotno vsebino.",
+        "\\partial_t f=\\frac{\\partial_t(t+\\sqrt{t^2-y^2})}{t+\\sqrt{t^2-y^2}}=\\frac{1+t/\\sqrt{t^2-y^2}}{t+\\sqrt{t^2-y^2}}"
+      ],
+      [
+        "Pokrajšaj skupni faktor",
+        "V števcu zapiši $1$ kot koren, deljen s samim seboj. Zgoraj in spodaj se zdaj pojavi ista vsota.",
+        "\\partial_t f=\\frac{\\sqrt{t^2-y^2}+t}{\\sqrt{t^2-y^2}\\,(t+\\sqrt{t^2-y^2})}=\\frac1{\\sqrt{t^2-y^2}}"
+      ],
+      [
+        "Vstavi odvod pod integral",
+        "Pri $t>2$ je $t^2-y^2\\ge t^2-4>0$ na celotnem intervalu. Višina in njen parcialni odvod sta zvezna, zato smeš pri stalnih mejah integrirati dobljeni odvod.",
+        "F'(t)=\\int_0^2\\partial_t f(y,t)\\,dy=\\int_0^2\\frac{dy}{\\sqrt{t^2-y^2}}"
+      ],
+      [
+        "Pripravi zamenjavo za arkus sinus",
+        "Koren v tabeli za arkus sinus je $\\sqrt{1-u^2}$. Dobiš ga, če izpostaviš $t^2$ in vzameš $u=y/t$. Ker je $t>2$, je koren iz $t^2$ enak $t$.",
+        "u=y/t,\\quad dy=t\\,du,\\quad\\sqrt{t^2-y^2}=t\\sqrt{1-u^2},\\quad y=0,2\\ \\Rightarrow\\ u=0,2/t"
       ],
       [
         "Vstavi novi meji",
-        "Vstavi obe meji v primitivno funkcijo.",
-        "F'(t)=[\\arcsin u]_0^{2/t}=\\arcsin(2/t)"
+        "Faktor $t$ iz diferenciala se pokrajša s faktorjem $t$ iz korena. Primitivna funkcija je nato arkus sinus.",
+        "F'(t)=\\int_0^{2/t}\\frac{t\\,du}{t\\sqrt{1-u^2}}=[\\arcsin u]_0^{2/t}=\\arcsin(2/t)-\\arcsin0=\\arcsin(2/t)"
       ],
       [
         "Na robu vzemi desni kvocient",
-        "Na robu vzemi desni diferenčni kvocient za integrand f. Po izreku o srednji vrednosti je enak odvodu pri vmesnem t, zato ga za vsak y<2 omeji ista funkcija.",
-        "0\\le\\frac{f(y,2+h)-f(y,2)}h\\le\\frac1{\\sqrt{4-y^2}},\\quad h>0"
+        "Pri $t=2$ je dovoljen premik le v desno. Za fiksen $y<2$ je po izreku o srednji vrednosti količnik enak odvodu pri nekem $\\xi$ med $2$ in $2+h$. Največjo oceno dobiš pri najmanjšem imenovalcu.",
+        "0\\le\\frac{f(y,2+h)-f(y,2)}h\\le\\frac1{\\sqrt{4-y^2}},\\quad h>0",
+        {
+          "flow": [
+            "$2<\\xi<2+h$",
+            "$\\xi^2-y^2\\ge4-y^2$",
+            "večji koren spodaj",
+            "manjši količnik"
+          ]
+        }
       ],
       [
         "Odreži zgornji rob",
@@ -743,7 +795,14 @@
       [
         "Preberi argumenta beta",
         "Pokrajšaj potence in primerjaj z definicijo beta.",
-        "I=8\\int_0^1u^{1/2}(1-u)^{1/2}du=8B(1+\\tfrac12,1+\\tfrac12)"
+        "I=8\\int_0^1u^{1/2}(1-u)^{1/2}du=8B(1+\\tfrac12,1+\\tfrac12)",
+        {
+          "flow": [
+            "$u/\\sqrt u=u^{1/2}$",
+            "$p-1=1/2$",
+            "$p=3/2$"
+          ]
+        }
       ],
       [
         "Uporabi zvezo z gama",
@@ -801,7 +860,14 @@
       [
         "Združi potence",
         "Faktor iz diferenciala prispeva potenco $-1/2$, prvi koren pa $1/4$. Seštevek eksponentov je $-1/4$.",
-        "I=\\int_0^1\\frac{u^{1/4}}{\\sqrt2}(1-u)^{1/2}\\frac{du}{4u^{1/2}}=\\frac1{4\\sqrt2}\\int_0^1u^{-1/4}(1-u)^{1/2}du"
+        "I=\\int_0^1\\frac{u^{1/4}}{\\sqrt2}(1-u)^{1/2}\\frac{du}{4u^{1/2}}=\\frac1{4\\sqrt2}\\int_0^1u^{-1/4}(1-u)^{1/2}du",
+        {
+          "flow": [
+            "$\\sqrt x$ prispeva $u^{1/4}$",
+            "$dx$ prispeva $u^{-1/2}$",
+            "$u^{1/4-1/2}=u^{-1/4}$"
+          ]
+        }
       ],
       [
         "Preberi argumenta beta",
@@ -826,7 +892,14 @@
       [
         "Preslikaj končni interval",
         "Namesto neskončnosti vzemi končno mejo $R>1$ ter preslikaj oba robova in diferencial.",
-        "\\int_1^R\\frac{\\sqrt{\\ln x}}{x^2}\\,dx=\\int_{\\ln1}^{\\ln R}\\sqrt u\\,e^{-u}du=\\int_0^{\\ln R}\\sqrt u\\,e^{-u}du"
+        "\\int_1^R\\frac{\\sqrt{\\ln x}}{x^2}\\,dx=\\int_{\\ln1}^{\\ln R}\\sqrt u\\,e^{-u}du=\\int_0^{\\ln R}\\sqrt u\\,e^{-u}du",
+        {
+          "flow": [
+            "$x^{-2}=e^{-2u}$",
+            "$dx=e^u\\,du$",
+            "$x^{-2}dx=e^{-u}\\,du$"
+          ]
+        }
       ],
       [
         "Pošlji rez v neskončnost",
@@ -889,7 +962,14 @@
       [
         "Znižaj oba povečana argumenta",
         "Z rekurzijo dobimo faktorja $q$ in $p$. Obe preostali funkciji gama se pokrajšata.",
-        "\\frac{\\Gamma(p)q\\Gamma(q)}{p\\Gamma(p)\\Gamma(q)}=\\frac qp"
+        "\\frac{\\Gamma(p)q\\Gamma(q)}{p\\Gamma(p)\\Gamma(q)}=\\frac qp",
+        {
+          "flow": [
+            "$\\Gamma(q+1)=q\\Gamma(q)$",
+            "$\\Gamma(p+1)=p\\Gamma(p)$",
+            "pokrajšaj oba skupna faktorja"
+          ]
+        }
       ],
       [
         "Izrazi zahtevano funkcijo",
@@ -921,7 +1001,14 @@
       [
         "Obrni oba ulomka",
         "Položaj pola poda eksponent. Koeficient pred ulomkom ostane pred časovno funkcijo.",
-        "\\mathcal L^{-1}\\left\\{\\frac1{s-a}\\right\\}=e^{at},\\quad f(t)=\\tfrac12 e^t-\\tfrac12 e^{-t}"
+        "\\mathcal L^{-1}\\left\\{\\frac1{s-a}\\right\\}=e^{at},\\quad f(t)=\\tfrac12 e^t-\\tfrac12 e^{-t}",
+        {
+          "flow": [
+            "$A=\\frac12,\\ B=-\\frac12$",
+            "vstavi v oba ulomka",
+            "vsak $\\frac1{s-a}$ zamenjaj z $e^{at}$"
+          ]
+        }
       ],
       [
         "Združi eksponenta",
@@ -961,7 +1048,14 @@
       [
         "Odpravi Z",
         "Iz $D=Y-2Z$ izrazi $Z$. Po vstavljanju v drugo enačbo množi z 2, da izgine imenovalec.",
-        "Z=(Y-D)/2,\\quad 2sY+(1-s)(Y-D)=2+\\frac2{s+1}"
+        "Z=(Y-D)/2,\\quad 2sY+(1-s)(Y-D)=2+\\frac2{s+1}",
+        {
+          "flow": [
+            "$D=Y-2Z$",
+            "$Z=(Y-D)/2$",
+            "v drugi enačbi ostane le neznanka $Y$"
+          ]
+        }
       ],
       [
         "Zberi člene pri Y",
@@ -987,6 +1081,11 @@
         "Določi števca",
         "Vstavi $s=1$ za $A$ in $s=-1$ za $B$, da vsakokrat izgine drugi neznani člen.",
         "1=2A,\\quad 1=-2B,\\quad D=\\frac{1/2}{s-1}-\\frac{1/2}{s+1}"
+      ],
+      [
+        "Vstavi izračunana Y in D",
+        "Iz prve enačbe že veš, kako dobiti $Z$. V oklepaj vstavi oba znana izraza. Zunanji minus spremeni predznak obema členoma razcepa $D$.",
+        "Z=\\frac{Y-D}{2}=\\frac12\\left(\\frac2{s+1}+\\frac1{(s+1)^2}-\\frac{1/2}{s-1}+\\frac{1/2}{s+1}\\right)"
       ],
       [
         "Izračunaj Z",
@@ -1041,7 +1140,15 @@
       [
         "Odpravi Y",
         "Drugo enačbo pomnoži z 2. Njen člen z $Y$ je zdaj enak tistemu v prvi enačbi.",
-        "[(s^2-1)-2(s-1)]Z=(2s+5)-6"
+        "[(s^2-1)-2(s-1)]Z=(2s+5)-6",
+        {
+          "flow": [
+            "druga enačba",
+            "$2(s-1)Y+2(s-1)Z=6$",
+            "odštej jo od prve",
+            "ostane enačba za $Z$"
+          ]
+        }
       ],
       [
         "Razcepi Z",
@@ -1084,7 +1191,15 @@
       [
         "Uporabi pravili za drugi odvod in faktor t",
         "Najprej transformiraj $y''$. Ker je pomnožen s časom, dobljeni izraz odvajaj po $s$ in spremeni predznak.",
-        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0),\\qquad \\mathcal L(ty'')=-\\frac{d}{ds}\\left[s^2Y-sy(0)-y'(0)\\right]"
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0),\\qquad \\mathcal L(ty'')=-\\frac{d}{ds}\\left[s^2Y-sy(0)-y'(0)\\right]",
+        {
+          "flow": [
+            "$y^{\\prime\\prime}(t)$",
+            "$s^2Y-sy(0)-y^\\prime(0)$",
+            "zaradi faktorja $t$ odvajaj cel izraz po $s$",
+            "spremeni predznak"
+          ]
+        }
       ],
       [
         "Odvajaj produkt",

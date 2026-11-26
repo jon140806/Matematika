@@ -33,7 +33,14 @@
         [
           "Loči sinusni in kosinusni člen",
           "Za frekvenco 3 mora biti v števcu sinusnega člena 3. Zunanji faktor $1/3$ ohrani vrednost.",
-          "F(s)=2\\frac{s+2}{(s+2)^2+9}+\\frac13\\frac{3}{(s+2)^2+9}"
+          "F(s)=2\\frac{s+2}{(s+2)^2+9}+\\frac13\\frac{3}{(s+2)^2+9}",
+          {
+            "flow": [
+              "števec $2(s+2)+1$",
+              "razdeli na dva ulomka",
+              "$s+2$ za kosinus, $3$ za sinus"
+            ]
+          }
         ],
         [
           "Uporabi premik",
@@ -95,9 +102,21 @@
           "0=A+C\\ \\Rightarrow\\ A=-\\tfrac14"
         ],
         [
+          "Vrni koeficiente v razcep",
+          "V prvi, drugi in tretji ulomek vstavi izračunane $A,B,C$. Šele zdaj lahko vsak celotni člen prevedeš v čas.",
+          "F=-\\frac1{4(s+1)}+\\frac1{2(s+1)^2}+\\frac1{4(s+3)}"
+        ],
+        [
           "Obrni vsak ulomek",
           "Dvojni pol da dodaten faktor $t$, enostavna pola pa eksponenta.",
-          "f(t)=-\\tfrac14e^{-t}+\\tfrac12te^{-t}+\\tfrac14e^{-3t}"
+          "f(t)=-\\tfrac14e^{-t}+\\tfrac12te^{-t}+\\tfrac14e^{-3t}",
+          {
+            "flow": [
+              "$B=\\frac12$",
+              "člen $\\frac{1/2}{(s+1)^2}$",
+              "prispevek $\\frac12te^{-t}$"
+            ]
+          }
         ]
       ],
       "quiz": [
@@ -153,9 +172,21 @@
           "2=A(s+3)+B(s+1),\\qquad s=-1:\\ A=1,\\quad s=-3:\\ B=-1"
         ],
         [
+          "Nadomesti razcepljeni ulomek",
+          "Uporabi $A=1$ in $B=-1$. V izrazu za $Y$ je pred tem ulomkom še člen iz začetnega pogoja.",
+          "Y=\\frac2{s+3}+\\left(\\frac1{s+1}-\\frac1{s+3}\\right)"
+        ],
+        [
           "Zberi enake imenovalce",
           "Pri $1/(s+3)$ se koeficienta 2 in $-1$ seštejeta. Oba preostala enostavna pola lahko obrneš.",
-          "Y=\\frac1{s+3}+\\frac1{s+1}\\ \\Rightarrow\\ y(t)=e^{-3t}+e^{-t}"
+          "Y=\\frac1{s+3}+\\frac1{s+1}\\ \\Rightarrow\\ y(t)=e^{-3t}+e^{-t}",
+          {
+            "flow": [
+              "vrni $A=1,\\ B=-1$ v razcep",
+              "prištej $\\frac2{s+3}$ iz začetnega pogoja",
+              "obrni dobljena dva ulomka"
+            ]
+          }
         ]
       ],
       "quiz": [
@@ -192,8 +223,16 @@
         ],
         [
           "Uporabi pravilo za količnik",
-          "Števec ima odvod 1, imenovalec pa $2s$. Njuna odvoda vstavita dva prispevka z nasprotnim predznakom.",
-          "F'(s)=\\frac{1\\cdot(s^2+9)-s\\cdot2s}{(s^2+9)^2}=\\frac{9-s^2}{(s^2+9)^2}"
+          "V pravilu za časovni faktor je potreben odvod po $s$. Števec ima odvod 1, imenovalec pa $2s$. Uporabi pravilo za odvod količnika in šele v naslednji vrstici dodaj zunanji minus.",
+          "F'(s)=\\frac{1\\cdot(s^2+9)-s\\cdot2s}{(s^2+9)^2}=\\frac{9-s^2}{(s^2+9)^2}",
+          {
+            "flow": [
+              "$\\cos(3t)$",
+              "$F(s)=s/(s^2+9)$",
+              "izračunaj $F^\\prime(s)$",
+              "za $t\\cos(3t)$ uporabi $-F^\\prime(s)$"
+            ]
+          }
         ],
         [
           "Vrni faktor t",
@@ -237,7 +276,14 @@
           "Sestavi časovno okno",
           "Prva stopnica prišteje višino 3. Druga jo ob izklopu odšteje.",
           "f(t)=3H(t-1)-3H(t-4)",
-          "window34"
+          "window34",
+          {
+            "flow": [
+              "pri $t=1$ prištej 3",
+              "med 1 in 4 je višina 3",
+              "pri $t=4$ odštej 3"
+            ]
+          }
         ],
         [
           "Transformiraj stopnici",
@@ -285,7 +331,15 @@
         [
           "Zamakni rampo za tri enote",
           "V izrazu za rampo nadomesti $t$ s časom, ki je minil od vklopa.",
-          "g(t-3)=2(t-3)"
+          "g(t-3)=2(t-3)",
+          {
+            "flow": [
+              "$2/s^2$",
+              "osnovna rampa $2t$",
+              "zaradi $e^{-3s}$ vstavi $t-3$",
+              "vključi rampo pri $t=3$"
+            ]
+          }
         ],
         [
           "Zapiši obe veji",
@@ -339,7 +393,15 @@
         [
           "Pripravi sinusni par",
           "Frekvenca je 2. Da bo v števcu tudi 2, izpostavi faktor $3/2$.",
-          "\\frac3{s^2+4}=\\frac32\\frac2{s^2+2^2}\\ \\longleftrightarrow\\ \\frac32\\sin(2t)"
+          "\\frac3{s^2+4}=\\frac32\\frac2{s^2+2^2}\\ \\longleftrightarrow\\ \\frac32\\sin(2t)",
+          {
+            "flow": [
+              "števec $3$",
+              "$3=\\frac32\\cdot2$",
+              "par prepoznaš po števcu 2",
+              "ostane faktor $\\frac32$"
+            ]
+          }
         ],
         [
           "Prestavi uro nihala",
@@ -416,7 +478,15 @@
         [
           "Združi eksponenta",
           "Člen $-t$ se med integriranjem po $u$ ne spreminja, zato ga lahko izpostaviš.",
-          "-2u-(t-u)=-u-t,\\qquad (f*g)(t)=e^{-t}\\int_0^t e^{-u}\\,du"
+          "-2u-(t-u)=-u-t,\\qquad (f*g)(t)=e^{-t}\\int_0^t e^{-u}\\,du",
+          {
+            "flow": [
+              "$e^{-2u}e^{-(t-u)}$",
+              "$e^{-2u-t+u}$",
+              "$e^{-t}\\cdot e^{-u}$",
+              "po $u$ integriraj le drugi faktor"
+            ]
+          }
         ],
         [
           "Vstavi obe meji",

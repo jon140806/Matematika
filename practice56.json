@@ -120,8 +120,15 @@
         ],
         [
           "Poravnaj eksponent",
-          "Pomnoži obe strani z $x$, da poravnaš eksponent s tistim iz naloge.",
-          "\\sum_{n=1}^{\\infty}nx^n=xG'(x)=\\frac{x}{(1-x)^2}"
+          "Odvod je prinesel iskani faktor $n$, vendar je eksponent zmanjšal za ena. Dopolni vsak člen z enim faktorjem $x$ in enako pomnoži desno stran.",
+          "\\sum_{n=1}^{\\infty}nx^n=xG'(x)=\\frac{x}{(1-x)^2}",
+          {
+            "flow": [
+              "$x^n$",
+              "Odvod da $nx^{n-1}$.",
+              "Množenje z $x$ da $nx^n$."
+            ]
+          }
         ],
         [
           "Vstavi eno četrtino",
@@ -255,9 +262,16 @@
         ],
         [
           "Izberi točko z napako ½",
-          "Za vsak $N$ lahko izbereš drug $x_N$ tik ob desnem robu. Poišči ga tako, da v izrazu za napako vzameš koren stopnje $N+1$.",
+          "Enakomernost bi zahtevala majhno napako pri vseh $x$ hkrati. Zato po izbiri $N$ poiščemo eno točko, kjer napaka ostane velika. V znani izraz za napako vstavimo želeno vrednost $1/2$ in rešimo za $x$.",
           "x_N^{N+1}=\\tfrac12\\ \\Longrightarrow\\ x_N=(1/2)^{1/(N+1)},\\qquad R_N(x_N)=\\tfrac12",
-          "edge56"
+          "edge56",
+          {
+            "flow": [
+              "$R_N(x)=x^{N+1}$",
+              "$x^{N+1}=1/2$",
+              "$x_N=(1/2)^{1/(N+1)}$ leži med 0 in 1."
+            ]
+          }
         ],
         [
           "Preveri zahtevo enakomernosti",
@@ -363,8 +377,15 @@
         ],
         [
           "Izenači potence po odvajanju",
-          "Nastavi $k=j-2$. Tedaj je $j=k+2$ in spodnja meja $j=2$ pomeni $k=0$.",
-          "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k"
+          "V $y$ že nastopa $x^k$. Da bomo lahko sešteli koeficienta pri isti potenci v $y$ in $y^{\\prime\\prime}$, tudi v drugi vrsti poimenujemo eksponent $k$.",
+          "y''=\\sum_{j=2}^\\infty j(j-1)a_jx^{j-2}=\\sum_{k=0}^\\infty(k+2)(k+1)a_{k+2}x^k",
+          {
+            "flow": [
+              "$x^{j-2}=x^k$",
+              "$j=k+2$",
+              "Ob $x^k$ zato stoji $(k+2)(k+1)a_{k+2}$."
+            ]
+          }
         ],
         [
           "Vstavi obe vrsti",
@@ -378,8 +399,15 @@
         ],
         [
           "Izračunaj naslednje koeficiente",
-          "Vstavi zaporedoma $k=0,1,2$. Liha veja ostane nič, ker se začne z nič.",
-          "a_2=-4/(2\\cdot1)=-2,\\quad a_3=0,\\quad a_4=\\frac{(-4)(-2)}{4\\cdot3}=\\frac23"
+          "Rekurzija poveže koeficienta, katerih indeksa se razlikujeta za dve. Začni z začetnima podatkoma $a_0=1$ in $a_1=0$. Pri računu za $a_4$ uporabi pravkar izračunani $a_2$.",
+          "a_2=-4/(2\\cdot1)=-2,\\quad a_3=0,\\quad a_4=\\frac{(-4)(-2)}{4\\cdot3}=\\frac23",
+          {
+            "flow": [
+              "$a_0=1$",
+              "$a_2=-4a_0/2=-2$",
+              "$a_4=-4a_2/12=2/3$"
+            ]
+          }
         ],
         [
           "Sestavi polinom",
@@ -495,8 +523,15 @@
         ],
         [
           "Določi merilo polinoma",
-          "Pogoj pri 1 določi $a$, nato izračunaj $b$.",
-          "a+b=1\\ \\Longrightarrow\\ a-5a/3=1\\ \\Longrightarrow\\ a=-3/2,\\quad b=5/2"
+          "Diferencialna enačba je določila razmerje med koeficientoma. Za konkretni polinom uporabi še $P_3(1)=1$. V $a+b=1$ vstavi izraz za $b$, reši za $a$ in nato izračunaj $b$.",
+          "a+b=1\\ \\Longrightarrow\\ a-5a/3=1\\ \\Longrightarrow\\ a=-3/2,\\quad b=5/2",
+          {
+            "flow": [
+              "$a-5a/3=1$",
+              "$-2a/3=1$",
+              "$a=-3/2,\\quad b=-5a/3=5/2$"
+            ]
+          }
         ],
         [
           "Sestavi normalizirani polinom",
@@ -587,8 +622,15 @@
         ],
         [
           "Integriraj ukrivljenost",
-          "Ker je $y$ stalen pri integriranju po $x$, je integracijska konstanta lahko funkcija $y$. Označi jo z $A(y)$.",
-          "u_{xx}=2y\\ \\Longrightarrow\\ u_x=2yx+A(y)"
+          "Iščemo najprej naklon $u_x$, ker zanj poznamo vrednost pri $x=0$. Pri odvajanju po $x$ vsaka funkcija samo od $y$ izgine. Zato jo moramo pri integriranju dodati in nato določiti iz naklona.",
+          "u_{xx}=2y\\ \\Longrightarrow\\ u_x=2yx+A(y)",
+          {
+            "flow": [
+              "$u_{xx}=2y$",
+              "Integral po $x$ da $u_x=2yx+A(y)$.",
+              "Pri $x=0$ preberemo $A(y)=u_x(0,y)$."
+            ]
+          }
         ],
         [
           "Uporabi začetni naklon",

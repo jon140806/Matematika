@@ -43,7 +43,14 @@
         [
           "Odvajaj produkt",
           "Pri produktu enkrat odvajaj prvi faktor in enkrat drugega.",
-          "F''(a)=-2e^{-a^4}+(-2a)e^{-a^4}(-4a^3)=(8a^4-2)e^{-a^4}"
+          "F''(a)=-2e^{-a^4}+(-2a)e^{-a^4}(-4a^3)=(8a^4-2)e^{-a^4}",
+          {
+            "flow": [
+              "odvajaj prvi faktor",
+              "prištej člen z odvodom drugega",
+              "izpostavi $e^{-a^4}$"
+            ]
+          }
         ]
       ],
       "quiz": [
@@ -86,7 +93,14 @@
         [
           "Izračunaj desni prispevek",
           "Za zgornjo mejo najprej kvadriraj celoten izraz $2a$, nato pomnoži s hitrostjo.",
-          "g(v)v'=\\cos((2a)^2)\\cdot2=2\\cos(4a^2)"
+          "g(v)v'=\\cos((2a)^2)\\cdot2=2\\cos(4a^2)",
+          {
+            "flow": [
+              "$x=2a$",
+              "$x^2=4a^2$",
+              "pomnoži s hitrostjo $2$"
+            ]
+          }
         ],
         [
           "Odštej levi prispevek",
@@ -139,7 +153,14 @@
         [
           "Zapiši Leibnizovo pravilo",
           "Označi tri prispevke, da v naslednjih vrsticah ohraniš pravilen predznak levega roba.",
-          "M'=\\underbrace{\\int_a^{2a}f_a\\,dx}_{H}+\\underbrace{2f(2a,a)}_{D}-f(a,a),\\qquad L=-f(a,a)"
+          "M'=\\underbrace{\\int_a^{2a}f_a\\,dx}_{H}+\\underbrace{2f(2a,a)}_{D}-f(a,a),\\qquad L=-f(a,a)",
+          {
+            "flow": [
+              "sprememba višine",
+              "prištej desni pas",
+              "odštej levi pas"
+            ]
+          }
         ],
         [
           "Integriraj spremembo višine",
@@ -220,9 +241,21 @@
           "J'(b)=\\left[\\tfrac18e^{-4x^2}\\sin(bx)\\right]_0^\\infty-\\tfrac b8 J(b)=-\\tfrac b8J(b)"
         ],
         [
-          "Poišči integrirni faktor",
-          "Integrirni faktor mora imeti logaritemski odvod $b/8$. Tedaj na levi dobiš odvod produkta.",
-          " \\mu=e^{\\int b/8\\,db}=e^{b^2/16},\\quad (\\mu J)'=\\mu(J'+bJ/8)=0,\\quad J=Ce^{-b^2/16}"
+          "Sestavi odvod produkta",
+          "Radi bi dobili odvod produkta $\\mu J$. Po pravilu za produkt bo koeficient pred $J$ pravi, če izberemo $\\mu$ z odvodom $(b/8)\\mu$.",
+          "\\mu=e^{\\int(b/8)\\,db}=e^{b^2/16},\\qquad (\\mu J)'=\\mu(J'+bJ/8)=0",
+          {
+            "flow": [
+              "$J'+bJ/8=0$",
+              "izberi $\\mu'/\\mu=b/8$",
+              "$(\\mu J)'=0$"
+            ]
+          }
+        ],
+        [
+          "Vrni se k iskani funkciji",
+          "Produkt ima odvod nič, zato je njegova vrednost neka konstanta $C$. Deli z $\\mu$. Za $C$ bo zadoščala ena znana vrednost, zato v naslednjem koraku vzemi $b=0$.",
+          "e^{b^2/16}J(b)=C,\\qquad J(b)=Ce^{-b^2/16},\\qquad J(0)=C"
         ],
         [
           "Pri ničelni frekvenci zamenjaj spremenljivko",
@@ -265,7 +298,14 @@
         [
           "Izrazi stari diferencial",
           "Zamenjava odstrani parameter iz eksponenta. Ker je $\\lambda$ stalna in pozitivna, se oba konca intervala preslikata v istem vrstnem redu.",
-          "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\qquad x^3 dx=u^3du/\\lambda^4"
+          "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\qquad x^3 dx=u^3du/\\lambda^4",
+          {
+            "flow": [
+              "$x^3=u^3/\\lambda^3$",
+              "$dx=du/\\lambda$",
+              "skupaj $1/\\lambda^4$"
+            ]
+          }
         ],
         [
           "Preslikaj zgornjo mejo",
@@ -333,7 +373,14 @@
         [
           "Preberi argumenta beta",
           "Pri deljenju potenc odštej eksponente. Argumenta beta sta za ena večja od dobljenih eksponentov.",
-          "I=\\frac12\\int_0^1u^{3/2}(1-u)^{1/2}du=\\frac12 B(5/2,3/2)"
+          "I=\\frac12\\int_0^1u^{3/2}(1-u)^{1/2}du=\\frac12 B(5/2,3/2)",
+          {
+            "flow": [
+              "$u^{2-1/2}=u^{3/2}$",
+              "$p-1=3/2$",
+              "$p=5/2$"
+            ]
+          }
         ],
         [
           "Znižaj argumente gama",
@@ -386,7 +433,15 @@
         [
           "Združi potence",
           "Po zamenjavi združi potence in integriraj le do novega roba.",
-          "I_R=\\int_0^{U_R}\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^{U_R}u^2(1-u)du"
+          "I_R=\\int_0^{U_R}\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^{U_R}u^2(1-u)du",
+          {
+            "flow": [
+              "$x^2$ prispeva $-2$",
+              "$(1+x)^{-5}$ prispeva $5$",
+              "$dx$ prispeva $-2$",
+              "skupaj $(1-u)^1$"
+            ]
+          }
         ],
         [
           "Poišči limito meje",
@@ -469,7 +524,15 @@
         [
           "Zamenjaj spremenljivko",
           "Zamenjaj $u=x/(1+x)$. Meji postaneta 0 in 1, faktor iz diferenciala ima eksponent −2.",
-          "x=\\frac{u}{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad I(p)=\\int_0^1u^{p-1}(1-u)^{-(p-1)+3-2}du"
+          "x=\\frac{u}{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad I(p)=\\int_0^1u^{p-1}(1-u)^{-(p-1)+3-2}du",
+          {
+            "flow": [
+              "$x^{p-1}$ prispeva $1-p$",
+              "$(1+x)^{-3}$ prispeva $3$",
+              "$dx$ prispeva $-2$",
+              "skupaj $(1-u)^{2-p}$"
+            ]
+          }
         ],
         [
           "Izračunaj vrednost pri p = 2",

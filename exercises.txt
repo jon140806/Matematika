@@ -24,8 +24,8 @@ Seštej prispevka. Dobiš $[3\arctan(t^3)-2\arctan(t^2)]/t$. Pri $t=0$ integraln
 ?Kolikšen je celotni odvod $I'(t)$ za $t\ne0$ in koliko je $I'(0)$?|$\dfrac{3\arctan(t^3)-2\arctan(t^2)}{t}$, pri ničli $0$|$\dfrac{\arctan(t^3)}t$, pri ničli $0$|$\dfrac{3\arctan(t^3)+2\arctan(t^2)}t$, pri ničli $0$
 @1|Logaritem s korenom|root|Račun 2024 · naloga 1
 Za $t\ge2$ je $F(t)=\int_0^2\ln(t+\sqrt{t^2-y^2})dy$. Utemelji in izračunaj odvod.
-Odvajaj logaritem in poišči krajšanje. Rob $t=2$ obravnavaj posebej.
-Za $t>2$ lahko izbereš kompakten pravokotnik okoli parametra, na katerem je odvod zvezen.
+Meji sta stalni. Najprej potrebuješ odvod funkcije pod integralom po $t$, nato dobljeno funkcijo integriraš po $y$.
+Pri logaritmu deliš odvod celotnega oklepaja s prvotnim oklepajem. V števcu prvi $t$ prispeva $1$. Kaj prispeva koren?
 Po verižnem pravilu dobiš $(1+t/\sqrt{t^2-y^2})/(t+\sqrt{t^2-y^2})=1/\sqrt{t^2-y^2}$.
 Integriraj po $y$. Dobimo $[\arcsin(y/t)]_0^2=\arcsin(2/t)$.
 Za desni diferenčni kvocient pri $t=2$ izrek o srednji vrednosti da majoranto $1/\sqrt{4-y^2}$ za $y<2$. Ta je integrabilna, zato desni odvod znaša $\pi/2$.
