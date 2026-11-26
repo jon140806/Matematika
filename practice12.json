@@ -47,10 +47,10 @@
         ]
       ],
       "quiz": [
-        "Zakaj ima prvi odvod negativen predznak?",
-        "Levi rob se pomika desno in odvzema ploščino.",
-        "Eksponent je negativen.",
-        "Zgornja meja ima negativen odvod."
+        "Kateri par odvodov dobiš?",
+        "$F'=-2ae^{-a^4}$, $F''=(8a^4-2)e^{-a^4}$",
+        "$F'=2ae^{-a^4}$, $F''=(2-8a^4)e^{-a^4}$",
+        "$F'=-2ae^{-a^4}$, $F''=-2e^{-a^4}$"
       ]
     },
     {
@@ -100,10 +100,10 @@
         ]
       ],
       "quiz": [
-        "Katera hitrost pomnoži višino na desnem robu?",
-        "$2$",
-        "$2a$",
-        "$1$"
+        "Kateri odvod upošteva oba premična robova?",
+        "$G'(a)=2\\cos(4a^2)-\\cos(a^2)$",
+        "$G'(a)=2\\cos(4a^2)$",
+        "$G'(a)=\\cos(4a^2)-\\cos(a^2)$"
       ]
     },
     {
@@ -163,10 +163,10 @@
         ]
       ],
       "quiz": [
-        "Kateri člen izvira iz spreminjanja višine znotraj intervala?",
-        "$\\tfrac32a^2$",
-        "$2+4a^2$",
-        "$-1-a^2$"
+        "Kolikšen je odvod po seštevanju notranjega in obeh robnih prispevkov?",
+        "$M'(a)=1+9a^2/2$",
+        "$M'(a)=3a^2/2$",
+        "$M'(a)=1+3a^2$"
       ]
     },
     {
@@ -236,10 +236,10 @@
         ]
       ],
       "quiz": [
-        "Kakšna je diferencialna enačba za ožjo ovojnico?",
-        "$J'=-bJ/8$",
-        "$J'=-bJ/2$",
-        "$J'=bJ/8$"
+        "Kakšen je celoten integral pri frekvenci $b$?",
+        "$J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/16}$",
+        "$J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/8}$",
+        "$J(b)=\\frac{\\sqrt\\pi}{2}e^{-b^2/16}$"
       ]
     },
     {
@@ -289,10 +289,10 @@
         ]
       ],
       "quiz": [
-        "Od kod pride četrta potenca v imenovalcu?",
-        "Tri potence iz $x^3$ in ena iz $dx$.",
-        "Vse štiri pridejo iz $dx$.",
-        "Ena iz $x^3$ in tri iz $dx$."
+        "Kateri izraz za $A(\\lambda)$ in katero vrednost pri $\\lambda=2$ dobiš?",
+        "$A(\\lambda)=6/\\lambda^4$, $A(2)=3/8$",
+        "$A(\\lambda)=6/\\lambda^3$, $A(2)=3/4$",
+        "$A(\\lambda)=24/\\lambda^4$, $A(2)=3/2$"
       ]
     },
     {
@@ -347,10 +347,10 @@
         ]
       ],
       "quiz": [
-        "Katera beta funkcija nastane?",
-        "$B(5/2,3/2)$",
-        "$B(2,1)$",
-        "$B(4,2)$"
+        "Kolikšna je vrednost celotnega integrala?",
+        "$\\pi/32$",
+        "$\\pi/16$",
+        "$3\\pi/32$"
       ]
     },
     {
@@ -405,10 +405,10 @@
         ]
       ],
       "quiz": [
-        "Kaj se zgodi z mejo $x\\to\\infty$?",
-        "$u\\to1$",
-        "$u\\to0$",
-        "$u\\to\\infty$"
+        "Koliko znaša integral po preslikavi na interval bete?",
+        "$1/12$",
+        "$1/6$",
+        "$1/4$"
       ]
     },
     {
@@ -478,10 +478,10 @@
         ]
       ],
       "quiz": [
-        "Kateri interval izpolni pogoja na obeh koncih?",
-        "$0<p<3$",
-        "$0\\le p\\le3$",
-        "$p>0$"
+        "Katera rešitev poda konvergenčno območje, obliko beta in vrednost pri 2?",
+        "$0<p<3$, $I(p)=B(p,3-p)$, $I(2)=1/2$",
+        "$0\\le p\\le3$, $I(p)=B(p,3-p)$, $I(2)=1/2$",
+        "$0<p<3$, $I(p)=B(p,4-p)$, $I(2)=1/6$"
       ]
     }
   ],

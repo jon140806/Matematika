@@ -619,7 +619,7 @@
       ],
       [
         "Vstavi v Leibnizovo pravilo",
-        "V notranji člen vstavi že dobljeni $f_t$. Na premičnem robu uporabi prvotni $f$ pri $x=t^2$ in ga pomnoži z $2t$. Pri $x=0$ ima integrand zvezno razširitev $f(0,t)=t-1$.",
+        "V notranji člen vstavi že dobljeni $f_t$. Na premičnem robu uporabi prvotni $f$ pri $x=t^2$ in ga pomnoži z $2t$. Pri $x=0$ se integrand zvezno dopolni s $f(0,t)=t-1$, saj $\\arctan z/z\\to1$ pri $z\\to0$. Tudi dobljeni $f_t$ je tam zvezen.",
         "I'(t)=\\underbrace{\\int_0^{t^2}\\frac{dx}{1+t^2x^2}}_{H}+\\underbrace{2t\\,f(t^2,t)}_{D}",
         "atanParts12"
       ],
