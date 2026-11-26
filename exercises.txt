@@ -1,0 +1,176 @@
+@1|Prvi odvod ploščine|area|Ogrevanje po ITFR-01 (2), str. 4
+Izračunaj $F'(a)$ za $F(a)=\int_0^2(1+ax^2)dx$. Napiši tudi, zakaj smeš odvajati pod integralom.
+Meji sta stalni. Parameter nastopa samo v integrandu.
+Najprej odvajaj izraz po $a$ in pri tem obravnavaj $x$ kot konstanto.
+Polinom in njegov parcialni odvod sta zvezna na vsakem obravnavanem kompaktnem pravokotniku.
+Pod integralom ostane $x^2$. Primitivna funkcija je $x^3/3$.
+Vstavi meji in dobiš $8/3$. Tudi neposredni račun $F(a)=2+8a/3$ da isti odvod.
+?Kolikšen je odvod?|$8/3$|$2+8a/3$|$4a$
+@1|Gaussov integral s kosinusom|gauss|Račun 2022 · naloga 1
+Utemelji odvajanje $I(a)=\int_0^\infty e^{-x^2}\cos(ax)dx$, izpelji enačbo za $I'$ in določi $I$, če je $I(0)=\sqrt\pi/2$.
+Ob neskončni meji poišči majoranto za parcialni odvod. Faktor $x$ nato združi z eksponentom.
+Uporabi $(e^{-x^2})'=-2xe^{-x^2}$ pri integraciji po delih.
+Prvotni integral omeji $\int_0^\infty e^{-x^2}dx$. Odvod po $a$ omeji $xe^{-x^2}$ z integralom $1/2$, neodvisno od $a$.
+$I'=\tfrac12\int_0^\infty(e^{-x^2})'\sin(ax)dx$. Robni člen izgine pri 0 in v neskončnosti. Ostane $I'=-aI/2$.
+Reši linearno enačbo z integrirnim faktorjem $e^{a^2/4}$. Začetna vrednost da $I=(\sqrt\pi/2)e^{-a^2/4}$.
+?Katera enačba velja?|$I'=-aI/2$|$I'=aI/2$|$I'=-2aI$
+@1|Kvadrat v zgornji meji|atan|Račun 2023 · naloga 1a
+Poišči $I'(t)$ za $I(t)=\int_0^{t^2}\frac{\arctan(tx)-\arctan x}{x}dx$. Pojasni tudi primer $t=0$.
+Parameter je v integrandu in v meji. Vidna delitev z $x$ zahteva pregled pri ničli.
+Pri $x=0$ uporabi limito $\arctan(kx)/x\to k$. Za odvod integranda dobiš $1/(1+t^2x^2)$.
+Zvezna razširitev integranda ima pri 0 vrednost $t-1$. Tudi parcialni odvod je zvezen, zato na vsakem lokalnem pravokotniku velja Leibnizovo pravilo.
+Notranji prispevek je $\arctan(t^3)/t$ za $t\ne0$. Zgornji rob prispeva $2[\arctan(t^3)-\arctan(t^2)]/t$.
+Seštej prispevka. Dobiš $[3\arctan(t^3)-2\arctan(t^2)]/t$. Pri $t=0$ integralni člen in odvod meje izgineta, torej $I'(0)=0$.
+?Kolikšen je notranji prispevek za t ≠ 0?|$\arctan(t^3)/t$|$2t\arctan(t^2)$|$\arctan(t)/t^2$
+@1|Logaritem s korenom|root|Račun 2024 · naloga 1
+Za $t\ge2$ je $F(t)=\int_0^2\ln(t+\sqrt{t^2-y^2})dy$. Utemelji in izračunaj odvod.
+Odvajaj logaritem in poišči krajšanje. Rob $t=2$ obravnavaj posebej.
+Za $t>2$ lahko izbereš kompakten pravokotnik okoli parametra, na katerem je odvod zvezen.
+Po verižnem pravilu dobiš $(1+t/\sqrt{t^2-y^2})/(t+\sqrt{t^2-y^2})=1/\sqrt{t^2-y^2}$.
+Integriraj po $y$. Dobimo $[\arcsin(y/t)]_0^2=\arcsin(2/t)$.
+Za desni diferenčni kvocient pri $t=2$ izrek o srednji vrednosti da majoranto $1/\sqrt{4-y^2}$ za $y<2$. Ta je integrabilna, zato desni odvod znaša $\pi/2$.
+?Kolikšen je desni odvod pri t = 2?|$\pi/2$|$0$|$\pi/4$
+@2|Polkrožni koren|betasub|Račun 2022 · naloga 3
+Izračunaj $\int_0^2 x^2\sqrt{4-x^2}dx$ z uporabo funkcije beta.
+Išči $1-u$ pod korenom in meji 0, 1.
+Vzemi $u=x^2/4$ in posebej izračunaj $dx$.
+Velja $x=2\sqrt u$, $dx=du/\sqrt u$. Faktorji dajo $8\sqrt{u(1-u)}du$.
+Integral je $8B(3/2,3/2)$. Uporabi $B(p,q)=\Gamma(p)\Gamma(q)/\Gamma(p+q)$.
+Vstavi $\Gamma(3/2)=\sqrt\pi/2$ in $\Gamma(3)=2$. Rezultat je $\pi$.
+?Kateri faktor stoji pred B(3/2,3/2)?|$8$|$4$|$16$
+@2|Dve potenci pod korenom|cubeta|Račun 2023 · naloga 1b
+Izrazi $\int_0^{1/2}\sqrt{x-4x^3}\,dx$ s funkcijo beta.
+Izpostavi $x$ pod korenom. Del $1-4x^2$ narekuje novo spremenljivko.
+Uporabi $u=4x^2$. Tako je $x=\sqrt u/2$.
+Meji sta 0 in 1. Velja $dx=du/(4\sqrt u)$.
+Koren prispeva $u^{1/4}(1-u)^{1/2}/\sqrt 2$. Skupaj z diferencialom je prva potenca $u^{-1/4}$.
+Prištej 1 k obema eksponentoma. Rezultat je $B(3/4,3/2)/(4\sqrt2)$.
+?Kateri je prvi argument bete?|$3/4$|$1/4$|$5/4$
+@2|Logaritem na poltraku|loggamma|Račun 2024 · naloga 2a
+Izračunaj $\int_1^\infty\frac{\sqrt{\ln x}}{x^2}dx$ prek funkcije gama.
+Po substituciji naj ostane potenca krat padajoča eksponentna funkcija.
+Pri $u=\ln x$ je $dx=e^u du$. En faktor $e^u$ se pokrajša.
+Iz meje 1 dobiš 0, neskončnost ostane. Novi integrand je $u^{1/2}e^{-u}$.
+Primerjaj z $u^{p-1}$. Sledi $p=3/2$.
+Z rekurzijo dobiš $\Gamma(3/2)=\tfrac12\Gamma(1/2)=\sqrt\pi/2$.
+?Koliko znaša integral?|$\sqrt\pi/2$|$\sqrt\pi$|$2/\sqrt\pi$
+@2|Dokaži premik argumenta|betarec|Račun 2024 · naloga 2b
+Za $p,q>0$ dokaži $B(p,q+1)=\frac qp B(p+1,q)$.
+Pri zvišanju enega argumenta je v imenovalcu obakrat ista funkcija gama.
+Primerjaj količnik obeh beta funkcij. Graf uporabi $q=2$ in primerja ploščini.
+Zapiši $B(p,q+1)=\Gamma(p)\Gamma(q+1)/\Gamma(p+q+1)$.
+Podobno je $B(p+1,q)=\Gamma(p+1)\Gamma(q)/\Gamma(p+q+1)$.
+Po deljenju uporabi $\Gamma(q+1)=q\Gamma(q)$ in $\Gamma(p+1)=p\Gamma(p)$. Količnik je $q/p$.
+?Kateri faktor dobiš?|$q/p$|$p/q$|$p+q$
+@3|Inverz s parcialnimi ulomki|inverse|Ogrevanje po ITFR-02, str. 4
+Določi inverzno transformiranko $F(s)=1/[(s-1)(s+1)]$ za $s>1$.
+Dva različna linearna faktorja zahtevata dva ulomka prve stopnje.
+Nastavi $A/(s-1)+B/(s+1)$ in vstavi korena imenovalca.
+Po odpravi imenovalca je $1=A(s+1)+B(s-1)$. Pri 1 dobiš $A=1/2$, pri $-1$ pa $B=-1/2$.
+Obrni vsak ulomek z osnovnim parom $1/(s-a)\leftrightarrow e^{at}$.
+Rešitev je $(e^t-e^{-t})/2=\sinh t$.
+?Katera je rešitev?|$\sinh t$|$\cosh t$|$e^{-t}$
+@3|Sistem z dvema prvima odvodoma|sys22|Račun 2022 · naloga 2
+Reši $y'+y-2z'-2z=e^t$, $y'-z'+z=e^{-t}$ pri $y(0)=2$, $z(0)=1$ z Laplaceovo transformacijo.
+Isti izraz $Y-2Z$ se pojavi v prvi vrstici. Pred izločanjem upoštevaj oba začetna pogoja.
+Prva vrstica je $(s+1)(Y-2Z)=1/(s-1)$. Druga je $sY+(1-s)Z=1+1/(s+1)$.
+Iz prve dobiš $Y=2Z+1/(s^2-1)$. Vstavi v drugo in reši za $Z$.
+Po razcepu je $Y=2/(s+1)+1/(s+1)^2$ in $Z=5/[4(s+1)]+1/[2(s+1)^2]-1/[4(s-1)]$.
+Obrni členoma. $y=(2+t)e^{-t}$, $z=(5/4+t/2)e^{-t}-e^t/4$. Pri ničli res dobiš 2 in 1.
+?Kateri časovni člen pripada dvojnemu polu pri −1?|$te^{-t}$|$e^{-2t}$|$t^2e^{-t}$
+@3|Sistem z drugim odvodom|sys23|Račun 2023 · naloga 2
+Reši $2y'-z=2y-z''$ in $y'-y=z-z'$ pri $y(0)=1$, $z(0)=2$, $z'(0)=3$ z Laplaceovo transformacijo.
+Pri drugem odvodu upoštevaj oba začetna podatka. Druga vrstica poenostavi vsoto $Y+Z$.
+Iz druge vrstice dobiš $(s-1)(Y+Z)=3$.
+Prva vrstica da $2(s-1)Y+(s^2-1)Z=2s+5$. Odštej dvakrat drugo vrstico. Ostane $(s-1)^2Z=2s-1$.
+Sledi $Z=2/(s-1)+1/(s-1)^2$ ter $Y=1/(s-1)-1/(s-1)^2$.
+Obrni: $y=(1-t)e^t$, $z=(2+t)e^t$. Iz $z'=(3+t)e^t$ preveri še tretji pogoj.
+?Kolikšen je z′(0) iz rešitve?|$3$|$2$|$1$
+@3|Ko je pred odvodom tudi t|devar|Teorija 2022 · naloga 3
+Pretvori $3ty''+3y'+4ty=0$ v enačbo za $Y(s)=\mathcal L(y)$. Uporabi obe pravili za odvajanje.
+Odvodi po času ustvarijo potence $s$, faktor $t$ pomeni negativni odvod po $s$.
+Najprej transformiraj $y''$, šele nato odvajaj transformiranko.
+Velja $\mathcal L(ty'')=-[s^2Y-sy(0)-y'(0)]'=-2sY-s^2Y'+y(0)$.
+Vstavi še $\mathcal L(y')=sY-y(0)$ in $\mathcal L(ty)=-Y'$. Začetna podatka izgineta.
+Po zbiranju členov dobiš $(3s^2+4)Y'+3sY=0$. Za graf je izbrana normalizacija $Y=1/\sqrt{3s^2+4}$.
+?Kateri koeficient stoji pri Y′?|$3s^2+4$|$3s^2+6$|$3s+4$
+@4|Tri funkcije v konvoluciji|triple|Račun 2023 · naloga 3
+Izpelji $\mathcal L(t\sin(2t))$ in izračunaj $(2t*\sin(2t)*\cos(2t))(x)$.
+Zvezdica pomeni konvolucijo. Po transformaciji dobiš navaden produkt treh transformirank.
+Za prvi del odvajaj $2/(s^2+4)$ po $s$ in spremeni predznak.
+Dobimo $\mathcal L(t\sin(2t))=4s/(s^2+4)^2$. Transformiranke treh faktorjev so $2/s^2$, $2/(s^2+4)$, $s/(s^2+4)$.
+Produkt $4/[s(s^2+4)^2]$ razcepi kot $1/(4s)-s/[4(s^2+4)]-s/(s^2+4)^2$.
+Členoma obrni z ravnokar izpeljanim parom. Rezultat je $(1-\cos(2x)-x\sin(2x))/4$.
+?S čim se konvolucija spremeni v domeni s?|Z množenjem transformirank|S seštevanjem transformirank|Z množenjem signalov pred transformacijo
+@4|Preklop linearne sile|force24|Račun 2024 · naloga 3
+Reši $y''+2y'+y=f$, $y(0)=1$, $y'(0)=0$. Pred $t=2$ je $f=1$, po preklopu pa $f=t$.
+Razstavi silo na stalni del in popravek, ki se vklopi pri 2.
+V lokalnem času $u=t-2$ je popravek $t-1=u+1$. Odziv na prvi del z danima pogojema je $y=1$.
+Transformacija da $(s+1)^2Y=s+2+1/s+e^{-2s}(1/s^2+1/s)$.
+Po deljenju je $Y=1/s+e^{-2s}/[s^2(s+1)]$. Razcepi popravek kot $1/s^2-1/s+1/(s+1)$.
+Dobiš $y=1+H(t-2)(u-1+e^{-u})$, $u=t-2$. Popravek in njegov prvi odvod sta pri vklopu nič.
+?Kolikšen je popravek sile v lokalnem času?|$u+1$|$u-1$|$u+2$
+@4|Preklop pri polovici π|force23|Račun 2023 · naloga 4
+Reši $y''+4y=f$, $y(0)=1$, $y'(0)=2$. Do $\pi/2$ je $f=3\sin t+3\cos t$, nato $f=3\sin t$.
+Po preklopu odstrani kosinus. V lokalnem času se kosinus spremeni v sinus s predznakom.
+Pri $a=\pi/2$ in $u=t-a$ velja $-3\cos t=3\sin u$.
+Zapiši $F=3(1+s)/(s^2+1)+e^{-as}3/(s^2+1)$. Iz leve strani dobiš $Y=(s+2+F)/(s^2+4)$.
+Za zamaknjeni del uporabi $3/[(s^2+1)(s^2+4)]=1/(s^2+1)-1/(s^2+4)$. Osnovni del po razcepu je $(s+1)/(s^2+1)+1/(s^2+4)$.
+Rešitev je $\sin t+\cos t+\tfrac12\sin(2t)+H(t-a)[\sin u-\tfrac12\sin(2u)]$.
+?Katera sila se doda v lokalnem času?|$3\sin u$|$-3\sin u$|$3\cos u$
+@4|Volterrova enačba|volterra|Vaja po ITFR-03-vse, str. 3
+Poišči zvezen $y$, če je $\int_0^t y(u)\cos(t-u)du=\sin(2t)$.
+Integral vsebuje zamaknjeno jedro in neznano funkcijo. Prepoznaj konvolucijo.
+V domeni $s$ deli transformiranko desne strani s transformiranko jedra.
+Dobiš $Y\cdot s/(s^2+1)=2/(s^2+4)$.
+Razstavi $Y=2(s^2+1)/[s(s^2+4)]=1/(2s)+3s/[2(s^2+4)]$.
+Inverz da $y=1/2+(3/2)\cos(2t)$. Začetna vrednost $y(0)=2$ se ujema z odvodom podane enačbe pri 0.
+?Katera je začetna vrednost neznane funkcije?|$2$|$0$|$1/2$
+@5|Vrsta z dvema linearnima faktorjema|sum22|Račun 2022 · naloga 4
+Določi območje in vsoto $S(x)=\sum_{n=2}^\infty x^n/(n^2-1)$. Izračunaj še $\sum_{n=2}^\infty 4^{1-n}/(n^2-1)$.
+Imenovalec razcepi. Nato zamakni indekse do znanega logaritma.
+Uporabi $1/(n^2-1)=[1/(n-1)-1/(n+1)]/2$. Pri obeh robovih absolutna konvergenca sledi s primerjavo z $1/n^2$.
+Kvocient da $R=1$, območje je $[-1,1]$. Za $0<|x|<1$ je prva vsota $\sum x^n/(n-1)=-x\ln(1-x)$.
+Druga vsota je $[-\ln(1-x)-x-x^2/2]/x$. Polovična razlika je $S=[(1/x-x)\ln(1-x)+1+x/2]/2$.
+Pri $0$ je $S=0$. Z limito znotraj intervala dobiš $S(1)=3/4$, $S(-1)=1/4$ (absolutna enakomerna konvergenca). Iskana vsota je $4S(1/4)=9/4+(15/2)\ln(3/4)$.
+?Kateri izraz da zahtevano številsko vsoto?|$4S(1/4)$|$S(4)$|$S(1/4)/4$
+@5|Vrsta s prvim členom 1/x|sum24|Račun 2024 · naloga 4
+Poišči območje in vsoto $S(x)=\sum_{n=0}^\infty x^{4n-1}/(4n+1)$. Posebej preveri $x=0$.
+Odvod potence z eksponentom $4n+1$ odpravi imenovalec. Najprej popravi potenco.
+Množi z $x^2$. Členoma odvajaj na vsakem zaprtem podintervalu znotraj polmera.
+Pri $0<|x|<1$ vrsta konvergira absolutno, za $|x|>1$ členi ne gredo proti 0. Pri $\pm1$ dobiš divergentno vrsto stalnega predznaka, pri 0 prvi člen ni definiran.
+Pomožna vrsta $T=\sum x^{4n+1}/(4n+1)$ ima $T(0)=0$, $T'=1/(1-x^4)$. Razstavi $1/(1-x^4)=\tfrac12[1/(1-x^2)+1/(1+x^2)]$.
+Integriraj od 0 do $x$ in deli z $x^2$. Dobimo $S=[\tfrac14\ln((1+x)/(1-x))+\tfrac12\arctan x]/x^2$.
+?Katere posebne točke izločiš iz [−1,1]?|$-1,0,1$|$-1,1$|$0,1$
+@5|Majoranta na vsem intervalu|mtest|Vaja po ITFR-04, str. 4 · teorija 2022, nal. 4
+Pokaži enakomerno konvergenco $\sum_{n=1}^\infty\sin(nx)/n^2$ na realni osi. Kaj sledi, če neka druga vrsta ne konvergira enakomerno in ima majoranto $M_n$?
+Poišči oceno, ki velja hkrati za vse $x$.
+Absolutno vrednost sinusa omeji z 1. Vsaka pozitivna majoranta mora omejevati absolutno vrednost člena.
+Velja $|\sin(nx)/n^2|\leq 1/n^2$. Številska vrsta na desni konvergira po kriteriju za $p$-vrsto.
+Weierstrassov kriterij zagotavlja absolutno in enakomerno konvergenco na celotni realni osi.
+Za drugo vrsto uporabi kontrapozicijo. Če bi $\sum M_n$ konvergirala, bi prvotna vrsta konvergirala enakomerno. Zato $\sum M_n$ divergira.
+?Kateri sklep velja za drugo vrsto?|Vsaka veljavna majorantna vrsta divergira.|Vsaka majorantna vrsta konvergira.|Vsaj ena majorantna vrsta konvergira.
+@6|Izpelji polinom druge stopnje|leg|Vaja po ITFR-p78a, str. 3–9
+Izpelji $P_2$ iz Legendrove enačbe in normalizacije $P_2(1)=1$.
+Izberi sodo vejo in primerjaj koeficienta ob 1 in $x^2$.
+Poskusi $y=a+bx^2$. V enačbi je $n(n+1)=6$.
+Odvoda sta $2bx$ in $2b$. Vstavitev da $2b(1-x^2)-4bx^2+6(a+bx^2)=0$.
+Koeficient pri $x^2$ izgine. Konstantni člen zahteva $2b+6a=0$.
+Iz $a+b=1$ sledi $a=-1/2$, $b=3/2$. Torej $P_2=(3x^2-1)/2$.
+?Kakšna je vrednost P₂(0)?|$-1/2$|$1$|$3/2$
+@6|Prepoznaj red enačbe|bessel|Teorija 2022 · nalogi 8 in 10
+Za $x^2y''+xy'+(x^2-25)y=0$ določi Frobeniusov nastavek, indicialno enačbo in splošno rešitev na $x>0$.
+Člen ob $y$ primerjaj z $x^2-\nu^2$.
+Vstavi $y=x^r(a_0+a_1x+\cdots)$, $a_0\ne0$, in najprej zberi najnižjo potenco.
+Po normalizaciji sta $xP=1$ in $x^2Q=x^2-25$ analitična, zato je 0 šibko singularna točka.
+Koeficient pri $x^r$ je $[r(r-1)+r-25]a_0$. Zato sta korena $5$ in $-5$.
+To je Besselova enačba reda 5. Splošna rešitev je $C_1J_5(x)+C_2Y_5(x)$.
+?Kateri je red Besselove enačbe?|$5$|$25$|$\sqrt5$
+@6|Predznačena ploščina|ortho|Teorija 2022 · naloga 9 · vaja po ITFR-p78a, str. 10
+Zapiši uteženi skalarni produkt. Pri $w=1$ ugotovi, ali sta $1$ in $(3x^2-1)/2$ na $[-1,1]$ pravokotna.
+Pravokotnost funkcij preveriš z integralom produkta z utežjo.
+Integriraj polinom in vstavi oba robova.
+Za pozitivno zvezno utež velja $\langle f,g\rangle=\int_a^b f(x)g(x)w(x)dx$.
+V našem primeru je primitivna funkcija $(x^3-x)/2$. Njena vrednost na obeh robovih je 0.
+Skalarni produkt je 0, zato sta funkciji ortogonalni.
+?Kolikšen je skalarni produkt?|$0$|$1$|$2/5$

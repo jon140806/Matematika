@@ -1,0 +1,76 @@
+@1|Kaj spremeni parameter?|area|ITFR-01p, str. 2–4|Integral kot ploščina
+Izberi krivuljo|Pri fiksnem parametru $a$ integriraš po $x$. Premakni drsnik in opazuj višino parabole.|F(a)=\int_0^2 (1+ax^2)\,dx
+Primerjaj ploščini|Povečaj $a$ za $h$. Višina se pri vsakem $x$ poveča za $hx^2$. Osenčeni pas je ravno prirastek integrala.|F(a+h)-F(a)=\int_0^2 hx^2\,dx
+Deli s prirastkom|Po deljenju s $h$ ostane $x^2$. Če sta $f$ in $\partial_a f$ zvezni na pravokotniku, sme odvod pod integral.|F'(a)=\int_0^2 x^2\,dx=\frac83
+@1|Ko se premikata tudi meji|leib|ITFR-01p, str. 4–5 · teorija 2022, nal. 1|Leibnizovo pravilo
+Nariši interval|Model je $f(x,a)=x+a$, $u=a/2$, $v=1+a$. Spreminjata se višina in širina območja.|F(a)=\int_{u(a)}^{v(a)}f(x,a)\,dx
+Razstavi prirastek|Na starem intervalu dobiš razliko višin. Na desni dodaš ozek pas, na levi ga odvzameš.| \Delta F=\int_u^v\Delta f\,dx+\int_v^{v_+}f(x,a+h)\,dx-\int_u^{u_+}f(x,a+h)\,dx
+Preidi k limiti|Deli s $h$ in vzemi $h\to0$. Novi meji sta $u_+=u(a+h)$ in $v_+=v(a+h)$. Zadostujejo zvezna $f,\partial_a f$ in zvezno odvedljivi meji.|F'=\int_u^v\partial_a f\,dx+f(v,a)v'-f(u,a)u'
+@1|Kako obvladam neskončni rep?|tail|ITFR-01p, str. 6–11 · račun 2022, nal. 1|Enakomerna konvergenca
+Odreži integral|Za $f(x,a)=e^{-x^2}\cos(ax)$ najprej vzemi končno mejo $R$. Na končnem intervalu lahko odvajaš.|I_R(a)=\int_0^R e^{-x^2}\cos(ax)\,dx
+Poišči skupno ovojnico|Odvod po $a$ je po absolutni vrednosti manjši od iste integrabilne funkcije za vse $a$. Graf kaže odvod in njegovi meji.| |\partial_a f(x,a)|\leq xe^{-x^2}
+Oceni napako|Rep majorante določi en $R$ za vse parametre. Tudi prvotni integral obstaja, saj ga omeji $e^{-x^2}$. Zato lahko zamenjaš odvod in integral.| \int_R^\infty xe^{-x^2}dx=\tfrac12e^{-R^2}\longrightarrow0
+@2|Od integrala do fakultete|gamma|ITFR-04p5a, str. 2–4 · ITFR-03-vse, str. 12–13|Rekurzija gama
+Prepoznaj jedro|Parameter $p>0$ določa potenco. Pri ničli potrebujemo $p-1>-1$, v neskončnosti eksponent zaduši potenco.|\Gamma(p)=\int_0^\infty x^{p-1}e^{-x}\,dx
+Integriraj po delih|Za $\Gamma(p+1)$ vzemi $u=x^p$, $dv=e^{-x}dx$. Robni člen pri ničli in v neskončnosti izgine.| \Gamma(p+1)=[-x^pe^{-x}]_0^\infty+p\int_0^\infty x^{p-1}e^{-x}dx
+Spusti argument|Ploščina za $p+1$ je $p$-kratnik prvotne. Ponovi iz $\Gamma(1)=1$ ali iz $\Gamma(1/2)=\sqrt\pi$.| \Gamma(p+1)=p\Gamma(p),\qquad \Gamma(n+1)=n!
+@2|Zakaj sta beta in gama povezani?|beta|ITFR-04p5a, str. 6–7 · račun 2024, nal. 2b|Beta in gama
+Poišči dve potenci|Za $p,q>0$ integriraš po enotskem intervalu. Drsnik spreminja $p$, na grafu je $q=2$.|B(p,q)=\int_0^1 u^{p-1}(1-u)^{q-1}du
+Združi dva integrala|V produktu dveh integralov gama uvedi $r=x+y$ in $u=x/(x+y)$. Tako sta $x=ru$ in $y=r(1-u)$, absolutni Jacobian je $r$.| \Gamma(p)\Gamma(q)=\iint_{x,y>0}x^{p-1}y^{q-1}e^{-(x+y)}dx\,dy
+Loči spremenljivki|Pozitivni integrand dopušča menjavo vrstnega reda. Radialni del je gama, preostanek je beta. Na grafu poglej obe normalizirani beta gostoti pri zamenjavi argumentov.| \Gamma(p)\Gamma(q)=\int_0^\infty r^{p+q-1}e^{-r}dr\cdot B(p,q)
+@2|Kako izberem substitucijo?|betasub|ITFR-03-vse, str. 14–15 · račun 2022, nal. 3|Menjava spremenljivke
+Poišči novo mejo|V $\sqrt{4-x^2}$ prepoznaj $1-u$. Izberi $u=x^2/4$. Zgornja meja 2 se spremeni v 1.|I=\int_0^2 x^2\sqrt{4-x^2}\,dx
+Prenesi tudi širino|Iz $x=2\sqrt u$ sledi $dx=du/\sqrt u$. S premikom meje slediš isti delni ploščini v obeh koordinatah.| x^2\sqrt{4-x^2}\,dx=8u^{1/2}(1-u)^{1/2}du
+Preberi argumenta|Vsakemu eksponentu prištej 1. Vstavi $\Gamma(3/2)=\sqrt\pi/2$ in $\Gamma(3)=2$.|I=8B(3/2,3/2)=\pi
+@3|Kaj izmeri Laplaceov integral?|lap|ITFR-02_03p, str. 2–8 · ITFR-02, str. 1–4|Definicija in inverz
+Uteži signal|Jedro $e^{-st}$ oslabi pozne vrednosti. Pri $f(t)=e^t$ mora biti $s>1$, da ploščina ostane končna.|F(s)=\int_0^\infty e^{-st}f(t)\,dt
+Seštej eksponenta|Tehtani signal je padajoča eksponentna krivulja. Povečaj $s$ in primerjaj ploščino pod njo.| \int_0^\infty e^{-(s-1)t}dt=\frac1{s-1}
+Preberi nazaj|Inverzno transformacijo dobiš z branjem para v obratno smer. Za racionalno funkcijo najprej razstavi imenovalec.| \mathcal L^{-1}\left\{\frac1{s-a}\right\}=e^{at}
+@3|Odvod in začetni podatek|deriv|ITFR-02_03p, str. 9–13 · teorija 2022, nal. 2–3|Odvajanje v času in po s
+Uporabi per partes|Vzemi $u=e^{-st}$ in $dv=f'(t)dt$. Graf uporabi $f(t)=1+t$, zato je začetna vrednost 1.| \mathcal L(f')=[e^{-st}f(t)]_0^\infty+s\int_0^\infty e^{-st}f(t)dt
+Ohrani začetno vrednost|Za dovolj velik $s$ zgornji rob izgine. Ponovitev za $f'$ da pravilo za drugi odvod.| \mathcal L(f'')=s^2F-sf(0)-f'(0)
+Odvajaj jedro po s|Pri odvodu po $s$ nastane faktor $-t$. Za eksponentno omejene signale in dovolj velik $s$ je odvajanje pod integralom dovoljeno.|F'(s)=-\int_0^\infty te^{-st}f(t)dt=-\mathcal L(tf)
+@3|Dve enačbi, dve neznanki|system|ITFR-02, str. 9–11 · račun 2022 in 2023, nal. 2|Laplaceova rešitev sistema
+Transformiraj obe vrstici|Na modelu $y'=z$, $z'=y$, $y(0)=1$, $z(0)=0$ vsako začetno vrednost vstavi takoj.|sY-1=Z,\qquad sZ=Y
+Odpravi eno neznanko|Iz druge enačbe vstavi $Y=sZ$ v prvo. Razcepi imenovalec v $(s-1)(s+1)$.|Z=\frac1{s^2-1},\qquad Y=\frac{s}{s^2-1}
+Obrni in preveri|Razcep na enostavne ulomke da polovični seštevek oziroma razliko eksponentov. Preveri obe vrednosti na levi osi grafa.|y(t)=\frac{e^t+e^{-t}}2,\qquad z(t)=\frac{e^t-e^{-t}}2
+@4|Zakasnitev in kosovna sila|shift|ITFR-02_03p, str. 19 · ITFR-03-vse, str. 5–9|Heavisideov zamik
+Zapiši spremembo sile|Pri preklopu s $1$ na $t$ dodaj razliko med novo in staro silo. $H(t-a)$ jo vklopi pri $a$.|f(t)=1+H(t-a)(t-1)
+Premakni uro|Naj bo $u=t-a$. Popravek prepiši kot funkcijo lokalnega časa. Na grafu premikaj trenutek vklopa.|t-1=u+a-1
+Zamenjaj mejo|Zamenjava $t=u+a$ premakne spodnjo mejo na 0. Faktor $e^{-as}$ ostane pred integralom.| \int_a^\infty e^{-st}g(t-a)dt=e^{-as}G(s)
+@4|Konvolucija kot ploščina|conv|ITFR-02_03p, str. 15–17 · račun 2023, nal. 3|Konvolucijski izrek
+Obrni in premakni|Vzemi $f(u)=u$ in $g(u)=1$ za $u\geq0$, oba nič za $u<0$. Za fiksen $t$ opazuj okno, kjer se signala prekrivata.|(f*g)(t)=\int_0^t f(u)g(t-u)du
+Izmeri prekrivanje|Produkt je na $[0,t]$ enak $u$. Osenčeni trikotnik pokaže rezultat za izbrani trenutek.| (f*g)(t)=\int_0^t u\,du=\frac{t^2}{2}
+Razcepi dvojni integral|V Laplaceovem integralu zamenjaj vrstni red in uvedi $v=t-u$. Trikotno območje postane $u,v\geq0$. Pri absolutni konvergenci se integral razcepi.| \mathcal L(f*g)=\iint_{u,v\geq0}e^{-s(u+v)}f(u)g(v)du\,dv=FG
+@4|Od sunka do odziva|impulse|ITFR-03-vse, str. 10–11 · ITFR-02_03p, str. 20|Diracov impulz
+Ohrani ploščino|Sunek pri $a=2$ približaj s kratkim pravokotnikom. Ko se širina $h$ manjša, višina raste.|p_h(t)=\frac1h\quad(2\leq t<2+h)
+Uteži sunek|Transformiranka pravokotnika je povprečje zvezne funkcije $e^{-st}$ na vedno krajšem intervalu.| \mathcal L(p_h)=e^{-2s}\frac{1-e^{-sh}}{sh}
+Vzemi limito|Povprečje teži k vrednosti v točki 2. Impulz ima enotsko maso. Odziv sistema z jedrom $k(t)$ je zato zakasnjeni $k$.| \mathcal L(\delta(t-a))=e^{-as}
+@5|Od členov do konvergenčnega polmera|radius|Številske vrste-ponovitev, str. 1–5 · ITFR-04, str. 5–8|Polmer in krajišči
+Uporabi kvocient|Za $\sum_{n=1}^\infty x^n/n$ kvocient absolutnih vrednosti teži k $|x|$ za $x\ne0$. V središču preveri neposredno.| \left|\frac{a_{n+1}}{a_n}\right|=|x|\frac n{n+1}\longrightarrow |x|
+Preizkusi oba robova|Znotraj polmera 1 vrsta absolutno konvergira. Pri $x=1$ dobiš harmonično vrsto. Pri $x=-1$ členi alternirajo in njihove velikosti padajo proti 0.| \sum_{n=1}^\infty\frac{(-1)^n}n\text{ konvergira}
+Zapiši interval|Oba robova zahtevata lastno utemeljitev. Graf prikazuje zaporedje delnih vsot za izbrani $x$.| x\in[-1,1)
+@5|Seštej vrsto z integriranjem|series|ITFR-06p2627, str. 10–15 · ITFR-04, str. 6–10|Od geometrijske vrste do logaritma
+Odštej zamaknjeno vsoto|Za $S_N=1+x+\cdots+x^N$ se v razliki $S_N-xS_N$ notranji členi pokrajšajo.|(1-x)S_N=1-x^{N+1}
+Pošlji N v neskončnost|Za $|x|<1$ ostanek izgine. Na vsakem $[-r,r]$ z $r<1$ je konvergenca enakomerna.| \sum_{n=0}^\infty x^n=\frac1{1-x}
+Integriraj členoma|Integriraj od 0 do $x$. Imenovalec $n+1$ nastane iz potenčnega pravila. Primerjaj delno vsoto z logaritmom.| \sum_{n=1}^\infty\frac{x^n}{n}=\int_0^x\frac{du}{1-u}=-\ln(1-x)
+@5|Ena meja za vse x|uniform|ITFR-06p2627, str. 4–9 · teorija 2022, nal. 4|Weierstrassov kriterij
+Omeji vsak člen|Za $|x|\leq r<1$ velja $|x^n|\leq r^n$. Isti števec $N$ mora delovati za ves interval.| |S(x)-S_N(x)|\leq \sum_{n=N+1}^\infty r^n
+Oceni največji rep|Na grafu je $r=0{,}8$. Drsnik določa $N$ in s tem višino ovojnice za napako.| \sup_{|x|\leq r}|S-S_N|\leq\frac{r^{N+1}}{1-r}
+Uporabi kriterij|Če $|f_n(x)|\leq M_n$ in $\sum M_n$ konvergira, so vsi repi enakomerno majhni. Kontrapozicija pove, da mora vsaka taka majorantna vrsta divergirati, če prvotna vrsta ne konvergira enakomerno.| \left|\sum_{n=N+1}^m f_n(x)\right|\leq\sum_{n=N+1}^m M_n
+@6|Potenčna metoda in Legendre|leg|ITFR-p78a, str. 1–10 · ITFR-04, str. 11|Iz koeficientov do polinoma
+Vstavi vrsto|V regularni točki z analitičnimi normaliziranimi koeficienti uporabi potenčno vrsto. V Legendrovo enačbo vstavi tudi njena odvoda.|(1-x^2)y''-2xy'+n(n+1)y=0
+Izenači potence|Premakni indekse tako, da ima vsak člen $x^k$. Njegov skupni koeficient mora biti nič.|a_{k+2}=\frac{(k-n)(k+n+1)}{(k+1)(k+2)}a_k
+Ustavi pravilno vejo|Pri $n=2$ izberi sodo vejo. Ker je $a_2=-3a_0$, $a_4=0$ in $P_2(1)=1$, dobiš normalizirani polinom.|P_2(x)=\tfrac12(3x^2-1)
+@6|Frobenius in Besselova enačba|bessel|Teorija 2022, nal. 8 in 10 · dopolnilo k ITFR-p78a|Šibko singularna točka
+Preveri točko|V obliki $y''+Py'+Qy=0$ preveri analitičnost $xP$ in $x^2Q$ pri 0. V šibko singularni točki na $x>0$ dopusti necelo začetno potenco.|y=x^r\sum_{k=0}^\infty a_kx^k,\quad a_0\ne0
+Vzemi najnižjo potenco|Za Besselovo enačbo vstavi nastavek v $x^2y''+xy'+(x^2-\nu^2)y=0$. Najnižji člen da indicialno enačbo. Graf sledi regularni veji reda 5.|(r^2-\nu^2)a_0=0
+Sestavi rešitvi|Pri $\nu=5$ sta indeksa $5$ in $-5$. Zaradi cele razlike druga rešitev lahko vsebuje logaritem. Standardni neodvisni rešitvi sta $J_5$ in $Y_5$.|y=C_1J_5(x)+C_2Y_5(x),\quad x>0
+@6|Kako izmerim pravokotnost funkcij?|ortho|ITFR-p78a, str. 9–10 · teorija 2022, nal. 9|Uteženi skalarni produkt
+Pomnoži funkciji|Za pozitivno zvezno utež $w$ izmeri predznačeno ploščino produkta. Izberi $w=1$, $P_0=1$ in $P_2=(3x^2-1)/2$.|\langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\,dx
+Seštej prispevke|Premikaj zgornjo mejo $b$. Pod osjo je prispevek negativen, nad njo pozitiven.| \int_{-1}^b P_2(x)dx=\tfrac12(b^3-b)
+Preveri cel interval|Pri $b=1$ se ploščini izničita. Legendrovi polinomi z različnima indeksoma so na tem intervalu ortogonalni pri uteži 1.| \int_{-1}^1 P_0(x)P_2(x)dx=0
+@6|Dodatek iz predavanj: preprosta PDE|pde|ITFR-04p5a, str. 8–10|Parcialni odvod in začetni podatki
+Zamrzni spremenljivko|Pri $u_{xx}=u$ fiksiraj $y$. Vsak vodoravni prerez reši isto navadno diferencialno enačbo po $x$.|u(x,y)=A(y)e^x+B(y)e^{-x}
+Vstavi robna podatka|Primer naj ima $u(0,y)=y$ in $u_x(0,y)=0$. Konstanti integracije sta funkciji druge spremenljivke.|A+B=y,\qquad A-B=0
+Poveži prereze|Dobiš družino krivulj. Drsnik izbere en prerez. Dvakrat odvajaj po $x$ in preveri enačbo.|u(x,y)=y\cosh x

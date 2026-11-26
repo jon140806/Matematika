@@ -1,0 +1,33 @@
+1|Kdaj lahko pri stalnih mejah odvajam pod integralom?|Na končnem pravokotniku zadoščata zveznost $f$ in zveznost $\partial_a f$. Tedaj $F'(a)=\int_u^v\partial_a f(x,a)\,dx$.
+1|Kako si zapomnim predznaka pri premikajočih se mejah?|Zgornja meja doda $f(v,a)v'$, spodnja odvzame $f(u,a)u'$. Dodaj še integral parcialnega odvoda.
+1|Kaj je enakomerna konvergenca nepravega integrala?|Ob obstoju vseh točkovnih integralov za vsak $\varepsilon>0$ obstaja en $R$, da za vse $b\ge R$ in vse parametre velja $\left|\int_b^\infty f(x,a)dx\right|<\varepsilon$.
+1|Kako izberem majoranto za odvajanje?|Poišči integrabilno $g(x)$, ki na območju parametrov omeji $|\partial_a f(x,a)|$. Preveri tudi obstoj prvotnega integrala in zveznost.
+1|Kateri dva postopka se pogosto srečata pri Gaussovem integralu s kosinusom?|Odvod po parametru ustvari faktor $x$. Per partes z $(e^{-x^2})'=-2xe^{-x^2}$ vrne prvotni integral.
+2|Kako prepoznam gama integral?|$\Gamma(p)=\int_0^\infty t^{p-1}e^{-t}dt$ za $p>0$. Argument je za 1 večji od eksponenta pri $t$.
+2|Katere tri vrednosti povežejo gama, fakulteto in koren iz π?|$\Gamma(1)=1$, $\Gamma(n+1)=n!$ za celo število $n\ge0$, $\Gamma(1/2)=\sqrt\pi$.
+2|Kako razširim gama na negativne necele argumente?|Uporabi $\Gamma(x)=\Gamma(x+1)/x$ tolikokrat, da je argument pozitiven. Izloči $0,-1,-2,\ldots$.
+2|Kako preberem beta integral?|$B(p,q)=\int_0^1 u^{p-1}(1-u)^{q-1}du=\Gamma(p)\Gamma(q)/\Gamma(p+q)$ za $p,q>0$.
+2|Koliko je B(3, ½) na teoretičnem kolokviju 2022?|$\Gamma(3)=2$, $\Gamma(7/2)=15\sqrt\pi/8$. Količnik $2\sqrt\pi/\Gamma(7/2)$ je $16/15$.
+2|Kako prevedem trigonometrični integral na beta funkcijo?|Pri $u=\sin^2 t$ dobiš $\int_0^{\pi/2}\sin^\alpha t\cos^\beta t\,dt=\frac12 B((\alpha+1)/2,(\beta+1)/2)$ za $\alpha,\beta>-1$.
+3|Katera sta para za sinus in kosinus?|$\mathcal L(\sin at)=a/(s^2+a^2)$ in $\mathcal L(\cos at)=s/(s^2+a^2)$ za $s>0$.
+3|Kateri par uporabim za ponovljeni pol?|$\mathcal L(t^ne^{at})=n!/(s-a)^{n+1}$ za $s>a$ in celo število $n\ge0$.
+3|Kako transformiram četrti odvod?|$\mathcal L(f^{(4)})=s^4F-s^3f(0)-s^2f'(0)-sf''(0)-f'''(0)$. Vsaka naslednja začetna vrednost nosi eno potenco manj.
+3|Kaj naredi faktor t pred funkcijo?|$\mathcal L(tf)=-F'(s)$. Nastane z odvajanjem jedra $e^{-st}$ po $s$.
+3|Kaj povzroči množenje signala z eksponentom?|$\mathcal L(e^{at}f(t))=F(s-a)$. V integralu združi eksponenta.
+3|Kaj povzroči razteg časa?|Za $a>0$ je $\mathcal L(f(at))=F(s/a)/a$. Faktor $1/a$ dobiš iz diferenciala.
+4|Katera je formula za časovni zamik?|$\mathcal L(H(t-a)g(t-a))=e^{-as}G(s)$ za $a\ge0$. Obe pojavitvi premika morata ustrezati istemu $a$.
+4|Kako zapišem preklop s f₁ na f₂ pri a?|$f(t)=f_1(t)+H(t-a)[f_2(t)-f_1(t)]$. Za transformacijo izraz v oklepaju prepiši v $u=t-a$.
+4|Kako je definirana vzročna konvolucija?|$(f*g)(t)=\int_0^t f(u)g(t-u)du$. Njena transformiranka je $F(s)G(s)$.
+4|Kaj v časovni domeni ustreza produktu treh transformirank?|Konvolucija vseh treh signalov. Asociativnost dovoljuje $(f*g)*h=f*(g*h)$.
+4|Kolikšna je transformiranka enotskega sunka pri a?|$\mathcal L(\delta(t-a))=e^{-as}$ za $a>0$. Utežena ploščina sunka je vrednost jedra pri $a$.
+5|Kaj povesta kvocientni in korenski kriterij?|Če je limita absolutnega kvocienta ali limsup n-tega korena manjša od 1, vrsta absolutno konvergira. Če je večja od 1 (pri kvocientu z obstoječo limito), divergira. Pri 1 preveri drugače.
+5|Kdaj konvergirata p-vrsta in alternirajoča vrsta?|$\sum 1/n^p$ konvergira za $p>1$. Po Leibnizu $\sum(-1)^na_n$ konvergira, če $a_n\ge0$ pada proti 0.
+5|Kaj pove Weierstrassov kriterij in kaj njegova kontrapozicija?|Če $|f_n|\le M_n$ in $\sum M_n$ konvergira, $\sum f_n$ konvergira enakomerno. Če ni enakomerne konvergence, vsaka veljavna majorantna vrsta divergira.
+5|Kdaj lahko vrsto integriram ali odvajam členoma?|Enakomerno konvergentno vrsto zveznih funkcij lahko integriraš na zaprtem intervalu. Za odvajanje zadošča enakomerna konvergenca vrste zveznih odvodov in konvergenca prvotne vrste v eni točki.
+5|Kateri znani vsoti nastaneta iz geometrijske vrste?|$\sum_{n=1}^\infty x^n/n=-\ln(1-x)$ in $\sum_{n=0}^\infty(-1)^n x^{2n+1}/(2n+1)=\arctan x$ za $|x|<1$. Robove preveri posebej.
+5|Kako razlikujem točkovno in enakomerno konvergenco?|Pri enakomerni za vsak $\varepsilon>0$ en $N$ deluje za vse $x$ in vse $n\ge N$. Pri točkovni sme biti $N$ odvisen od $x$.
+6|Kateri nastavek uporabiš v regularni in kateri v šibko singularni točki 0?|V regularni uporabi $\sum a_nx^n$. Po Frobeniusu uporabi $x^r\sum a_nx^n$ z $a_0\ne0$.
+6|Kako preveriš šibko singularno točko?|V normalizirani enačbi $y''+Py'+Qy=0$ preveri, da sta $xP$ in $x^2Q$ analitični pri sicer singularni točki 0.
+6|Kako prepoznaš Besselovo enačbo?|$x^2y''+xy'+(x^2-\nu^2)y=0$. Za pozitiven $x$ jo rešuje $C_1J_\nu(x)+C_2Y_\nu(x)$.
+6|Kako je definiran uteženi skalarni produkt?|$\langle f,g\rangle_w=\int_a^b fgw\,dx$, kjer je $w$ zvezna in pozitivna. Ničelni produkt pomeni ortogonalnost.
+6|Kako sta normalizirana Legendrova polinoma P₁ in P₂?|$P_n(1)=1$. Prva sta $P_1=x$ in $P_2=(3x^2-1)/2$. Pri različnih stopnjah je njun skalarni produkt z utežjo 1 enak 0.
