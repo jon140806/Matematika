@@ -4,7 +4,7 @@ Ob neskončni meji poišči majoranto za parcialni odvod. Faktor $x$ nato združ
 Pri stalnem $x$ odvajaj $\cos(ax)$ po $a$. Nato poveži novi faktor $x$ z odvodom Gaussove uteži po $x$.
 Prvotni integral omeji $\int_0^\infty e^{-x^2}dx$. Odvod po $a$ omeji $xe^{-x^2}$ z integralom $1/2$, neodvisno od $a$.
 $I'=\tfrac12\int_0^\infty(e^{-x^2})'\sin(ax)dx$. Robni člen izgine pri 0 in v neskončnosti. Ostane $I'=-aI/2$.
-Reši linearno enačbo z integrirnim faktorjem $e^{a^2/4}$. Začetna vrednost da $I=(\sqrt\pi/2)e^{-a^2/4}$.
+Loči spremenljivki in integriraj $dI/I=-(a/2)\,da$. Začetna vrednost da $I=(\sqrt\pi/2)e^{-a^2/4}$.
 ?Katera funkcija reši dobljeno diferencialno enačbo in izpolni začetni pogoj?|$I(a)=\frac{\sqrt\pi}{2}e^{-a^2/4}$|$I(a)=\frac{\sqrt\pi}{2}e^{-a^2/2}$|$I(a)=\sqrt\pi\,e^{-a^2/4}$
 @1|Kvadrat v zgornji meji|atan|Račun 2023 · naloga 1a
 Dana je funkcija $I(t)=\int_0^{t^2}\frac{\arctan(tx)-\arctan(x)}{x}\,dx$. Natančno utemeljite, da lahko odvajanje po parametru $t$ uporabite pod integralskim znakom in nato izračunajte $I'(t)$.
@@ -20,7 +20,7 @@ Meji sta stalni. Najprej potrebuješ odvod funkcije pod integralom po $t$, nato 
 Pri logaritmu deliš odvod celotnega oklepaja s prvotnim oklepajem. V števcu prvi $t$ prispeva $1$. Kaj prispeva koren?
 Po verižnem pravilu dobiš $(1+t/\sqrt{t^2-y^2})/(t+\sqrt{t^2-y^2})=1/\sqrt{t^2-y^2}$.
 Integriraj po $y$. Dobimo $[\arcsin(y/t)]_0^2=\arcsin(2/t)$.
-Za desni diferenčni kvocient pri $t=2$ izrek o srednji vrednosti da majoranto $1/\sqrt{4-y^2}$ za $y<2$. Ta je integrabilna, zato desni odvod znaša $\pi/2$.
+Po izreku o srednji vrednosti je desni diferenčni kvocient pri 2 enak $\arcsin(2/c)$ za neki $2<c<2+h$. Ko $h\downarrow0$, dobiš $\arcsin(1)=\pi/2$.
 ?Kateri odvod dobiš v notranjosti in na levem krajišču?|$F'(t)=\arcsin(2/t)$, $F'_+(2)=\pi/2$|$F'(t)=\arccos(2/t)$, $F'_+(2)=0$|$F'(t)=\arctan(2/t)$, $F'_+(2)=\pi/4$
 @2|Polkrožni koren|betasub|Račun 2022 · naloga 3
 Naj bo $I=\int_0^2 x^2\sqrt{4-x^2}\,dx$. a) Z uvedbo nove spremenljivke pokažite, da je $I=8B(\frac32,\frac32)$. b) Izračunajte $I$.
@@ -58,7 +58,7 @@ Po deljenju uporabi $\Gamma(q+1)=q\Gamma(q)$ in $\Gamma(p+1)=p\Gamma(p)$. Količ
 Z uporabo Laplaceove transformacije rešite sistem diferencialnih enačb $y'+y-2z'-2z=e^t$, $y'-z'+z=e^{-t}$ pri začetnem pogoju $y(0)=2$, $z(0)=1$.
 Isti izraz $Y-2Z$ se pojavi v prvi vrstici. Pred izločanjem upoštevaj oba začetna pogoja.
 Prva vrstica je $(s+1)(Y-2Z)=1/(s-1)$. Druga je $sY+(1-s)Z=1+1/(s+1)$.
-Iz prve dobiš $Y=2Z+1/(s^2-1)$. Vstavi v drugo in reši za $Z$.
+Iz prve izrazi $Y-2Z$. S seštevanjem ustreznih večkratnikov obeh enačb odpravi $Z$.
 Po razcepu je $Y=2/(s+1)+1/(s+1)^2$ in $Z=5/[4(s+1)]+1/[2(s+1)^2]-1/[4(s-1)]$.
 Obrni členoma. $y=(2+t)e^{-t}$, $z=(5/4+t/2)e^{-t}-e^t/4$. Pri ničli res dobiš 2 in 1.
 ?Kateri par funkcij $(y(t),z(t))$ reši sistem?|$\big((2+t)e^{-t},\,(\tfrac54+\tfrac t2)e^{-t}-\tfrac14e^t\big)$|$\big((2+t)e^{-t},\,(\tfrac54-\tfrac t2)e^{-t}-\tfrac14e^t\big)$|$\big((2-t)e^{-t},\,(\tfrac54+\tfrac t2)e^{-t}-\tfrac14e^t\big)$
@@ -70,12 +70,12 @@ Prva vrstica da $2(s-1)Y+(s^2-1)Z=2s+5$. Odštej dvakrat drugo vrstico. Ostane $
 Sledi $Z=2/(s-1)+1/(s-1)^2$ ter $Y=1/(s-1)-1/(s-1)^2$.
 Obrni: $y=(1-t)e^t$, $z=(2+t)e^t$. Iz $z'=(3+t)e^t$ preveri še tretji pogoj.
 ?Kateri par funkcij $(y(t),z(t))$ reši sistem?|$\big((1-t)e^t,(2+t)e^t\big)$|$\big((1+t)e^t,(2+t)e^t\big)$|$\big((1-t)e^t,(2-t)e^t\big)$
-@3|Ko je pred odvodom tudi t|devar|Teoretični kolokvij, 30. 11. 2022 · naloga 3
+@3|Ko je pred odvodom tudi x|devar|Teoretični kolokvij, 30. 11. 2022 · naloga 3
 Dana je diferencialna enačba $3xy''(x)+3y'(x)+4xy(x)=0$. Z $Y(s)=\mathcal L(y)(s)$ označimo Laplaceovo transformiranko rešitve $y$. Katera enačba velja za $Y(s)$?
-V kolokviju je čas označen z $x$, v izpeljavi s $t$. Odvod po času ustvari faktor $s$, množenje s časom pa negativni odvod po $s$.
+Neodvisna spremenljivka je $x$, parameter transformacije je $s$. Odvod po času ustvari faktor $s$, množenje s časom pa negativni odvod po $s$.
 Najprej transformiraj $y''$, šele nato odvajaj transformiranko.
-Velja $\mathcal L(ty'')=-[s^2Y-sy(0)-y'(0)]'=-2sY-s^2Y'+y(0)$.
-Vstavi še $\mathcal L(y')=sY-y(0)$ in $\mathcal L(ty)=-Y'$. Začetna podatka izgineta.
+Velja $\mathcal L(xy'')=-[s^2Y-sy(0)-y'(0)]'=-2sY-s^2Y'+y(0)$.
+Vstavi še $\mathcal L(y')=sY-y(0)$ in $\mathcal L(xy)=-Y'$. Začetna podatka izgineta.
 Po zbiranju členov dobiš $(3s^2+4)Y'+3sY=0$. Za graf je izbrana normalizacija $Y=1/\sqrt{3s^2+4}$.
 ?Katero enačbo dobiš za $Y(s)$?|$(3s^2+4)Y'+3sY=0$|$(3s^2+6)Y'+3sY=0$|$(3s^2+5)Y'+4sY=0$|$(3s^2+3)Y'+4sY=0$
 @4|Tri funkcije v konvoluciji|triple|Računski kolokvij, 30. 11. 2023 · naloga 3a–b
@@ -101,7 +101,7 @@ Pri $a=\pi/2$ in $u=t-a$ velja $-3\cos t=3\sin u$.
 Zapiši $F=3(1+s)/(s^2+1)+e^{-as}3/(s^2+1)$. Iz leve strani dobiš $Y=(s+2+F)/(s^2+4)$.
 Za zamaknjeni del uporabi $3/[(s^2+1)(s^2+4)]=1/(s^2+1)-1/(s^2+4)$. Osnovni del po razcepu je $(s+1)/(s^2+1)+1/(s^2+4)$.
 Rešitev je $\sin t+\cos t+\tfrac12\sin(2t)+H(t-a)[\sin u-\tfrac12\sin(2u)]$.
-Naj bo $u=t-\pi/2$ čas od preklopa in $y_0(t)=\cos t+\sin t+\tfrac12\sin(2t)$. Katera je celotna rešitev?|$y_0(t)+H(u)[\sin(u)-\tfrac12\sin(2u)]$|$y_0(t)-H(u)[\sin(u)-\tfrac12\sin(2u)]$|$y_0(t)+H(u)[\sin(u)+\tfrac12\sin(2u)]$
+?Naj bo $u=t-\pi/2$ čas od preklopa in $y_0(t)=\cos t+\sin t+\tfrac12\sin(2t)$. Katera je celotna rešitev?|$y_0(t)+H(u)[\sin(u)-\tfrac12\sin(2u)]$|$y_0(t)-H(u)[\sin(u)-\tfrac12\sin(2u)]$|$y_0(t)+H(u)[\sin(u)+\tfrac12\sin(2u)]$
 @5|Vrsta z dvema linearnima faktorjema|sum22|Račun 2022 · naloga 4
 Določi območje in vsoto $S(x)=\sum_{n=2}^\infty x^n/(n^2-1)$. Izračunaj še $\sum_{n=2}^\infty 4^{1-n}/(n^2-1)$.
 Imenovalec razcepi. Nato zamakni indekse do znanega logaritma.
@@ -119,7 +119,7 @@ Pomožna vrsta $T=\sum x^{4n+1}/(4n+1)$ ima $T(0)=0$, $T'=1/(1-x^4)$. Razstavi $
 Integriraj od 0 do $x$ in deli z $x^2$. Dobimo $S=[\tfrac14\ln((1+x)/(1-x))+\tfrac12\arctan x]/x^2$.
 ?Kakšna je vsota na območju $0<|x|<1$?|$\frac{\ln((1+x)/(1-x))+2\arctan x}{4x^2}$|$\frac{\ln((1+x)/(1-x))}{4x^2}$|$\frac{\ln((1+x)/(1-x))+2\arctan x}{4x}$
 @5|Majoranta na vsem intervalu|mtest|ITFR-04, str. 4 · naloga 1, druga vrsta · teorija 2022, naloga 4
-Pokaži enakomerno konvergenco $\sum_{n=1}^\infty\sin(nx)/n^2$ na realni osi. Kaj sledi, če neka druga vrsta ne konvergira enakomerno in ima majoranto $M_n$?
+Pokaži konvergenco po točkah in enakomerno konvergenco $\sum_{n=1}^\infty\sin(nx)/n^2$ na realni osi. Kaj sledi, če neka druga vrsta ne konvergira enakomerno in ima majoranto $M_n$?
 Poišči oceno, ki velja hkrati za vse $x$.
 Absolutno vrednost sinusa omeji z 1. Vsaka pozitivna majoranta mora omejevati absolutno vrednost člena.
 Velja $|\sin(nx)/n^2|\leq 1/n^2$. Številska vrsta na desni konvergira po kriteriju za $p$-vrsto.
@@ -128,9 +128,9 @@ Za drugo vrsto uporabi kontrapozicijo. Če bi $\sum M_n$ konvergirala, bi prvotn
 ?Kateri sklep velja za drugo vrsto?|Vsaka veljavna majorantna vrsta divergira.|Vsaka majorantna vrsta konvergira.|Vsaj ena majorantna vrsta konvergira.
 @6|Legendrova enačba pri n = 0|leg|ITFR-p78a, str. 6 · domača vaja, n = 0
 Poišči splošno rešitev enačbe $(1-x^2)y''-2xy'=0$ na $(-1,1)$.
-Koeficient ob prvem odvodu je odvod koeficienta ob drugem.
-Razvij odvod produkta $(1-x^2)y'$.
-Integriranje da $(1-x^2)y'=B$. Druga integracija doda še konstanto $A$.
+Pri stopnji $n=0$ uporabi rekurzijo za Legendrovo enačbo s str. 4.
+Vstavi $n=0$ in izračunaj prve sode in lihe koeficiente.
+Iz rekurzije sledi $y=A+B(x+x^3/3+x^5/5+\cdots)$. Liho vrsto prepoznaj s pomočjo razvoja logaritma.
 ?Katera je splošna rešitev?|$A+\frac B2\ln\frac{1+x}{1-x}$|$A+B(1-x^2)$|$A+B\ln(1-x^2)$
 @6|Prepoznaj red enačbe|bessel|Teorija 2022 · nalogi 8 in 10
 Zapiši Frobeniusov nastavek pri šibko singularni točki $x=0$. Nato zapiši splošno rešitev $x^2y''+xy'+(x^2-25)y=0$ za $x>0$.

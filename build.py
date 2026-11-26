@@ -56,6 +56,8 @@ def exercise_steps(rows):
         step=dict(action=math_text(action),reason=math_text(reason),equation=worked_formula(tex))
         if options and isinstance(options[-1],dict):
             note=options.pop()
+            if note.get("condition"):
+                step["condition"]=True
             if "detail" in note:
                 if not steps:
                     raise ValueError("An optional explanation must follow a calculation step")

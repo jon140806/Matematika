@@ -461,9 +461,27 @@
       ],
       [
         "Kako začetna ploščina določi konstanto?",
-        "Enačbo $I'+(a/2)I=0$ pomnožimo z $e^{a^2/4}$. Leva stran je odvod produkta. Produkt je torej konstanta $C$. Pri $a=0$ je eksponentni faktor enak 1, zato je $C$ ravno začetna ploščina.",
-        "(e^{a^2/4}I(a))'=0\\ \\Longrightarrow\\ e^{a^2/4}I(a)=C,\\quad C=I(0)=\\frac{\\sqrt\\pi}{2},\\quad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}",
-        "Začetna točka določa višino krivulje. Z drsnikom odčitaj $I(a)$ ob drugi frekvenci."
+        "Diferencialna enačba je prvega reda z ločljivima spremenljivkama. Integriranje da družino rešitev. Začetna ploščina izbere njeno konstanto.",
+        "\\frac{dI}{I}=-\\frac a2\\,da,\\qquad I(a)=Ce^{-a^2/4},\\qquad C=I(0)=\\frac{\\sqrt\\pi}{2}",
+        "Začetna točka določa višino krivulje. Z drsnikom odčitaj $I(a)$ ob drugi frekvenci.",
+        [
+          [
+            "Zdaj iščeš funkcijo $I$ iz njenega odvoda po $a$. Ker je $I(0)>0$, v okolici ničle lahko deliš z $I$. Levo zberi $I$ in $dI$, desno $a$ in $da$.",
+            "\\frac{dI}{da}=-\\frac a2 I\\quad\\Longrightarrow\\quad\\frac{dI}{I}=-\\frac a2\\,da"
+          ],
+          [
+            "Levo je primitivna funkcija od $1/I$ logaritem. Desno izpostavi $-1/2$ in integriraj $a$. Razliko obeh integracijskih konstant označi s $K$.",
+            "\\int\\frac{dI}{I}=-\\frac12\\int a\\,da\\quad\\Longrightarrow\\quad\\ln I=-\\frac12\\frac{a^2}{2}+K=-\\frac{a^2}{4}+K"
+          ],
+          [
+            "Obe strani vstavi v eksponentno funkcijo. Konstantni faktor $e^K$ označi s $C$.",
+            "I(a)=e^{K-a^2/4}=e^K e^{-a^2/4}=C e^{-a^2/4}"
+          ],
+          [
+            "Pri $a=0$ je eksponent nič, zato je $C=I(0)$. Dobljeni izraz velja na vsej realni osi: reši enačbo pri vsakem $a$, rešitev z danim začetnim pogojem pa je enolična, saj je koeficient $-a/2$ zvezen povsod.",
+            "I(0)=C e^0=C=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
+          ]
+        ]
       ]
     ]
   }

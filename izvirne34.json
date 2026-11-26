@@ -42,9 +42,17 @@
           }
         ],
         [
+          "Preberi para iz tabele",
+          "Imenovalec pri sinusu in kosinusu je isti. O tem, kateri par uporabiš, odloči števec. Zamenjava $s$ s $s+1$ v obeh parih pomeni faktor $e^{-t}$.",
+          "\\frac{s}{s^2+1}\\longleftrightarrow\\cos t,\\qquad \\frac1{s^2+1}\\longleftrightarrow\\sin t"
+        ],
+        [
           "Vrni se v čas",
-          "Premik za 1 v obeh ulomkih doda isti faktor dušenja. Ohranita se oba koeficienta.",
-          "h(t)=3e^{-t}\\cos t-3e^{-t}\\sin t"
+          "Premik za 1 v obeh ulomkih doda isti faktor dušenja. Ohranita se oba koeficienta. Obe dobljeni funkciji vsebujeta $e^{-t}$, zato transformaciji konvergirata pri $s>-1$.",
+          "h(t)=3e^{-t}\\cos t-3e^{-t}\\sin t",
+          {
+            "condition": true
+          }
         ]
       ],
       "quiz": [
@@ -74,9 +82,17 @@
       ],
       "worked": [
         [
+          "Prepoznaj konvolucijo",
+          "V integralu je ena funkcija odvisna od $t$, druga od razlike $x-t$. Zato ga lahko zapišeš z zvezdico.",
+          "g(u)=\\cos(au),\\quad \\int_0^x g(x-t)y(t)\\,dt=(g*y)(x)"
+        ],
+        [
           "Transformiraj konvolucijo",
-          "Integral postane produkt. Vanj vpiši transformiranki znanih funkcij.",
-          "\\frac{s}{s^2+a^2}Y(s)=\\frac{b}{s^2+b^2}"
+          "Integral postane produkt. Vanj vpiši transformiranki znanih funkcij. Podana sta realna $a,b\\ne0$. Sinusni in kosinusni par veljata pri $s>0$.",
+          "\\frac{s}{s^2+a^2}Y(s)=\\frac{b}{s^2+b^2}",
+          {
+            "condition": true
+          }
         ],
         [
           "Osami neznano transformiranko",
@@ -97,7 +113,7 @@
         ],
         [
           "Primerjaj konstantna člena",
-          "Pri s = 0 ostaneta samo konstantna člena. Deli z b², ker b ni nič.",
+          "Po odpravi imenovalca velja polinomska identiteta za vsak $s$. Vstavi $s=0$, nato deli z $b^2$, ker je $b$ neničeln.",
           "ba^2=Ab^2\\quad\\Longrightarrow\\quad A=\\frac{a^2}{b}"
         ],
         [
@@ -137,12 +153,12 @@
       "title": "Ko se čas in odvod pojavita skupaj",
       "steps": [
         [
-          "Najprej transformiraj časovni odvod in upoštevaj oba začetna pogoja.",
+          "Najprej transformiraj drugi odvod. Začetni vrednosti ostaneta zapisani kot konstanti.",
           "G(s)=\\mathcal L(y'')=s^2Y-sy(0)-y'(0)"
         ],
         [
-          "Faktor časa spremeni celotno dobljeno funkcijo v negativni odvod po parametru.",
-          "\\mathcal L(ty'')=-\\frac{dG}{ds}"
+          "Faktor $x$ pomeni, da dobljeno transformiranko odvedeš po $s$ in spremeniš predznak.",
+          "\\mathcal L(xy'')=-\\frac{dG}{ds}"
         ]
       ]
     },

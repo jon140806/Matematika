@@ -10,7 +10,7 @@
   "inverse": "$F(s)$ je podana funkcija v Laplaceovi domeni, $s$ njen argument. Po inverziji iščeš signal pri času $t$. $A$ in $B$ sta koeficienta parcialnih ulomkov.",
   "sys22": "$t$ je čas. $y(t)$ in $z(t)$ sta iskana signala, črtica označuje časovni odvod. $Y(s)$ in $Z(s)$ sta njuni transformiranki.",
   "sys23": "$y$ in $z$ sta funkciji časa $t$. $z'(0)$ pomeni začetni naklon, $z''$ drugi časovni odvod. $Y(s)$ in $Z(s)$ sta transformiranki signalov.",
-  "devar": "$y'(t)$ je odvod prvotnega signala po času $t$. Velika črka $Y(s)$ pomeni transformiranko signala $y(t)$, $Y'(s)$ pa odvod transformiranke po $s$.",
+  "devar": "$y'(x)$ je odvod prvotne funkcije po $x$. Velika črka $Y(s)$ pomeni transformiranko funkcije $y(x)$, $Y'(s)$ pa odvod transformiranke po $s$.",
   "triple": "$t$ je časovni argument vhodnih signalov, $x$ je trenutek, v katerem izračunaš rezultat. Znak $*$ označuje konvolucijo. $s$ je argument Laplaceove transformiranke.",
   "force24": "$t$ je čas, $f(t)$ zunanja sila, $y(t)$ odziv. $H(t-2)$ vklopi popravek ob času 2. $u=t-2$ meri čas od preklopa.",
   "force23": "$f(t)$ je sila, $y(t)$ odziv. $a=\\pi/2$ je trenutek preklopa. Ko je $t\\ge a$, $u=t-a$ pove, koliko časa je preteklo od preklopa.",

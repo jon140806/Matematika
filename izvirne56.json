@@ -51,7 +51,10 @@
         [
           "Odvajaj vsoto",
           "Znotraj polmera smemo odvajati členoma. Tako v koeficientu dobimo iskani faktor $n$.",
-          "G'(x)=\\sum_{n=1}^{\\infty}nx^{n-1}=-(1-x)^{-2}(-1)=(1-x)^{-2}"
+          "G'(x)=\\sum_{n=1}^{\\infty}nx^{n-1}=-(1-x)^{-2}(-1)=(1-x)^{-2}",
+          {
+            "condition": true
+          }
         ],
         [
           "Poravnaj eksponent",
@@ -68,7 +71,10 @@
         [
           "Določi, kje velja vsota",
           "Če je $|x|\\ge1$, je absolutna vrednost člena vsaj $n$. Členi se zato ne približujejo ničli.",
-          "|nx^n|\\ge n\\quad (|x|\\ge1)"
+          "|nx^n|\\ge n\\quad (|x|\\ge1)",
+          {
+            "condition": true
+          }
         ]
       ],
       "quiz": [
@@ -99,8 +105,11 @@
       "worked": [
         [
           "Izberi potenčno vrsto",
-          "Začetnih pogojev ni. Prosta koeficienta bosta določala dve neodvisni rešitvi.",
-          "y=\\sum_{k=0}^\\infty a_kx^k,\\quad a_0=y(0),\\quad a_1=y^{\\prime}(0)"
+          "Vodilni koeficient je 1, preostala koeficienta sta konstantna, zato je $x=0$ regularna točka. Brez začetnih pogojev ostaneta $a_0$ in $a_1$ prosta.",
+          "y=\\sum_{k=0}^\\infty a_kx^k,\\quad a_0=y(0),\\quad a_1=y^{\\prime}(0)",
+          {
+            "condition": true
+          }
         ],
         [
           "Odvajaj prvič in drugič",
@@ -126,8 +135,11 @@
         ],
         [
           "Izpelji rekurzijo",
-          "Pri vsaki potenci izenači koeficient v $y''+y$ z nič in izrazi naslednji člen.",
-          "(k+2)(k+1)a_{k+2}=-a_k,\\qquad a_{k+2}=\\frac{-a_k}{(k+2)(k+1)}"
+          "Ker je enačba izpolnjena v okolici ničle, mora biti vsak koeficient enak nič. Pri $k\\ge0$ je $(k+2)(k+1)>0$, zato smemo deliti.",
+          "(k+2)(k+1)a_{k+2}=-a_k,\\qquad a_{k+2}=\\frac{-a_k}{(k+2)(k+1)}",
+          {
+            "condition": true
+          }
         ],
         [
           "Izračunaj sode koeficiente",
@@ -141,8 +153,11 @@
         ],
         [
           "Prepoznaj obe vsoti",
-          "Soda vrsta je Taylorjev razvoj kosinusa, liha pa sinusa. Koeficienta preimenuj v poljubni konstanti $A$ in $B$.",
-          "y=a_0(1-x^2/2!+x^4/4!-\\cdots)+a_1(x-x^3/3!+x^5/5!-\\cdots)=A\\cos x+B\\sin x"
+          "Soda vrsta je razvoj kosinusa, liha razvoj sinusa. Obe Taylorjevi vrsti konvergirata za vsak realni $x$. Prosta koeficienta preimenuj v $A$ in $B$.",
+          "y=a_0(1-x^2/2!+x^4/4!-\\cdots)+a_1(x-x^3/3!+x^5/5!-\\cdots)=A\\cos x+B\\sin x",
+          {
+            "condition": true
+          }
         ]
       ],
       "quiz": [
@@ -158,8 +173,8 @@
       "title": "Kako iz imenovalca prepoznaš pomožno vrsto",
       "steps": [
         [
-          "Dva linearna faktorja razstavi na enostavna ulomka. Identiteto pomnoži z njunim produktom.",
-          "\\frac{1}{uv}=\\frac{A}{u}+\\frac{B}{v}\\ \\Longrightarrow\\ 1=Av+Bu"
+          "Pri $n\\ge2$ sta $n-1$ in $n+1$ različna od nič. Po množenju s skupnim imenovalcem primerjaj koeficiente.",
+          "\\frac1{(n-1)(n+1)}=\\frac A{n-1}+\\frac B{n+1}\\quad\\Rightarrow\\quad1=A(n+1)+B(n-1)"
         ],
         [
           "Poišči vrsto, katere odvod odstrani imenovalec. Geometrijsko delno vsoto zapiši s končnim številom členov.",
@@ -188,19 +203,6 @@
         ]
       ]
     },
-    "bessel": {
-      "title": "Kako prepoznaš regularno singularno točko",
-      "steps": [
-        [
-          "Deli z vodilnim koeficientom. Če sta pri ničli spodnja produkta analitično razširljiva, je singularna točka regularno singularna.",
-          "y''+P(x)y'+Q(x)y=0,\\qquad xP(x),\\ x^2Q(x)"
-        ],
-        [
-          "V Frobeniusovem nastavku najnižja potenca določi dovoljene eksponente. Pri Besselovi enačbi dobiš kvadrat reda.",
-          "y=x^r(a_0+a_1x+\\cdots),\\quad a_0\\ne0,\\qquad r^2-\\nu^2=0"
-        ]
-      ]
-    },
     "ortho": {
       "title": "Kako na grafu prebereš skalarni produkt",
       "steps": [
@@ -215,15 +217,15 @@
       ]
     },
     "leg": {
-      "title": "Kako opaziš odvod produkta",
+      "title": "Potenčna metoda za Legendrovo enačbo · str. 3–6",
       "steps": [
         [
-          "V odvodu produkta se pojavita dva člena. Poskusi s faktorjema $p(x)$ in $y^{\\prime}(x)$.",
-          "(py^\\prime)^\\prime=py^{\\prime\\prime}+p^\\prime y^\\prime"
+          "V predavanju vstavimo potenčni nastavek v enačbo. Dvakratno odvajanje poveže koeficient z naslednjim iste parnosti.",
+          "y=\\sum_{m=0}^\\infty a_m x^m,\\qquad y^{\\prime\\prime}=\\sum_{m=0}^\\infty(m+2)(m+1)a_{m+2}x^m"
         ],
         [
-          "Ko ob drugem odvodu prebereš $p(x)=1-x^2$, je njegov odvod ravno koeficient ob prvem odvodu.",
-          "p^\\prime(x)=-2x"
+          "Pri $n=0$ zberemo koeficiente pri isti potenci. Prispevka $-x^2y^{\\prime\\prime}$ in $-2xy^\\prime$ skupaj data $-[m(m-1)+2m]a_m$.",
+          "(m+2)(m+1)a_{m+2}=m(m+1)a_m"
         ]
       ]
     }

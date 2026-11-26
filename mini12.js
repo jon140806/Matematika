@@ -1,16 +1,4 @@
 const mini12 = {
-  atanAnchor12: {
-    label: 'Zakaj integriramo od 1 do t?', x: [0, 2.4], y: [0, 1.1],
-    make() {
-      const height = r => 1/(1+r*r);
-      return {
-        curves: [line('fₜ(1,r)', height, mint)], fills: [fill(height,1,2,gold)],
-        marks: [1,2], points: [[1,height(1),mint],[2,height(2),gold]],
-        keys: {x:'vmesni parameter r',y:'odvod pri x = 1',marks:['1','t = 2'],areas:['prirastek f']},
-        caption: 'Pri x = 1 začnemo s f(1,1) = 0. Zlata ploščina od r = 1 do r = 2 meri prirastek, zato je enaka f(1,2).'
-      };
-    }
-  },
   atanParts12: {
     label: 'Dva prispevka k odvodu', x: [0, 1.2], y: [-0.6, 1.1],
     make() {

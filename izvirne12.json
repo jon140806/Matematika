@@ -21,8 +21,11 @@
       "worked": [
         [
           "Odvajaj vsebino oklepaja",
-          "Člen $x^2$ je pri odvajanju po $y$ konstanta.",
-          "\\partial_y(x^2+3y)=0+3=3"
+          "Integrand in njegova odvoda po $y$ so polinomi, zato so zvezni pri vseh $x,y$. Meji sta stalni in končni. Odvoda lahko preneseš pod integral. Pri odvajanju po $y$ je $x$ fiksen.",
+          "\\partial_y(x^2+3y)=0+3=3",
+          {
+            "condition": true
+          }
         ],
         [
           "Odvajaj kvadrat",
@@ -80,8 +83,11 @@
       "worked": [
         [
           "Vstavi argumenta",
-          "Imenovalec dobi vsoto, ker velja zveza beta z gama.",
-          "B(2,n+\\tfrac12)=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(2+n+\\tfrac12)}=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(n+\\tfrac52)}"
+          "Zveza velja za pozitivna argumenta. Tukaj sta to $2$ in $n+1/2$ (torej $n>-1/2$). V imenovalcu ju seštej.",
+          "B(2,n+\\tfrac12)=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(2+n+\\tfrac12)}=\\frac{\\Gamma(2)\\Gamma(n+\\tfrac12)}{\\Gamma(n+\\tfrac52)}",
+          {
+            "condition": true
+          }
         ],
         [
           "Znižaj imenovalec dvakrat",
@@ -135,8 +141,8 @@
           "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
         ],
         [
-          "Za rešitev uporabi začetno vrednost, ki je podana v navodilu.",
-          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)=\\frac{\\sqrt\\pi}{2}"
+          "V delu c) loči spremenljivki, integriraj in vstavi podani začetni pogoj.",
+          "\\frac{dI}I=-\\frac a2\\,da\\quad\\Longrightarrow\\quad I(a)=C e^{-a^2/4},\\qquad C=I(0)"
         ]
       ]
     },

@@ -106,6 +106,12 @@
         "\\int u\\,dv=uv-\\int v\\,du",
         "Izberi $u=\\sin(ax)$ in $dv=(e^{-x^2})'dx$. Faktor $1/2$ ostane pred integralom.",
         "I'(a)=\\tfrac12[e^{-x^2}\\sin(ax)]_0^\\infty-\\tfrac a2 I(a)=-\\tfrac a2I(a)"
+      ],
+      [
+        "Ločitev spremenljivk",
+        "\\frac{dI}{da}=g(a)I\\quad\\Longrightarrow\\quad\\frac{dI}{I}=g(a)\\,da",
+        "Pri $I>0$ je integral leve strani $\\ln I$. Tukaj je $g(a)=-a/2$, zato desna stran da $-a^2/4+K$.",
+        "I(a)=Ce^{-a^2/4},\\qquad C=I(0)=\\frac{\\sqrt\\pi}{2}"
       ]
     ],
     "atan": [
@@ -189,9 +195,9 @@
     "devar": [
       [
         "Množenje s časom in odvod po s",
-        "\\mathcal L(tg(t))=-\\frac{d}{ds}G(s),\\qquad G=\\mathcal L(g)",
+        "\\mathcal L(xg(x))=-\\frac{d}{ds}G(s),\\qquad G=\\mathcal L(g)",
         "Za $g=y''$ vzemi $G=s^2Y-sy(0)-y'(0)$. Za $g=y$ vzemi $G=Y$. Pri odvajanju po $s$ so začetni podatki stalnice.",
-        "\\mathcal L(ty'')=-2sY-s^2Y'+y(0),\\quad \\mathcal L(ty)=-Y'"
+        "\\mathcal L(xy'')=-2sY-s^2Y'+y(0),\\quad \\mathcal L(xy)=-Y'"
       ]
     ]
   }

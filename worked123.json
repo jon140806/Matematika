@@ -478,7 +478,7 @@
     ],
     "gauss": [
       [
-        "Označi integrand",
+        "a) Utemelji odvajanje pod integralom",
         "Parameter $a$ uravnava frekvenco kosinusa. Pri njegovem odvajanju ostane položaj $x$ nespremenjen.",
         "f(x,a)=e^{-x^2}\\cos(ax),\\qquad I(a)=\\int_0^\\infty f(x,a)\\,dx"
       ],
@@ -488,15 +488,21 @@
         "\\partial_a f=e^{-x^2}[-\\sin(ax)]\\,\\partial_a(ax)=-xe^{-x^2}\\sin(ax)"
       ],
       [
-        "Preveri obstoj prvotnega integrala",
-        "Na intervalu od 0 do 1 je integrand zvezen. Za $x\\ge1$ primerjava z eksponentom zagotovi obstoj, še preden poznamo natančno začetno ploščino.",
-        "|e^{-x^2}\\cos(ax)|\\le e^{-x^2}\\le e^{-x}\\quad(x\\ge1),\\qquad \\int_1^\\infty e^{-x}\\,dx=e^{-1}"
+        "Uporabi podano vrednost pri ničli",
+        "Kosinus ima absolutno vrednost največ 1. Zato prvotni integral omejuje Gaussov integral, katerega vrednost poda naloga.",
+        "|e^{-x^2}\\cos(ax)|\\le e^{-x^2},\\qquad\\int_0^\\infty e^{-x^2}\\,dx=I(0)=\\frac{\\sqrt\\pi}{2}",
+        {
+          "condition": true
+        }
       ],
       [
         "Omeji parcialni odvod",
-        "Za premik odvoda pod nepravi integral potrebujemo eno integrabilno zgornjo mejo, ki velja pri vseh frekvencah.",
+        "Integrand in njegov parcialni odvod sta zvezna. Za premik odvoda pod nepravi integral potrebujemo integrabilno mejo za velikost parcialnega odvoda, neodvisno od $a$. Uporabi $|\\sin(ax)|\\le1$.",
         "|\\sin(ax)|\\le1\\quad\\Rightarrow\\quad |\\partial_a f(x,a)|\\le xe^{-x^2}",
-        "gaussBound12"
+        "gaussBound12",
+        {
+          "condition": true
+        }
       ],
       [
         "Integriraj zgornjo oceno",
@@ -505,17 +511,20 @@
       ],
       [
         "Pošlji rez v neskončnost",
-        "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
-        "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
+        "Ker eksponent v imenovalcu raste brez meje, je limita nič. Integrabilna meja velja za vsak $a$, zato smeš prestaviti odvod pod integral.",
+        "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12",
+        {
+          "condition": true
+        }
       ],
       [
-        "Prepoznaj odvod uteži",
+        "b) Pripravi integracijo po delih",
         "Prepoznaj odvod Gaussove uteži po x, da pripraviš integracijo po delih.",
         "(e^{-x^2})'=-2xe^{-x^2},\\quad I'(a)=\\tfrac12\\int_0^\\infty (e^{-x^2})'\\sin(ax)\\,dx"
       ],
       [
         "Prenesi odvod na sinus",
-        "Pri integraciji po delih uporabi končno mejo $R$. Spodnji rob je nič, ker je $\\sin(0)=0$.",
+        "Izberi $u=\\sin(ax)$ in $dv=(e^{-x^2})^\\prime dx$. Tako dobiš $du=a\\cos(ax)\\,dx$ in $v=e^{-x^2}$. Vstavi ju v $[uv]_0^R-\\int_0^R v\\,du$. Pri spodnji meji je sinus nič.",
         "\\tfrac12\\int_0^R(e^{-x^2})'\\sin(ax)\\,dx=\\tfrac12e^{-R^2}\\sin(aR)-\\tfrac a2\\int_0^R e^{-x^2}\\cos(ax)\\,dx"
       ],
       [
@@ -536,29 +545,30 @@
         }
       ],
       [
-        "Pripravi odvod produkta",
-        "Levo stran želimo zapisati kot odvod produkta. Primerjaj koeficient pri I.",
-        "I'+\\frac a2I=0,\\quad (\\mu I)'=\\mu I'+\\mu'I,\\quad \\mu'=\\tfrac a2\\mu"
+        "c) Loči spremenljivki",
+        "Ker je $I$ odvedljiva, je zvezna. Iz $I(0)>0$ sledi $I(a)>0$ v okolici ničle. Tam lahko deliš z $I$ in zbereš $I,dI$ levo ter $a,da$ desno.",
+        "\\frac{dI}{da}=-\\frac a2 I\\quad\\Longrightarrow\\quad\\frac{dI}{I}=-\\frac a2\\,da",
+        {
+          "condition": true
+        }
       ],
       [
-        "Določi integrirni faktor",
-        "Poišči en pozitiven integrirni faktor. Začetno vrednost faktorja lahko izbereš kot 1.",
-        "\\ln\\mu(a)-\\ln1=\\int_0^a\\frac r2\\,dr=\\frac{a^2}4,\\qquad \\mu(a)=e^{a^2/4}"
+        "Integriraj obe strani",
+        "Levo je primitivna funkcija od $1/I$ logaritem. Desno izpostavi $-1/2$ in integriraj $a$. Razliko obeh integracijskih konstant označi s $K$.",
+        "\\int\\frac{dI}{I}=-\\frac12\\int a\\,da\\quad\\Longrightarrow\\quad\\ln I=-\\frac12\\frac{a^2}{2}+K=-\\frac{a^2}{4}+K"
       ],
       [
-        "Integriraj produkt",
-        "Pomnoži enačbo s faktorjem. Ker je odvod produkta nič, je produkt konstanten.",
-        "(\\mu I)'=0\\quad\\Longrightarrow\\quad e^{a^2/4}I(a)=C"
+        "Odpravi logaritem",
+        "Obe strani vstavi v eksponentno funkcijo. Konstantni faktor $e^K$ označi s $C$.",
+        "I(a)=e^{K-a^2/4}=e^K e^{-a^2/4}=C e^{-a^2/4}"
       ],
       [
-        "Določi konstanto",
-        "V nalogi je začetna vrednost že podana. Pri ničelnem parametru je integrirni faktor enak 1, zato dobiš C neposredno.",
-        "C=e^{0^2/4}I(0)=1\\cdot\\frac{\\sqrt\\pi}{2}=\\frac{\\sqrt\\pi}{2}"
-      ],
-      [
-        "Izrazi iskano funkcijo",
-        "Deli s faktorjem, da iz znanega produkta dobiš iskano funkcijo.",
-        "I(a)=\\frac{C}{e^{a^2/4}}=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
+        "Vstavi začetni pogoj",
+        "Pri $a=0$ je eksponent nič, zato je $C=I(0)$. Dobljeni izraz velja na vsej realni osi: reši enačbo pri vsakem $a$, rešitev z danim začetnim pogojem pa je enolična, saj je koeficient $-a/2$ zvezen povsod.",
+        "I(0)=C e^0=C=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}",
+        {
+          "condition": true
+        }
       ],
       [
         "Postavi a = 0",
@@ -628,31 +638,33 @@
       ],
       [
         "Preberi spodnjo in zgornjo mejo",
-        "Iz prvotnega integrala prebereš, da je spodnja meja stalna, zgornja pa se s parametrom spreminja.",
-        "u=0,\\quad u'=0,\\qquad v(t)=t^2,\\quad v'(t)=2t"
+        "Spodnja meja je stalna, zgornja je polinom v $t$. Obe sta zvezno odvedljivi, kot zahteva Leibnizovo pravilo.",
+        "u=0,\\quad u'=0,\\qquad v(t)=t^2,\\quad v'(t)=2t",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Dopolni integrand pri ničli",
+        "Pri $x=0$ je v prvotnem zapisu $0/0$. Zveza $\\arctan z/z\\to1$ sledi iz odvoda arkus tangensa pri ničli. Vsak člen prepiši v tej obliki. Pri $t=0$ je prvi člen kar nič.",
+        "\\frac{\\arctan(tx)}x-\\frac{\\arctan x}x=t\\frac{\\arctan(tx)}{tx}-\\frac{\\arctan x}x\\ \\longrightarrow\\ t-1=f(0,t)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Preveri še odvod pri ničli",
+        "Količnik $\\arctan z/z$ je po dopolnitvi z 1 zvezen tudi pri ničli. Zato je prejšnji izraz zvezen v obeh spremenljivkah. Pri $x=0$ je odvod po $t$ enak 1, tako kot v formuli za $f_t$.",
+        "f_t(0,t)=1=\\left.\\frac1{1+t^2x^2}\\right|_{x=0}",
+        {
+          "condition": true
+        }
       ],
       [
         "Vstavi v Leibnizovo pravilo",
-        "V notranji člen vstavi že dobljeni $f_t$. Na premičnem robu uporabi prvotni $f$ pri $x=t^2$ in ga pomnoži z $2t$. Pri $x=0$ se integrand zvezno dopolni s $f(0,t)=t-1$, saj $\\arctan z/z\\to1$ pri $z\\to0$. Tudi dobljeni $f_t$ je tam zvezen.",
+        "V notranji člen vstavi $f_t$. Na premičnem robu vstavi $x=t^2$ v prvotni $f$ in pomnoži z odvodom meje $2t$.",
         "I'(t)=\\underbrace{\\int_0^{t^2}\\frac{dx}{1+t^2x^2}}_{H}+\\underbrace{2t\\,f(t^2,t)}_{D}",
         "atanParts12"
-      ],
-      [
-        "Izberi znano vrednost parametra",
-        "Za utemeljitev zveznosti izberi parameter 1, ker je takrat $\\arctan(x)-\\arctan(x)=0$. Zgornja meja $t$ je vrednost parametra, pri kateri želiš dobiti $f(x,t)$. Med 1 in $t$ teče pomožna spremenljivka $r$.",
-        "f(x,t)-f(x,1)=\\int_1^t f_t(x,r)\\,dr=\\int_1^t\\frac{dr}{1+r^2x^2}\\quad(x\\ne0)",
-        "atanAnchor12",
-        {
-          "detail": "Kako utemeljim zveznost pri x = 0?"
-        }
-      ],
-      [
-        "Dopolni vrednost pri x = 0",
-        "Novi integrand je zvezen tudi pri ničli. Tam je povsod enak 1. Dobljena razširitev in njen odvod po $t$ sta zvezna, zato lahko uporabimo Leibnizovo pravilo.",
-        "f(0,t)=\\int_1^t1\\,dr=t-1,\\qquad f_t(0,t)=1",
-        {
-          "detail": "Kako utemeljim zveznost pri x = 0?"
-        }
       ],
       [
         "V notranjem členu zamenjaj z = tx",
@@ -729,7 +741,10 @@
       [
         "Vstavi odvod pod integral",
         "Pri $t>2$ je $t^2-y^2\\ge t^2-4>0$ na celotnem intervalu. Višina in njen parcialni odvod sta zvezna, zato smeš pri stalnih mejah integrirati dobljeni odvod.",
-        "F'(t)=\\int_0^2\\partial_t f(y,t)\\,dy=\\int_0^2\\frac{dy}{\\sqrt{t^2-y^2}}"
+        "F'(t)=\\int_0^2\\partial_t f(y,t)\\,dy=\\int_0^2\\frac{dy}{\\sqrt{t^2-y^2}}",
+        {
+          "condition": true
+        }
       ],
       [
         "Pripravi zamenjavo za arkus sinus",
@@ -742,39 +757,43 @@
         "F'(t)=\\int_0^{2/t}\\frac{t\\,du}{t\\sqrt{1-u^2}}=[\\arcsin u]_0^{2/t}=\\arcsin(2/t)-\\arcsin0=\\arcsin(2/t)"
       ],
       [
-        "Na robu vzemi desni kvocient",
-        "Pri $t=2$ je dovoljen premik le v desno. Za fiksen $y<2$ je po izreku o srednji vrednosti količnik enak odvodu pri nekem $\\xi$ med $2$ in $2+h$. Največjo oceno dobiš pri najmanjšem imenovalcu.",
-        "0\\le\\frac{f(y,2+h)-f(y,2)}h\\le\\frac1{\\sqrt{4-y^2}},\\quad h>0",
+        "Na robu uporabi že dobljeni odvod",
+        "Integrand je zvezen na pravokotniku $0\\le y\\le2$, $2\\le t\\le2+h$: koren je definiran, argument logaritma pa vsaj 2. Zato je tudi $F$ zvezna do roba. V notranjosti je odvedljiva, zato izrek o srednji vrednosti poveže desni kvocient z že znanim odvodom.",
+        "\\frac{F(2+h)-F(2)}h=F^\\prime(c)=\\arcsin(2/c),\\qquad 2<c<2+h,\\ h>0",
         {
-          "flow": [
-            "$2<\\xi<2+h$",
-            "$\\xi^2-y^2\\ge4-y^2$",
-            "večji koren spodaj",
-            "manjši količnik"
-          ]
+          "condition": true
         }
       ],
       [
-        "Odreži zgornji rob",
-        "Zgornji rob majorante je singularen. Integral zato izračunaj do $b<2$ z zamenjavo $u=y/2$.",
-        "\\int_0^b\\frac{dy}{\\sqrt{4-y^2}}=[\\arcsin(y/2)]_0^b=\\arcsin(b/2)"
+        "Približaj se robu z desne",
+        "Ko $h$ pada proti nič, tudi $c$ teži k 2. Vstavi to limito v zvezni arkus sinus.",
+        "F^\\prime_+(2)=\\lim_{h\\downarrow0}\\frac{F(2+h)-F(2)}h=\\arcsin(1)=\\frac{\\pi}{2}"
       ],
       [
-        "Izračunaj limito integrala",
-        "Pri $b\\uparrow2$ gre argument proti 1. Ker je $\\sin(\\pi/2)=1$, je ta limita končna.",
-        "\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=\\lim_{b\\uparrow2}\\arcsin(b/2)=\\arcsin(1)=\\frac\\pi2"
+        "Odreži singularno krajišče",
+        "Če želiš zapisati desni odvod kot integral tudi na robu, pri $t=2$ upoštevaj ničlo v imenovalcu pri $y=2$. Najprej integriraj do $b<2$.",
+        "\\int_0^b\\frac{dy}{\\sqrt{4-y^2}}=\\left[\\arcsin(y/2)\\right]_0^b=\\arcsin(b/2)",
+        {
+          "detail": "Kako na robu preverim integral odvoda?"
+        }
       ],
       [
-        "Prenesi limito pod integral",
-        "Za vsak $y<2$ gre desni diferenčni kvocient proti parcialnemu odvodu. Integrabilna majoranta dovoljuje dominirano konvergenco.",
-        "F'_+(2)=\\int_0^2\\lim_{h\\downarrow0}\\frac{f(y,2+h)-f(y,2)}h\\,dy=\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=\\frac\\pi2"
+        "Primerjaj z desnim odvodom",
+        "Ko se $b$ z leve približa 2, gre $b/2$ proti 1. Dobljeni nepravi integral je enak izračunanemu desnemu odvodu.",
+        "\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=\\lim_{b\\uparrow2}\\arcsin(b/2)=\\pi/2=F^\\prime_+(2)",
+        {
+          "detail": "Kako na robu preverim integral odvoda?"
+        }
       ]
     ],
     "betasub": [
       [
-        "Izberi novo spremenljivko",
-        "Izpostavi 4 pod korenom in izberi u tako, da ostane 1−u.",
-        "\\sqrt{4-x^2}=2\\sqrt{1-x^2/4},\\quad u=x^2/4"
+        "a) Izberi novo spremenljivko",
+        "Na $[0,2]$ je $x$ nenegativen, zato pri obratni menjavi izbereš pozitivni koren. Menjava $u=x^2/4$ narašča od 0 do 1.",
+        "\\sqrt{4-x^2}=2\\sqrt{1-x^2/4},\\quad u=x^2/4",
+        {
+          "condition": true
+        }
       ],
       [
         "Izračunaj diferencial",
@@ -794,30 +813,26 @@
       ],
       [
         "Preberi argumenta beta",
-        "Pokrajšaj potence in primerjaj z definicijo beta.",
+        "Pokrajšaj potence in primerjaj z definicijo beta. Oba argumenta sta $3/2>0$, zato lahko uporabiš zvezo beta z gama.",
         "I=8\\int_0^1u^{1/2}(1-u)^{1/2}du=8B(1+\\tfrac12,1+\\tfrac12)",
         {
           "flow": [
             "$u/\\sqrt u=u^{1/2}$",
             "$p-1=1/2$",
             "$p=3/2$"
-          ]
+          ],
+          "condition": true
         }
       ],
       [
-        "Uporabi zvezo z gama",
+        "b) Uporabi zvezo z gama",
         "Zamenjaj beta z razmerjem gama.",
         "B(3/2,3/2)=\\frac{\\Gamma(3/2)^2}{\\Gamma(3)}"
       ],
       [
-        "Znižaj argumente",
-        "Uporabi rekurzijo z argumentoma ½ in 2. Pri celih argumentih se ustaviš pri Γ(1)=1.",
-        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2),\\quad\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
-      ],
-      [
-        "Izračunaj polovično vrednost",
-        "Spusti argument za ena.",
-        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\sqrt\\pi/2"
+        "Izračunaj potrebni vrednosti gama",
+        "Uporabi $\\Gamma(z+1)=z\\Gamma(z)$. Pri polovičnem argumentu se ustavi pri znani vrednosti $\\Gamma(1/2)=\\sqrt\\pi$, pri celem pri $\\Gamma(1)=1$.",
+        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac{\\sqrt\\pi}{2},\\qquad\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
       ],
       [
         "Vstavi vse faktorje",
@@ -844,8 +859,11 @@
     "cubeta": [
       [
         "Razstavi izraz pod korenom",
-        "Izpostavi x, saj želiš pod drugim korenom dobiti 1−u.",
-        "\\sqrt{x-4x^3}=\\sqrt{x}\\sqrt{1-4x^2},\\quad u=4x^2"
+        "Na $[0,1/2]$ sta $x$ in $1-4x^2$ nenegativna, zato lahko koren produkta razcepiš. Menjava $u=4x^2$ je na tem intervalu naraščajoča.",
+        "\\sqrt{x-4x^3}=\\sqrt{x}\\sqrt{1-4x^2},\\quad u=4x^2",
+        {
+          "condition": true
+        }
       ],
       [
         "Izračunaj diferencial",
@@ -872,7 +890,10 @@
       [
         "Preberi argumenta beta",
         "Argumenta dobimo s prištevanjem 1 k eksponentoma. Oba sta pozitivna, zato beta integral obstaja.",
-        "p=1-\\tfrac14=\\tfrac34,\\quad q=1+\\tfrac12=\\tfrac32,\\quad I=\\frac{B(3/4,3/2)}{4\\sqrt2}"
+        "p=1-\\tfrac14=\\tfrac34,\\quad q=1+\\tfrac12=\\tfrac32,\\quad I=\\frac{B(3/4,3/2)}{4\\sqrt2}",
+        {
+          "condition": true
+        }
       ],
       [
         "Preveri rob pri ničli",
@@ -886,8 +907,11 @@
     "loggamma": [
       [
         "Zamenjaj logaritem",
-        "Da odstraniš logaritem pod korenom, postavi u=ln x in izrazi x ter dx.",
-        "u=\\ln x,\\quad x=e^u,\\quad dx=e^u du"
+        "Na $x\\ge1$ je logaritem definiran, naraščajoč in nenegativen. Z menjavo $u=\\ln x$ odstraniš logaritem pod korenom.",
+        "u=\\ln x,\\quad x=e^u,\\quad dx=e^u du",
+        {
+          "condition": true
+        }
       ],
       [
         "Preslikaj končni interval",
@@ -908,8 +932,11 @@
       ],
       [
         "Določi argument gama",
-        "Preberi argument gama iz eksponenta.",
-        "p-1=\\tfrac12\\ \\Longrightarrow\\ p=\\tfrac32,\\qquad I=\\Gamma(3/2)"
+        "V definiciji gama primerjaj potenco $u^{p-1}$ z $u^{1/2}$. Dobljeni $p=3/2$ je pozitiven, zato integral za gama konvergira.",
+        "p-1=\\tfrac12\\ \\Longrightarrow\\ p=\\tfrac32,\\qquad I=\\Gamma(3/2)",
+        {
+          "condition": true
+        }
       ],
       [
         "Uporabi rekurzijo",
@@ -942,7 +969,10 @@
       [
         "Zapiši zvezo z gama",
         "Na kolokviju sta argumenta $x,y$. Na grafu in v računu ju označimo s $p=x$ in $q=y$. Za oba pozitivna argumenta velja zveza z gama.",
-        "B(u,v)=\\frac{\\Gamma(u)\\Gamma(v)}{\\Gamma(u+v)}"
+        "B(u,v)=\\frac{\\Gamma(u)\\Gamma(v)}{\\Gamma(u+v)}",
+        {
+          "condition": true
+        }
       ],
       [
         "Povečaj drugi argument",
@@ -1026,6 +1056,14 @@
         "Y=\\mathcal L(y),\\quad Z=\\mathcal L(z),\\qquad \\mathcal L(y')=sY-y(0)"
       ],
       [
+        "Izberi skupno območje transformacije",
+        "Desni strani sta eksponenta. Za obe hkrati zadostuje $s>1$. Na tem območju sta oba imenovalca pri izločanju različna od nič.",
+        "\\mathcal L(e^t)=\\frac1{s-1}\\ (s>1),\\qquad\\mathcal L(e^{-t})=\\frac1{s+1}\\ (s>-1)",
+        {
+          "condition": true
+        }
+      ],
+      [
         "Vstavi začetna podatka",
         "Začetni položaj odšteješ pri vsakem prvem odvodu.",
         "\\mathcal L(y')=sY-2,\\qquad \\mathcal L(z')=sZ-1"
@@ -1036,9 +1074,9 @@
         "(sY-2)+Y-2(sZ-1)-2Z=\\frac1{s-1}"
       ],
       [
-        "Izrazi razliko D",
-        "Konstanti $-2$ in $+2$ se odpravita. Obema preostalima skupinama je skupen faktor $s+1$.",
-        "(s+1)(Y-2Z)=\\frac1{s-1},\\qquad D=Y-2Z=\\frac1{(s-1)(s+1)}"
+        "Poenostavi prvo enačbo",
+        "Konstanti se odpravita. Izpostavi $s+1$ in z njim deli obe strani.",
+        "(s+1)(Y-2Z)=\\frac1{s-1}\\quad\\Rightarrow\\quad Y-2Z=\\frac1{(s-1)(s+1)}"
       ],
       [
         "Uredi drugo enačbo",
@@ -1046,61 +1084,46 @@
         "(sY-2)-(sZ-1)+Z=\\frac1{s+1}\\ \\Longrightarrow\\ sY+(1-s)Z=1+\\frac1{s+1}"
       ],
       [
-        "Odpravi Z",
-        "Iz $D=Y-2Z$ izrazi $Z$. Po vstavljanju v drugo enačbo množi z 2, da izgine imenovalec.",
-        "Z=(Y-D)/2,\\quad 2sY+(1-s)(Y-D)=2+\\frac2{s+1}",
-        {
-          "flow": [
-            "$D=Y-2Z$",
-            "$Z=(Y-D)/2$",
-            "v drugi enačbi ostane le neznanka $Y$"
-          ]
-        }
+        "Pripravi izločanje Z",
+        "Prvo poenostavljeno enačbo pomnoži s $1-s$. Na desni se pokrajša $s-1$. Drugo pomnoži z 2, da dobiš nasprotna člena pri $Z$.",
+        "(1-s)Y-2(1-s)Z=-\\frac1{s+1},\\qquad 2sY+2(1-s)Z=2+\\frac2{s+1}"
       ],
       [
-        "Zberi člene pri Y",
-        "Pred $Y$ dobiš $2s+(1-s)=s+1$. Člen z $D$ prestavi na desno.",
-        "(s+1)Y=2+\\frac2{s+1}+(1-s)D"
+        "Seštej enačbi",
+        "Člena pri $Z$ se odpravita. Pri $Y$ ostane $1-s+2s=s+1$.",
+        "(s+1)Y=2+\\frac1{s+1}\\quad\\Rightarrow\\quad Y=\\frac2{s+1}+\\frac1{(s+1)^2}"
       ],
       [
-        "Pokrajšaj faktor pri D",
-        "Vstavi znani $D$. Ker je $1-s=-(s-1)$, ostane ulomek z minusom.",
-        "(1-s)D=-\\frac{s-1}{(s-1)(s+1)}=-\\frac1{s+1}"
+        "Preberi y iz tabele",
+        "Prvi ulomek da eksponent. Dvojni pol doda faktor $t$.",
+        "\\frac1{s+1}\\longleftrightarrow e^{-t},\\quad\\frac1{(s+1)^2}\\longleftrightarrow te^{-t},\\qquad y(t)=(2+t)e^{-t}"
       ],
       [
-        "Izoliraj Y",
-        "Po seštevanju na desni deli vsak člen z $s+1$.",
-        "(s+1)Y=2+\\frac1{s+1}\\ \\Rightarrow\\ Y=\\frac2{s+1}+\\frac1{(s+1)^2}"
-      ],
-      [
-        "Razcepi D",
-        "Za izračun $Z$ potrebuješ izraz za $D$, pri katerem lahko združiš enake imenovalce.",
-        "D=\\frac A{s-1}+\\frac B{s+1},\\qquad 1=A(s+1)+B(s-1)"
+        "Vrni se k prvi enačbi",
+        "Na levi je $Y-2Z$. Ko obrneš transformacijo na desni, boš dobil neposredno $y-2z$. Za to razcepi ulomek.",
+        "Y-2Z=\\frac1{(s-1)(s+1)}=\\frac A{s-1}+\\frac B{s+1}"
       ],
       [
         "Določi števca",
-        "Vstavi $s=1$ za $A$ in $s=-1$ za $B$, da vsakokrat izgine drugi neznani člen.",
-        "1=2A,\\quad 1=-2B,\\quad D=\\frac{1/2}{s-1}-\\frac{1/2}{s+1}"
+        "Pomnoži z imenovalcem. Dobiš polinomsko identiteto za vsak $s$. V njej pri $s=1$ izgine člen z $B$, pri $s=-1$ pa člen z $A$.",
+        "1=A(s+1)+B(s-1),\\quad 1=2A,\\quad 1=-2B"
       ],
       [
-        "Vstavi izračunana Y in D",
-        "Iz prve enačbe že veš, kako dobiti $Z$. V oklepaj vstavi oba znana izraza. Zunanji minus spremeni predznak obema členoma razcepa $D$.",
-        "Z=\\frac{Y-D}{2}=\\frac12\\left(\\frac2{s+1}+\\frac1{(s+1)^2}-\\frac{1/2}{s-1}+\\frac{1/2}{s+1}\\right)"
+        "Obrni transformacijo razlike",
+        "Vsakemu ulomku priredi eksponent. Ker je transformacija linearna, na levi dobiš razliko obeh funkcij.",
+        "Y-2Z=\\frac{1}{2(s-1)}-\\frac{1}{2(s+1)}\\quad\\Rightarrow\\quad y-2z=\\tfrac12 e^t-\\tfrac12e^{-t}"
       ],
       [
-        "Izračunaj Z",
-        "Polovici $Y$ odštej polovico $D$. Člena z imenovalcem $s+1$ imata skupaj števec $1+1/4$.",
-        "Z=\\frac1{s+1}+\\frac1{2(s+1)^2}-\\frac1{4(s-1)}+\\frac1{4(s+1)}=\\frac5{4(s+1)}+\\frac1{2(s+1)^2}-\\frac1{4(s-1)}"
-      ],
-      [
-        "Preberi inverzna para",
-        "Enostavni pol da eksponent, kvadrat istega faktorja pa doda množitelj $t$.",
-        "\\mathcal L^{-1}((s-a)^{-1})=e^{at},\\quad\\mathcal L^{-1}((s-a)^{-2})=te^{at}"
-      ],
-      [
-        "Zapiši oba odziva",
-        "Vsak ulomek iz $Y$ in $Z$ zamenjaj z ustreznim parom.",
-        "y(t)=(2+t)e^{-t},\\qquad z(t)=(\\tfrac54+\\tfrac t2)e^{-t}-\\tfrac14e^t"
+        "Izrazi še z",
+        "Vstavi znani $y$. Pri $e^{-t}$ seštej $2+t$ in $1/2$, nato deli z 2.",
+        "2z=(2+t)e^{-t}+\\tfrac12e^{-t}-\\tfrac12e^t\\quad\\Rightarrow\\quad z=(\\tfrac54+\\tfrac t2)e^{-t}-\\tfrac14e^t",
+        {
+          "flow": [
+            "izračunani $y$",
+            "znana razlika $y-2z$",
+            "izrazi $z$"
+          ]
+        }
       ],
       [
         "Preveri začetni položaj",
@@ -1139,7 +1162,7 @@
       ],
       [
         "Odpravi Y",
-        "Drugo enačbo pomnoži z 2. Njen člen z $Y$ je zdaj enak tistemu v prvi enačbi.",
+        "Od prve enačbe odštej dvakrat drugo. Obakrat je člen pri $Y$ enak $2(s-1)Y$, zato se pri odštevanju odpravi.",
         "[(s^2-1)-2(s-1)]Z=(2s+5)-6",
         {
           "flow": [
@@ -1152,8 +1175,11 @@
       ],
       [
         "Razcepi Z",
-        "Razlika na levi je $s^2-2s+1$. V števcu na desni zapiši $2s-1$ kot $2(s-1)+1$.",
-        "(s-1)^2Z=2s-1=2(s-1)+1,\\quad Z=\\frac2{s-1}+\\frac1{(s-1)^2}"
+        "Razlika na levi je $s^2-2s+1$. V števcu na desni zapiši $2s-1$ kot $2(s-1)+1$. Pri računu vzemi $s>1$, da lahko deliš s $s-1$. Na koncu tudi dobljeni funkciji, polinoma krat $e^t$, imata transformiranko za vsak tak $s$.",
+        "(s-1)^2Z=2s-1=2(s-1)+1,\\quad Z=\\frac2{s-1}+\\frac1{(s-1)^2}",
+        {
+          "condition": true
+        }
       ],
       [
         "Vrni se k Y",
@@ -1189,9 +1215,17 @@
     ],
     "devar": [
       [
-        "Uporabi pravili za drugi odvod in faktor t",
+        "Preveri, kdaj lahko transformiraš",
+        "Pola predpostavlja obstoj transformiranke. Pravila za odvode in faktor $x$ uporabi za dovolj velik $s$, kjer obstajajo transformiranke potrebnih odvodov. Začetni vrednosti pusti simbolični.",
+        "Y(s)=\\int_0^\\infty e^{-sx}y(x)\\,dx,\\qquad y(0),\\ y^\\prime(0)",
+        {
+          "condition": true
+        }
+      ],
+      [
+        "Uporabi pravili za drugi odvod in faktor x",
         "Najprej transformiraj $y''$. Ker je pomnožen s časom, dobljeni izraz odvajaj po $s$ in spremeni predznak.",
-        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0),\\qquad \\mathcal L(ty'')=-\\frac{d}{ds}\\left[s^2Y-sy(0)-y'(0)\\right]",
+        "\\mathcal L(y'')=s^2Y-sy(0)-y'(0),\\qquad \\mathcal L(xy'')=-\\frac{d}{ds}\\left[s^2Y-sy(0)-y'(0)\\right]",
         {
           "flow": [
             "$y^{\\prime\\prime}(t)$",
@@ -1204,12 +1238,12 @@
       [
         "Odvajaj produkt",
         "Pri $s^2Y(s)$ odvajaš oba faktorja. Minus pred oklepajem vpliva na vsak člen.",
-        "(s^2Y)'=2sY+s^2Y',\\qquad \\mathcal L(ty'')=-2sY-s^2Y'+y(0)"
+        "(s^2Y)'=2sY+s^2Y',\\qquad \\mathcal L(xy'')=-2sY-s^2Y'+y(0)"
       ],
       [
         "Pretvori še preostala člena",
-        "Pri $ty$ je osnovni signal $y$, zato nastane $-Y'$.",
-        "\\mathcal L(y')=sY-y(0),\\qquad \\mathcal L(ty)=-Y'"
+        "Pri $xy$ je osnovni signal $y$, zato nastane $-Y'$.",
+        "\\mathcal L(y')=sY-y(0),\\qquad \\mathcal L(xy)=-Y'"
       ],
       [
         "Vstavi transformiranke",

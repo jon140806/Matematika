@@ -63,26 +63,6 @@
     [
       "Ko $R$ raste, omeji velikost robnega člena z ovojnico. Ta gre k nič za vsak $a$.",
       "\\left|\\tfrac12e^{-R^2}\\sin(aR)\\right|\\le\\frac1{2e^{R^2}}\\to0,\\qquad I'(a)=-\\tfrac a2 I(a)"
-    ],
-    [
-      "Za vrnitev od $I'$ k $I$ pomnoži enačbo z $e^{a^2/4}$. Leva stran je odvod produkta. Ker je ta odvod nič, je produkt konstanta.",
-      "I'+\\tfrac a2 I=0\\ \\Longrightarrow\\ (e^{a^2/4}I)'=0\\ \\Longrightarrow\\ e^{a^2/4}I(a)=C"
-    ],
-    [
-      "Pri frekvenci nič je kosinus ena. Kvadrat te ploščine dobimo z integriranjem $e^{-(x^2+y^2)}$ po prvi četrtini. Četrtino prekrijemo z vedno večjimi četrtinskimi diski.",
-      "I(0)^2=\\lim_{R\\to\\infty}\\int_0^{\\pi/2}\\int_0^R e^{-r^2}r\\,dr\\,d\\theta"
-    ],
-    [
-      "Izračunaj integral na disku s končnim polmerom. Kot prispeva $\\pi/2$, menjava $u=r^2$ pa faktor $1/2$.",
-      "\\int_0^{\\pi/2}\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac{\\pi}{4}(1-e^{-R^2})"
-    ],
-    [
-      "Pošlji polmer v neskončnost. Ker je ploščina pozitivna, iz kvadrata vzemi pozitivni koren.",
-      "e^{-R^2}\\to0,\\qquad I(0)^2=\\frac{\\pi}{4},\\qquad C=I(0)=\\frac{\\sqrt\\pi}{2}"
-    ],
-    [
-      "Določeno konstanto vstavi nazaj v rešitev.",
-      "I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
     ]
   ],
   [

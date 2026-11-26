@@ -145,7 +145,8 @@ function exerciseProcedure(steps){
  steps.forEach((step,index)=>{
   const flow=step.flow?'<div role="list" aria-label="Pot računa" class="stepFlow">'+step.flow.map((part,i)=>
    '<div role="listitem">'+(i?'<span class="flowArrow" aria-hidden="true"></span>':'')+'<span class="flowPart">'+part+'</span></div>').join('')+'</div>':'';
-  const body='<h3>'+step.action+'</h3><p><b>Zakaj?</b> '+step.reason+'</p>'+flow+'<div class="calcLine">'+step.equation+'</div>'+
+  const reasonLabel=step.condition?'<b class="conditionLabel">Pogoj</b>':'<b>Zakaj?</b>';
+  const body='<h3>'+step.action+'</h3><p>'+reasonLabel+' '+step.reason+'</p>'+flow+'<div class="calcLine">'+step.equation+'</div>'+
    (step.visual?stepFigure(step.visual,index):'');
   if(!step.detail){main.push({body,notes:[]});return}
   const notes=main[main.length-1].notes;

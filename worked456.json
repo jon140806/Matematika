@@ -468,8 +468,11 @@
       ],
       [
         "Pretvori tri signale",
-        "Za konvolucijo potrebuješ produkt njihovih transformirank.",
-        "\\mathcal L\\{2t\\}=\\frac2{s^2},\\quad \\mathcal L\\{\\sin(2t)\\}=\\frac2{s^2+4},\\quad \\mathcal L\\{\\cos(2t)\\}=\\frac{s}{s^2+4}"
+        "Za konvolucijo potrebuješ produkt njihovih transformirank. Račun velja za $s>0$, kjer eksponentna utež zagotovi konvergenco za linearno funkcijo in oba omejena signala.",
+        "\\mathcal L\\{2t\\}=\\frac2{s^2},\\quad \\mathcal L\\{\\sin(2t)\\}=\\frac2{s^2+4},\\quad \\mathcal L\\{\\cos(2t)\\}=\\frac{s}{s^2+4}",
+        {
+          "condition": true
+        }
       ],
       [
         "Pomnoži in pokrajšaj",
@@ -477,8 +480,8 @@
         "K(s)=\\frac{2}{s^2}\\frac{2}{s^2+4}\\frac{s}{s^2+4}=\\frac{4}{s(s^2+4)^2}"
       ],
       [
-        "Nastavi tri ulomke",
-        "Faktor $s^2+4$ je ponovljen, zato uporabi obe njegovi potenci. Ker je $K(s)$ liha funkcija, v števcih nad sodima imenovalcema zadoščata člena $Bs$ in $Cs$.",
+        "Prepiši nastavek s pole",
+        "Kolokvij poda obliko treh ulomkov. Poišči samo njihove tri koeficiente tako, da odpraviš imenovalce.",
         "K(s)=\\frac{A}{s}+\\frac{Bs}{s^2+4}+\\frac{Cs}{(s^2+4)^2}"
       ],
       [
@@ -533,8 +536,11 @@
       ],
       [
         "Pretvori silo",
-        "Osnovna sila deluje od začetka. Samo popravek pomnožiš z zakasnitvijo $e^{-2s}$.",
-        "F(s)=\\frac1s+e^{-2s}\\left(\\frac1{s^2}+\\frac1s\\right)"
+        "Osnovna sila deluje od začetka. Samo popravek pomnožiš z zakasnitvijo $e^{-2s}$. Za to kosovno zvezno silo z največ linearno rastjo zadošča $s>0$. Vrednost v sami točki preklopa integrala ne spremeni.",
+        "F(s)=\\frac1s+e^{-2s}\\left(\\frac1{s^2}+\\frac1s\\right)",
+        {
+          "condition": true
+        }
       ],
       [
         "Vstavi začetna pogoja",
@@ -576,7 +582,7 @@
       ],
       [
         "Izračunaj A",
-        "Po množenju s skupnim imenovalcem pri $s=0$ ostane en sam člen.",
+        "Po množenju z imenovalcem dobiš polinomsko identiteto, ki velja za vsak $s$. Pri $s=0$ ostane samo $A$.",
         "1=A(s+1)+Bs(s+1)+Cs^2,\\qquad s=0:\\ 1=A(0+1)=A"
       ],
       [
@@ -616,8 +622,11 @@
       ],
       [
         "Pretvori osnovo in popravek",
-        "Le naknadni sinus dobi faktor $e^{-as}$.",
-        "f=3\\sin t+3\\cos t+H(t-a)3\\sin(t-a),\\qquad F=\\frac{3+3s}{s^2+1}+e^{-as}\\frac3{s^2+1}"
+        "Le naknadni sinus dobi faktor $e^{-as}$. Obe veji sile sta omejeni, zato transformiramo pri $s>0$.",
+        "f=3\\sin t+3\\cos t+H(t-a)3\\sin(t-a),\\qquad F=\\frac{3+3s}{s^2+1}+e^{-as}\\frac3{s^2+1}",
+        {
+          "condition": true
+        }
       ],
       [
         "Vstavi začetna pogoja",
@@ -631,30 +640,25 @@
       ],
       [
         "Vstavi silo in deli s faktorjem sistema",
-        "Vsak člen na desni deli s $s^2+4$. V drugem in tretjem ulomku se pojavi isti imenovalec, zato bo en razcep zadoščal za oba.",
+        "Vsak člen deli s $s^2+4$. Za mešana imenovalca uporabi razcep, ki ga poda kolokvij.",
         "Y=\\frac{s+2}{s^2+4}+\\frac{3(s+1)}{(s^2+1)(s^2+4)}+\\frac{3e^{-as}}{(s^2+1)(s^2+4)}"
       ],
       [
-        "Loči zamaknjeni člen",
-        "V obeh delih prepoznaj isti ulomek $D$. Tako njegov inverz izračunaš enkrat.",
-        "Y=\\frac{s+2}{s^2+4}+(s+1)D+e^{-as}D,\\qquad D=\\frac3{(s^2+1)(s^2+4)}",
+        "Uporabi razcep s pole za osnovni del",
+        "V namig s pole vstavi $A=B=1$. Tako razcepiš števec $3(s+1)$ brez računanja novih koeficientov.",
+        "\\frac{3(s+1)}{(s^2+1)(s^2+4)}=\\frac{s+1}{s^2+1}-\\frac{s+1}{s^2+4}"
+      ],
+      [
+        "Uporabi isti namig za zamaknjeni del",
+        "Tu je števec 3, zato vstavi $A=0$, $B=1$. Faktor zakasnitve pusti pred celotno razliko.",
+        "\\frac{3e^{-as}}{(s^2+1)(s^2+4)}=e^{-as}\\left(\\frac1{s^2+1}-\\frac1{s^2+4}\\right)",
         {
           "flow": [
-            "izoliraj $Y$",
-            "zberi člen s faktorjem $e^{-as}$",
-            "preostanek je osnovni odziv $Y_0$"
+            "števec $3$",
+            "$A=0$, $B=1$",
+            "razlika dveh sinusnih parov"
           ]
         }
-      ],
-      [
-        "Odpravi imenovalec D",
-        "Dva različna kvadratna faktorja dasta podani razcep. Števca sta lahko konstanti, ker je $D$ soda funkcija $s$.",
-        "D=\\frac A{s^2+1}+\\frac B{s^2+4}\\quad\\Rightarrow\\quad 3=(A+B)s^2+4A+B"
-      ],
-      [
-        "Določi A in B",
-        "Iz $A+B=0$ dobiš $B=-A$. Ko to vstaviš v $4A+B=3$, ostane samo $A$.",
-        "A+B=0,\\quad 4A+B=3\\quad\\Rightarrow\\quad 3A=3,\\quad A=1,\\ B=-1"
       ],
       [
         "Združi osnovne člene",
@@ -667,9 +671,9 @@
         "\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+4}\\right\\}=\\tfrac12\\sin(2t),\\qquad y_0=\\cos t+\\sin t+\\tfrac12\\sin(2t)"
       ],
       [
-        "Obrni D",
+        "Obrni popravek pred zamikom",
         "Enak faktor $1/2$ uporabi tudi pri zamaknjenem delu.",
-        "\\mathcal L^{-1}\\{D\\}(u)=\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+1}-\\frac1{s^2+4}\\right\\}(u)=\\sin u-\\tfrac12\\sin(2u)"
+        "g(u)=\\mathcal L^{-1}\\!\\left\\{\\frac1{s^2+1}-\\frac1{s^2+4}\\right\\}(u)=\\sin u-\\tfrac12\\sin(2u)"
       ],
       [
         "Vrni globalni čas",
@@ -740,12 +744,18 @@
       [
         "Določi notranjost intervala",
         "Člena z $1/n$ in $1/n^2$ gresta proti nič. Kvocientni kriterij določi notranjost. V središču so vsi členi nič.",
-        "L=|x|\\frac{1-0}{1+0}=|x|,\\qquad L<1\\iff |x|<1"
+        "L=|x|\\frac{1-0}{1+0}=|x|,\\qquad L<1\\iff |x|<1",
+        {
+          "condition": true
+        }
       ],
       [
         "Primerjaj oba robova s p-vrsto",
         "Na obeh robovih primerjaj absolutno vrednost s seštevno vrsto $1/n^2$. Po deljenju z $n^2$ dobiš pozitivno končno limito.",
-        "\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac1{1-1/n^2}=\\frac1{1-0}=1"
+        "\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac1{1-1/n^2}=\\frac1{1-0}=1",
+        {
+          "condition": true
+        }
       ],
       [
         "Zapiši celoten interval",
@@ -754,8 +764,11 @@
       ],
       [
         "Razstavi imenovalec na faktorja",
-        "Razstavimo imenovalec. Na vsakega od faktorjev pripnemo neznan števec in pomnožimo s skupnim imenovalcem.",
-        "\\frac1{(n-1)(n+1)}=\\frac A{n-1}+\\frac B{n+1}\\ \\Rightarrow\\ 1=A(n+1)+B(n-1)=(A+B)n+A-B"
+        "Ker je $n\\ge2$, sta faktorja $n-1$ in $n+1$ neničelna. Nastavi dva parcialna ulomka in pomnoži z njunim skupnim imenovalcem.",
+        "\\frac1{(n-1)(n+1)}=\\frac A{n-1}+\\frac B{n+1}\\ \\Rightarrow\\ 1=A(n+1)+B(n-1)=(A+B)n+A-B",
+        {
+          "condition": true
+        }
       ],
       [
         "Določi oba števca",
@@ -769,8 +782,11 @@
       ],
       [
         "Prepoznaj logaritemsko vrsto",
-        "Integracija geometrijske vrste od nič do $x$ ustvari imenovalec $k$. Zato lahko obe prestavljeni vsoti povežemo z logaritmom.",
-        "\\int_0^x\\frac{dt}{1-t}=\\sum_{j=0}^\\infty\\frac{x^{j+1}}{j+1}=\\sum_{k=1}^\\infty\\frac{x^k}{k}=-\\ln(1-x),\\qquad |x|<1"
+        "Pri $|x|<1$ je geometrijska vrsta na odseku med 0 in $x$ enakomerno konvergentna, saj je $|t|\\le |x|<1$. Smemo jo integrirati členoma.",
+        "\\int_0^x\\frac{dt}{1-t}=\\sum_{j=0}^\\infty\\frac{x^{j+1}}{j+1}=\\sum_{k=1}^\\infty\\frac{x^k}{k}=-\\ln(1-x),\\qquad |x|<1",
+        {
+          "condition": true
+        }
       ],
       [
         "Premakni indeks prve vsote",
@@ -801,48 +817,28 @@
       ],
       [
         "Vrni se k prvotni vrsti pri ničli",
-        "Funkcijsko vrsto na celotnem zaprtem intervalu omejuje seštevna vrsta $\\sum_{n=2}^\\infty 1/(n^2-1)$. Po M-testu je vsota zvezna tudi na robovih. Pri ničli uporabi prvotno vrsto.",
+        "Pri $x=0$ v prvotnem zapisu vsi členi izginejo. Pri $x=1$ in $x=-1$ uporabi že dobljeni razcep imenovalca.",
         "S(0)=\\sum_{n=2}^\\infty\\frac{0^n}{n^2-1}=0"
       ],
       [
-        "Vstavi levi rob",
-        "K levemu robu se približaj z notranje strani. Oba faktorja imata končno limito.",
-        "\\lim_{x\\to-1^+}(1/x-x)\\ln(1-x)=(-1+1)\\ln2=0,\\qquad S(-1)=\\tfrac12(1-\\tfrac12)=\\tfrac14"
-      ],
-      [
-        "Na desnem robu uporabi razcep ulomka",
-        "Pri $x=1$ so števci vsi enaki 1. V delni vsoti se ulomki z istim imenovalcem odštejejo. Tako se izogneš nedoločenemu produktu v logaritemski formuli.",
-        "S_N(1)=\\tfrac12\\sum_{n=2}^N\\left(\\frac1{n-1}-\\frac1{n+1}\\right)=\\tfrac12\\left(1+\\tfrac12-\\tfrac1N-\\tfrac1{N+1}\\right)"
+        "Seštej na desnem robu",
+        "Pri $x=1$ zapiši delno vsoto. Drugi ulomek pri indeksu $n$ se odšteje od prvega pri $n+2$. Ostanejo prvi dve in zadnji dve vrednosti.",
+        "S_N(1)=\\tfrac12\\left(1+\\tfrac12-\\tfrac1N-\\tfrac1{N+1}\\right)"
       ],
       [
         "Pošlji indeks v neskončnost",
-        "Zadnja dva ulomka izgineta, ker imenovalca rasteta brez meje.",
+        "Zadnja dva ulomka gresta proti nič, ker imenovalca rasteta.",
         "S(1)=\\lim_{N\\to\\infty}S_N(1)=\\tfrac12(1+\\tfrac12)=\\tfrac34"
       ],
       [
-        "Na desnem robu uvedi t",
-        "Na desnem robu se pojavi produkt ničle in neomejenega logaritma. Izloči $1-x$ in ga označi z $t$.",
-        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}\\,t\\ln t,\\qquad t=1-x\\to0^+",
-        {
-          "detail": "Druga pot do S(1) z logaritemsko formulo"
-        }
+        "Na levem robu ohrani predznake",
+        "Pri $x=-1$ se predznak po dveh indeksih ponovi. Isti pari se pokrajšajo. Prvi člen prispeva $1$, naslednji $-1/2$.",
+        "S_N(-1)=\\tfrac12\\left(1-\\tfrac12-\\tfrac{(-1)^{N-1}}N-\\tfrac{(-1)^N}{N+1}\\right)"
       ],
       [
-        "Izračunaj limito produkta",
-        "Za limito prepiši produkt kot količnik. V obliki neskončno skozi neskončno uporabi l’Hôpitalovo pravilo.",
-        "\\lim_{t\\to0^+}t\\ln t=\\lim_{t\\to0^+}\\frac{\\ln t}{1/t}=\\lim_{t\\to0^+}\\frac{1/t}{-1/t^2}=\\lim_{t\\to0^+}(-t)=0",
-        "xlogx56",
-        {
-          "detail": "Druga pot do S(1) z logaritemsko formulo"
-        }
-      ],
-      [
-        "Izračunaj vsoto na desnem robu",
-        "Preostali faktor teži k 2, zato celotni logaritemski člen izgine. Vstavi še ostala dva člena.",
-        "S(1)=\\tfrac12\\left[2\\cdot0+1+\\tfrac12\\right]=\\tfrac34",
-        {
-          "detail": "Druga pot do S(1) z logaritemsko formulo"
-        }
+        "Vzemi limito delne vsote",
+        "Zadnja člena imata absolutni vrednosti $1/N$ in $1/(N+1)$, zato pri prehodu v limito izgineta.",
+        "S(-1)=\\lim_{N\\to\\infty} S_N(-1)=\\tfrac12(1-\\tfrac12)=\\tfrac14"
       ],
       [
         "Prepoznaj argument številske vsote",
@@ -864,7 +860,10 @@
       [
         "Preveri prvi člen",
         "Najprej napišemo prvi člen, ker lahko izključi središče.",
-        "n=0:\\quad \\frac{x^{-1}}1=\\frac1x\\quad\\Rightarrow\\quad x\\ne0"
+        "n=0:\\quad \\frac{x^{-1}}1=\\frac1x\\quad\\Rightarrow\\quad x\\ne0",
+        {
+          "condition": true
+        }
       ],
       [
         "Pokrajšaj sosednja člena",
@@ -873,18 +872,27 @@
       ],
       [
         "Določi območje absolutne konvergence",
-        "Člena $1/n$ in $5/n$ izgineta. Absolutno konvergenco dobimo, ko je limita manjša od ena.",
-        "L=|x|^4\\frac{4+0}{4+0}=|x|^4,\\qquad L<1\\iff |x|<1"
+        "Člena $1/n$ in $5/n$ izgineta. Absolutno konvergenco dobimo, ko je limita manjša od ena. Pri $|x|>1$ je količnik večji od ena v limiti, zato vrsta divergira.",
+        "L=|x|^4\\frac{4+0}{4+0}=|x|^4,\\qquad L<1\\iff |x|<1",
+        {
+          "condition": true
+        }
       ],
       [
         "Vstavi oba robova",
         "Pri $x=1$ so vsi členi pozitivni, pri $x=-1$ vsi negativni. Njihove velikosti primerjamo s harmonično vrsto.",
-        "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\qquad \\frac{1/(4n+1)}{1/n}=\\frac1{4+1/n}"
+        "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\qquad \\frac{1/(4n+1)}{1/n}=\\frac1{4+1/n}",
+        {
+          "condition": true
+        }
       ],
       [
         "Primerjaj s harmonično vrsto",
         "Ko gre $n$ v neskončnost, je limita količnika pozitivna in končna, zato imata primerjani pozitivni vrsti enako obnašanje. Harmonična vrsta divergira.",
-        "\\lim_{n\\to\\infty}\\frac1{4+1/n}=\\frac1{4+0}=\\frac14"
+        "\\lim_{n\\to\\infty}\\frac1{4+1/n}=\\frac1{4+0}=\\frac14",
+        {
+          "condition": true
+        }
       ],
       [
         "Uvedi pomožno vsoto",
@@ -911,7 +919,10 @@
       [
         "Seštej vrsto odvodov",
         "Znotraj polmera smemo odvajati členoma. Dobljene potence tvorijo geometrijsko vrsto s količnikom $x^4$.",
-        "T'(x)=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4},\\qquad |x|<1"
+        "T'(x)=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4},\\qquad |x|<1",
+        {
+          "condition": true
+        }
       ],
       [
         "Odvajaj po členih",
@@ -931,8 +942,11 @@
       ],
       [
         "Razstavi četrto potenco",
-        "Razstavimo četrto potenco. Števca dobimo s primerjavo konstant in kvadratnih členov.",
-        "\\frac1{1-x^4}=\\frac A{1-x^2}+\\frac B{1+x^2}\\ \\Rightarrow\\ 1=(A+B)+(A-B)x^2\\ \\Rightarrow\\ A=B,\\quad 2A=1"
+        "Pri $|x|<1$ sta $1-x^2$ in $1+x^2$ pozitivna. Ulomek razcepimo in primerjamo koeficienta pri 1 in $x^2$.",
+        "\\frac1{1-x^4}=\\frac A{1-x^2}+\\frac B{1+x^2}\\ \\Rightarrow\\ 1=(A+B)+(A-B)x^2\\ \\Rightarrow\\ A=B,\\quad 2A=1",
+        {
+          "condition": true
+        }
       ],
       [
         "Razstavi še razliko kvadratov",
@@ -974,44 +988,17 @@
       [
         "Omeji absolutno vrednost člena",
         "Za vse realne x vzamemo absolutno vrednost in omejimo sinus.",
-        "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n"
+        "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n",
+        {
+          "condition": true
+        }
       ],
       [
         "Uporabi M-test",
-        "Majorantna vrsta je konvergentna p-vrsta z eksponentom 2. Ker ista ocena velja za vse realne $x$, je konvergenca enakomerna.",
-        "\\sum_{n=1}^\\infty\\frac1{n^2}<\\infty\\quad\\Longrightarrow\\quad\\sum_{n=1}^\\infty\\frac{\\sin(nx)}{n^2}\\ \\text{konvergira enakomerno na }\\mathbb R"
-      ],
-      [
-        "Omeji končni rep s ploščino",
-        "Naj bo $m>N\\ge1$. Ker je $1/u^2$ padajoča, je ploščina na vsakem intervalu od $n-1$ do $n$ vsaj $1/n^2$.",
-        "\\sum_{n=N+1}^m\\frac1{n^2}\\le\\int_N^m\\frac{du}{u^2}",
-        "stairs56",
+        "Majorantna vrsta je konvergentna p-vrsta z eksponentom 2. Ista ocena velja za vsak realni $x$. M-test zato da enakomerno konvergenco na celotni osi in s tem tudi konvergenco v vsaki točki.",
+        "\\sum_{n=1}^\\infty\\frac1{n^2}<\\infty\\quad\\Longrightarrow\\quad\\sum_{n=1}^\\infty\\frac{\\sin(nx)}{n^2}\\ \\text{konvergira enakomerno na }\\mathbb R",
         {
-          "detail": "Kako lahko ocenim tudi velikost napake?"
-        }
-      ],
-      [
-        "Izračunaj ploščino do končne meje",
-        "Najprej ovrednotimo integral do končne zgornje meje.",
-        "\\int_N^m u^{-2}\\,du=\\left[-\\frac1u\\right]_N^m=-\\frac1m+\\frac1N",
-        {
-          "detail": "Kako lahko ocenim tudi velikost napake?"
-        }
-      ],
-      [
-        "Odstrani zgornji rez",
-        "Pri fiksnem $N$ pošljemo $m$ v neskončnost. Zgornji rob izgine, zato dobimo skupno oceno neskončnega repa.",
-        "\\int_N^\\infty\\frac{du}{u^2}=\\lim_{m\\to\\infty}\\left(\\frac1N-\\frac1m\\right)=\\frac1N-0=\\frac1N",
-        {
-          "detail": "Kako lahko ocenim tudi velikost napake?"
-        }
-      ],
-      [
-        "Izberi indeks za zahtevano napako",
-        "Za želeno napako izberemo isti indeks za vse x. To zagotovi enakomerno in absolutno konvergenco.",
-        "N>1/\\varepsilon\\quad\\Rightarrow\\quad \\sum_{n>N}\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le1/N<\\varepsilon",
-        {
-          "detail": "Kako lahko ocenim tudi velikost napake?"
+          "condition": true
         }
       ],
       [
@@ -1027,58 +1014,78 @@
     ],
     "leg": [
       [
-        "Poišči odvod produkta",
-        "Ob $y^{\\prime\\prime}$ stoji $1-x^2$. Njegov odvod je $-2x$, ravno faktor ob $y^\\prime$.",
-        "[(1-x^2)y^\\prime]^\\prime=(1-x^2)y^{\\prime\\prime}-2xy^\\prime=0"
+        "Uporabi nastavek iz predavanja",
+        "Na $(-1,1)$ je $1-x^2>0$. Po deljenju z njim sta koeficienta $-2x/(1-x^2)$ in 0 analitična okoli ničle. Zato uporabimo potenčni nastavek.",
+        "y=a_0+a_1x+a_2x^2+\\cdots=\\sum_{m=0}^\\infty a_m x^m",
+        {
+          "condition": true
+        }
       ],
       [
-        "Integriraj prvič",
-        "Izraz z odvodom nič je konstanten. Označi njegovo vrednost z $B$ in deli z neničelnim $1-x^2$.",
-        "(1-x^2)y^\\prime=B,\\qquad y^\\prime=\\frac B{1-x^2}"
+        "Vstavi stopnjo nič v Legendrovo rekurzijo",
+        "Na str. 4 je povezava med koeficientoma pri $x^m$ in $x^{m+2}$. Za $n=0$ se faktor $m+1$ pokrajša.",
+        "a_{m+2}=-\\frac{(n-m)(n+m+1)}{(m+1)(m+2)}a_m=\\frac{m}{m+2}a_m\\quad(n=0)"
       ],
       [
-        "Razstavi ulomek",
-        "Za integriranje potrebujemo linearna imenovalca. Ko ulomka združiš, je števec njune vsote enak 2.",
-        "\\frac1{1-x}+\\frac1{1+x}=\\frac{(1+x)+(1-x)}{1-x^2}=\\frac2{1-x^2}"
+        "Določi sodo in liho vejo",
+        "Pri $m=0$ dobiš $a_2=0$, zato so vsi nadaljnji sodi koeficienti nič. Pri lihih indeksih vsak nov faktor pokrajša prejšnji imenovalec.",
+        "a_3=\\tfrac13a_1,\\quad a_5=\\tfrac35a_3=\\tfrac15a_1,\\quad a_7=\\tfrac57a_5=\\tfrac17a_1"
       ],
       [
-        "Integriraj drugič",
-        "Prvi logaritem dobi minus, ker je odvod izraza $1-x$ enak $-1$. Druga integracija prispeva svojo konstanto $A$.",
-        "y=A+\\frac B2[-\\ln(1-x)+\\ln(1+x)]"
+        "Vstavi koeficiente v nastavek",
+        "Ostaneta konstanta in vrsta z lihimi potencami. Začetna podatka nista predpisana, zato sta $a_0=A$ in $a_1=B$ poljubna.",
+        "y=A+B\\left(x+\\frac{x^3}{3}+\\frac{x^5}{5}+\\cdots\\right)"
       ],
       [
-        "Združi logaritma",
-        "Oba argumenta sta na podanem intervalu pozitivna. Razlika logaritmov je logaritem količnika.",
-        "y(x)=A+\\frac B2\\ln\\frac{1+x}{1-x},\\qquad -1<x<1"
+        "Odštej logaritemski vrsti",
+        "Na str. 6 je razvoj za logaritem. V drugi vrstici vanj vstavi $-x$. Po odštevanju se sode potence izničijo, lihe pa podvojijo.",
+        "\\ln(1+x)=x-x^2/2+x^3/3-\\cdots,\\quad \\ln(1-x)=-x-x^2/2-x^3/3-\\cdots"
+      ],
+      [
+        "Preberi vsoto lihe vrste",
+        "Za $|x|<1$ oba logaritemska razvoja konvergirata. Razliko deli z dve in jo vstavi namesto oklepaja. Ker sta $1+x$ in $1-x$ pozitivna, lahko logaritma združiš.",
+        "y=A+\\tfrac B2[\\ln(1+x)-\\ln(1-x)]=A+\\tfrac B2\\ln\\frac{1+x}{1-x}",
+        {
+          "condition": true
+        }
       ]
     ],
     "bessel": [
       [
         "Izberi Frobeniusov nastavek",
-        "V ničli izgine faktor $x^2$ pred najvišjim odvodom. Ker je to regularno singularna točka, začni z neznano potenco $r$. Vodilni koeficient je neničeln.",
-        "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0"
+        "Pri 8. vprašanju je šibko singularna točka podana. Takrat vzameš Frobeniusov nastavek z vodilno potenco $r$ in $a_0\\ne0$.",
+        "y=x^r\\sum_{k=0}^\\infty a_kx^k=a_0x^r+a_1x^{r+1}+\\cdots,\\qquad a_0\\ne0",
+        {
+          "condition": true
+        }
       ],
       [
         "Prepoznaj red Besselove enačbe",
-        "Obliko enačbe primerjamo s standardno Besselovo. Red je nenegativni koren iz 25.",
+        "Pri 10. vprašanju je podana nova enačba. V standardni Besselovi enačbi je koeficient ob $y$ enak $x^2-\\nu^2$. Primerjava da red 5.",
         "x^2-\\nu^2=x^2-25\\quad\\Rightarrow\\quad\\nu=5"
       ],
       [
         "Zapiši družino rešitev",
-        "Enačba drugega reda ima dve neodvisni osnovni rešitvi. Naloga poda samo enačbo, zato lahko njuni uteži prosto izberemo. Dva neodvisna začetna podatka bi določila posamezno rešitev.",
-        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0,\\quad C_1,C_2\\in\\mathbb R"
+        "Na $x>0$ je vodilni koeficient $x^2$ neničeln. Pri celem redu 5 sta neodvisni rešitvi $J_5$ in $Y_5$. Začetna podatka nista podana, zato sta obe konstanti poljubni.",
+        "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0,\\quad C_1,C_2\\in\\mathbb R",
+        {
+          "condition": true
+        }
       ]
     ],
     "ortho": [
       [
         "Sestavi integrand",
-        "Pri istem argumentu pomnoži vrednosti obeh funkcij. Pozitivna utež pove, koliko pri tej točki šteje njun produkt.",
-        "h(x)=f(x)g(x)r(x)"
+        "Na podanem $[a,b]$ so $f,g,r$ zvezne, zato je tudi produkt zvezen in integrabilen. Utež $r(x)>0$ vsakemu delu intervala da pozitivno težo.",
+        "f(x)g(x)r(x)",
+        {
+          "condition": true
+        }
       ],
       [
         "Seštej prispevke po intervalu",
         "Za prispevek kratkega dela intervala upoštevaj tudi njegovo širino. Seštevanje po vsem intervalu da integral.",
-        "\\langle f,g\\rangle=\\int_a^b h(x)\\,dx=\\int_a^b f(x)g(x)r(x)\\,dx"
+        "\\langle f,g\\rangle=\\int_a^b f(x)g(x)r(x)\\,dx"
       ]
     ]
   }
