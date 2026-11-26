@@ -225,6 +225,9 @@ for lesson in lesson_topics:
     lesson["focus"]=math_text(topic["focus"])
     for key in ("definition","conditions","symbols","use"):
         lesson[key]=math_text(topic[key])
+    lesson["stepConditions"]=list(map(math_text,topic["stepConditions"]))
+    if len(lesson["stepConditions"])!=len(topic["steps"]):
+        raise ValueError(f"Missing conditions in {lesson['title']}")
     lesson["steps"]=[]
     for title,explanation,tex,graph,*details in topic["steps"]:
         step=[title,math_text(explanation),worked_formula(tex),math_text(graph)]

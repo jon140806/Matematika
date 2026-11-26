@@ -10,13 +10,33 @@
         "Zapis preklopa",
         "Do trenutka $a$ je stopnica nič. Po vklopu novi predpis dobimo tako, da prvotnemu dodamo razliko obeh predpisov.",
         "f(t)=f_1(t)+H(t-a)\\bigl(f_2(t)-f_1(t)\\bigr)",
-        "Navpična oznaka $a$ loči potek pred preklopom od poteka po njem."
+        "Navpična oznaka $a$ loči potek pred preklopom od poteka po njem.",
+        [
+          [
+            "Pred preklopom mora ostati prvi predpis. Preverimo ga tako, da vstavimo ničelno vrednost stopnice.",
+            "t<a:\\quad f_1(t)+0\\cdot(f_2(t)-f_1(t))=f_1(t)"
+          ],
+          [
+            "Po preklopu mora ostati drugi predpis. Zato kot popravek dodamo razliko, ki odšteje prvega.",
+            "t>a:\\quad f_1(t)+1\\cdot(f_2(t)-f_1(t))=f_2(t)"
+          ]
+        ]
       ],
       [
         "Lokalni čas",
         "Popravek izrazimo glede na začetek drugega odseka. Zamenjava $t=u+a$ ohrani njegovo obliko.",
         "g(u)=f_2(u+a)-f_1(u+a),\\qquad f(t)=f_1(t)+H(t-a)g(t-a)",
-        "Črta popravka kaže, koliko k prvotnemu signalu doda preklop."
+        "Črta popravka kaže, koliko k prvotnemu signalu doda preklop.",
+        [
+          [
+            "Novo uro zaženemo ob vklopu. Tako ima signal za stopnico isti začetek kot signali v tabeli.",
+            "u=t-a,\\qquad t=a\\ \\Rightarrow\\ u=0"
+          ],
+          [
+            "Popravek je bil zapisan v prvotnem času. V oba člena zato vstavimo $t=u+a$.",
+            "g(u)=f_2(a+u)-f_1(a+u)"
+          ]
+        ]
       ],
       [
         "Izrek o zamiku",
@@ -52,6 +72,11 @@
         2,
         1
       ]
+    ],
+    "stepConditions": [
+      "Predpis je znan na obeh straneh preklopa. Izbira vrednosti v sami točki preklopa ne spremeni Laplaceovega integrala.",
+      "$a$ je fiksen čas vklopa. Za $t\\ge a$ je novi čas $u=t-a$ nenegativen.",
+      "Predpostavimo $a\\ge0$ in obstoj $G(s)$. Tako spodnja meja po vklopu preide v nič in preostali integral prepoznamo kot $G(s)$."
     ]
   },
   "conv": {
@@ -65,13 +90,33 @@
         "Prekrivanje dveh signalov",
         "Prvi signal je lahko neničeln pri $u\\geq0$, drugi pri $t-u\\geq0$. Oba lahko hkrati prispevata le na preseku teh območij.",
         "u\\geq0,\\quad t-u\\geq0\\quad\\Longleftrightarrow\\quad 0\\leq u\\leq t",
-        "Desni rob prekrivanja se premika s časom opazovanja."
+        "Desni rob prekrivanja se premika s časom opazovanja.",
+        [
+          [
+            "Signal $f$ je vzročen. Pri negativnem argumentu je nič, zato integriramo od nič naprej.",
+            "u<0\\quad\\Rightarrow\\quad f(u)=0"
+          ],
+          [
+            "Tudi drugi signal je vzročen. Njegov argument je $t-u$, zato prispeva le do $u=t$.",
+            "t-u\\ge0\\quad\\Longleftrightarrow\\quad u\\le t"
+          ]
+        ]
       ],
       [
         "Predznačena ploščina",
         "Vsakemu preteklemu času pripada produkt dveh vrednosti. Njegov integral sešteje lokalne prispevke. Zamenjava $v=t-u$ pokaže tudi komutativnost.",
         "(f*g)(t)=\\int_0^t f(u)g(t-u)\\,du=\\int_0^t g(v)f(t-v)\\,dv=(g*f)(t)",
-        "Osenčena ploščina pod produktom je ena vrednost konvolucije."
+        "Osenčena ploščina pod produktom je ena vrednost konvolucije.",
+        [
+          [
+            "Za zamenjavo vlog obeh signalov označimo drugi argument z $v$. Ker pred $u$ stoji minus, se smer integriranja obrne.",
+            "v=t-u,\\quad du=-dv,\\quad u=0\\Rightarrow v=t,\\quad u=t\\Rightarrow v=0"
+          ],
+          [
+            "Minus odstranimo z zamenjavo mej. Produkt nato preuredimo, da dobimo definicijo z zamenjanima signaloma.",
+            "\\int_t^0 f(t-v)g(v)(-dv)=\\int_0^t g(v)f(t-v)\\,dv"
+          ]
+        ]
       ],
       [
         "Produkt transformirank",
@@ -102,6 +147,11 @@
         1,
         1
       ]
+    ],
+    "stepConditions": [
+      "Oba signala pred časom nič izgineta. Za opazovani $t\\ge0$ zato prispeva samo njuno prekrivanje.",
+      "Produkt naj bo integrabilen na $[0,t]$, da lahko uporabimo menjavo $v=t-u$.",
+      "Absolutna integrabilnost uteženega dvojnega integrala dovoljuje spremembo vrstnega reda integriranja."
     ]
   },
   "impulse": {
@@ -115,7 +165,17 @@
         "Enotska masa",
         "Pravokotni približki imajo širino $h$ in višino $1/h$. Ko se njihov nosilec krči, skupna masa ostane nespremenjena.",
         "p_h(t)=\\frac{1}{h}\\mathbf 1_{[a,a+h]}(t),\\qquad \\int_0^\\infty p_h(t)\\,dt=1",
-        "Ožji pravokotnik je toliko višji, da ohrani isto ploščino."
+        "Ožji pravokotnik je toliko višji, da ohrani isto ploščino.",
+        [
+          [
+            "Približek naj deluje le blizu $a$. Izberemo širino $h>0$ in za zdaj neznano konstantno višino $K_h$.",
+            "\\int_a^{a+h}K_h\\,dt=K_hh"
+          ],
+          [
+            "Zahtevamo enotsko maso pri vsaki širini. Ta zahteva določi višino pravokotnika.",
+            "K_hh=1\\quad\\Rightarrow\\quad K_h=1/h"
+          ]
+        ]
       ],
       [
         "Izbirna lastnost",
@@ -160,7 +220,12 @@
       "20"
     ],
     "focus": "Na predavanju: kako impulz izbere vrednost funkcije v eni točki.",
-    "papers": []
+    "papers": [],
+    "stepConditions": [
+      "Izberemo $a>0$ in $h>0$. Celoten pravokotnik je na pozitivni časovni osi in ima pozitivno širino.",
+      "Zveznost uteži pri $a$ zagotovi, da njena povprečna vrednost na krčečem se intervalu teži k $\\varphi(a)$. Za prikaz z vmesno točko vzamemo zvezno utež na intervalu.",
+      "Utež $e^{-st}$ je zvezna pri $a$, zato jo lahko uporabimo v izbirni lastnosti."
+    ]
   },
   "radius": {
     "title": "Konvergenčni polmer in krajišči",
@@ -189,13 +254,33 @@
         "Obnašanje na robu",
         "Pri končnem pozitivnem polmeru se na robovih pojavita dve različni vrsti. Predznaki lahko vplivajo na njuno konvergenco, zato o vsakem robu odloča tamkajšnja številska vrsta.",
         "x=c+R:\\ \\sum a_nR^n,\\qquad x=c-R:\\ \\sum (-1)^na_nR^n",
-        "Dve zaporedji delnih vsot kažeta, zakaj robova zahtevata ločeno presojo."
+        "Dve zaporedji delnih vsot kažeta, zakaj robova zahtevata ločeno presojo.",
+        [
+          [
+            "Desno krajišče je za $R$ večje od središča. V prvotni člen vstavi to razdaljo.",
+            "x=c+R\\quad\\Rightarrow\\quad a_n(x-c)^n=a_nR^n"
+          ],
+          [
+            "Levo krajišče je za $R$ manjše od središča. Minus potenciramo skupaj z razdaljo; zato moraš ta rob preveriti posebej.",
+            "x=c-R\\quad\\Rightarrow\\quad a_n(x-c)^n=(-1)^na_nR^n"
+          ]
+        ]
       ],
       [
         "Območje konvergence",
         "N-ti koren absolutne vrednosti člena je $|x-c|\\sqrt[n]{|a_n|}$. Korenski kriterij zato določi polmer iz koeficientov. Pri limsup nič je polmer neskončen, pri neskončnem limsup pa nič.",
         "\\frac1R=\\limsup_{n\\to\\infty}\\sqrt[n]{|a_n|}",
-        "Polna ali prazna krajna točka pove, ali pripada območju konvergence."
+        "Polna ali prazna krajna točka pove, ali pripada območju konvergence.",
+        [
+          [
+            "Uporabi koren, ker iz $n$-te potence odstrani eksponent. Ta kriterij deluje tudi pri ničelnih koeficientih.",
+            "\\sqrt[n]{|a_n(x-c)^n|}=|x-c|\\sqrt[n]{|a_n|}"
+          ],
+          [
+            "Za končen pozitiven $L$ reši pogoj za absolutno konvergenco. Če je produkt večji od 1, členi niti ne težijo k nič.",
+            "L=\\limsup_{n\\to\\infty}\\sqrt[n]{|a_n|},\\qquad |x-c|L<1\\quad\\Longleftrightarrow\\quad |x-c|<1/L"
+          ]
+        ]
       ]
     ],
     "reading": [
@@ -215,6 +300,11 @@
         2,
         1
       ]
+    ],
+    "stepConditions": [
+      "Pri količniku potrebujemo od nekega indeksa neničelne koeficiente in $x\\ne c$, da ne delimo z nič.",
+      "Dve različni končni krajišči dobimo pri $0<R<\\infty$. Kriterij v notranjosti sam ne odloči o robu.",
+      "Korenski kriterij ne deli s koeficienti. Zato uporabimo limsup tudi, ko koeficienti izmenično izginjajo."
     ]
   },
   "series": {
@@ -228,7 +318,17 @@
         "Končna identiteta",
         "Pri množenju delne vsote z $x$ se vsaka potenca zviša za ena. V razliki prvotne in premaknjene vsote ostaneta samo začetni in končni člen.",
         "S_N(x)=\\sum_{n=0}^Nx^n,\\qquad (1-x)S_N(x)=1-x^{N+1}",
-        "Navpična razlika med krivuljama je razlika prvotne in premaknjene delne vsote."
+        "Navpična razlika med krivuljama je razlika prvotne in premaknjene delne vsote.",
+        [
+          [
+            "Zapiši končno vsoto. Pomnoži jo z $x$, ker se bodo tako skoraj vse potence poravnale.",
+            "S_N=1+x+\\cdots+x^N,\\qquad xS_N=x+\\cdots+x^N+x^{N+1}"
+          ],
+          [
+            "Odštej vrstici. Ostane prvi člen začetne vrstice in nasprotna vrednost zadnjega člena druge.",
+            "S_N-xS_N=1-x^{N+1}"
+          ]
+        ]
       ],
       [
         "Prehod v neskončno vsoto",
@@ -280,6 +380,11 @@
         2,
         1
       ]
+    ],
+    "stepConditions": [
+      "Za končno vsoto velja odštevanje za vsak $x$. Šele pri deljenju z $1-x$ potrebujemo $x\\ne1$.",
+      "Meja $|x|\\le r<1$ hkrati omeji potenco in drži imenovalec stran od ničle.",
+      "Za $|x|<1$ izberemo $r<1$, ki zajame celoten interval med 0 in $x$. Enakomerna konvergenca na njem dovoljuje integriranje členoma."
     ]
   },
   "uniform": {
@@ -293,7 +398,17 @@
         "Majoranta posameznega člena",
         "Za vsako funkcijo izberemo številčno mejo, ki je neodvisna od položaja $x$. To omogoča primerjavo funkcijske vrste z eno samo številsko vrsto.",
         "\\sup_{x\\in I}|f_n(x)|\\leq M_n,\\qquad \\sum_{n=0}^\\infty M_n<\\infty",
-        "Vodoravna ovojnica nad členom velja po celotni vodoravni osi prikazanega intervala."
+        "Vodoravna ovojnica nad členom velja po celotni vodoravni osi prikazanega intervala.",
+        [
+          [
+            "Za določen $n$ potrebujemo eno oceno za vse $x$. Zato si ogledamo največjo možno velikost člena oziroma njen supremum.",
+            "M_n\\ge\\sup_{x\\in I}|f_n(x)|"
+          ],
+          [
+            "Preverimo še vsoto teh števil. Šele končna vsota zagotovi, da lahko s številčnim repom omejimo napako poljubno natančno.",
+            "\\sum_{n=0}^\\infty M_n<\\infty\\quad\\Rightarrow\\quad\\lim_{N\\to\\infty}\\sum_{n>N}M_n=0"
+          ]
+        ]
       ],
       [
         "Ocena preostanka",
@@ -318,6 +433,14 @@
         "Graf končnega repa kaže primerjavo še pred prehodom v limito.",
         [
           [
+            "Primerjaj dve končni delni vsoti. V razliki se prvih $N+1$ členov pokrajša.",
+            "S_m(x)-S_N(x)=\\sum_{n=N+1}^m f_n(x)"
+          ],
+          [
+            "Uporabi trikotniško neenakost in nato majoranto za vsak člen. Desna stran je ista za vse $x$.",
+            " |S_m(x)-S_N(x)|\\le\\sum_{n=N+1}^m|f_n(x)|\\le\\sum_{n>N}M_n"
+          ],
+          [
             "Če bi majorantna vrsta konvergirala, bi M-test zagotovil enakomerno konvergenco prvotne vrste. Tako dobiš sklep s pole.",
             "\\sum f_n\\ \\text{ne konvergira enakomerno},\\quad |f_n(x)|\\le M_n\\quad\\Longrightarrow\\quad \\sum M_n=\\infty"
           ]
@@ -336,6 +459,11 @@
         3,
         2
       ]
+    ],
+    "stepConditions": [
+      "Za vsak indeks potrebujemo število $M_n\\ge0$, ki velja na celotnem $I$. Izbira, odvisna od $x$, ne da skupne ocene.",
+      "Konvergenca $\\sum M_n$ zagotovi obstoj vsote po točkah z absolutno primerjavo, zato je razlika $S-S_N$ definirana.",
+      "Ker ista meja velja za vse $x$, lahko za dano napako izberemo en $N$ za vse delne vsote na celotnem intervalu."
     ]
   },
   "leg": {
@@ -349,19 +477,53 @@
         "Razvoj v regularni točki",
         "Analitično rešitev predstavimo s potenčno vrsto. Tudi njena odvoda dobimo členoma znotraj konvergenčnega polmera.",
         "(1-x^2)y''-2xy'+n(n+1)y=0,\\qquad y(x)=\\sum_{k=0}^\\infty a_kx^k",
-        "Vodoravna črta označuje konstantni člen prikazane sode veje."
+        "Vodoravna črta označuje konstantni člen prikazane sode veje.",
+        [
+          [
+            "Najprej preveri vodilni koeficient pri ničli. Po deljenju dobimo analitične koeficiente, zato izrek o regularni točki dovoljuje potenčni nastavek.",
+            "1-x^2\\big|_{x=0}=1,\\qquad y=\\sum_{k=0}^\\infty a_kx^k"
+          ],
+          [
+            "Odvajaj vsak člen znotraj polmera konvergence. Indeks prestavi, da bodo vsi členi pri primerjavi zapisani ob isti potenci.",
+            "y'=\\sum_{k\\ge1}ka_kx^{k-1},\\qquad y''=\\sum_{k\\ge0}(k+2)(k+1)a_{k+2}x^k"
+          ]
+        ]
       ],
       [
         "Rekurzija koeficientov",
         "Ko zberemo člene ob $x^k$, drugi odvod prispeva $(k+2)(k+1)a_{k+2}$, preostanek pa $[n(n+1)-k(k+1)]a_k$. Njun seštevek je nič.",
         "a_{k+2}=\\frac{k(k+1)-n(n+1)}{(k+2)(k+1)}a_k=\\frac{(k-n)(k+n+1)}{(k+1)(k+2)}a_k",
-        "Posamezni potenčni prispevek spremeni obliko delne vsote."
+        "Posamezni potenčni prispevek spremeni obliko delne vsote.",
+        [
+          [
+            "Razpri oklepaj pred drugim odvodom. Prispevke k potenci $x^k$ nato preberi iz vsakega od štirih členov.",
+            "y''-x^2y''-2xy'+n(n+1)y=0"
+          ],
+          [
+            "Pri $x^k$ prispeva $y''$ koeficient z indeksom $k+2$. Drugi trije členi imajo indeks $k$. Vsota mora biti nič, ker identiteta velja za vse bližnje $x$.",
+            "(k+2)(k+1)a_{k+2}+\\big[-k(k-1)-2k+n(n+1)\\big]a_k=0"
+          ],
+          [
+            "Seštej člena s $k$ in prenesi člen z $a_k$ na desno. Delitelj je za vsak $k\\ge0$ pozitiven.",
+            "(k+2)(k+1)a_{k+2}=[k(k+1)-n(n+1)]a_k"
+          ]
+        ]
       ],
       [
         "Zaključek polinomske veje",
         "Sodi in lihi koeficienti nastajajo ločeno. V veji enake parnosti kot $n$ faktor $k-n$ pri $k=n$ izgine, zato vsi nadaljnji členi te veje izginejo. Merilo polinoma določa normalizacija.",
         "a_{n+2}=a_{n+4}=\\cdots=0,\\qquad P_n(1)=1",
-        "Krivulja je primer zaključene sode veje, umerjene pri desnem robu."
+        "Krivulja je primer zaključene sode veje, umerjene pri desnem robu.",
+        [
+          [
+            "Korak rekurzije je dve. Iz $a_0$ dobimo sode, iz $a_1$ pa lihe koeficiente. Za polinom izberemo vejo z enako parnostjo kot $n$.",
+            "a_0\\to a_2\\to a_4\\to\\cdots,\\qquad a_1\\to a_3\\to a_5\\to\\cdots"
+          ],
+          [
+            "V tej veji vstavi $k=n$. Faktor je nič; vsi naslednji koeficienti iste veje nastajajo iz ničle.",
+            "a_{n+2}=\\frac{(n-n)(2n+1)}{(n+1)(n+2)}a_n=0"
+          ]
+        ]
       ]
     ],
     "reading": [
@@ -370,7 +532,12 @@
       "1–10"
     ],
     "focus": "Sledi izpeljavi rekurzije: izenači koeficiente pri isti potenci in loči sode od lihih indeksov.",
-    "papers": []
+    "papers": [],
+    "stepConditions": [
+      "Pri $x=0$ je vodilni koeficient neničeln. Analitičnost normaliziranih koeficientov omogoča iskanje rešitev s potenčno vrsto.",
+      "Znotraj konvergenčnega polmera smemo vrsto odvajati členoma in primerjati koeficiente istih potenc.",
+      "Stopnja $n$ je nenegativno celo število. Le tedaj indeks $k$ doseže $n$ in se ustrezna veja zaključi."
+    ]
   },
   "bessel": {
     "title": "Frobeniusova metoda in Besselova enačba",
@@ -399,13 +566,33 @@
         "Indicialna enačba",
         "V Besselovi enačbi $x^2y''+xy'+(x^2-\\nu^2)y=0$ člen $x^2y$ zviša potenco za dve. Pri najnižji potenci tako ostanejo prispevki obeh odvodov in člena $-\\nu^2y$.",
         "\\bigl[r(r-1)+r-\\nu^2\\bigr]a_0=0\\quad\\Longrightarrow\\quad r^2-\\nu^2=0",
-        "Primerjava zaporednih približkov pokaže vpliv nadaljnjih potenc za vodilnim členom."
+        "Primerjava zaporednih približkov pokaže vpliv nadaljnjih potenc za vodilnim členom.",
+        [
+          [
+            "Najnižja potenca v nastavku je $a_0x^r$. Po odvajanju jo faktorja $x$ in $x^2$ vrneta na prvotno potenco.",
+            "x(a_0x^r)'=ra_0x^r,\\qquad x^2(a_0x^r)''=r(r-1)a_0x^r"
+          ],
+          [
+            "Člen $x^2y$ se začne dve potenci pozneje. Zato v koeficient ob $x^r$ iz zadnjega oklepaja prispeva le del z negativnim predznakom.",
+            "(x^2-\\nu^2)a_0x^r=a_0x^{r+2}-\\nu^2a_0x^r"
+          ]
+        ]
       ],
       [
         "Neodvisni veji",
         "Indicialna korena sta $\\nu$ in $-\\nu$. Pri celem redu funkcija $J_{-\\nu}$ ne da nove neodvisne veje. Standardna druga rešitev $Y_\\nu$ je tedaj pri ničli singularna in vsebuje logaritemski člen.",
         "y(x)=C_1J_\\nu(x)+C_2Y_\\nu(x),\\qquad x>0",
-        "Graf prikazuje končno vejo $J_\\nu$; na območju s središčem jo izbere zahteva omejenosti."
+        "Graf prikazuje končno vejo $J_\\nu$; na območju s središčem jo izbere zahteva omejenosti.",
+        [
+          [
+            "Na poli je pri $y$ člen $x^2-25$. Primerjaj ga s standardno Besselovo obliko. Za red vzamemo nenegativen koren.",
+            " \\nu^2=25\\quad\\Rightarrow\\quad\\nu=5"
+          ],
+          [
+            "Enačba drugega reda na $x>0$ ima dve neodvisni rešitvi. Pri celem redu negativni indeks da večkratnik prve; zato iz tabele vzamemo drugo rešitev $Y_5$.",
+            "J_{-5}=-J_5,\\qquad y=C_1J_5+C_2Y_5"
+          ]
+        ]
       ]
     ],
     "reading": null,
@@ -416,6 +603,11 @@
         3,
         2
       ]
+    ],
+    "stepConditions": [
+      "Pri šibko singularni točki sta $xP$ in $x^2Q$ analitično razširljiva v nič. Vzamemo $x>0$ za potenco $x^r$ in $a_0\\ne0$ za vodilni člen.",
+      "Ker je $a_0\\ne0$, pri enačenju najnižjega koeficienta smemo deliti z $a_0$.",
+      "Za $x>0$ ima standardna Besselova enačba neodvisni rešitvi $J_\\nu,Y_\\nu$. Red na poli je celo število, zato izbira $J_{-\\nu}$ za drugo rešitev ne bi delovala."
     ]
   },
   "ortho": {
@@ -429,13 +621,33 @@
         "Lokalno ujemanje",
         "Produkt vrednosti v isti točki je pozitiven pri enakih predznakih in negativen pri različnih. Pozitivna utež določa velikost prispevka.",
         "\\langle f,g\\rangle_w=\\int_a^b f(x)g(x)w(x)\\,dx",
-        "Prikazani krivulji sta faktorja, katerih lokalno ujemanje meri produkt."
+        "Prikazani krivulji sta faktorja, katerih lokalno ujemanje meri produkt.",
+        [
+          [
+            "Primerjamo funkciji na istem mestu. Pomnožimo njuni vrednosti in rezultat utežimo glede na pomen te točke.",
+            "h(x)=f(x)g(x)w(x)"
+          ],
+          [
+            "Pozitivna utež zagotovi, da ima neničelna zvezna funkcija pozitiven kvadrat norme: kjer je različna od nič, ostane takšna tudi na majhnem intervalu.",
+            "\\langle f,f\\rangle_w=\\int_a^b f(x)^2w(x)\\,dx>0\\qquad(f\\not\\equiv0)"
+          ]
+        ]
       ],
       [
         "Predznačeni prispevki",
         "Do spremenljive desne meje $z$ skalarni produkt nastaja kot predznačena ploščina. Osnovni izrek integralnega računa poveže njeno spreminjanje z vrednostjo produkta.",
         "I(z)=\\int_a^z f(x)g(x)w(x)\\,dx,\\qquad I'(z)=f(z)g(z)w(z)",
-        "Osenčeni deli nad osjo povečujejo integral, deli pod njo ga zmanjšujejo."
+        "Osenčeni deli nad osjo povečujejo integral, deli pod njo ga zmanjšujejo.",
+        [
+          [
+            "Razširi zgornjo mejo za $h$. Razlika integralov meri prispevek kratkega dodanega intervala.",
+            "I(z+h)-I(z)=\\int_z^{z+h}f(x)g(x)w(x)\\,dx"
+          ],
+          [
+            "Deli s širino. Ker je produkt zvezen, gre njegova povprečna vrednost proti vrednosti pri $z$.",
+            "\\lim_{h\\to0}\\frac{I(z+h)-I(z)}h=f(z)g(z)w(z)"
+          ]
+        ]
       ],
       [
         "Ortogonalnost Legendrovih polinomov",
@@ -444,8 +656,20 @@
         "Pri različnih stopnjah je faktor pred integralom neničeln, zato se tekoči integral na desnem robu vrne na nič.",
         [
           [
+            "Legendrovo enačbo zapiši z odvodom produkta. Tako bo po integriranju ostala samo robna vrednost.",
+            "[(1-x^2)P_n']'=-n(n+1)P_n"
+          ],
+          [
+            "Enačbo za $n$ pomnoži s $P_m$, enačbo za $m$ pa s $P_n$. Po odštevanju se mešana produkta prvih odvodov pri razvoju odvoda pokrajšata.",
+            "[(1-x^2)(P_n'P_m-P_m'P_n)]'=[m(m+1)-n(n+1)]P_mP_n"
+          ],
+          [
             "Oba polinoma in njuna odvoda sta na krajiščih končna. V vsakem robnem produktu se zato pojavi nič krat končno število.",
             "1-1^2=0,\\quad 1-(-1)^2=0\\quad\\Longrightarrow\\quad [(1-x^2)(P_n'P_m-P_m'P_n)]_{-1}^1=0-0"
+          ],
+          [
+            "Pri različnih stopnjah je razlika lastnih vrednosti neničelna. Deli z njo, da iz ničelnega robnega člena dobiš ničelni skalarni produkt.",
+            "m\\ne n\\quad\\Longrightarrow\\quad\\int_{-1}^1P_m(x)P_n(x)\\,dx=0"
           ]
         ]
       ]
@@ -462,6 +686,11 @@
         3,
         2
       ]
+    ],
+    "stepConditions": [
+      "Na $a<b$ vzamemo zvezne realne funkcije in zvezno utež $w>0$. Integral obstaja in kvadrat norme neničelne funkcije je pozitiven.",
+      "Zveznost produkta na intervalu dovoljuje uporabo osnovnega izreka pri notranji točki $z$.",
+      "Tu sta $m,n$ različni nenegativni celi števili. Zato je razlika lastnih vrednosti neničelna in na koncu smemo deliti z njo."
     ]
   },
   "pde": {
@@ -475,19 +704,49 @@
         "Enačba pri fiksnem parametru",
         "V prerezu pri $y=\\eta$ so eksponentne rešitve določene s karakteristično enačbo. Različna korena dajeta dva neodvisna načina spreminjanja v smeri $x$.",
         "U_\\eta(x)=u(x,\\eta),\\quad U_\\eta^{\\prime\\prime}=U_\\eta,\\quad r^2-1=0",
-        "Vsaka narisana krivulja je en prerez istega polja."
+        "Vsaka narisana krivulja je en prerez istega polja.",
+        [
+          [
+            "Izberi en prerez $y=\\eta$. Ker odvajamo le po $x$, se parcialna enačba vzdolž prereza spremeni v navadno enačbo.",
+            "U_\\eta(x)=u(x,\\eta),\\qquad U_\\eta''=U_\\eta"
+          ],
+          [
+            "Poskusi z eksponentno funkcijo, ker se po odvajanju ohrani. Deli z njenim neničelnim faktorjem.",
+            "U=e^{rx}\\quad\\Rightarrow\\quad r^2e^{rx}=e^{rx}\\quad\\Rightarrow\\quad r=\\pm1"
+          ]
+        ]
       ],
       [
         "Funkciji začetnih podatkov",
         "Koeficienta dveh rešitev sta konstantna vzdolž posameznega prereza, med prerezi pa se lahko spreminjata. Višina in naklon na črti $x=0$ določita njuno vsoto in razliko.",
         "u=A(y)e^x+B(y)e^{-x},\\quad u(0,y)=A+B,\\quad u_x(0,y)=A-B",
-        "Različni prerezi ponazarjajo, da se začetna višina lahko spreminja z $y$."
+        "Različni prerezi ponazarjajo, da se začetna višina lahko spreminja z $y$.",
+        [
+          [
+            "Za vsak prerez dobimo dve konstanti. Ker sme drug prerez imeti drugo rešitev, sta konstanti lahko funkciji $y$.",
+            "u(x,y)=A(y)e^x+B(y)e^{-x}"
+          ],
+          [
+            "Za naklon odvajaj po $x$ ob fiksnem $y$. Nato v vrednost in v naklon vstavi nič; oba eksponenta postaneta 1.",
+            "u_x=A(y)e^x-B(y)e^{-x},\\qquad u(0,y)=A+B,\\quad u_x(0,y)=A-B"
+          ]
+        ]
       ],
       [
         "Od začetnih podatkov do polja",
         "Če poznaš višino $g(y)$ in naklon $h(y)$ pri $x=0$, ju vstavi v obe enačbi. Seštevanje da $2A=g+h$, odštevanje pa $2B=g-h$.",
         "u(x,y)=\\tfrac12(g+h)e^x+\\tfrac12(g-h)e^{-x}",
-        "Graf drugega odvoda pokaže povezanost višine in ukrivljenosti istega prereza."
+        "Graf drugega odvoda pokaže povezanost višine in ukrivljenosti istega prereza.",
+        [
+          [
+            "Zapiši znano višino in naklon. Enačbi seštej, da odpade $B$, in odštej, da odpade $A$.",
+            "g+h=2A,\\qquad g-h=2B"
+          ],
+          [
+            "Deli z dve in dobljena koeficienta vrni k njunima eksponentnima funkcijama.",
+            "A(y)=\\frac{g(y)+h(y)}2,\\qquad B(y)=\\frac{g(y)-h(y)}2"
+          ]
+        ]
       ]
     ],
     "reading": [
@@ -496,6 +755,11 @@
       "8"
     ],
     "focus": "Pri odvajanju po x je y fiksen. Po integriranju po x je konstanta lahko funkcija y.",
-    "papers": []
+    "papers": [],
+    "stepConditions": [
+      "Prerez je dvakrat odvedljiv po $x$. Ker se $y$ med odvajanjem ne spreminja, lahko uporabimo navadno diferencialno enačbo.",
+      "Korena $1$ in $-1$ sta različna, zato obe eksponentni funkciji dajeta neodvisni rešitvi prereza.",
+      "Za določitev dveh koeficientov v posameznem prerezu potrebujemo oba podatka pri istem $y$: višino in naklon."
+    ]
   }
 }

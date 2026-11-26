@@ -196,7 +196,7 @@ function lesson(){
   const given=o.plot==='gaussTheory'&&i===0;
   const derivation=rows?calculation(rows,'Izpeljava po vrsticah'):'';
   const details=rows?'<div class="derivationRows">'+(given?'<details><summary>Od kod pride začetna vrednost?</summary>'+derivation+'</details>':derivation+result)+'</div>':'';
-  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p>'+(rows&&!given?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
+  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p><b>Zakaj?</b> '+reason+'</p><p class="sceneCondition"><b>Pogoj za ta korak</b> '+o.stepConditions[i]+'</p>'+(rows&&!given?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
  }).join('');
  const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
  let practice='';
