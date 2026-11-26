@@ -35,3 +35,6 @@
 .methodGuide .calculation li:last-child{padding-bottom:0}
 .ruleCases dl div{align-items:center}.method .quiet{padding:4px 0;color:var(--plum);text-decoration:underline;text-underline-offset:3px}
 .taskmeta a{color:inherit;text-underline-offset:3px}
+
+.derivationRows{grid-column:1/-1;order:2;min-width:0;border-top:1px solid var(--border);padding:16px clamp(14px,2.2vw,34px)}
+.derivationRows .calculation{padding:0;margin:0}.derivationRows .formula{margin:10px 0 0}

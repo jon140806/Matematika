@@ -21,7 +21,7 @@
         "Odvajanje nepravega integrala z integrabilno majoranto",
         "|\\partial_y f(x,y)|\\le g(x),\\quad \\int_A^\\infty g(x)dx<\\infty,\\quad F'(y)=\\int_A^\\infty\\partial_y f(x,y)dx",
         "Prvotni integral obstaja in integrand ter parcialni odvod sta zvezna. Meja $g$ velja neodvisno od parametra $y=a$. Tu izberemo $g(x)=xe^{-x^2}$.",
-        "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx,\\quad \\int_R^\\infty g(x)dx=\\tfrac12 e^{-R^2}"
+        "\\int_R^\\infty g(x)dx=\\lim_{T\\to\\infty}\\tfrac12(e^{-R^2}-e^{-T^2})=\\tfrac12e^{-R^2}"
       ]
     ],
     "gamma": [
@@ -99,7 +99,7 @@
         "Odvajanje po parametru na neskončnem intervalu",
         "I'(a)=\\int_0^\\infty\\partial_a f(x,a)dx",
         "Poleg zveznosti potrebuješ obstoj izhodiščnega integrala in primerno integrabilno mejo odvoda. Tu je $f=e^{-x^2}\\cos(ax)$ in odvod omeji $g(x)=xe^{-x^2}$.",
-        "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx,\\qquad \\int_0^\\infty g(x)dx=\\tfrac12"
+        "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx,\\qquad \\int_0^\\infty g(x)dx=\\lim_{R\\to\\infty}\\tfrac12(1-e^{-R^2})=\\tfrac12"
       ],
       [
         "Integracija po delih",

@@ -153,12 +153,20 @@
       ],
       "worked": [
         [
-          "Prvotni integrand omejuje Gaussova ovojnica. Za odvod uporabi še omejitev sinusa in integriraj majoranto.",
-          "\\left|\\partial_b f\\right|\\le xe^{-4x^2},\\qquad \\int_0^\\infty xe^{-4x^2}dx=\\left[-\\tfrac18e^{-4x^2}\\right]_0^\\infty=\\tfrac18"
+          "Odvajaj po frekvenci ter omeji sinus z 1. Integral dobljenega izraza izračunaj do končne meje $R$.",
+          "|\\partial_b f|\\le xe^{-4x^2},\\qquad\\int_0^R xe^{-4x^2}dx=\\left[-\\tfrac18e^{-4x^2}\\right]_0^R=\\tfrac18(1-e^{-4R^2})"
+        ],
+        [
+          "Pošlji $R$ v neskončnost. Ker $e^{4R^2}$ raste brez meje, se njegova recipročna vrednost približuje nič. Zgornja ocena je integrabilna in neodvisna od frekvence.",
+          "\\lim_{R\\to\\infty}e^{-4R^2}=0,\\qquad \\int_0^\\infty xe^{-4x^2}dx=\\tfrac18(1-0)=\\tfrac18"
         ],
         [
           "Odvajaj po $b$. Prepiši faktor ob sinusu kot odvod po $x$.",
           "J'(b)=-\\int_0^\\infty xe^{-4x^2}\\sin(bx)dx=\\tfrac18\\int_0^\\infty(e^{-4x^2})'\\sin(bx)dx"
+        ],
+        [
+          "Pred prehodom v limito oceni robni produkt pri $R$. Pri ničli je sinus enak nič.",
+          "|e^{-4R^2}\\sin(bR)|\\le e^{-4R^2}\\to0,\\qquad e^0\\sin0=0"
         ],
         [
           "Pri integraciji po delih robni člen izgine zaradi dušenja pri neskončnosti in sinusa pri ničli.",
@@ -169,8 +177,12 @@
           " \\mu=e^{\\int b/8\\,db}=e^{b^2/16},\\quad (\\mu J)'=\\mu(J'+bJ/8)=0,\\quad J=Ce^{-b^2/16}"
         ],
         [
-          "Pri ničelni frekvenci kosinus postane ena. Izračunaj konstanto z raztegom $u=2x$.",
-          "C=J(0)=\\tfrac12\\int_0^\\infty e^{-u^2}du=\\tfrac{\\sqrt\\pi}{4},\\qquad J(b)=\\tfrac{\\sqrt\\pi}{4}e^{-b^2/16}"
+          "Za $b=0$ je kosinus povsod ena. Najprej uvedi $u=2x$ na končnem intervalu.",
+          "J_R(0)=\\int_0^R e^{-4x^2}dx=\\tfrac12\\int_0^{2R}e^{-u^2}du"
+        ],
+        [
+          "Ko $R$ raste, tudi $2R$ raste brez meje. Uporabi začetno Gaussovo ploščino, izpeljano pri prvi nalogi.",
+          "C=\\lim_{R\\to\\infty}J_R(0)=\\tfrac12 I(0)=\\frac{\\sqrt\\pi}{4},\\qquad J(b)=\\frac{\\sqrt\\pi}{4}e^{-b^2/16}"
         ]
       ],
       "quiz": [
@@ -201,12 +213,12 @@
       ],
       "worked": [
         [
-          "Zamenjaj celoten eksponent in preračunaj diferencial. Pozitivni faktor ohrani obe meji.",
-          "u=\\lambda x,\\quad x=u/\\lambda,\\quad dx=du/\\lambda,\\quad x:0\\to\\infty\\ \\Rightarrow\\ u:0\\to\\infty"
+          "Zamenjaj $u=\\lambda x$ na končnem intervalu. Kub in diferencial skupaj prispevata štiri faktorje $1/\\lambda$.",
+          "A_R(\\lambda)=\\int_0^R x^3e^{-\\lambda x}dx=\\frac1{\\lambda^4}\\int_0^{\\lambda R}u^3e^{-u}du"
         ],
         [
-          "Kub pretvori v novo spremenljivko in izpostavi tudi faktor iz diferenciala.",
-          "A=\\int_0^\\infty (u/\\lambda)^3e^{-u}\\frac{du}{\\lambda}=\\frac{1}{\\lambda^4}\\int_0^\\infty u^3e^{-u}du"
+          "Ker je $\\lambda>0$, gre nova zgornja meja v neskončnost. Tako dobiš nepravi gama integral.",
+          "\\lim_{R\\to\\infty}\\lambda R=\\infty,\\qquad A(\\lambda)=\\frac1{\\lambda^4}\\int_0^\\infty u^3e^{-u}du"
         ],
         [
           "Stopnja tri pomeni argument štiri. Za cel argument uporabi fakulteto.",
@@ -289,12 +301,16 @@
       ],
       "worked": [
         [
-          "Zapiši izraz v imenovalcu, diferencial in novi meji.",
-          "1+x=\\frac1{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\qquad x:0\\to\\infty\\ \\Rightarrow\\ u:0\\to1"
+          "Najprej vzemi končno zgornjo mejo $R$. Pri $u=x/(1+x)$ se rob $R$ preslika v $R/(1+R)$.",
+          "x=\\frac u{1-u},\\quad 1+x=\\frac1{1-u},\\quad dx=\\frac{du}{(1-u)^2},\\quad U_R=\\frac R{1+R}"
         ],
         [
-          "Prepiši vse tri faktorje in zberi potence pri $1-u$.",
-          "I=\\int_0^1\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^1u^2(1-u)du"
+          "Po zamenjavi združi potence in integriraj le do novega roba.",
+          "I_R=\\int_0^{U_R}\\frac{u^2}{(1-u)^2}(1-u)^5\\frac{du}{(1-u)^2}=\\int_0^{U_R}u^2(1-u)du"
+        ],
+        [
+          "Deli števec in imenovalec roba z $R$. Novi integrand je zvezen do enice, tako da lahko mejo pomakneš do 1.",
+          "\\lim_{R\\to\\infty}U_R=\\lim_{R\\to\\infty}\\frac1{1+1/R}=1,\\qquad I=\\int_0^1u^2(1-u)du"
         ],
         [
           "Argumenta sta za ena večja od eksponentov. Pretvori v gama funkcije.",
@@ -333,12 +349,24 @@
       ],
       "worked": [
         [
-          "Pri ničli je imenovalec blizu ena. Primerjaj s potenco v števcu.",
-          "f(x)\\sim x^{p-1}\\ (x\\to0^+),\\quad p-1>-1\\ \\Leftrightarrow\\ p>0"
+          "Razdeli poltrak pri 1 in preveri vsako krajišče posebej. Pri ničli primerjaj s potenco v števcu.",
+          "\\lim_{x\\downarrow0}\\frac{f(x)}{x^{p-1}}=\\lim_{x\\downarrow0}\\frac1{(1+x)^3}=1"
         ],
         [
-          "V neskončnosti je imenovalec primerljiv s kubom. Pri mejni potenci −1 integral logaritemsko divergira.",
-          "f(x)\\sim x^{p-4}\\ (x\\to\\infty),\\quad p-4<-1\\ \\Leftrightarrow\\ p<3"
+          "Za $p\\ne0$ vstavi končni meji. Pri $p>0$ gre spodnja potenca proti nič, pri $p<0$ pa proti neskončnosti. Za $p=0$ dobiš divergentni logaritem.",
+          "\\int_\\varepsilon^1x^{p-1}dx=\\frac{1-\\varepsilon^p}{p},\\qquad \\int_\\varepsilon^1\\frac{dx}{x}=-\\ln\\varepsilon\\longrightarrow\\infty"
+        ],
+        [
+          "V neskončnosti primerjaj z $x^{p-4}$. Razmerje je kub ulomka, ki po deljenju z $x$ teži k 1.",
+          "\\lim_{x\\to\\infty}\\frac{f(x)}{x^{p-4}}=\\lim_{x\\to\\infty}(1+1/x)^{-3}=1"
+        ],
+        [
+          "Za $p\\ne3$ je limita končna natanko pri $p-3<0$. Za $p=3$ spet dobiš logaritem. Oba robova sta torej integrabilna pri $0<p<3$.",
+          "\\int_1^Rx^{p-4}dx=\\frac{R^{p-3}-1}{p-3},\\qquad \\int_1^R\\frac{dx}{x}=\\ln R\\longrightarrow\\infty"
+        ],
+        [
+          "Preslikaj končna robova. Spodnji se približa nič, zgornji enici z leve.",
+          "u(\\varepsilon)=\\frac{\\varepsilon}{1+\\varepsilon}\\to0,\\qquad u(R)=\\frac1{1+1/R}\\to1"
         ],
         [
           "Zamenjaj $u=x/(1+x)$. Meji postaneta 0 in 1, faktor iz diferenciala ima eksponent −2.",
@@ -359,25 +387,58 @@
   ],
   "guides": {
     "gauss": {
-      "title": "Gaussova ovojnica in kosinus · ITFR-01p, str. 11",
+      "title": "Zakaj je začetna Gaussova ploščina √π/2?",
       "steps": [
         [
-          "Gaussova ovojnica je zvon $e^{-x^2}$. Pri ničelni frekvenci je kosinus povsod ena. V predavanju je ta začetna ploščina podana.",
-          "I(0)=\\int_0^\\infty e^{-x^2}dx=\\sqrt\\pi/2"
+          "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
+          "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
         ],
         [
-          "Odvajanje po frekvenci ustvari faktor $x$. Absolutno vrednost odvoda omeji integrabilna ovojnica, zato smemo odvajati pod integralom.",
-          "\\partial_a\\cos(ax)=-x\\sin(ax),\\quad \\int_0^\\infty xe^{-x^2}dx=\\tfrac12"
+          "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
+          "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
         ],
         [
-          "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
-          "-xe^{-x^2}=\\tfrac12(e^{-x^2})',\\qquad I'=-\\tfrac a2 I"
+          "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
+          "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
         ],
         [
-          "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
-          "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
+          "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
+          "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
+        ],
+        [
+          "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
+          "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
+        ],
+        [
+          "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
+          "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
         ]
-      ]
+      ],
+      "afterGraph": {
+        "title": "Od začetne ploščine do integrala s kosinusom",
+        "steps": [
+          [
+            "Odvajanje po frekvenci ustvari faktor $x$.",
+            "\\partial_a(e^{-x^2}\\cos(ax))=-xe^{-x^2}\\sin(ax),\\quad |\\partial_a f|\\le xe^{-x^2}"
+          ],
+          [
+            "Integriraj ovojnico najprej do končnega $R$. Faktor $1/2$ dobiš iz odvoda $-x^2$.",
+            "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+          ],
+          [
+            "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+            "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
+          ],
+          [
+            "Odvod Gaussove ovojnice prepoznaš v tem faktorju. S per partes preneseš odvod na sinus. Robni člen je nič, ostane prvotni integral.",
+            "|e^{-R^2}\\sin(aR)|\\le e^{-R^2}\\to0,\\qquad I'=-\\tfrac a2 I"
+          ],
+          [
+            "Začetno ploščino vstavi v rešitev enačbe. Določi merilo za vse frekvence.",
+            "(e^{a^2/4}I)'=0,\\quad e^{a^2/4}I=C,\\quad C=I(0)"
+          ]
+        ]
+      }
     },
     "atan": {
       "title": "Leibnizovo pravilo · od številske do premične meje",
@@ -417,8 +478,24 @@
           "B(p,q)=\\int_0^1u^{p-1}(1-u)^{q-1}\\,du,\\qquad p,q>0"
         ],
         [
-          "Številsko vrednost dobiš z gama funkcijami. Polcele argumente znižuj do ene polovice, cele pa do ena.",
-          "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)},\\quad \\Gamma(z+1)=z\\Gamma(z),\\quad\\Gamma(1)=1,\\quad\\Gamma(\\tfrac12)=\\sqrt\\pi"
+          "Po zamenjavi zveza med beta in gama pretvori oba argumenta v vrednosti gama.",
+          "B(p,q)=\\frac{\\Gamma(p)\\Gamma(q)}{\\Gamma(p+q)},\\quad\\Gamma(z+1)=z\\Gamma(z)"
+        ],
+        [
+          "Začetno vrednost gama najprej izračunaj do končnega $R$.",
+          "\\int_0^R e^{-x}\\,dx=[-e^{-x}]_0^R=1-e^{-R}"
+        ],
+        [
+          "Ker je $e^{-R}=1/e^R$ in imenovalec raste, pošlji $R$ v neskončnost.",
+          "\\Gamma(1)=\\lim_{R\\to\\infty}(1-e^{-R})=1-0=1"
+        ],
+        [
+          "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+          "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+        ],
+        [
+          "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+          "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2I(0)=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
         ]
       ]
     },
@@ -426,8 +503,12 @@
       "title": "Kako prebereš integral gama",
       "steps": [
         [
-          "Pri meji v neskončnosti išči padajočo eksponentno funkcijo. Izberi $u$ tako, da eksponent postane $-u$, nato pretvori še diferencial in meje.",
-          "\\Gamma(p)=\\int_0^\\infty u^{p-1}e^{-u}du,\\qquad p>0"
+          "Eksponent po zamenjavi postane $-u$. Najprej preslikaj končni rob $R$.",
+          "u=\\ln x,\\qquad u(1)=0,\\qquad u(R)=\\ln R"
+        ],
+        [
+          "Ko pošlješ $R$ v neskončnost, gre tudi $\\ln R$ prek vsake meje. Tedaj nastopi definicija gama.",
+          "\\lim_{R\\to\\infty}\\int_0^{\\ln R}u^{p-1}e^{-u}du=\\int_0^\\infty u^{p-1}e^{-u}du=\\Gamma(p)\\quad(p>0)"
         ],
         [
           "Ko vidiš potenco $u^r$, je argument gama za ena večji. Pri polcelih argumentih uporabi rekurzijo do znane vrednosti.",

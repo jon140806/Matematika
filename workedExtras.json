@@ -5,8 +5,16 @@
       "0<c\\le a\\le d,\\quad x\\ge0\\quad\\Longrightarrow\\quad e^{-ax}\\le e^{-cx}"
     ],
     [
-      "Integriraj to ovojnico od mesta reza naprej. Ocena repa gre proti nič za vse a iz izbranega intervala.",
-      "\\int_R^\\infty e^{-ax}dx\\le\\left[-\\frac{e^{-cx}}{c}\\right]_R^\\infty=\\frac{e^{-cR}}{c}\\longrightarrow0"
+      "Rep sprva odreži pri končnem $T>R$. V primitivno funkcijo vstavi obe meji.",
+      "\\int_R^T e^{-cx}dx=\\frac{e^{-cR}-e^{-cT}}c"
+    ],
+    [
+      "Najprej povečuj zgornjo mejo $T$. Ker je $c>0$, imenovalec eksponentnega ulomka raste brez meje.",
+      "e^{-cT}=\\frac1{e^{cT}}\\to0,\\qquad \\lim_{T\\to\\infty}\\int_R^T e^{-cx}dx=\\frac{e^{-cR}}c"
+    ],
+    [
+      "Zdaj povečuj še mesto reza $R$. Zgornja meja napake za vse parametre hkrati pade proti nič.",
+      "0\\le\\int_R^\\infty e^{-ax}dx\\le\\frac1{ce^{cR}}\\longrightarrow0\\quad(R\\to\\infty)"
     ]
   ],
   [
@@ -35,8 +43,16 @@
       "e^{-st}e^{2t}=e^{-(s-2)t}"
     ],
     [
-      "Da rob v neskončnosti izgine, zahtevaj s večji od 2. Ovrednoti primitivno funkcijo.",
-      "F(s)=\\left[-\\frac{e^{-(s-2)t}}{s-2}\\right]_0^\\infty=\\frac{1}{s-2},\\quad s>2"
+      "Začasno ustavi čas pri $T$. Integriraj eksponent in odštej spodnjo vrednost.",
+      "F_T(s)=\\int_0^T e^{-(s-2)t}dt=\\frac{1-e^{-(s-2)T}}{s-2}\\quad(s\\ne2)"
+    ],
+    [
+      "Pri $s>2$ je $s-2$ pozitiven, zato robni člen izgine. Tako dobiš transformiranko.",
+      "e^{-(s-2)T}=\\frac1{e^{(s-2)T}}\\to0,\\qquad F(s)=\\lim_{T\\to\\infty}F_T(s)=\\frac1{s-2}"
+    ],
+    [
+      "Pri $s=2$ je integrand enak 1, pri $s<2$ pa je na poltraku vsaj 1. V obeh primerih ploščina raste brez meje.",
+      "s\\le2\\ \\Longrightarrow\\ F_T(s)\\ge\\int_0^T1\\,dt=T\\to\\infty"
     ]
   ],
   [
@@ -45,8 +61,12 @@
       "F'=-s^{-2},\\quad F''=2s^{-3},\\quad F^{(m)}=(-1)^m m! s^{-m-1}"
     ],
     [
-      "Vstavi s = m/t in pokrajšaj potence, faktorieli ter predznaka. Za vsak t > 0 dobiš prvotni konstantni signal.",
-      "f(t)=\\lim_{m\\to\\infty}\\frac{(-1)^m}{m!}(m/t)^{m+1}(-1)^m m!(m/t)^{-m-1}=1"
+      "V Postov izraz vstavi izračunani odvod. Pri vsakem celem $m\\ge1$ se krajšajo predznaka, fakulteti in nasprotni potenci.",
+      "\\frac{(-1)^m}{m!}(m/t)^{m+1}\\cdot(-1)^m m!(m/t)^{-m-1}=1"
+    ],
+    [
+      "Vsak člen dobljenega zaporedja ima isto vrednost, zato jo ima tudi limita.",
+      "f(t)=\\lim_{m\\to\\infty}1=1,\\qquad t>0"
     ]
   ],
   [
@@ -79,8 +99,12 @@
   ],
   [
     [
-      "Pri geometrijski vrsti s količnikom 1/2 omeji končni rep z neskončnim.",
-      "0\\le\\sum_{k=n+1}^{m}2^{-k}\\le\\frac{(1/2)^{n+1}}{1-1/2}=2^{-n}"
+      "Končni rep ima prvi člen $2^{-(n+1)}$, količnik $1/2$ in $m-n$ členov.",
+      "\\sum_{k=n+1}^m2^{-k}=\\frac{2^{-(n+1)}(1-2^{-(m-n)})}{1-1/2}=2^{-n}(1-2^{-(m-n)})"
+    ],
+    [
+      "Pri izbranem $n$ povečuj $m$. Potenca $2^{m-n}$ raste, njena obratna vrednost izgine. Neskončni rep omejuje vsakega končnega.",
+      "2^{-(m-n)}\\to0,\\qquad 0\\le\\sum_{k=n+1}^m2^{-k}\\le\\sum_{k=n+1}^\\infty2^{-k}=2^{-n}"
     ],
     [
       "Zahtevaj napako pod 0,01. Po množenju z $2^n$ mora potenca dvojke preseči 100.",

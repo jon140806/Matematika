@@ -141,6 +141,9 @@ for pair in ("12","34","56"):
         practice_by_plot[item["plot"]]=item
     for plot,guide in additions["guides"].items():
         practice_by_plot[plot]["guide"]=dict(title=guide["title"],steps=worked_rows(guide["steps"]))
+        if "afterGraph" in guide:
+            part=guide["afterGraph"]
+            practice_by_plot[plot]["afterGraph"]=dict(title=part["title"],steps=worked_rows(part["steps"]))
 
 # Show the signs and the three geometrical contributions even when the rule wraps.
 def leibniz_line(lhs,terms):
@@ -179,10 +182,13 @@ for lesson in lesson_topics:
     lesson["title"]=topic["title"]
     for key in ("definition","conditions","symbols","use"):
         lesson[key]=math_text(topic[key])
-    lesson["steps"]=[
-        [title,math_text(explanation),worked_formula(tex),math_text(graph)]
-        for title,explanation,tex,graph in topic["steps"]
-    ]
+    lesson["steps"]=[]
+    for title,explanation,tex,graph,*details in topic["steps"]:
+        step=[title,math_text(explanation),worked_formula(tex),math_text(graph)]
+        if details:
+            rows,=details
+            step.append([[math_text(reason),worked_formula(formula)] for reason,formula in rows])
+        lesson["steps"].append(step)
     if len(lesson["steps"])!=3:
         raise ValueError(f"Missing illustration stage for {lesson['plot']}")
     if lesson["plot"]=="leib":

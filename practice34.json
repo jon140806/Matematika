@@ -462,8 +462,16 @@
       "title": "Kaj pomeni trenutni sunek",
       "steps": [
         [
-          "Jakost sunka je njegov integral skozi trenutek udarca $a$. Na vzmetnem nihalu s podano maso $m$ to določi spremembo hitrosti.",
-          "\\int_{a-\\varepsilon}^{a+\\varepsilon}J\\delta(t-a)\\,dt=J,\\qquad m[y'(a^+)-y'(a^-)]=J"
+          "Enačbo nihala $my''+ky=J\\delta(t-a)$ integriraj skozi čas udarca. Interval zajame vso maso sunka.",
+          "m[y'(a+\\varepsilon)-y'(a-\\varepsilon)]+k\\int_{a-\\varepsilon}^{a+\\varepsilon}y(t)\\,dt=J"
+        ],
+        [
+          "Interval skrči proti trenutku udarca. Če je odmik v bližini omejen z $M$, njegov integral izgine skupaj z dolžino intervala.",
+          "\\left|\\int_{a-\\varepsilon}^{a+\\varepsilon}y(t)\\,dt\\right|\\le 2\\varepsilon M\\xrightarrow{\\varepsilon\\to0^+}0"
+        ],
+        [
+          "Na robovih ostaneta hitrost tik po udarcu in tik pred njim. Njuna razlika je sunek na enoto mase.",
+          "m[y'(a^+)-y'(a^-)]+0=J"
         ],
         [
           "V prostoru transformirank čas udarca določi zamik. Inverz brez faktorja zamika da odziv na udarec ob času nič.",

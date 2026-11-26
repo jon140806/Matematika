@@ -25,20 +25,28 @@
           "q=(x-2)/3,\\qquad b_n=q^n/n,\\quad b_{n+1}=q^{n+1}/(n+1)"
         ],
         [
-          "Pri neničelnem $q$ pokrajšaj potence. Limita manjša od 1 da absolutno konvergenco, večja od 1 divergenco.",
-          "|b_{n+1}/b_n|=|q|n/(n+1)\\to|q|"
+          "Pri neničelnem $q$ pokrajšaj potence in deli števec in imenovalec z $n$.",
+          "\\left|\\frac{b_{n+1}}{b_n}\\right|=|q|\\frac{n}{n+1}=\\frac{|q|}{1+1/n}"
+        ],
+        [
+          "Izračunaj limito. Parameter $q$ je fiksen, $1/n$ pa teži k nič.",
+          "L=\\lim_{n\\to\\infty}\\frac{|q|}{1+1/n}=\\frac{|q|}{1+0}=|q|"
         ],
         [
           "Reši neenačbo in odčitaj razdaljo od središča do roba. Središče samo je vključeno.",
           "|x-2|<3\\ \\Longleftrightarrow\\ -1<x<5,\\qquad R=3"
         ],
         [
-          "Na levem robu dobiš alternirajočo vrsto. Velikosti členov padajo proti nič, zato konvergira po Leibnizovem kriteriju.",
-          "x=-1:\\quad q=-1,\\qquad \\sum_{n=1}^{\\infty}(-1)^n/n"
+          "Na levem robu so predznaki izmenični. Za velikosti preveri oba pogoja Leibnizovega kriterija.",
+          "q=-1:\\quad |b_{n+1}|=\\frac1{n+1}<\\frac1n,\\qquad \\lim_{n\\to\\infty}|b_n|=\\lim_{n\\to\\infty}\\frac1n=0"
         ],
         [
-          "Na desnem robu dobiš divergentno harmonično vrsto. Zato vključiš samo levi rob.",
-          "x=5:\\quad q=1,\\qquad \\sum_{n=1}^{\\infty}1/n=\\infty,\\qquad x\\in[-1,5)"
+          "Na desnem robu so vsi členi pozitivni. Ker je $1/t$ padajoča, pravokotniki višine $1/n$ pokrijejo površino pod njo.",
+          "q=1:\\quad S_N=\\sum_{n=1}^N\\frac1n\\ \\ge\\ \\int_1^{N+1}\\frac{dt}{t}=\\ln(N+1)-\\ln1"
+        ],
+        [
+          "Izračunaj limito spodnje meje. Desni rob odpade, levi ostane.",
+          "\\lim_{N\\to\\infty}\\ln(N+1)=+\\infty\\ \\Longrightarrow\\ S_N\\to+\\infty,\\qquad x\\in[-1,5)"
         ]
       ],
       "quiz": [
@@ -69,8 +77,12 @@
       ],
       "worked": [
         [
-          "Začni z geometrijsko vrsto ter njenim območjem veljavnosti.",
-          "G(x)=\\sum_{n=0}^{\\infty}x^n=(1-x)^{-1},\\qquad |x|<1"
+          "Začni s končno geometrijsko vsoto. Ko odšteješ njen premik za eno potenco, ostaneta prvi in zadnji člen.",
+          "(1-x)S_N=1-x^{N+1},\\qquad S_N=\\frac{1-x^{N+1}}{1-x}"
+        ],
+        [
+          "Za $|x|<1$ množenje z $|x|$ pri vsakem koraku zmanjša velikost potence. Vstavi njeno limito v delno vsoto.",
+          "\\lim_{N\\to\\infty}|x|^{N+1}=0,\\qquad G(x)=\\lim_{N\\to\\infty}S_N=\\frac{1-0}{1-x}"
         ],
         [
           "Odvajaj vsako potenco. Na desni uporabi verižno pravilo.",
@@ -113,12 +125,16 @@
       ],
       "worked": [
         [
-          "V geometrijsko vsoto vstavi $-t^2$ in razpiši prve člene.",
-          "1-t^2+t^4-\\cdots=\\frac1{1+t^2},\\qquad |t|<1"
+          "V končno geometrijsko vsoto vstavi $-t^2$.",
+          "S_N(t)=\\sum_{n=0}^N(-t^2)^n=\\frac{1-(-t^2)^{N+1}}{1+t^2}"
         ],
         [
-          "Na intervalu od 0 do 1/2 člene omeji konvergentna geometrijska vrsta. To upraviči integriranje členoma.",
-          "|(-t^2)^n|\\le(1/4)^n,\\qquad \\sum_{n=0}^{\\infty}(1/4)^n=4/3"
+          "Na intervalu od 0 do 1/2 ima ostanek eno samo zgornjo mejo. Njena osnova je manjša od 1, zato je limita nič.",
+          "0\\le\\left|S_N(t)-\\frac1{1+t^2}\\right|\\le (1/4)^{N+1},\\qquad \\lim_{N\\to\\infty}(1/4)^{N+1}=0"
+        ],
+        [
+          "Ocena je neodvisna od $t$. Tudi napaka pod integralom zato teži k nič in smemo integrirati členoma.",
+          "\\left|\\int_0^x S_N(t)\\,dt-\\int_0^x\\frac{dt}{1+t^2}\\right|\\le x(1/4)^{N+1}\\longrightarrow0\\quad(0\\le x\\le1/2)"
         ],
         [
           "Integriraj posamezni člen in vstavi obe meji. S tem nastane lihi imenovalec.",
@@ -161,8 +177,12 @@
           "(1-x)x^n=x^n-x^{n+1},\\qquad S_N=1-x^{N+1}"
         ],
         [
-          "Pri vsakem fiksnem $x<1$ potence težijo k nič, zato poznaš vsoto in rep.",
-          "S(x)=1,\\qquad R_N(x)=S(x)-S_N(x)=x^{N+1}"
+          "Izračunaj točkovno limito. Za fiksen $0<x<1$ je $\\ln x<0$, zato eksponent teži k negativni neskončnosti. Pri $x=0$ je potenca že nič.",
+          "\\lim_{N\\to\\infty}x^{N+1}=\\lim_{N\\to\\infty}e^{(N+1)\\ln x}=0\\qquad(0<x<1)"
+        ],
+        [
+          "Vstavi limito v končno vsoto in odštej približek.",
+          "S(x)=1-0=1,\\qquad R_N(x)=1-(1-x^{N+1})=x^{N+1}"
         ],
         [
           "Izberi točko, pri kateri je napaka enaka polovici. Ta točka leži na intervalu pri vsakem $N$.",
@@ -201,8 +221,12 @@
       ],
       "worked": [
         [
-          "Od vsote odštej prvih $N+1$ členov in izpostavi prvo izpuščeno potenco.",
-          "R_N=x^{N+1}(1+x+x^2+\\cdots)=\\frac{x^{N+1}}{1-x}"
+          "Rep najprej prekini pri indeksu $m>N$. Izpostavi prvo izpuščeno potenco in uporabi končno geometrijsko vsoto.",
+          "\\sum_{n=N+1}^m x^n=x^{N+1}\\frac{1-x^{m-N}}{1-x}"
+        ],
+        [
+          "Drži $N$ pri miru in pošlji $m$ v neskončnost. Pri $0\\le x\\le1/2$ je visoka potenca omejena z geometrijskim zaporedjem, ki pada proti nič.",
+          "0\\le x^{m-N}\\le (1/2)^{m-N}\\to0,\\qquad R_N(x)=\\lim_{m\\to\\infty}\\sum_{n=N+1}^m x^n=\\frac{x^{N+1}}{1-x}"
         ],
         [
           "Vsaka potenca na tem intervalu z $x$ narašča. Največji rep dobiš pri $1/2$.",
@@ -301,8 +325,12 @@
           "r=2,-2,\\qquad y=Ax^2+Bx^{-2}"
         ],
         [
-          "Drugi člen po velikosti raste brez meje, če je $B$ neničeln. Omejenost določi $B$, vrednost pri 1 določi $A$.",
-          "B=0,\\quad y(1)=A\\cdot1^2=3\\ \\Longrightarrow\\ y=3x^2"
+          "Preveri vsako potenco pri približevanju ničli z desne. Prva izgine. Pri drugi deliš ena s pozitivnim številom, ki postaja poljubno majhno.",
+          "\\lim_{x\\to0^+}x^2=0,\\qquad \\lim_{x\\to0^+}x^{-2}=\\lim_{x\\to0^+}\\frac1{x^2}=+\\infty"
+        ],
+        [
+          "Za omejeno rešitev mora utež druge potence izginiti. Nato v prvi člen vstavi začetno vrednost pri 1.",
+          "B=0,\\qquad y(1)=A\\cdot1^2=3\\quad\\Longrightarrow\\quad y(x)=3x^2"
         ]
       ],
       "quiz": [
@@ -454,8 +482,12 @@
           "\\frac{1}{uv}=\\frac{A}{u}+\\frac{B}{v}\\ \\Longrightarrow\\ 1=Av+Bu"
         ],
         [
-          "V vsakem delu izberi novo potenco, ki ob odvajanju odstrani imenovalec. Po integriranju določi konstanto iz prvega člena vrste.",
-          "\\frac{d}{dx}\\frac{x^k}{k}=x^{k-1},\\qquad \\sum_{k=1}^{\\infty}\\frac{x^k}{k}=-\\ln(1-x)"
+          "Poišči vrsto, katere odvod odstrani imenovalec. Geometrijsko delno vsoto zapiši s končnim številom členov.",
+          "\\frac{d}{dx}\\frac{x^k}{k}=x^{k-1},\\qquad \\sum_{k=1}^{N}x^{k-1}=\\frac{1-x^N}{1-x}"
+        ],
+        [
+          "Na vsakem notranjem intervalu $|x|\\le r<1$ zadnja potenca enakomerno izgine. Vsoto nato integriraj od nič do $x$.",
+          "|x|^N\\le r^N\\to0,\\qquad \\sum_{k=1}^{\\infty}\\frac{x^k}{k}=\\int_0^x\\frac{du}{1-u}=[-\\ln(1-u)]_0^x=-\\ln(1-x)"
         ]
       ]
     },
@@ -467,8 +499,12 @@
           "|f_n(x)|\\le M_n\\qquad (x\\in I)"
         ],
         [
-          "Preveri konvergenco številske vrste majorant. Njen rep omejuje napako po vsem intervalu.",
-          "\\sup_{x\\in I}|S(x)-S_N(x)|\\le\\sum_{n>N} M_n\\longrightarrow0"
+          "Naj bo $A_N$ delna vsota majorant. Ko konvergira k končnemu $A$, je njen neskončni rep razlika med celoto in delno vsoto.",
+          "\\sum_{n>N}M_n=\\lim_{m\\to\\infty}(A_m-A_N)=A-A_N"
+        ],
+        [
+          "Pošlji še $N$ v neskončnost. Ta meja velja za vsak $x$.",
+          "\\sup_{x\\in I}|S(x)-S_N(x)|\\le A-A_N,\\qquad \\lim_{N\\to\\infty}(A-A_N)=A-A=0"
         ]
       ]
     },
@@ -480,8 +516,12 @@
           "b_n=c_n(x-a)^n,\\quad \\lim |b_{n+1}/b_n|<1"
         ],
         [
-          "Na obeh krajiščih vstavljaj v prvotno vrsto. Alternirajoča in pozitivna harmonična vrsta se vedeta različno.",
-          "\\sum_{n=1}^{\\infty}(-1)^n/n=-\\ln2,\\qquad \\sum_{n=1}^{\\infty}1/n=\\infty"
+          "Pri kvocientu oblike $n/(n+1)$ deli z $n$. Tako dobiš mejo uporabnega intervala.",
+          "\\lim_{n\\to\\infty}\\frac{n}{n+1}=\\lim_{n\\to\\infty}\\frac1{1+1/n}=1"
+        ],
+        [
+          "Pri kvocientu 1 preveri vsako krajišče v prvotni vrsti. Levi predznak se izmenjuje, pri desnem delne vsote rastejo vsaj kot logaritem.",
+          "\\lim_{n\\to\\infty}\\frac1n=0,\\qquad \\sum_{n=1}^N\\frac1n\\ge\\ln(N+1)\\to+\\infty"
         ]
       ]
     },

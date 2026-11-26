@@ -22,7 +22,17 @@
         "Izrek o zamiku",
         "Stopnica prestavi spodnjo mejo Laplaceovega integrala na $a$. Po zamenjavi $u=t-a$ se iz eksponenta izloči konstantni faktor.",
         "\\int_a^\\infty e^{-st}g(t-a)dt=e^{-as}\\int_0^\\infty e^{-su}g(u)du=e^{-as}G(s)",
-        "Krivulja v spremenljivki $s$ prikazuje faktor zamika."
+        "Krivulja v spremenljivki $s$ prikazuje faktor zamika.",
+        [
+          [
+            "S časom $T>a$ odreži integral. Po zamenjavi $u=t-a$ sta novi meji $0$ in $T-a$.",
+            "\\int_a^T e^{-st}g(t-a)\\,dt=e^{-as}\\int_0^{T-a}e^{-su}g(u)\\,du"
+          ],
+          [
+            "Ker je $a$ stalen, tudi $T-a$ raste brez meje. Limita preostalega integrala je po definiciji $G(s)$.",
+            "\\lim_{T\\to\\infty}e^{-as}\\int_0^{T-a}e^{-su}g(u)\\,du=e^{-as}G(s)"
+          ]
+        ]
       ]
     ]
   },
@@ -49,7 +59,17 @@
         "Produkt transformirank",
         "V transformaciji konvolucije preuredimo dvojni integral. Pri zamenjavi $t=u+v$ trikotno območje preide v prvi kvadrant, eksponent pa se razcepi na produkt.",
         "\\mathcal L(f*g)(s)=\\int_0^\\infty\\int_0^\\infty e^{-su}f(u)e^{-sv}g(v)\\,dv\\,du=F(s)G(s)",
-        "Krivuljo konvolucije sestavljajo ploščine za vse čase."
+        "Krivuljo konvolucije sestavljajo ploščine za vse čase.",
+        [
+          [
+            "Pri končnem opazovanju $0\\le t\\le T$ zamenjaj $t=u+v$. Območje je trikotnik $u,v\\ge0$, $u+v\\le T$.",
+            "K_T(s)=\\int_0^T e^{-su}f(u)\\int_0^{T-u} e^{-sv}g(v)\\,dv\\,du"
+          ],
+          [
+            "Ko $T$ raste, trikotniki zapolnijo prvi kvadrant. Absolutna integrabilnost dovoljuje prehod k limiti in ločitev obeh faktorjev.",
+            "\\lim_{T\\to\\infty}K_T(s)=\\left(\\int_0^\\infty e^{-su}f(u)\\,du\\right)\\left(\\int_0^\\infty e^{-sv}g(v)\\,dv\\right)"
+          ]
+        ]
       ]
     ]
   },
@@ -70,13 +90,37 @@
         "Izbirna lastnost",
         "Integral uteženega približka je povprečje uteži na kratkem intervalu. Zaradi zveznosti povprečje v limiti teži k vrednosti uteži pri $a$.",
         "\\int_0^\\infty p_h(t)\\varphi(t)\\,dt=\\frac1h\\int_a^{a+h}\\varphi(t)\\,dt\\xrightarrow{h\\to0^+}\\varphi(a)",
-        "Uteženi pravokotnik ponazarja povprečenje Laplaceovega jedra."
+        "Uteženi pravokotnik ponazarja povprečenje Laplaceovega jedra.",
+        [
+          [
+            "Za zvezno realno utež izrek o povprečni vrednosti da točko $\\xi_h$ znotraj pravokotnika.",
+            "\\frac1h\\int_a^{a+h}\\varphi(t)\\,dt=\\varphi(\\xi_h),\\qquad a\\le\\xi_h\\le a+h"
+          ],
+          [
+            "Ko $h$ pada proti nič, se tudi izbrana točka približa $a$. Zveznost nato določi limito povprečja.",
+            "|\\xi_h-a|\\le h\\ \\Longrightarrow\\ \\xi_h\\to a\\ \\Longrightarrow\\ \\lim_{h\\to0^+}\\varphi(\\xi_h)=\\varphi(a)"
+          ]
+        ]
       ],
       [
         "Laplaceova transformacija impulza",
         "V izbirni lastnosti je Laplaceova utež $\\varphi(t)=e^{-st}$. Zato transformiranka impulza vsebuje le trenutek, ob katerem je zbrana masa.",
         "\\mathcal L(\\delta(t-a))(s)=\\int_0^\\infty e^{-st}\\delta(t-a)\\,dt=e^{-as}",
-        "Pri manjšanju širine se utežena ploščina približuje označeni limiti."
+        "Pri manjšanju širine se utežena ploščina približuje označeni limiti.",
+        [
+          [
+            "Za $s\\ne0$ vstavi obe meji pravokotnika v primitivno funkcijo eksponenta.",
+            "\\frac1h\\int_a^{a+h}e^{-st}\\,dt=\\frac{e^{-as}-e^{-s(a+h)}}{sh}=e^{-as}\\frac{1-e^{-sh}}{sh}"
+          ],
+          [
+            "Nastavi $z=sh$. Količnik je nasprotna vrednost diferenčnega količnika za $e^{-z}$ pri nič, zato teži k 1.",
+            "\\lim_{z\\to0}\\frac{1-e^{-z}}z=-(e^{-z})'\\big|_{z=0}=1,\\qquad \\lim_{h\\to0^+}\\mathcal L(p_h)(s)=e^{-as}"
+          ],
+          [
+            "Pri $s=0$ je utež povsod ena, zato integral za vsako širino meri kar maso.",
+            "\\frac1h\\int_a^{a+h}1\\,dt=1=e^{-a\\cdot0}"
+          ]
+        ]
       ]
     ]
   },
@@ -91,7 +135,17 @@
         "Velikost zaporednih členov",
         "V količniku sosednjih členov ostane razdalja do središča kot faktor. Če je limita količnika manjša od ena, primerjava z geometrijsko vrsto da absolutno konvergenco.",
         "\\left|\\frac{a_{n+1}(x-c)^{n+1}}{a_n(x-c)^n}\\right|=\\left|\\frac{a_{n+1}}{a_n}\\right||x-c| \\qquad (x\\ne c)",
-        "Graf ponazarja vrsto $\\sum_{n=1}^{\\infty}x^n/n$. Pri $x\\ne0$ kvocienti zaporednih členov po absolutni vrednosti težijo k vodoravni črti $|x|$. Pri $x=0$ so vsi členi nič."
+        "Graf ponazarja vrsto $\\sum_{n=1}^{\\infty}x^n/n$. Pri $x\\ne0$ kvocienti zaporednih členov po absolutni vrednosti težijo k vodoravni črti $|x|$. Pri $x=0$ so vsi členi nič.",
+        [
+          [
+            "Če je limita količnikov koeficientov $L$ končna, faktor razdalje pri prehodu v limito ostane nespremenjen.",
+            "L=\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|\\quad\\Longrightarrow\\quad \\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}(x-c)^{n+1}}{a_n(x-c)^n}\\right|=L|x-c|"
+          ],
+          [
+            "Za $0<L<\\infty$ rešimo neenačbo kvocientnega kriterija. Enakost določi krajišči, ki ju preverimo posebej.",
+            "L|x-c|<1\\quad\\Longleftrightarrow\\quad |x-c|<1/L,\\qquad R=1/L"
+          ]
+        ]
       ],
       [
         "Obnašanje na robu",
@@ -124,13 +178,33 @@
         "Prehod v neskončno vsoto",
         "Na $|x|\\leq r<1$ število $r^{N+1}$ obvladuje zadnjo potenco za vse $x$ hkrati. Tako nastane enakomerna konvergenca k geometrijski vsoti.",
         "\\left|\\frac1{1-x}-S_N(x)\\right|=\\left|\\frac{x^{N+1}}{1-x}\\right|\\leq\\frac{r^{N+1}}{1-r}\\longrightarrow0",
-        "Krivulji prikazujeta delno vsoto in njeno limitno funkcijo."
+        "Krivulji prikazujeta delno vsoto in njeno limitno funkcijo.",
+        [
+          [
+            "Pri $0<r<1$ je logaritem negativen. Ko $N$ raste, gre zato eksponent proti negativni neskončnosti. Pri $r=0$ je potenca že nič.",
+            "r^{N+1}=e^{(N+1)\\ln r}\\longrightarrow0"
+          ],
+          [
+            "Delno vsoto zapišemo z znano limito zadnje potence. Imenovalec ostane pri fiksnem $x$ nespremenjen.",
+            "\\lim_{N\\to\\infty}S_N(x)=\\lim_{N\\to\\infty}\\frac{1-x^{N+1}}{1-x}=\\frac{1-0}{1-x}"
+          ]
+        ]
       ],
       [
         "Členoma integrirana identiteta",
         "Pri integriranju člena $u^n$ nastane imenovalec $n+1$. Enakomerna konvergenca upraviči zamenjavo vsote in integrala med nič in katerimkoli notranjim $x$.",
         "-\\ln(1-x)=\\int_0^x\\frac{du}{1-u}=\\sum_{n=0}^\\infty\\int_0^x u^n\\,du=\\sum_{n=1}^\\infty\\frac{x^n}{n}",
-        "Po integriranju se delne vsote približujejo logaritemski krivulji."
+        "Po integriranju se delne vsote približujejo logaritemski krivulji.",
+        [
+          [
+            "Najprej integriramo samo končno vsoto, zato potrebujemo le linearnost integrala.",
+            "\\int_0^x S_N(u)\\,du=\\sum_{n=0}^N\\left[\\frac{u^{n+1}}{n+1}\\right]_0^x"
+          ],
+          [
+            "Na $|x|\\le r<1$ je napaka integrala največ dolžina intervala krat največja napaka vsote. Ta ocena dovoli prehod k limiti.",
+            "\\left|\\int_0^x \\left(S_N(u)-\\frac1{1-u}\\right)du\\right|\\le |x|\\frac{r^{N+1}}{1-r}\\longrightarrow0"
+          ]
+        ]
       ]
     ]
   },
@@ -151,7 +225,17 @@
         "Ocena preostanka",
         "Trikotniška neenakost omeji absolutno vrednost vsote izpuščenih členov z vsoto njihovih velikosti. Rep konvergentne majorantne vrste gre proti nič.",
         "\\sup_{x\\in I}|S(x)-S_N(x)|\\leq\\sum_{n=N+1}^\\infty M_n\\longrightarrow0",
-        "Meja repa hkrati pokrije napako v vsaki točki."
+        "Meja repa hkrati pokrije napako v vsaki točki.",
+        [
+          [
+            "Naj bosta $A_N$ delna vsota majorant in $A$ njena končna limita. Pri fiksnem $N$ najprej pošljemo zgornji indeks $m$ v neskončnost.",
+            "\\sum_{n=N+1}^\\infty M_n=\\lim_{m\\to\\infty}(A_m-A_N)=A-A_N"
+          ],
+          [
+            "Nato pošljemo še spodnji indeks v neskončnost. Ostaneta dve enaki vrednosti.",
+            "\\lim_{N\\to\\infty}\\sum_{n>N} M_n=\\lim_{N\\to\\infty}(A-A_N)=A-A=0"
+          ]
+        ]
       ],
       [
         "Zakaj vsota obstaja enakomerno",
@@ -199,7 +283,17 @@
         "Frobeniusov nastavek",
         "Prosta začetna potenca dopusti tudi rešitev, ki nima običajnega Taylorjevega razvoja. Vodilno obnašanje določa prvi neničelni člen.",
         "y(x)=x^r\\sum_{k=0}^\\infty a_kx^k,\\quad a_0\\ne0,\\qquad y(x)\\sim a_0x^r\\quad(x\\to0^+)",
-        "Vodilna potenca prikazane regularne veje opiše njen začetek."
+        "Vodilna potenca prikazane regularne veje opiše njen začetek.",
+        [
+          [
+            "Po deljenju z začetno potenco ostane potenčna vrsta. Njena vsota je pri ničli zvezna, zato lahko vstavimo nič.",
+            "\\lim_{x\\to0^+}\\frac{y(x)}{x^r}=\\lim_{x\\to0^+}(a_0+a_1x+a_2x^2+\\cdots)=a_0"
+          ],
+          [
+            "Prvi koeficient je neničeln. Količnik z vodilnim členom ima zato limito ena, kar pomeni znak $\\sim$.",
+            "\\lim_{x\\to0^+}\\frac{y(x)}{a_0x^r}=\\frac{a_0}{a_0}=1"
+          ]
+        ]
       ],
       [
         "Indicialna enačba",
@@ -238,7 +332,13 @@
         "Ortogonalnost Legendrovih polinomov",
         "Legendrovi enačbi za $P_n$ in $P_m$ zapišemo v obliki z odvodom produkta, ju navzkrižno pomnožimo ter odštejemo. Po integriranju robni člen na obeh krajiščih izgine, ker vsebuje faktor $1-x^2$.",
         "[m(m+1)-n(n+1)]\\int_{-1}^1 P_mP_n\\,dx=\\left[(1-x^2)(P_n'P_m-P_m'P_n)\\right]_{-1}^1=0",
-        "Pri različnih stopnjah je faktor pred integralom neničeln, zato se tekoči integral na desnem robu vrne na nič."
+        "Pri različnih stopnjah je faktor pred integralom neničeln, zato se tekoči integral na desnem robu vrne na nič.",
+        [
+          [
+            "Oba polinoma in njuna odvoda sta na krajiščih končna. V vsakem robnem produktu se zato pojavi nič krat končno število.",
+            "1-1^2=0,\\quad 1-(-1)^2=0\\quad\\Longrightarrow\\quad [(1-x^2)(P_n'P_m-P_m'P_n)]_{-1}^1=0-0"
+          ]
+        ]
       ]
     ]
   },

@@ -25,8 +25,16 @@
       "1\\le a\\le2,\\quad x\\ge0\\quad\\Longrightarrow\\quad e^{-ax}\\le e^{-x}"
     ],
     [
-      "Oceni rep od b naprej. Za napako pod 0,01 izberi na primer b vsaj 5, ne glede na a.",
-      "\\int_b^\\infty e^{-ax}dx\\le\\int_b^\\infty e^{-x}dx=e^{-b}\\le e^{-5}<0{,}01\\quad(b\\ge5)"
+      "Začasno ustavi rep pri $T>b$ in ovrednoti obe meji.",
+      "\\int_b^T e^{-x}dx=[-e^{-x}]_b^T=e^{-b}-e^{-T}"
+    ],
+    [
+      "Pošlji $T$ v neskončnost. Faktor $1/e^T$ teži k nič, pri izbranem $b$ pa $e^{-b}$ ostane.",
+      "\\lim_{T\\to\\infty}(e^{-b}-e^{-T})=e^{-b},\\qquad \\int_b^\\infty e^{-ax}dx\\le e^{-b}"
+    ],
+    [
+      "Za napako pod 0,01 mora biti $b$ večji od $\\ln100$. Ista izbira zadošča za vse prikazane parametre.",
+      "e^{-b}<0{,}01\\ \\Longleftrightarrow\\ b>\\ln100\\approx4{,}61,\\qquad b=5"
     ]
   ],
   [
@@ -35,8 +43,12 @@
       "\\partial_a[e^{-x^2}\\cos(ax)]=-xe^{-x^2}\\sin(ax)"
     ],
     [
-      "Sinus po velikosti omeji z 1. Preveri, da ima dobljena ovojnica končen integral.",
-      "g(x)=xe^{-x^2},\\quad\\int_0^\\infty g(x)dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^\\infty=\\tfrac12"
+      "Ker je velikost sinusa največ 1, zadošča ovojnica $g(x)=xe^{-x^2}$. Integriraj jo do končnega $R$ z zamenjavo $u=x^2$.",
+      "\\int_0^R xe^{-x^2}dx=\\frac12\\int_0^{R^2}e^{-u}du=\\frac{1-e^{-R^2}}2"
+    ],
+    [
+      "Povečuj mesto reza. Eksponentni člen je obratna vrednost količine, ki raste brez meje, zato ima ovojnica končno ploščino.",
+      "\\lim_{R\\to\\infty}e^{-R^2}=0,\\qquad \\int_0^\\infty g(x)dx=\\frac{1-0}2=\\frac12"
     ]
   ],
   [
@@ -45,16 +57,32 @@
       "I'(a)=-\\int_0^\\infty xe^{-x^2}\\sin(ax)dx=\\tfrac12\\int_0^\\infty(e^{-x^2})'\\sin(ax)dx"
     ],
     [
-      "Odvajaj sinus po x. Robni člen izgine pri ničli zaradi sinusa in v neskončnosti zaradi dušenja.",
-      "I'(a)=\\left[\\tfrac12e^{-x^2}\\sin(ax)\\right]_0^\\infty-\\tfrac a2\\int_0^\\infty e^{-x^2}\\cos(ax)dx=-\\tfrac a2 I(a)"
+      "Integriraj po delih do končnega $R$. Pri $x=0$ je sinus nič, zato ostane le zgornji robni člen.",
+      "\\frac12\\int_0^R(e^{-x^2})'\\sin(ax)dx=\\frac12 e^{-R^2}\\sin(aR)-\\frac a2\\int_0^R e^{-x^2}\\cos(ax)dx"
+    ],
+    [
+      "Ko $R$ raste, omeji velikost robnega člena z ovojnico. Ta gre k nič za vsak $a$.",
+      "\\left|\\tfrac12e^{-R^2}\\sin(aR)\\right|\\le\\frac1{2e^{R^2}}\\to0,\\qquad I'(a)=-\\tfrac a2 I(a)"
     ],
     [
       "Za vrnitev od $I'$ k $I$ pomnoži enačbo z $e^{a^2/4}$. Leva stran je odvod produkta. Ker je ta odvod nič, je produkt konstanta.",
       "I'+\\tfrac a2 I=0\\ \\Longrightarrow\\ (e^{a^2/4}I)'=0\\ \\Longrightarrow\\ e^{a^2/4}I(a)=C"
     ],
     [
-      "V prvotni integral vstavi nič. Kosinus je ena, ostane znani Gaussov integral. S tem določiš konstanto.",
-      "C=e^0 I(0)=\\int_0^\\infty e^{-x^2}dx=\\frac{\\sqrt\\pi}{2},\\qquad I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
+      "Pri frekvenci nič je kosinus ena. Kvadrat te ploščine dobimo z integriranjem $e^{-(x^2+y^2)}$ po prvi četrtini. Četrtino prekrijemo z vedno večjimi četrtinskimi diski.",
+      "I(0)^2=\\lim_{R\\to\\infty}\\int_0^{\\pi/2}\\int_0^R e^{-r^2}r\\,dr\\,d\\theta"
+    ],
+    [
+      "Izračunaj integral na disku s končnim polmerom. Kot prispeva $\\pi/2$, menjava $u=r^2$ pa faktor $1/2$.",
+      "\\int_0^{\\pi/2}\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac{\\pi}{4}(1-e^{-R^2})"
+    ],
+    [
+      "Pošlji polmer v neskončnost. Ker je ploščina pozitivna, iz kvadrata vzemi pozitivni koren.",
+      "e^{-R^2}\\to0,\\qquad I(0)^2=\\frac{\\pi}{4},\\qquad C=I(0)=\\frac{\\sqrt\\pi}{2}"
+    ],
+    [
+      "Določeno konstanto vstavi nazaj v rešitev.",
+      "I(a)=\\frac{\\sqrt\\pi}{2}e^{-a^2/4}"
     ]
   ],
   [
@@ -63,11 +91,31 @@
       "t^2=t^{p-1}\\quad\\Longrightarrow\\quad p-1=2\\quad\\Longrightarrow\\quad p=3"
     ],
     [
+      "Rekurzija se ustavi pri $\\Gamma(1)$. Integral do $R$ izračunaš neposredno.",
+      "\\int_0^R e^{-t}dt=1-e^{-R}"
+    ],
+    [
+      "Pusti, da $R$ raste. Ker je $e^{-R}=1/e^R$, dobiš izhodiščno vrednost.",
+      "\\Gamma(1)=\\lim_{R\\to\\infty}(1-e^{-R})=1"
+    ],
+    [
       "Vstavi argument v gama in z rekurzijo spusti do znane vrednosti.",
       "\\int_0^\\infty t^2e^{-t}dt=\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
     ]
   ],
   [
+    [
+      "Pred menjavo odreži integral na obeh koncih. Pri $t=u^2$ postaneta meji $\\varepsilon$ in $R$. Faktor $2u$ iz diferenciala pokrajša $1/u$.",
+      "\\int_{\\varepsilon^2}^{R^2}t^{-1/2}e^{-t}dt=2\\int_\\varepsilon^R e^{-u^2}du"
+    ],
+    [
+      "Najprej premakni spodnjo mejo proti nič. Izpuščeni del na desni je dolg $\\varepsilon$, njegova višina pa je največ 1.",
+      "0\\le2\\int_0^\\varepsilon e^{-u^2}du\\le2\\varepsilon\\to0"
+    ],
+    [
+      "Ko $R$ raste, na desni dobiš dvakratno ploščino Gaussovega polzvona. Njeno izpeljavo najdeš v prvem dnevu.",
+      "\\Gamma(1/2)=2\\lim_{R\\to\\infty}\\int_0^R e^{-u^2}du=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+    ],
     [
       "Za polovični argument uporabi rekurzijo in nato znano izhodišče.",
       "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\tfrac{\\sqrt\\pi}{2}"
@@ -227,8 +275,16 @@
       "\\mathcal L(\\delta(t-3))=\\int_0^\\infty e^{-st}\\delta(t-3)dt"
     ],
     [
-      "Impulz vzame vrednost zvezne uteži v točki udarca.",
-      "\\int_0^\\infty e^{-st}\\delta(t-3)dt=\\left.e^{-st}\\right|_{t=3}=e^{-3s}"
+      "Impulz ponazori s pravokotnikom širine $h$ in višine $1/h$ na intervalu od 3 do $3+h$. Integral postane povprečje uteži na tem intervalu.",
+      "A_h=\\frac1h\\int_3^{3+h}e^{-st}dt"
+    ],
+    [
+      "Za $s>0$ utež pada. Njeno povprečje je med najmanjšo in največjo vrednostjo na pravokotniku.",
+      "e^{-s(3+h)}\\le A_h\\le e^{-3s}"
+    ],
+    [
+      "Ko širino zmanjšuješ proti nič, obe meji težita k isti vrednosti. Zato jo dobi tudi limita uteženih ploščin.",
+      "\\mathcal L(\\delta(t-3))=\\lim_{h\\to0^+}A_h=e^{-3s}"
     ]
   ],
   [
@@ -237,14 +293,22 @@
       "\\left|\\frac{x^{n+1}}{n+1}\\frac{n}{x^n}\\right|=|x|\\frac{n}{n+1}"
     ],
     [
-      "Deli števec in imenovalec z n. Za konvergenco po kvocientnem kriteriju zahtevaj limito pod 1.",
-      "\\lim_{n\\to\\infty}\\frac{|x|}{1+1/n}=|x|<1\\quad\\Longleftrightarrow\\quad-1<x<1"
+      "Deli števec in imenovalec z $n$. Pri izbranem $x$ se spreminja samo $1/n$.",
+      "\\lim_{n\\to\\infty}\\frac{|x|}{1+1/n}=\\frac{|x|}{1+0}=|x|"
+    ],
+    [
+      "Kvocientni kriterij da absolutno konvergenco v notranjosti. Pri nič so vsi členi nič, krajišči zahtevata ločen preizkus.",
+      "|x|<1\\quad\\Longleftrightarrow\\quad -1<x<1"
     ]
   ],
   [
     [
-      "Pri x = 1 prepoznaj harmonično vrsto; krajše skupine členov pokažejo divergenco.",
-      "\\sum_{n=1}^\\infty\\frac1n\\ge1+\\tfrac12+\\left(\\tfrac14+\\tfrac14\\right)+4\\cdot\\tfrac18+\\cdots"
+      "Pri $x=1$ razdeli prve člene v skupine do indeksov 2, 4, 8 in naprej. V vsaki naslednji skupini je vsaj polovica enote.",
+      "S_{2^m}\\ge1+\\sum_{j=1}^m2^{j-1}\\frac{1}{2^j}=1+\\frac m2"
+    ],
+    [
+      "Ko število skupin raste, raste spodnja meja brez omejitve. Ker so členi pozitivni, to velja tudi za celotno zaporedje delnih vsot.",
+      "\\lim_{m\\to\\infty}(1+m/2)=+\\infty\\quad\\Longrightarrow\\quad S_N\\to+\\infty"
     ],
     [
       "Pri x = −1 preveri oba pogoja za Leibnizov kriterij. Izmenični predznaki in vse manjše velikosti dajo konvergenco.",
@@ -257,14 +321,22 @@
       "\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le\\frac1{n^2}=M_n"
     ],
     [
-      "Veljavna majoranta je seštevna, ker je eksponent večji od 1. Zato je tudi rep prvotne vrste enakomerno majhen.",
-      "\\sup_x\\left|\\sum_{n>N}\\frac{\\sin(nx)}{n^2}\\right|\\le\\sum_{n>N}\\frac1{n^2}\\longrightarrow0"
+      "Padajoči $1/u^2$ na intervalu $[n-1,n]$ omeji člen $1/n^2$ od zgoraj. Seštej od $N+1$ do $M$.",
+      "\\sum_{n=N+1}^M\\frac1{n^2}\\le\\int_N^M\\frac{du}{u^2}=\\frac1N-\\frac1M"
+    ],
+    [
+      "Pri fiksnem $N$ pošlji $M$ v neskončnost. Nato povečuj še $N$. Tako ocena napake pade proti nič za vse $x$ hkrati.",
+      "\\sup_x\\left|\\sum_{n>N}\\frac{\\sin(nx)}{n^2}\\right|\\le\\lim_{M\\to\\infty}\\left(\\frac1N-\\frac1M\\right)=\\frac1N\\longrightarrow0"
     ]
   ],
   [
     [
-      "Na zaprtem intervalu od 0 do 1/2 omeji geometrijsko vrsto s konvergentno številsko vrsto, da smeš integrirati členoma.",
-      "0\\le u\\le\\tfrac12\\quad\\Longrightarrow\\quad |u^n|\\le (1/2)^n,\\qquad \\sum_{n=0}^\\infty(1/2)^n=2"
+      "Za vsak $u$ iz intervala omeji člene z istim geometrijskim zaporedjem. Najprej seštej končno število členov.",
+      "0\\le u\\le\\tfrac12\\ \\Longrightarrow\\ |u^n|\\le2^{-n},\\qquad \\sum_{n=0}^N2^{-n}=\\frac{1-2^{-(N+1)}}{1-1/2}"
+    ],
+    [
+      "Ko $N$ raste, potenca $2^{-(N+1)}$ izgine. Končna limita majorantne vrste zagotovi enakomerno konvergenco.",
+      "\\lim_{N\\to\\infty}\\sum_{n=0}^N2^{-n}=\\frac{1-0}{1-1/2}=2"
     ],
     [
       "Integriraj vsak člen posebej s potenčnim pravilom in vstavi meji.",
@@ -283,8 +355,12 @@
   ],
   [
     [
-      "Na intervalu od 0 do 0,8 z enako zgornjo mejo oceni vsak rep geometrijske vrste.",
-      "0\\le x\\le0{,}8\\quad\\Longrightarrow\\quad \\sum_{j=N+1}^\\infty x^j\\le\\frac{0{,}8^{N+1}}{1-0{,}8}"
+      "Na intervalu do 0,8 zamenjaj $x$ z njegovo največjo vrednostjo. Seštej ocenjene člene do končnega $M$.",
+      "\\sum_{j=N+1}^{M}x^j\\le0{,}8^{N+1}\\frac{1-0{,}8^{M-N}}{1-0{,}8}"
+    ],
+    [
+      "Pri fiksnem $N$ gre potenca s količnikom 0,8 proti nič, ko $M$ raste. Tako dobiš oceno celotnega repa.",
+      "\\lim_{M\\to\\infty}0{,}8^{M-N}=0,\\qquad \\sum_{j=N+1}^\\infty x^j\\le\\frac{0{,}8^{N+1}}{0{,}2}"
     ],
     [
       "Iz meje za rep izračunaj, kako velik mora biti $N$. Obe strani logaritmiraj. Ker je logaritem števila 0,8 negativen, se pri deljenju neenačaj obrne.",

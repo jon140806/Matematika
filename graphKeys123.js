@@ -21,11 +21,11 @@ const graphKeys123 = {
     curves: [['f = exp(−x²) cos(ax)'], ['∂ₐf · odvod integranda', '+x exp(−x²) · zgornja meja', '−x exp(−x²) · spodnja meja'], ['½ exp(−R²) · ocena repa']][k],
     marks: ['R'], areas: [['I_R(a) · integral do R'], ['rep majorante · prikazani del od R dalje'], []][k]
   }),
-  gauss: k => ({
-    x: 'x · položaj pod integralom', y: k === 0 ? 'f · višina integranda' : '∂ₐf in meji · višina',
-    curves: k === 0 ? ['f = exp(−x²) cos(ax)'] : ['∂ₐf · odvod integranda', '+x exp(−x²) · zgornja meja', '−x exp(−x²) · spodnja meja'],
-    marks: k === 0 ? [] : ['R'], areas: k === 0 ? ['I(a) · prikazani del integrala'] : ['rep majorante · prikazani del od R dalje']
-  }),
+  gauss: k => [
+    {x:'x · položaj',y:'višina pri a = 0',curves:['exp(−x²)'],marks:['R'],areas:['ploščina do R','vidni del repa']},
+    {x:'x · položaj',y:'odvod in meji',curves:['∂ₐf · odvod integranda','+x exp(−x²) · zgornja meja','−x exp(−x²) · spodnja meja'],marks:['R'],areas:['rep majorante · prikazani del od R dalje']},
+    {x:'x · položaj',y:'f · višina integranda',curves:['exp(−x²) cos(ax)'],marks:[],areas:['I(a) · prikazani del integrala']}
+  ][k],
   atan: k => ({
     x: 'x · položaj pod integralom', y: 'f in ∂ₜf · višina',
     curves: ['f(x,t) · integrand', '∂ₜf · odvod po parametru'], marks: ['t²'],

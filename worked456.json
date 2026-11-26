@@ -31,8 +31,12 @@
           "\\mathcal L\\{H(t-a)g(t-a)\\}=\\int_a^\\infty e^{-st}g(t-a)\\,dt"
         ],
         [
-          "Zamenjamo spremenljivko in obe meji.",
-          "t=u+a,\\quad dt=du,\\quad t=a\\Rightarrow u=0,\\quad t\\to\\infty\\Rightarrow u\\to\\infty"
+          "Odrežemo pri končnem času $T>a$ in zamenjamo obe meji.",
+          "u=t-a,\\quad t=a\\Rightarrow u=0,\\quad t=T\\Rightarrow u=T-a"
+        ],
+        [
+          "Pri naraščanju $T$ zgornja meja $T-a$ prav tako neomejeno narašča. Limita integrala v lokalnem času je $G(s)$.",
+          "\\lim_{T\\to\\infty}\\int_0^{T-a}e^{-su}g(u)\\,du=G(s)"
         ],
         [
           "Razcepimo eksponent in konstantni faktor izvlečemo pred integral.",
@@ -71,8 +75,12 @@
       ],
       [
         [
-          "V Laplaceov integral vstavimo definicijo konvolucije.",
-          "\\mathcal L(f*g)=\\int_0^\\infty\\int_0^t e^{-st}f(u)g(t-u)\\,du\\,dt"
+          "V delni Laplaceov integral do $T$ vstavimo definicijo konvolucije.",
+          "K_T=\\int_0^T\\int_0^t e^{-st}f(u)g(t-u)\\,du\\,dt"
+        ],
+        [
+          "Trikotnik $0\\le u\\le t\\le T$ se z večanjem $T$ širi do območja $0\\le u\\le t$. Absolutna konvergenca dovoljuje prehod na to območje.",
+          "\\mathcal L(f*g)=\\lim_{T\\to\\infty}K_T=\\int_0^\\infty\\int_0^t e^{-st}f(u)g(t-u)\\,du\\,dt"
         ],
         [
           "Pri absolutni konvergenci smemo zamenjati vrstni red. Za izbrani u se čas t začne pri u.",
@@ -145,8 +153,12 @@
       ],
       [
         [
-          "Vstavimo desni rob in prepoznamo divergentno harmonično vrsto.",
-          "x=1:\\quad \\sum_{n=1}^\\infty\\frac{1^n}{n}=\\sum_{n=1}^\\infty\\frac1n=\\infty"
+          "Vstavimo desni rob. Pozitivne delne vsote primerjamo s ploščino pod $1/t$.",
+          "x=1:\\quad S_N=\\sum_{n=1}^N\\frac1n\\ge\\int_1^{N+1}\\frac{dt}{t}=[\\ln t]_1^{N+1}=\\ln(N+1)"
+        ],
+        [
+          "Zgornja meja integracije raste brez omejitve. Tudi logaritem raste brez omejitve, zato delne vsote nimajo končne limite.",
+          "\\lim_{N\\to\\infty}\\ln(N+1)=+\\infty\\quad\\Longrightarrow\\quad \\lim_{N\\to\\infty}S_N=+\\infty"
         ],
         [
           "Na levem robu zapišemo prve člene in preverimo pogoj za alternirajočo vrsto.",
@@ -193,8 +205,12 @@
           "\\lim_{N\\to\\infty}S_N(x)=\\frac{1-0}{1-x}=\\frac1{1-x}"
         ],
         [
-          "Na zaprtem notranjem intervalu dobimo skupno oceno napake, kar dovoli integriranje členoma.",
-          "\\left|\\frac1{1-x}-S_N(x)\\right|=\\frac{|x|^{N+1}}{|1-x|}\\le\\frac{r^{N+1}}{1-r}\\to0\\quad(|x|\\le r<1)"
+          "Na zaprtem notranjem intervalu omejimo tako števec kot imenovalec napake.",
+          "|x|\\le r<1:\\quad\\left|\\frac1{1-x}-S_N(x)\\right|=\\frac{|x|^{N+1}}{|1-x|}\\le\\frac{r^{N+1}}{1-r}"
+        ],
+        [
+          "Ker je $1-r$ pozitivna stalnica in geometrijska potenca izgine, ista ocena teži k nič za vsak $x$ v intervalu.",
+          "\\lim_{N\\to\\infty}\\frac{r^{N+1}}{1-r}=\\frac{0}{1-r}=0"
         ]
       ],
       [
@@ -225,8 +241,12 @@
       ],
       [
         [
-          "Izpostavimo prvi člen repa in uporabimo geometrijsko vsoto.",
-          "\\sum_{n=N+1}^\\infty r^n=r^{N+1}(1+r+r^2+\\cdots)=\\frac{r^{N+1}}{1-r}"
+          "Najprej končamo rep pri $m>N$. Odštevanje premaknjene geometrijske vsote da končno identiteto.",
+          "\\sum_{n=N+1}^m r^n=\\frac{r^{N+1}-r^{m+1}}{1-r}"
+        ],
+        [
+          "Pri $0\\le r<1$ zadnja potenca teži k nič. Zato poznamo neskončni rep za vsak $N$.",
+          "\\sum_{n=N+1}^\\infty r^n=\\lim_{m\\to\\infty}\\frac{r^{N+1}-r^{m+1}}{1-r}=\\frac{r^{N+1}}{1-r}"
         ],
         [
           "Za napako pod 0,05 vstavimo r = 0,8. Po logaritmiranju delimo z negativnim številom, zato se smer neenačbe obrne.",
@@ -343,8 +363,12 @@
           "y(x)=C_1J_5(x)+C_2Y_5(x),\\qquad x>0"
         ],
         [
-          "Če dodamo pogoj omejenosti v središču, odstranimo singularno vejo.",
-          "|Y_5(x)|\\to\\infty,\\quad J_5(x)\\to0\\ (x\\to0^+)\\quad\\Rightarrow\\quad C_2=0"
+          "Za red 5 standardna vodilna člena pri ničli vsebujeta peto potenco in njeno recipročno vrednost.",
+          "J_5(x)\\sim\\frac{x^5}{2^5\\,5!},\\qquad Y_5(x)\\sim-\\frac{4!\\,2^5}{\\pi x^5}\\qquad(x\\to0^+)"
+        ],
+        [
+          "Izračunamo limiti. Potenca gre proti nič, deljenje s pozitivno potenco blizu ničle pa po velikosti raste brez omejitve.",
+          "\\lim_{x\\to0^+}J_5(x)=0,\\quad\\lim_{x\\to0^+}Y_5(x)=-\\infty\\quad\\Longrightarrow\\quad C_2=0\\ \\text{za omejeno rešitev}"
         ],
         [
           "Omejenost določi samo singularno vejo. Velikost regularne veje ostane prosta, dokler nimamo še podatka o njeni vrednosti ali naklonu.",
@@ -588,12 +612,16 @@
     ],
     "sum22": [
       [
-        "Za neničelni x izračunamo limito kvocienta zaporednih absolutnih členov; pri ničli so vsi členi nič.",
-        "\\left|\\frac{x^{n+1}}{(n+1)^2-1}\\frac{n^2-1}{x^n}\\right|=|x|\\frac{n^2-1}{n^2+2n}\\to |x|"
+        "Za neničelni $x$ pokrajšaj sosednja člena in deli števec in imenovalec z $n^2$.",
+        "\\left|\\frac{a_{n+1}}{a_n}\\right|=|x|\\frac{n^2-1}{n^2+2n}=|x|\\frac{1-1/n^2}{1+2/n}"
       ],
       [
-        "Kvocientni kriterij da polmer 1. Na robovih s primerjavo s kvadratno p-vrsto dobimo absolutno konvergenco.",
-        "x=\\pm1:\\quad\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac{n^2}{n^2-1}=1"
+        "Člena z $1/n$ in $1/n^2$ gresta proti nič. Kvocientni kriterij določi notranjost. V središču so vsi členi nič.",
+        "L=|x|\\frac{1-0}{1+0}=|x|,\\qquad L<1\\iff |x|<1"
+      ],
+      [
+        "Na obeh robovih primerjaj absolutno vrednost s seštevno vrsto $1/n^2$. Po deljenju z $n^2$ dobiš pozitivno končno limito.",
+        "\\lim_{n\\to\\infty}\\frac{1/(n^2-1)}{1/n^2}=\\lim_{n\\to\\infty}\\frac1{1-1/n^2}=\\frac1{1-0}=1"
       ],
       [
         "Zato sta vključeni obe krajišči, zunaj polmera pa vrsta divergira.",
@@ -628,12 +656,24 @@
         "S(x)=\\tfrac12\\left[(1/x-x)\\ln(1-x)+1+x/2\\right],\\quad 0<|x|<1"
       ],
       [
-        "Pri ničli uporabimo izvirno vsoto. Pri −1 se logaritemski člen v limiti izniči. Zveznost na zaprtem intervalu sledi iz majorante 1/(n²−1).",
-        "S(0)=0,\\qquad S(-1)=\\tfrac12[0\\cdot\\ln2+1-1/2]=\\tfrac14"
+        "Funkcijsko vrsto na celotnem zaprtem intervalu omejuje seštevna vrsta $\\sum_{n=2}^\\infty 1/(n^2-1)$. Po M-testu je vsota zvezna tudi na robovih. Pri ničli uporabi prvotno vrsto.",
+        "S(0)=\\sum_{n=2}^\\infty\\frac{0^n}{n^2-1}=0"
       ],
       [
-        "Pri x → 1 izločimo faktor 1−x. Produkt tega faktorja in njegovega logaritma teži k nič.",
-        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}(1-x)\\ln(1-x)\\to0,\\qquad S(1)=\\tfrac12(1+\\tfrac12)=\\tfrac34"
+        "K levemu robu se približaj z notranje strani. Oba faktorja imata končno limito.",
+        "\\lim_{x\\to-1^+}(1/x-x)\\ln(1-x)=(-1+1)\\ln2=0,\\qquad S(-1)=\\tfrac12(1-\\tfrac12)=\\tfrac14"
+      ],
+      [
+        "Na desnem robu se pojavi produkt ničle in neomejenega logaritma. Izloči $1-x$ in ga označi z $t$.",
+        "(1/x-x)\\ln(1-x)=\\frac{1+x}{x}\\,t\\ln t,\\qquad t=1-x\\to0^+"
+      ],
+      [
+        "Za limito prepiši produkt kot količnik. V obliki neskončno skozi neskončno uporabi l’Hôpitalovo pravilo.",
+        "\\lim_{t\\to0^+}t\\ln t=\\lim_{t\\to0^+}\\frac{\\ln t}{1/t}=\\lim_{t\\to0^+}\\frac{1/t}{-1/t^2}=\\lim_{t\\to0^+}(-t)=0"
+      ],
+      [
+        "Preostali faktor teži k 2, zato celotni logaritemski člen izgine. Vstavi še ostala dva člena.",
+        "S(1)=\\tfrac12\\left[2\\cdot0+1+\\tfrac12\\right]=\\tfrac34"
       ],
       [
         "Za številsko vsoto zapišemo potenco kot 4 krat potenco ene četrtine in vstavimo x = 1/4.",
@@ -650,12 +690,20 @@
         "n=0:\\quad \\frac{x^{-1}}1=\\frac1x\\quad\\Rightarrow\\quad x\\ne0"
       ],
       [
-        "Pri neničelnem x uporabimo kvocientni kriterij.",
-        "\\left|\\frac{x^{4n+3}}{4n+5}\\frac{4n+1}{x^{4n-1}}\\right|=|x|^4\\frac{4n+1}{4n+5}\\to |x|^4"
+        "Pri neničelnem $x$ v kvocientu pokrajšamo potence in delimo števec ter imenovalec z $n$.",
+        "\\left|\\frac{a_{n+1}}{a_n}\\right|=|x|^4\\frac{4n+1}{4n+5}=|x|^4\\frac{4+1/n}{4+5/n}"
       ],
       [
-        "Pri obeh robovih so vsi členi istega predznaka. Njihove velikosti primerjamo s harmonično vrsto.",
-        "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\quad \\frac{1/(4n+1)}{1/n}\\to\\tfrac14"
+        "Člena $1/n$ in $5/n$ izgineta. Absolutno konvergenco dobimo, ko je limita manjša od ena.",
+        "L=|x|^4\\frac{4+0}{4+0}=|x|^4,\\qquad L<1\\iff |x|<1"
+      ],
+      [
+        "Pri $x=1$ so vsi členi pozitivni, pri $x=-1$ vsi negativni. Njihove velikosti primerjamo s harmonično vrsto.",
+        "a_n(1)=\\frac1{4n+1},\\quad a_n(-1)=-\\frac1{4n+1},\\qquad \\frac{1/(4n+1)}{1/n}=\\frac1{4+1/n}"
+      ],
+      [
+        "Ko gre $n$ v neskončnost, je limita količnika pozitivna in končna, zato imata primerjani pozitivni vrsti enako obnašanje. Harmonična vrsta divergira.",
+        "\\lim_{n\\to\\infty}\\frac1{4+1/n}=\\frac1{4+0}=\\frac14"
       ],
       [
         "Oba robova izločimo. Znotraj polmera množimo z x², da eksponent postane enak imenovalcu.",
@@ -666,8 +714,12 @@
         "T(x)=x+\\frac{x^5}{5}+\\frac{x^9}{9}+\\cdots\\quad\\Rightarrow\\quad T(0)=0"
       ],
       [
-        "Znotraj polmera odvajamo členoma. Potence tvorijo geometrijsko vrsto.",
-        "T'(x)=\\sum_{n=0}^\\infty\\frac{(4n+1)x^{4n}}{4n+1}=\\sum_{n=0}^\\infty(x^4)^n=\\frac1{1-x^4}"
+        "Znotraj polmera odvajamo členoma. Po krajšanju je končna delna vsota odvodov geometrijska.",
+        "\\sum_{n=0}^{N}(4n+1)\\frac{x^{4n}}{4n+1}=\\sum_{n=0}^{N}(x^4)^n=\\frac{1-(x^4)^{N+1}}{1-x^4}"
+      ],
+      [
+        "Za $|x|<1$ je tudi $x^4<1$, zato gre zadnja potenca proti nič. Vstavimo njeno limito.",
+        "\\lim_{N\\to\\infty}(x^4)^{N+1}=0,\\qquad T'(x)=\\frac{1-0}{1-x^4}"
       ],
       [
         "Razstavimo četrto potenco. Števca dobimo s primerjavo konstant in kvadratnih členov.",
@@ -700,8 +752,16 @@
         "\\left|\\frac{\\sin(nx)}{n^2}\\right|=\\frac{|\\sin(nx)|}{n^2}\\le\\frac1{n^2}=M_n"
       ],
       [
-        "Majorantna vrsta je p-vrsta z eksponentom 2. Za n ≥ N + 1 lahko njen rep celo omejimo z integralom.",
-        "\\sum_{n=N+1}^\\infty\\frac1{n^2}\\le\\int_N^\\infty\\frac{du}{u^2}=\\left[-\\frac1u\\right]_N^\\infty=\\frac1N\\quad(N\\ge1)"
+        "Naj bo $m>N\\ge1$. Ker je $1/u^2$ padajoča, je ploščina na vsakem intervalu od $n-1$ do $n$ vsaj $1/n^2$.",
+        "\\sum_{n=N+1}^m\\frac1{n^2}\\le\\int_N^m\\frac{du}{u^2}"
+      ],
+      [
+        "Najprej ovrednotimo integral do končne zgornje meje.",
+        "\\int_N^m u^{-2}\\,du=\\left[-\\frac1u\\right]_N^m=-\\frac1m+\\frac1N"
+      ],
+      [
+        "Pri fiksnem $N$ pošljemo $m$ v neskončnost. Zgornji rob izgine, zato dobimo skupno oceno neskončnega repa.",
+        "\\int_N^\\infty\\frac{du}{u^2}=\\lim_{m\\to\\infty}\\left(\\frac1N-\\frac1m\\right)=\\frac1N-0=\\frac1N"
       ],
       [
         "Za želeno napako izberemo isti indeks za vse x. To zagotovi enakomerno in absolutno konvergenco.",
@@ -754,6 +814,10 @@
       [
         "Preverimo Frobeniusov pogoj. Oba produkta sta polinoma in zato analitična pri ničli.",
         "xP(x)=x\\frac1x=1,\\qquad x^2Q(x)=x^2-25"
+      ],
+      [
+        "Izračunamo robni vrednosti že poenostavljenih polinomov. Njuna analitična razširitev dovoljuje Frobeniusov nastavek.",
+        "p_0=\\lim_{x\\to0}1=1,\\qquad q_0=\\lim_{x\\to0}(x^2-25)=0-25=-25"
       ],
       [
         "Uporabimo nastavek z neznanim začetnim eksponentom. Prvi koeficient mora biti neničeln.",

@@ -109,8 +109,12 @@
       "a_n=\\frac{n}{n+1}=\\frac{1}{1+1/n}"
     ],
     [
-      "Ker limita ni nič, je kršen nujni pogoj za konvergenco vrste.",
-      "\\lim_{n\\to\\infty}a_n=\\frac{1}{1+0}=1\\ne0\\quad\\Longrightarrow\\quad \\sum_{n=1}^\\infty a_n\\ \\text{divergira}"
+      "Ko indeks raste, $1/n$ pada proti nič. Zato imenovalec prejšnjega ulomka teži k 1.",
+      "\\lim_{n\\to\\infty}\\frac{1}{1+1/n}=\\frac1{1+0}=1"
+    ],
+    [
+      "Členi konvergentne vrste morajo težiti k nič, saj so razlike zaporednih delnih vsot. Dobljena limita 1 zato dokazuje divergenco.",
+      "S_n\\to S\\ \\Longrightarrow\\ a_n=S_n-S_{n-1}\\to S-S=0"
     ]
   ],
   [
@@ -119,8 +123,12 @@
       "\\frac1{n(n+1)}=\\frac1n-\\frac1{n+1},\\quad S_N=(1-\\tfrac12)+(\\tfrac12-\\tfrac13)+\\cdots+(\\tfrac1N-\\tfrac1{N+1})"
     ],
     [
-      "Pokrajšaj sosednje člene, nato pošlji N v neskončnost.",
-      "S_N=1-\\frac1{N+1}\\quad\\Longrightarrow\\quad S=\\lim_{N\\to\\infty}S_N=1"
+      "Po krajšanju vseh vmesnih ulomkov ostaneta prvi in zadnji.",
+      "S_N=1-\\frac1{N+1}"
+    ],
+    [
+      "Imenovalec zadnjega člena raste brez meje. Limita delnih vsot je vsota vrste.",
+      "\\lim_{N\\to\\infty}\\frac1{N+1}=0,\\qquad \\lim_{N\\to\\infty}S_N=1-0=1"
     ]
   ],
   [
@@ -129,8 +137,12 @@
       "a_n=\\frac{(-1)^n}{n},\\qquad |a_{n+1}|=\\frac1{n+1}<\\frac1n\\longrightarrow0"
     ],
     [
-      "Na desnem robu x = 1 dobiš harmonično vrsto. Njene delne vsote rastejo vsaj kot logaritem.",
-      "\\sum_{n=1}^N\\frac1n\\ge\\int_1^{N+1}\\frac{du}{u}=\\ln(N+1)\\longrightarrow\\infty"
+      "Na desnem robu je člen $1/n$. Na vsakem intervalu od $n$ do $n+1$ leži padajoča funkcija $1/u$ pod višino $1/n$.",
+      "\\sum_{n=1}^N\\frac1n\\ge\\int_1^{N+1}\\frac{du}{u}=\\ln(N+1)-\\ln1=\\ln(N+1)"
+    ],
+    [
+      "Logaritem lahko preseže katerokoli število $M$. Zato rastejo tudi delne vsote brez meje.",
+      "N+1>e^M\\ \\Longrightarrow\\ \\ln(N+1)>M,\\qquad \\lim_{N\\to\\infty}S_N=+\\infty"
     ]
   ],
   [

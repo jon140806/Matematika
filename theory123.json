@@ -22,7 +22,17 @@
         "Prehod k odvodu",
         "Po deljenju s $h$ dobimo diferenčni količnik višin. Zveznost parcialnega odvoda na kompaktnem pravokotniku zagotovi enakomeren prehod k limiti pod integralom.",
         "F'(a)=\\lim_{h\\to0}\\int_A^B\\frac{f(x,a+h)-f(x,a)}h\\,dx=\\int_A^B\\partial_a f(x,a)\\,dx",
-        "Ploščina pod krivuljo parcialnega odvoda predstavlja odvod celotnega integrala."
+        "Ploščina pod krivuljo parcialnega odvoda predstavlja odvod celotnega integrala.",
+        [
+          [
+            "Za vsak $x$ je diferenčni količnik enak parcialnemu odvodu pri vmesnem parametru $a+\\theta_x h$.",
+            "q_h(x)=\\frac{f(x,a+h)-f(x,a)}h=\\partial_a f(x,a+\\theta_xh),\\qquad 0<\\theta_x<1"
+          ],
+          [
+            "Ker je parcialni odvod enakomerno zvezen na pravokotniku, gre največja napaka proti nič. Z dolžino intervala omeji napako celotnega integrala.",
+            "\\left|\\int_A^B(q_h-\\partial_a f)\\,dx\\right|\\le(B-A)\\max_{A\\le x\\le B}|q_h(x)-\\partial_a f(x,a)|\\longrightarrow0"
+          ]
+        ]
       ]
     ]
   },
@@ -49,7 +59,21 @@
         "Vsota treh prispevkov",
         "Po deljenju s $h$ notranji člen preide v integral $f_y$. Povprečna višina robnega pasu teži k robni višini, širina pasu na enoto $h$ pa k odvodu meje.",
         "F'(y)=\\int_{u(y)}^{v(y)}f_y(x,y)\\,dx+v'(y)f(v(y),y)-u'(y)f(u(y),y)",
-        "Trije predznačeni stolpci predstavljajo notranjost, desni rob in levi rob."
+        "Trije predznačeni stolpci predstavljajo notranjost, desni rob in levi rob.",
+        [
+          [
+            "Na starem intervalu deljenje s $h$ da diferenčni količnik višine. Zvezni parcialni odvod dovoljuje prehod pod integral.",
+            "\\lim_{h\\to0}\\int_u^v\\frac{f(x,y+h)-f(x,y)}h\\,dx=\\int_u^v f_y(x,y)\\,dx"
+          ],
+          [
+            "Na desnem robu je integral enak širini pasu krat višina v vmesni točki $\\xi_h$. Ko se pas zoži, ta točka teži k $v$. Če se meja ne premakne, prispeva nič.",
+            "\\frac1h\\int_v^{v_+}f(x,y+h)\\,dx=\\frac{v_+-v}{h}\\,f(\\xi_h,y+h)\\longrightarrow v'(y)f(v,y)"
+          ],
+          [
+            "Na levem robu velja ista ocena za vmesno točko $\\eta_h$. Pas odštevamo, zato minus ostane tudi po prehodu v limito.",
+            "-\\frac1h\\int_u^{u_+}f(x,y+h)\\,dx=-\\frac{u_+-u}{h}\\,f(\\eta_h,y+h)\\longrightarrow-u'(y)f(u,y)"
+          ]
+        ]
       ]
     ],
     "cases": [
@@ -82,13 +106,29 @@
         "En rez za vse parametre",
         "Pri točkovni konvergenci lahko rez izbiramo posebej za vsak parameter. Enakomerna konvergenca zahteva, da največja napaka na celotnem intervalu parametrov teži k nič.",
         "I_R(a)=\\int_A^R f(x,a)\\,dx,\\qquad\\sup_{a\\in J}|I(a)-I_R(a)|\\longrightarrow0\\quad(R\\to\\infty)",
-        "Meja reza loči obdržani del krivulje od njenega repa."
+        "Meja reza loči obdržani del krivulje od njenega repa.",
+        [
+          [
+            "Ob izbranem parametru približaj neskončno mejo s končno. Nepokriti del je limita razlike dveh odrezanih integralov.",
+            "I(a)-I_R(a)=\\lim_{T\\to\\infty}\\bigl(I_T(a)-I_R(a)\\bigr)=\\lim_{T\\to\\infty}\\int_R^T f(x,a)\\,dx"
+          ]
+        ]
       ],
       [
         "Majoranta odvoda",
         "Če odvod po absolutni vrednosti omejuje integrabilna funkcija $g$, neodvisna od $a$, potem njegov rep omejuje isti rep majorante za vse parametre.",
         "|\\partial_a f(x,a)|\\le g(x),\\qquad\\left|\\int_R^\\infty\\partial_a f(x,a)\\,dx\\right|\\le\\int_R^\\infty g(x)\\,dx",
-        "Odvod ostaja med zgornjo in spodnjo ovojnico."
+        "Odvod ostaja med zgornjo in spodnjo ovojnico.",
+        [
+          [
+            "Na končnem repu najprej integriraj točkovno oceno. Desna stran je neodvisna od parametra.",
+            "\\left|\\int_R^T \\partial_a f(x,a)dx\\right|\\le\\int_R^T g(x)dx"
+          ],
+          [
+            "Pošlji $T$ v neskončnost. Celotni integral majorante je končen, zato razlika do njenega odrezanega integrala pri velikem $R$ teži k nič.",
+            "\\int_R^\\infty g(x)dx=\\int_A^\\infty g(x)dx-\\int_A^R g(x)dx\\longrightarrow0"
+          ]
+        ]
       ],
       [
         "Odvod nepravega integrala",
@@ -109,19 +149,49 @@
         "Integralska definicija",
         "Potenca določa vedenje pri ničli, eksponentna utež pa v neskončnosti prevlada nad vsako potenco.",
         "\\Gamma(p)=\\int_0^\\infty x^{p-1}e^{-x}\\,dx",
-        "Parameter spremeni obliko jedra."
+        "Parameter spremeni obliko jedra.",
+        [
+          [
+            "Pri ničli je eksponentna utež največ ena. Za $p>0$ gre pozitivna potenca spodnje meje proti nič.",
+            "\\int_\\varepsilon^1 x^{p-1}\\,dx=(1-\\varepsilon^p)/p\\longrightarrow1/p"
+          ],
+          [
+            "Za zgornji rep izberi celo število $m>p$. Iz $e^x\\ge x^m/m!$ dobiš primerjavo s potenco, katere integral konvergira.",
+            "\\int_1^R x^{p-1}e^{-x}dx\\le m!\\int_1^R x^{p-1-m}dx=m!\\frac{1-R^{p-m}}{m-p}\\longrightarrow\\frac{m!}{m-p}\\ \\text{(meja ocene)}"
+          ]
+        ]
       ],
       [
         "Integracija po delih",
         "Pri argumentu $p+1$ nastopi potenca $x^p$. Njen odvod je $p x^{p-1}$, primitivna funkcija uteži pa $-e^{-x}$. Robni člen izgine pri obeh mejah.",
         "\\Gamma(p+1)=\\left[-x^p e^{-x}\\right]_0^\\infty+p\\int_0^\\infty x^{p-1}e^{-x}\\,dx",
-        "Primerjani jedri se razlikujeta za eno potenco spremenljivke."
+        "Primerjani jedri se razlikujeta za eno potenco spremenljivke.",
+        [
+          [
+            "Integriraj po delih najprej na končnem intervalu, kjer sta obe meji pozitivni.",
+            "\\int_\\varepsilon^R x^pe^{-x}dx=[-x^pe^{-x}]_\\varepsilon^R+p\\int_\\varepsilon^R x^{p-1}e^{-x}dx"
+          ],
+          [
+            "Pri spodnji meji potenca teži k nič. Pri zgornji izberi celo število $m>p$. Iz vrste za eksponent velja $e^R\\ge R^m/m!$.",
+            "\\lim_{\\varepsilon\\downarrow0}\\varepsilon^pe^{-\\varepsilon}=0\\cdot1=0,\\qquad 0\\le R^pe^{-R}\\le m!R^{p-m}\\longrightarrow0"
+          ]
+        ]
       ],
       [
         "Rekurzija in fakulteta",
         "Preostali integral je po definiciji $\\Gamma(p)$. Ponavljanje rekurzije iz $\\Gamma(1)=1$ pojasni povezavo s fakulteto. V obratni smeri razmerje določi tudi vrednosti pri negativnih necelih argumentih.",
         "\\Gamma(p+1)=p\\Gamma(p),\\qquad \\Gamma(n+1)=n!\\quad(n\\in\\mathbb N_0)",
-        "Krivulji zadnjega prikaza imata na pozitivni polosi enaki ploščini."
+        "Krivulji zadnjega prikaza imata na pozitivni polosi enaki ploščini.",
+        [
+          [
+            "Začetno vrednost gama najprej izračunaj do končnega $R$.",
+            "\\int_0^R e^{-x}\\,dx=[-e^{-x}]_0^R=1-e^{-R}"
+          ],
+          [
+            "Ker je $e^{-R}=1/e^R$ in imenovalec raste, pošlji $R$ v neskončnost.",
+            "\\Gamma(1)=\\lim_{R\\to\\infty}(1-e^{-R})=1-0=1"
+          ]
+        ]
       ]
     ]
   },
@@ -136,7 +206,17 @@
         "Simetrija krajišč",
         "Zamenjava $u$ z $1-u$ zamenja le vlogi obeh krajišč, zato se vrednost integrala ohrani.",
         "B(p,q)=\\int_0^1 u^{p-1}(1-u)^{q-1}\\,du=B(q,p)",
-        "Potenci določata obliko profila ob levem in desnem robu."
+        "Potenci določata obliko profila ob levem in desnem robu.",
+        [
+          [
+            "Kadar integrand na robu ni omejen, razdeli integral pri $1/2$. Ob ničli je faktor $(1-u)^{q-1}$ omejen.",
+            "\\int_\\varepsilon^{1/2}u^{p-1}du=\\frac{(1/2)^p-\\varepsilon^p}{p}\\longrightarrow\\frac{(1/2)^p}{p}\\quad(p>0)"
+          ],
+          [
+            "Ob enici uporabi $s=1-u$. Faktor $u^{p-1}$ je tam omejen. Enak račun za $q$ pokaže konvergenco še na drugem robu.",
+            "\\int_{1/2}^{1-\\delta}(1-u)^{q-1}du=\\frac{(1/2)^q-\\delta^q}{q}\\longrightarrow\\frac{(1/2)^q}{q}\\quad(q>0)"
+          ]
+        ]
       ],
       [
         "Skupna velikost in delež",
@@ -190,13 +270,37 @@
         "Eksponentno jedro",
         "Jedro pripiše zgodnjim in poznim vrednostim signala različne uteži. Z integracijo po celotni pozitivni časovni osi nastane ena vrednost za vsak dopusten parameter.",
         "F(s)=\\mathcal L(f)(s)=\\int_0^\\infty e^{-st}f(t)\\,dt",
-        "Prikazana sta prvotni in uteženi signal."
+        "Prikazana sta prvotni in uteženi signal.",
+        [
+          [
+            "Izberi končni čas $T$ in seštej le prispevke do tega časa.",
+            "F_T(s)=\\int_0^T e^{-st}f(t)\\,dt"
+          ],
+          [
+            "Transformiranka je limita teh delnih integralov, če obstaja in je končna.",
+            "F(s)=\\lim_{T\\to\\infty}F_T(s)"
+          ]
+        ]
       ],
       [
         "Pogoj za obstoj",
         "Če je signal od nekega časa naprej omejen z eksponentno funkcijo, utež njegove pozne vrednosti omeji s padajočim eksponentom. Njegov rep je integrabilen.",
         "|f(t)|\\le Me^{\\alpha t}\\quad\\Longrightarrow\\quad |e^{-st}f(t)|\\le M e^{-(s-\\alpha)t},\\qquad s>\\alpha",
-        "Močnejše dušenje skrajša rep uteženega signala."
+        "Močnejše dušenje skrajša rep uteženega signala.",
+        [
+          [
+            "Za $c=s-\\alpha>0$ in $R$ v območju eksponentne ocene izračunaj omejitev od $R$ do končnega $T$.",
+            "\\int_R^T M e^{-ct}\\,dt=\\frac{M}{c}(e^{-cR}-e^{-cT})"
+          ],
+          [
+            "Pošlji $T$ v neskončnost. Ker je $c$ pozitiven, drugi eksponent izgine.",
+            "\\lim_{T\\to\\infty}e^{-cT}=0,\\qquad \\int_R^\\infty Me^{-ct}\\,dt=\\frac M c e^{-cR}"
+          ],
+          [
+            "Zdaj premakni še mesto reza $R$. Ista ocena pokaže, da preostali rep uteženega signala izginja.",
+            "\\int_R^\\infty |e^{-st}f(t)|\\,dt\\le\\frac M c e^{-cR}\\xrightarrow{R\\to\\infty}0"
+          ]
+        ]
       ],
       [
         "Enoličnost in inverz",
@@ -217,7 +321,21 @@
         "Prvi časovni odvod",
         "Integracija po delih prenese odvod s signala na eksponentno jedro. Rob v neskončnosti izgine, na spodnji meji ostane začetna vrednost z negativnim predznakom.",
         "\\mathcal L(f')=\\left[e^{-st}f(t)\\right]_0^\\infty+s\\int_0^\\infty e^{-st}f(t)\\,dt=sF(s)-f(0)",
-        "Višina predstavlja uteženi časovni odvod."
+        "Višina predstavlja uteženi časovni odvod.",
+        [
+          [
+            "Integriraj po delih na končnem intervalu in odštej spodnjo robno vrednost.",
+            "\\int_0^T e^{-st} f'(t)\\,dt=e^{-sT}f(T)-f(0)+s\\int_0^T e^{-st}f(t)\\,dt"
+          ],
+          [
+            "Eksponentna omejenost in $s>\\alpha$ določita limito zgornjega robnega člena.",
+            "0\\le |e^{-sT}f(T)|\\le Me^{-(s-\\alpha)T}\\xrightarrow{T\\to\\infty}0"
+          ],
+          [
+            "Vzemi limito cele enačbe. Zadnji delni integral teži k transformiranki $F(s)$.",
+            "\\mathcal L(f')=0-f(0)+sF(s)"
+          ]
+        ]
       ],
       [
         "Višji časovni odvodi",
@@ -229,7 +347,21 @@
         "Odvod po parametru",
         "Pri odvajanju jedra po $s$ nastane faktor $-t$. Eksponentno dušenje pri dovolj velikem $s$ zagotovi integrabilno majoranto in dovoljuje odvajanje pod integralom.",
         "F'(s)=\\int_0^\\infty(-t)e^{-st}f(t)\\,dt=-\\mathcal L(tf)(s)",
-        "Ploščina pod časovno uteženim signalom predstavlja negativni odvod transformiranke."
+        "Ploščina pod časovno uteženim signalom predstavlja negativni odvod transformiranke.",
+        [
+          [
+            "Za parameter $s$ izberi bližnjo spodnjo mejo $s_0$ nad stopnjo rasti. Tedaj na repu za vsak $s\\ge s_0$ velja skupna ocena s $c=s_0-\\alpha>0$.",
+            "|te^{-st}f(t)|\\le Mt e^{-ct}"
+          ],
+          [
+            "Integriraj majoranto do $T$ po delih.",
+            "\\int_0^T Mt e^{-ct}dt=\\frac{M}{c^2}\\bigl[1-(1+cT)e^{-cT}\\bigr]"
+          ],
+          [
+            "Eksponent raste hitreje od linearnega faktorja. Majoranta ima zato končen integral in dovoljuje prehod odvoda pod integral.",
+            "\\lim_{T\\to\\infty}\\frac{1+cT}{e^{cT}}=0,\\qquad \\int_0^\\infty Mt e^{-ct}dt=\\frac M{c^2}"
+          ]
+        ]
       ]
     ]
   },
@@ -269,15 +401,63 @@
     "steps": [
       [
         "Zakaj je začetna ploščina enaka √π/2?",
-        "Kvadrat $I(0)$ je produkt dveh integralov z neodvisnima spremenljivkama $x$ in $y$. Dobimo integral $e^{-(x^2+y^2)}$ v prvi četrtini. V polarnih koordinatah je $x^2+y^2=r^2$, ploščinski element pa $r\\,dr\\,d\\theta$. Kot preteče od 0 do $\\pi/2$.",
-        "I(0)^2=\\frac{\\pi}{2}\\int_0^\\infty re^{-r^2}\\,dr=\\frac{\\pi}{2}\\left[-\\frac12 e^{-r^2}\\right]_0^\\infty=\\frac{\\pi}{4}\\ \\Longrightarrow\\ I(0)=\\frac{\\sqrt\\pi}{2}",
-        "Z večanjem polmera $R$ osenčena ploščina narašča proti $\\pi/4$. To je kvadrat začetnega integrala."
+        "Pri ničelni frekvenci meriš ploščino osnovnega zvona. Kvadrat te ploščine lahko izračunaš s polarnimi koordinatami.",
+        "I(0)=\\int_0^\\infty e^{-x^2}\\,dx=\\frac{\\sqrt\\pi}{2}",
+        "Z večanjem polmera $R$ osenčena ploščina narašča proti $\\pi/4$. To je kvadrat začetnega integrala.",
+        [
+          [
+            "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
+            "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
+          ],
+          [
+            "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
+            "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
+          ],
+          [
+            "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
+            "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
+          ],
+          [
+            "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
+            "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
+          ],
+          [
+            "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
+            "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
+          ],
+          [
+            "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
+            "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
+          ]
+        ]
       ],
       [
         "Zakaj se po odvajanju vrne isti integral?",
-        "Odvod kosinusa po $a$ prinese faktor $-x\\sin(ax)$. Ker je $(e^{-x^2})'=-2xe^{-x^2}$, lahko integriramo po delih. Robni produkt $e^{-x^2}\\sin(ax)$ je pri ničli nič in v neskončnosti teži k nič.",
+        "Odvod kosinusa po parametru ustvari faktor $x$. Ta faktor vrne odvod Gaussove uteži po $x$ in omogoči integracijo po delih.",
         "I'(a)=\\frac12\\int_0^\\infty(e^{-x^2})'\\sin(ax)\\,dx=-\\frac a2\\int_0^\\infty e^{-x^2}\\cos(ax)\\,dx=-\\frac a2I(a)",
-        "Zelena krivulja kaže odvod integranda po $a$. Med premikanjem drsnika ga omejujeta isti vijolični ovojnici."
+        "Zelena krivulja kaže odvod integranda po $a$. Med premikanjem drsnika ga omejujeta isti vijolični ovojnici.",
+        [
+          [
+            "Integriraj ovojnico najprej do končnega $R$. Faktor $1/2$ dobiš iz odvoda $-x^2$.",
+            "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+          ],
+          [
+            "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+            "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
+          ],
+          [
+            "Pri integraciji po delih uporabi končno mejo $R$. Spodnji rob je nič, ker je $\\sin(0)=0$.",
+            "\\tfrac12\\int_0^R(e^{-x^2})'\\sin(ax)\\,dx=\\tfrac12e^{-R^2}\\sin(aR)-\\tfrac a2\\int_0^R e^{-x^2}\\cos(ax)\\,dx"
+          ],
+          [
+            "Posebej oceni zgornji rob. Sinus je po absolutni vrednosti največ 1, eksponent pa teži k nič.",
+            "\\left|e^{-R^2}\\sin(aR)\\right|\\le e^{-R^2}\\longrightarrow0\\quad(R\\to\\infty)"
+          ],
+          [
+            "Preostali integral gre po definiciji proti prvotnemu $I(a)$.",
+            "I'(a)=\\tfrac12\\cdot0-\\tfrac a2 I(a)=-\\tfrac a2 I(a)"
+          ]
+        ]
       ],
       [
         "Kako začetna ploščina določi konstanto?",

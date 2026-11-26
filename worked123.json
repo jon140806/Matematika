@@ -87,6 +87,14 @@
           "v'(a)=(1+a)'=1,\\qquad u'(a)=(a/2)'=\\tfrac12"
         ],
         [
+          "Pri desnem pasu vzemi povprečno višino linearne funkcije med obema robovoma. Deli s premikom parametra in pošlji $h$ proti nič.",
+          "\\frac1h\\int_v^{v+h}(x+a+h)dx=v+a+\\frac{3h}{2}\\longrightarrow v+a"
+        ],
+        [
+          "Levi pas je širok le $h/2$. Povprečna višina teži k $u+a$, zato po deljenju s $h$ ostane polovica robne višine.",
+          "\\frac1h\\int_u^{u+h/2}(x+a+h)dx=\\frac12\\left(u+a+\\frac{5h}{4}\\right)\\longrightarrow\\frac{u+a}{2}"
+        ],
+        [
           "V višino x+a vstavi desni in levi rob ter vsako višino pomnoži s hitrostjo njenega roba.",
           "f(v,a)v'=(1+a+a)\\cdot1=1+2a,\\quad f(u,a)u'=(a/2+a)\\cdot\\tfrac12=\\tfrac{3a}{4}"
         ],
@@ -117,8 +125,12 @@
           "|{-xe^{-x^2}\\sin(ax)}|\\le xe^{-x^2}"
         ],
         [
-          "Izračunaj integral zgornje ocene s substitucijo.",
-          "u=x^2,\\quad du=2x\\,dx,\\quad\\int_0^\\infty xe^{-x^2}dx=\\frac12\\int_0^\\infty e^{-u}du=\\frac12"
+          "Integriraj ovojnico najprej do končnega $R$. Faktor $1/2$ dobiš iz odvoda $-x^2$.",
+          "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+        ],
+        [
+          "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+          "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
         ]
       ],
       [
@@ -127,8 +139,12 @@
           "|I'(a)-I_R'(a)|\\le\\int_R^\\infty xe^{-x^2}dx"
         ],
         [
-          "Spodnja meja se po menjavi spremeni v R².",
-          "\\frac12\\int_{R^2}^\\infty e^{-u}\\,du=\\frac12[-e^{-u}]_{R^2}^\\infty=\\frac12e^{-R^2}"
+          "Za rep med končnima mejama $R$ in $T$ odštej vrednosti primitivne funkcije.",
+          "\\int_R^T xe^{-x^2}\\,dx=\\tfrac12(e^{-R^2}-e^{-T^2})"
+        ],
+        [
+          "Najprej pošlji $T$ v neskončnost. Nato večaj rez $R$. Dobljena meja napake velja za vse $a$.",
+          "\\int_R^\\infty xe^{-x^2}dx=\\lim_{T\\to\\infty}\\tfrac12(e^{-R^2}-e^{-T^2})=\\tfrac12e^{-R^2}\\xrightarrow[R\\to\\infty]{}0"
         ],
         [
           "En sam dovolj velik R deluje za vsak a. Zato odvode končnih integralov lahko pošljemo v limito.",
@@ -153,30 +169,38 @@
           "u=x^p,\\quad du=px^{p-1}dx,\\quad dv=e^{-x}dx,\\quad v=-e^{-x}"
         ],
         [
-          "Uporabi integracijo po delih z obema mejama.",
-          "\\int_0^\\infty u\\,dv=[uv]_0^\\infty-\\int_0^\\infty v\\,du"
+          "Integriraj po delih najprej na končnem intervalu, kjer sta obe meji pozitivni.",
+          "\\int_\\varepsilon^R x^pe^{-x}dx=[-x^pe^{-x}]_\\varepsilon^R+p\\int_\\varepsilon^R x^{p-1}e^{-x}dx"
         ],
         [
-          "Ovrednoti robni člen. Pri neskončnosti eksponent pada hitreje, kot raste potenca.",
-          "p>0:\\quad \\lim_{x\\to\\infty}x^pe^{-x}=0,\\qquad 0^pe^0=0"
+          "Pri spodnji meji potenca teži k nič. Pri zgornji izberi celo število $m>p$. Iz vrste za eksponent velja $e^R\\ge R^m/m!$.",
+          "\\lim_{\\varepsilon\\downarrow0}\\varepsilon^pe^{-\\varepsilon}=0\\cdot1=0,\\qquad 0\\le R^pe^{-R}\\le m!R^{p-m}\\longrightarrow0"
         ],
         [
-          "Po vstavitvi ostane integral z za ena nižjo potenco.",
-          "\\Gamma(p+1)=[-x^pe^{-x}]_0^\\infty+p\\int_0^\\infty x^{p-1}e^{-x}dx=p\\Gamma(p)"
+          "Pošlji obe meji proti krajiščema. Robni člen izgine, preostali integral je po definiciji gama.",
+          "\\Gamma(p+1)=0-0+p\\Gamma(p)=p\\Gamma(p)"
         ]
       ],
       [
         [
-          "Izračunaj začetno vrednost neposredno.",
-          "\\Gamma(1)=\\int_0^\\infty e^{-x}dx=[-e^{-x}]_0^\\infty=1"
+          "Začetno vrednost gama najprej izračunaj do končnega $R$.",
+          "\\int_0^R e^{-x}\\,dx=[-e^{-x}]_0^R=1-e^{-R}"
+        ],
+        [
+          "Ker je $e^{-R}=1/e^R$ in imenovalec raste, pošlji $R$ v neskončnost.",
+          "\\Gamma(1)=\\lim_{R\\to\\infty}(1-e^{-R})=1-0=1"
         ],
         [
           "Pri vsakem spustu pomnoži s prejšnjim argumentom.",
           "\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
         ],
         [
-          "Pri polovičnem argumentu vstavi x=t². Preostane dvakrat polovica Gaussovega integrala.",
-          "\\Gamma(1/2)=\\int_0^\\infty x^{-1/2}e^{-x}dx=2\\int_0^\\infty e^{-t^2}dt=2\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+          "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+          "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+        ],
+        [
+          "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+          "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2I(0)=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
         ],
         [
           "V rekurzijo vstavi p=½.",
@@ -285,8 +309,16 @@
           "\\int_0^T e^{-(s-1)t}dt=\\left[-\\frac{e^{-(s-1)t}}{s-1}\\right]_0^T"
         ],
         [
-          "Vstavi robova in izračunaj limito pri s>1.",
-          "F(s)=\\lim_{T\\to\\infty}\\frac{1-e^{-(s-1)T}}{s-1}=\\frac1{s-1}"
+          "Vstavi spodnjo in zgornjo mejo v primitivno funkcijo.",
+          "F_T(s)=-\\frac{e^{-(s-1)T}}{s-1}+\\frac{e^0}{s-1}=\\frac{1-e^{-(s-1)T}}{s-1}"
+        ],
+        [
+          "Pri $s>1$ imenovalec v eksponentnem členu narašča brez meje.",
+          "e^{-(s-1)T}=\\frac{1}{e^{(s-1)T}}\\xrightarrow{T\\to\\infty}0"
+        ],
+        [
+          "Vzemi limito delnega integrala.",
+          "F(s)=\\lim_{T\\to\\infty}F_T(s)=\\frac{1-0}{s-1}=\\frac1{s-1}"
         ]
       ],
       [
@@ -307,8 +339,12 @@
           "u=e^{-st},\\quad du=-se^{-st}dt,\\quad dv=f'(t)dt,\\quad v=f(t)"
         ],
         [
-          "Vstavi v formulo za integracijo po delih.",
-          "\\mathcal L(f')=[e^{-st}f(t)]_0^\\infty-\\int_0^\\infty f(t)(-se^{-st})dt"
+          "Uporabi formulo na končnem intervalu. Rob na spodnji meji je $e^0f(0)$.",
+          "\\int_0^T e^{-st}f'(t)dt=e^{-sT}f(T)-f(0)+s\\int_0^T e^{-st}f(t)dt"
+        ],
+        [
+          "Za prikazani signal $f(t)=1+t$ in $s>0$ je limita zgornjega roba nič. To dobiš z odvajanjem števca in imenovalca po L’Hôpitalovem pravilu.",
+          "\\lim_{T\\to\\infty}\\frac{1+T}{e^{sT}}=\\lim_{T\\to\\infty}\\frac{1}{s e^{sT}}=0"
         ],
         [
           "Pri dovolj velikem s zgornji rob izgine, spodnji da začetno vrednost.",
@@ -426,24 +462,60 @@
     ],
     "gauss": [
       [
-        "Prvotni integral primerjaj z Gaussovim integralom, da utemeljiš obstoj.",
-        "|e^{-x^2}\\cos(ax)|\\le e^{-x^2},\\qquad \\int_0^\\infty e^{-x^2}dx=\\sqrt{\\pi}/2"
+        "Pri frekvenci nič je kosinus ena. Najprej izmeri ploščino zvona samo do končne meje $R$.",
+        "G_R=\\int_0^R e^{-x^2}\\,dx,\\qquad I(0)=\\lim_{R\\to\\infty}G_R"
+      ],
+      [
+        "Kvadriraj integral. Drugi faktor piši z $y$. Produkt meri integral po kvadratu s stranico $R$.",
+        "G_R^2=\\int_0^R\\!\\!\\int_0^R e^{-(x^2+y^2)}\\,dy\\,dx"
+      ],
+      [
+        "V četrtini kroga s polmerom $R$ uporabi polarne koordinate. Kot preteče od 0 do $\\pi/2$, ploščinski element je $r\\,dr\\,d\\theta$. Njegov integral označi s $Q_R$.",
+        "Q_R=\\int_0^{\\pi/2}\\!\\!\\int_0^R e^{-r^2}r\\,dr\\,d\\theta=\\frac\\pi2\\int_0^R re^{-r^2}\\,dr"
+      ],
+      [
+        "Ker je odvod $-r^2$ enak $-2r$, primitivno funkcijo pomnoži z $-1/2$. Vstavi obe končni meji.",
+        "Q_R=\\frac\\pi2\\left[-\\frac12 e^{-r^2}\\right]_0^R=\\frac\\pi4(1-e^{-R^2})"
+      ],
+      [
+        "Kvadrat vsebuje četrtino kroga s polmerom $R$ in leži v četrtini kroga s polmerom $\\sqrt2 R$. Integrand je pozitiven. Obe oceni imata isto limito, ker $e^{-R^2}=1/e^{R^2}\\to0$.",
+        "Q_R\\le G_R^2\\le Q_{\\sqrt2 R},\\qquad \\lim_{R\\to\\infty}Q_R=\\lim_{R\\to\\infty}Q_{\\sqrt2 R}=\\frac\\pi4"
+      ],
+      [
+        "Po izreku o sendviču pošlji $R$ v neskončnost. Ker je ploščina pozitivna, vzemi pozitivni koren.",
+        "I(0)=\\lim_{R\\to\\infty}G_R=\\sqrt{\\lim_{R\\to\\infty}G_R^2}=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}{2}"
+      ],
+      [
+        "Prvotni integrand je po absolutni vrednosti omejen z integrabilnim zvonom.",
+        "|e^{-x^2}\\cos(ax)|\\le e^{-x^2},\\qquad\\int_0^\\infty e^{-x^2}dx=I(0)<\\infty"
       ],
       [
         "Verižno odvajaj po a. Absolutno vrednost sinusa omeji z 1.",
         "\\partial_a f=-xe^{-x^2}\\sin(ax),\\quad |\\partial_a f|\\le xe^{-x^2}"
       ],
       [
-        "Integriraj majoranto. Je neodvisna od a in integrabilna, zato sme odvod pod integral.",
-        "\\int_0^\\infty xe^{-x^2}dx=\\left[-\\tfrac12 e^{-x^2}\\right]_0^\\infty=\\tfrac12"
+        "Integriraj ovojnico najprej do končnega $R$. Faktor $1/2$ dobiš iz odvoda $-x^2$.",
+        "\\int_0^R xe^{-x^2}\\,dx=\\left[-\\tfrac12e^{-x^2}\\right]_0^R=\\tfrac12(1-e^{-R^2})"
+      ],
+      [
+        "Izračunaj limito. Eksponent v imenovalcu raste brez meje, zato rep pri $R$ izgine. Ista ocena velja za vsak parameter.",
+        "\\lim_{R\\to\\infty}e^{-R^2}=\\lim_{R\\to\\infty}\\frac1{e^{R^2}}=0,\\qquad\\int_0^\\infty xe^{-x^2}\\,dx=\\tfrac12(1-0)=\\tfrac12"
       ],
       [
         "Prepoznaj odvod Gaussove uteži po x, da pripraviš integracijo po delih.",
         "(e^{-x^2})'=-2xe^{-x^2},\\quad I'(a)=\\tfrac12\\int_0^\\infty (e^{-x^2})'\\sin(ax)\\,dx"
       ],
       [
-        "Odvajaj sinus po x in integriraj odvod uteži. Na robovih dobiš nič zaradi sinusa pri ničli in dušenja v neskončnosti.",
-        "I'(a)=\\tfrac12[e^{-x^2}\\sin(ax)]_0^\\infty-\\tfrac12\\int_0^\\infty e^{-x^2}a\\cos(ax)dx=-\\tfrac a2I(a)"
+        "Pri integraciji po delih uporabi končno mejo $R$. Spodnji rob je nič, ker je $\\sin(0)=0$.",
+        "\\tfrac12\\int_0^R(e^{-x^2})'\\sin(ax)\\,dx=\\tfrac12e^{-R^2}\\sin(aR)-\\tfrac a2\\int_0^R e^{-x^2}\\cos(ax)\\,dx"
+      ],
+      [
+        "Posebej oceni zgornji rob. Sinus je po absolutni vrednosti največ 1, eksponent pa teži k nič.",
+        "\\left|e^{-R^2}\\sin(aR)\\right|\\le e^{-R^2}\\longrightarrow0\\quad(R\\to\\infty)"
+      ],
+      [
+        "Preostali integral gre po definiciji proti prvotnemu $I(a)$.",
+        "I'(a)=\\tfrac12\\cdot0-\\tfrac a2 I(a)=-\\tfrac a2 I(a)"
       ],
       [
         "Levo stran želimo zapisati kot odvod produkta. Primerjaj koeficient pri I.",
@@ -458,8 +530,8 @@
         "(\\mu I)'=0\\quad\\Longrightarrow\\quad e^{a^2/4}I(a)=C"
       ],
       [
-        "Vstavi a=0. Kosinus je takrat povsod 1; naloga poda vrednost tega Gaussovega integrala.",
-        "I(0)=\\int_0^\\infty e^{-x^2}\\cos(0)\\,dx=\\frac{\\sqrt\\pi}{2}"
+        "Uporabi začetno ploščino, ki si jo izračunal z rezom $R$.",
+        "I(0)=\\frac{\\sqrt\\pi}{2}"
       ],
       [
         "V enačbo za produkt vstavi začetno vrednost in izračunaj C.",
@@ -472,8 +544,12 @@
     ],
     "atan": [
       [
-        "Pri x=0 odpravi deljenje z nič. Uporabi, da arctan z deliš z z in v limiti dobiš 1.",
-        "\\lim_{x\\to0}\\frac{\\arctan(tx)-\\arctan x}{x}=t-1"
+        "Odvod arkus tangensa v ničli je 1. Njegova definicija da limito razmerja.",
+        "\\lim_{z\\to0}\\frac{\\arctan z-\\arctan0}{z-0}=(\\arctan)'(0)=\\frac1{1+0^2}=1"
+      ],
+      [
+        "Za $t\\ne0$ pri prvem členu razširi imenovalec na $tx$. Pri $t=0$ je ta člen že nič. Tako dobiš zvezno vrednost pri $x=0$.",
+        "\\lim_{x\\to0}\\frac{\\arctan(tx)-\\arctan x}{x}=t\\cdot1-1=t-1"
       ],
       [
         "Odvajaj po t pri stalnem x. Verižni faktor x odpravi imenovalec.",
@@ -530,8 +606,16 @@
         "0\\le\\frac{f(y,2+h)-f(y,2)}h\\le\\frac1{\\sqrt{4-y^2}},\\quad h>0"
       ],
       [
-        "Majoranta ima končen integral. Po dominirani konvergenci je dovoljeno desno limito prestaviti pod integral.",
-        "F'_+(2)=\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=[\\arcsin(y/2)]_0^2=\\frac{\\pi}{2}"
+        "Zgornji rob majorante je singularen. Integral zato izračunaj do $b<2$ z zamenjavo $u=y/2$.",
+        "\\int_0^b\\frac{dy}{\\sqrt{4-y^2}}=[\\arcsin(y/2)]_0^b=\\arcsin(b/2)"
+      ],
+      [
+        "Pri $b\\uparrow2$ gre argument proti 1. Ker je $\\sin(\\pi/2)=1$, je ta limita končna.",
+        "\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=\\lim_{b\\uparrow2}\\arcsin(b/2)=\\arcsin(1)=\\frac\\pi2"
+      ],
+      [
+        "Za vsak $y<2$ gre desni diferenčni kvocient proti parcialnemu odvodu. Integrabilna majoranta dovoljuje dominirano konvergenco.",
+        "F'_+(2)=\\int_0^2\\lim_{h\\downarrow0}\\frac{f(y,2+h)-f(y,2)}h\\,dy=\\int_0^2\\frac{dy}{\\sqrt{4-y^2}}=\\frac\\pi2"
       ]
     ],
     "betasub": [
@@ -560,8 +644,16 @@
         "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2),\\quad\\Gamma(3)=2\\Gamma(2)=2\\cdot1\\cdot\\Gamma(1)=2"
       ],
       [
-        "Polovična začetna vrednost sledi iz zamenjave x=t² v definiciji gama in znanega Gaussovega integrala.",
-        "\\Gamma(1/2)=2\\int_0^\\infty e^{-t^2}dt=\\sqrt\\pi,\\quad \\Gamma(3/2)=\\sqrt\\pi/2"
+        "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+      ],
+      [
+        "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2I(0)=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+      ],
+      [
+        "Spusti argument za ena.",
+        "\\Gamma(3/2)=\\tfrac12\\Gamma(1/2)=\\sqrt\\pi/2"
       ],
       [
         "Vstavi še faktor 8 iz menjave spremenljivke.",
@@ -586,6 +678,10 @@
         "I=\\int_0^1\\frac{u^{1/4}}{\\sqrt2}(1-u)^{1/2}\\frac{du}{4u^{1/2}}=\\frac1{4\\sqrt2}\\int_0^1u^{-1/4}(1-u)^{1/2}du"
       ],
       [
+        "Novi integrand pri ničli zraste. Ker je drugi faktor največ 1, zadostuje integral same potence. Končna limita zagotovi obstoj.",
+        "\\int_\\varepsilon^1u^{-1/4}du=\\tfrac43(1-\\varepsilon^{3/4})\\xrightarrow[\\varepsilon\\downarrow0]{}\\tfrac43"
+      ],
+      [
         "V definiciji beta sta eksponenta za ena manjša od argumentov.",
         "p=1-\\tfrac14=\\tfrac34,\\quad q=1+\\tfrac12=\\tfrac32,\\quad I=\\frac{B(3/4,3/2)}{4\\sqrt2}"
       ]
@@ -596,12 +692,12 @@
         "u=\\ln x,\\quad x=e^u,\\quad dx=e^u du"
       ],
       [
-        "Spodnja meja se spremeni v ln 1, zgornjo preberi kot limito.",
-        "\\ln1=0,\\qquad \\lim_{x\\to\\infty}\\ln x=\\infty"
+        "Namesto neskončnosti vzemi končno mejo $R>1$ ter preslikaj oba robova in diferencial.",
+        "\\int_1^R\\frac{\\sqrt{\\ln x}}{x^2}\\,dx=\\int_{\\ln1}^{\\ln R}\\sqrt u\\,e^{-u}du=\\int_0^{\\ln R}\\sqrt u\\,e^{-u}du"
       ],
       [
-        "Vstavi vse tri faktorje in odštej eksponenta.",
-        "I=\\int_0^\\infty\\frac{\\sqrt u}{e^{2u}}e^u du=\\int_0^\\infty u^{1/2}e^{-u}du"
+        "Ko gre $R$ v neskončnost, gre tja tudi $\\ln R$. Za vsako končno mejo $M$ zadošča $R>e^M$.",
+        "I=\\lim_{R\\to\\infty}\\int_0^{\\ln R}\\sqrt u\\,e^{-u}du=\\int_0^\\infty\\sqrt u\\,e^{-u}du"
       ],
       [
         "Preberi argument gama iz eksponenta.",
@@ -612,8 +708,16 @@
         "\\Gamma(p+1)=p\\Gamma(p)\\quad\\Longrightarrow\\quad I=\\tfrac12\\Gamma(1/2)"
       ],
       [
-        "V definiciji gama z zamenjavo u=t² dobiš Gaussov integral.",
-        "\\Gamma(1/2)=\\int_0^\\infty u^{-1/2}e^{-u}du=2\\int_0^\\infty e^{-t^2}dt=\\sqrt\\pi,\\qquad I=\\frac{\\sqrt\\pi}{2}"
+        "Pri polovičnem argumentu uvedi $x=t^2$ med dvema pozitivnima končnima mejama. Diferencial odpravi koren v imenovalcu.",
+        "\\int_\\varepsilon^R x^{-1/2}e^{-x}dx=2\\int_{\\sqrt\\varepsilon}^{\\sqrt R}e^{-t^2}dt"
+      ],
+      [
+        "Ko $\\varepsilon$ pada proti nič in $R$ raste, novi meji težita k nič in neskončnosti. Uporabi Gaussovo ploščino iz prvega dne.",
+        "\\sqrt\\varepsilon\\to0,\\quad\\sqrt R\\to\\infty,\\qquad\\Gamma(1/2)=2I(0)=2\\cdot\\frac{\\sqrt\\pi}{2}=\\sqrt\\pi"
+      ],
+      [
+        "Vstavi dobljeno osnovno vrednost.",
+        "I=\\tfrac12\\Gamma(1/2)=\\frac{\\sqrt\\pi}{2}"
       ]
     ],
     "betarec": [

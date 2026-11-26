@@ -55,7 +55,7 @@ function toolbar(){
 }
 function plotPanel(id,phase=graphStage){
  const cfg=plotSettings(id,phase), value=tab()==='lessons'?cfg[4]:(sliderValue??cfg[4]);
- const views={area:['Ploščina','Prirastek','Odvod'],gauss:['Integral','Odvod in majoranta'],atan:['Ploščina','Notranji odvod'],betasub:['Prvotni integral','Nova spremenljivka','Vrednost integrala'],cubeta:['Prvotni integral','Nova spremenljivka'],loggamma:['Prvotni integral','Jedro gama'],leg:['Začetni člen','Koeficient','Polinom'],ortho:['Faktorja','Predznačena ploščina','Tekoči integral'],bessel:['Vodilni člen','Naslednja potenca','Regularna veja']};
+ const views={area:['Ploščina','Prirastek','Odvod'],gauss:['Začetna ploščina do R','Odvod in majoranta','Integral s kosinusom'],atan:['Ploščina','Notranji odvod'],betasub:['Prvotni integral','Nova spremenljivka','Vrednost integrala'],cubeta:['Prvotni integral','Nova spremenljivka'],loggamma:['Prvotni integral','Jedro gama'],leg:['Začetni člen','Koeficient','Polinom'],ortho:['Faktorja','Predznačena ploščina','Tekoči integral'],bessel:['Vodilni člen','Naslednja potenca','Regularna veja']};
  const chooser=tab()==='exercises'&&views[id]?'<div class="viewSelect"><label for="graphView">Pogled</label> <select id="graphView">'+views[id].map((name,i)=>'<option value="'+i+'" '+(i===graphStage?'selected':'')+'>'+name+'</option>').join('')+'</select></div>':'';
  return '<section class="plot" data-phase="'+phase+'" aria-label="Interaktivni graf"><div class="plotHead">'+icon('wave')+(tab()==='lessons'?'Ponazoritev':'Graf naloge')+'</div>'+chooser+'<div class="drawing"></div><div class="legend"></div><div class="sliderbox"><label for="slide-'+phase+'">'+cfg[0]+'<output for="slide-'+phase+'"></output></label><input id="slide-'+phase+'" type="range" min="'+cfg[1]+'" max="'+cfg[2]+'" step="'+cfg[3]+'" value="'+value+'"></div><p class="caption"></p></section>';
 }
@@ -110,7 +110,12 @@ function lesson(){
  const o=current(),done=!!state.marks[currentId()];
  const facts=[['Pogoji veljavnosti',o.conditions],['Oznake',o.symbols],['Uporaba',o.use]];
  const intro='<section class="concept"><h3>Definicija</h3><p>'+o.definition+'</p><dl>'+facts.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl></section>';
- const scenes=o.steps.map(([heading,reason,formula],i)=>'<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p><div class="formula calcLine">'+formula+'</div>'+(o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'')+'</div>'+plotPanel(o.plot,i)+'</section>').join('');
+ const scenes=o.steps.map(([heading,reason,formula,,rows],i)=>{
+  const result='<div class="formula calcLine">'+formula+'</div>';
+  const boundaries=o.plot==='leib'&&i<2?'<div class="boundaryKeys"></div>':'';
+  const details=rows?'<div class="derivationRows">'+calculation(rows,'Izpeljava po vrsticah')+result+'</div>':'';
+  return '<section class="lesson scene"><div class="explain"><div class="stepLabel">Izpeljava · '+(i+1)+' / '+o.steps.length+'</div><h2>'+heading+'</h2><p>'+reason+'</p>'+(rows?'':result)+boundaries+'</div>'+plotPanel(o.plot,i)+details+'</section>';
+ }).join('');
  const cases=o.cases?'<section class="concept ruleCases"><h3>Kateri členi ostanejo?</h3><p>Za vsak premični rob pomnoži višino s hitrostjo meje. Če je integrand odvisen samo od <i>x</i>, je notranji odvod enak nič.</p><dl>'+o.cases.map(([label,formula])=>'<div><dt>'+label+'</dt><dd class="calcLine">'+formula+'</dd></div>').join('')+'</dl></section>':'';
  let practice='';
  if(o.plot==='leib')practice=unitLink('exercises','edgeDensity','Vaja z obema premičnima mejama');
@@ -135,8 +140,9 @@ function exercise(){
  const o=current(),done=!!state.marks[currentId()],answers=o.quiz.slice(1),order=[[1,0,2],[2,1,0],[0,2,1]][(idx()+state.day)%3];
  const hint='<p class="helpText"><b>Namig</b> '+o.hint+'</p>';
  const guide=o.guide?'<section class="methodGuide"><div class="stepLabel">Uvod v metodo</div>'+calculation(o.guide.steps,o.guide.title)+'</section>':'';
+ const afterGraph=o.afterGraph?'<section class="methodGuide">'+calculation(o.afterGraph.steps,o.afterGraph.title)+'</section>':'';
  const citation=o.url?'<a href="'+escapeGraph(o.url)+'" target="_blank" rel="noopener noreferrer">'+escapeGraph(o.source)+' ↗</a>':o.source;
- return '<article class="practice"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
+ return '<article class="practice"><div class="taskmeta">'+icon('pen')+citation+'</div><h2>'+o.title+'</h2>'+application('Kaj iščeš in zakaj',o.purpose)+'<p class="question">'+o.prompt+'</p>'+reading(o.symbols)+'<div class="method"><b>Kako prepoznaš metodo</b><p>'+o.cue+'</p>'+theoryLink(o)+'</div>'+guide+plotPanel(o.plot)+afterGraph+(choice!==null&&choice!==0?hint:'<details class="base"><summary>Potrebujem namig</summary>'+hint+'</details>')+'<details class="base"><summary>Poglej celoten postopek</summary>'+ruleBridge(o.rules)+calculation(o.worked,'Od pravila do rezultata')+'</details>' +'<div class="quiz"><h3>'+o.quiz[0]+'</h3><div class="options">'+order.map(i=>btn('answer',answers[i],choice===i?(i===0?'right':'wrong'):'','data-val="'+i+'"')).join('')+'</div><div class="feedback" role="status">'+(choice===0?'Pravilno. Pred potrditvijo samostojno zapiši še celoten postopek.':choice!==null?'Poskusi še enkrat. '+o.hint+'':'')+'</div><div class="actrow">'+(done?btn('advance','Nadaljuj','action')+btn('unlearn','✓ Rešeno · ponovi','quiet'):choice===0?btn('learn','Znam rešiti brez pomoči','action'):'')+'</div></div></article>';
 }
 function flash(){
  const c=current(),done=!!state.marks[currentId()];

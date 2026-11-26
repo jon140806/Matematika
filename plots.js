@@ -6,6 +6,7 @@ const line=(name,fn,color=mint)=>({name,fn,color});
 const fill=(fn,a,b,color=mint,low=()=>0)=>({fn,a,b,color,low});
 function plotSettings(id,k=0){
  if(practicePlots[id])return practicePlots[id].slider;
+ if(id==='gauss'&&k===0)return ['Meja reza R',0,3,.05,1];
  if(id==='gaussTheory')return k===0?['Meja polmera R',.2,3,.05,1.2]:['Parameter a',0,5,.1,1.5];
  if(id==='beta'&&k===1)return ['Vsota r = x + y',1,4,.1,2];
  if(id==='radius'&&k===1)return ['Zadnji indeks N',2,40,1,12];
@@ -63,9 +64,17 @@ function chartModel(id,k,v){
   x=[0,2.8];y=[0,5];const u=v/2,b=1+v,h=.24,f=t=>t+v,g=t=>t+v+h;graph('Stara višina',f);marks=[u,b];area(f,u,b);
   if(k>0){graph('Nova višina',g,lilac);area(g,u,b,lilac,f);area(g,b,b+h,gold);area(g,u,u+h/2,rose);marks.push(b+h,u+h/2)}
   caption=k===0?'Meji sta '+fmt(u)+' in '+fmt(b)+'.':'Desni rob doda ploščino, levi jo odvzame. Vijoličen pas meri spremembo višine.';
+ }else if(id==='gauss'&&k===0){
+  x=[0,3.5];y=[0,1.1];const bell=t=>exp(-t*t);
+  graph('Gaussov zvon',bell);area(bell,0,v);area(bell,v,3.5,lilac);mark(v,bell,gold);
+  // Composite Simpson rule for the area up to the movable endpoint.
+  const intervals=80,dx=v/intervals;
+  const partial=dx/3*(bell(0)+bell(v)+sum(intervals-1,i=>(i%2===0?2:4)*bell(i*dx),1));
+  const number=n=>n.toLocaleString('sl-SI',{maximumFractionDigits:5});
+  caption='Do R = '+fmt(v)+' je ploščina približno '+number(partial)+'. Preostanek do √π/2 je približno '+number(Math.sqrt(Math.PI)/2-partial)+'.';
  }else if(id==='tail'||id==='gauss'){
   const a=id==='gauss'?v:4;x=[0,3.5]; y=[-.95,1.1];const f=t=>exp(-t*t)*cos(a*t),g=t=>-t*exp(-t*t)*sin(a*t),m=t=>t*exp(-t*t);
-  if(k===0){graph('Integrand',f);area(f,0,id==='tail'?v:3.5);if(id==='tail')marks=[v];caption='Eksponentno dušenje omeji prispevek oddaljenih nihajev.'}
+  if(k===0||(id==='gauss'&&k===2)){graph('Integrand',f);area(f,0,id==='tail'?v:3.5);if(id==='tail')marks=[v];caption='Eksponentno dušenje omeji prispevek oddaljenih nihajev.'}
   else{graph('Odvod po a',g);graph('Ovojnici ±x exp(−x²)',m,lilac);graph('Spodnja meja',t=>-m(t),lilac);let r=id==='tail'?v:1.2;area(m,r,3.5,gold);marks=[r];caption='Za R = '+fmt(r)+' je integral repa majorante '+fmt(.5*exp(-r*r))+'.'}
  }else if(id==='gamma'||id==='loggamma'){
   x=[0,id==='gamma'?10:8];label=id==='loggamma'&&k===0?'x':'u';const p=id==='gamma'?v:1.5;
